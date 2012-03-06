@@ -2,6 +2,10 @@
 // New slider styles
 // -----------------------------------------------------
 
+.ui-slider-container {
+	height: 8em;
+}
+
 .ui-slider  {
 	clear: both; 
 	top: 1em;
@@ -11,6 +15,39 @@
 		display: none;
 	}
 	
+	.ui-slider-handle {
+		border: none;
+		@include box-shadow($shadow:  0 0 1px rgba(0, 0, 0, 0.9));
+		background: $secondaryThemeColor; 
+		cursor: move;
+		
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			width: 1px;
+			height: 10px;
+			background-color: darken($secondaryThemeColor, 05%);
+		}
+		
+		&:after {
+			content: '';
+			position: absolute;
+			top: 100%;
+			margin-left: -1px;
+			border-width: 10px;
+			border-style: solid;
+			border-color: $secondaryThemeColor transparent transparent;
+		}
+	}
+	
+	.ui-slider-range {
+		@include gradient-gloss($bgColor: $red)
+	}
 	.screenReaderContext {
 		@include screenReaderText();
 	}
@@ -92,6 +129,14 @@
 		padding-top: .2em;
 		border-bottom: 1px dotted #ddd;
 		text-align: center;
+		
+		&:first-child {
+			text-align: left;
+		}
+		
+		&:last-of-type {
+			text-align: right;
+		}
 		
 		span {
 			padding: 0 .5em;

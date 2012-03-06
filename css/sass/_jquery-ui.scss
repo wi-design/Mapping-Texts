@@ -84,8 +84,8 @@
 // --------------------
 .ui-state-default, 
 .ui-widget-content .ui-state-default { 
-	border: 1px solid lighten($primaryThemeColor, 40%); 
-	background: lighten($primaryThemeColor, 20%); 
+	border: 1px solid lighten($primaryThemeColor, 20%); 
+	background-color: lighten($primaryThemeColor, 65%); 
 	color: $defaultTextColor; 
 	font-weight: bold;
 	outline: none; 
@@ -120,7 +120,7 @@
 .ui-state-active, 
 .ui-widget-content .ui-state-active { 
 	border: 1px solid $secondaryThemeColor; 
-	background: lighten($secondaryThemeColor, 50%); 
+	background: lighten($secondaryThemeColor, 30%); 
 	color: $defaultTextColor; 
 	font-weight: bold; 
 	outline: none; 
@@ -186,7 +186,6 @@
 		z-index: 2; 
 		width: 1.2em; 
 		height: 1.2em; 
-		cursor: default;
 	}
 	
 	.ui-slider-range {
@@ -202,7 +201,7 @@
 	height: .8em; 
 	
 	.ui-slider-handle { 
-		top: -.3em; 
+		top: -.4em; 
 		margin-left: -.6em; 
 	}
 	

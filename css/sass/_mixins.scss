@@ -48,6 +48,19 @@
 	@return ( $targetValue / $baseValue ) * 1em;
 }
 
+// FONTS
+// ----------------
+
+@mixin font-shorthand($weight: normal, $size: $defaultFontSize, $lineHeight: $defaultLineHeight, $family: $defaultFontFamily) {
+  font: $weight $size + /$lineHeight $family;
+}
+
+@mixin font-styles($size: $baseFontSize, $weight: normal, $lineHeight: $baseLineHeight) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+}
+
 
 // Responsive grid
 // -------------------------
@@ -91,6 +104,20 @@
 // CSS3 PROPERTIES
 // --------------------------------------------------
 
+// Border Radius
+@mixin border-radius($radius: 5px) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+}
+
+// Box shadows
+@mixin box-shadow($shadow: 0 1px 3px rgba(0,0,0,.25)) {
+  -webkit-box-shadow: $shadow;
+     -moz-box-shadow: $shadow;
+          box-shadow: $shadow;
+}
+
 @mixin box-sizing($box-value) {
 	-moz-box-sizing: $box-value;
 			 box-sizing: $box-value;
@@ -126,7 +153,6 @@
   background-image: -o-linear-gradient(left, $startColor, $endColor); // Opera 11.10
   background-image: linear-gradient(left, $startColor, $endColor); // Le standard
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$startColor}', endColorstr='#{$endColor}', GradientType=1), $startColor, $endColor; // IE9 and down
 }
 @mixin gradient-vertical($startColor: #555, $endColor: #333) {
   background-color: mix($startColor, $endColor, 60%);
@@ -137,7 +163,16 @@
   background-image: -o-linear-gradient(top, $startColor, $endColor); // Opera 11.10
   background-image: linear-gradient(top, $startColor, $endColor); // The standard
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$startColor}', endColorstr='#{$endColor}', GradientType=0),$startColor,$endColor; // IE9 and down
+}
+
+@mixin gradient-gloss($bgColor: $red) {
+	background: $bgColor;
+	background: -moz-linear-gradient(top,  lighten($bgColor, 30%) 0%, lighten($bgColor, 20%) 50%, lighten($bgColor, 5%) 51%, $bgColor 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,lighten($bgColor, 30%)), color-stop(50%,lighten($bgColor, 20%)), color-stop(51%,lighten($bgColor, 5%)), color-stop(100%,$bgColor));
+	background: -webkit-linear-gradient(top,  lighten($bgColor, 30%) 0%,lighten($bgColor, 20%) 50%,lighten($bgColor, 5%) 51%,$bgColor 100%);
+	background: -o-linear-gradient(top,  lighten($bgColor, 30%) 0%,lighten($bgColor, 20%) 50%,lighten($bgColor, 5%) 51%,$bgColor 100%);
+	background: -ms-linear-gradient(top,  lighten($bgColor, 30%) 0%,lighten($bgColor, 20%) 50%,lighten($bgColor, 5%) 51%,$bgColor 100%);
+	background: linear-gradient(top,  lighten($bgColor, 30%) 0%,lighten($bgColor, 20%) 50%,lighten($bgColor, 5%) 51%,$bgColor 100%);
 }
 
 
