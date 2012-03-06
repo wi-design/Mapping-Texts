@@ -1,0 +1,143 @@
+// Mixins.scss
+// -----------------------------------------------------------------
+
+
+// Utility helpers
+// --------------------------------------------------
+
+// Clearfix
+// --------
+@mixin clearfix() {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+
+// Center-align a block level element
+// ----------------------------------
+@mixin center-elm() {
+  display: block;
+	margin-right: auto;
+  margin-left: auto;
+}
+
+
+// ScreenReader Text
+// ------------------
+
+@mixin screenReaderText() {
+	overflow: hidden;
+	position: absolute;
+	left: -999999999px;
+	width: 0;
+	height: 0;
+}
+
+
+// Conversion Functions 
+// --------------------
+
+@function convert-to-em( $targetValue, $baseValue ) {
+	@return ( $targetValue / $baseValue ) * 1em;
+}
+
+
+// Responsive grid
+// -------------------------
+@mixin calculate-column-width( $columnWidth, $columns, $gutterWidth ) {
+  width: ( $columnWidth * $columns ) - $gutterWidth;
+}
+
+@mixin create-grid( $columnWidth, $gutterWidth ) {      
+	.row {
+	  display: block;
+		overflow: hidden;
+		*overflow: visible;
+
+	  @include clearfix();
+	}
+
+	[class*="span-"] {
+		float: left;
+		margin-right: $gutterWidth;
+	}
+
+	[class*="span-"]:last-child {
+		display: table-cell;
+		margin-right: 0;
+	}
+	
+	.span-1		{ @include calculate-column-width($columnWidth, 1, $gutterWidth); }
+	.span-2		{ @include calculate-column-width($columnWidth, 2, $gutterWidth); }
+	.span-3   { @include calculate-column-width($columnWidth, 3, $gutterWidth); }
+	.span-4   { @include calculate-column-width($columnWidth, 4, $gutterWidth); }
+	.span-5   { @include calculate-column-width($columnWidth, 5, $gutterWidth); }
+	.span-6   { @include calculate-column-width($columnWidth, 6, $gutterWidth); }
+	.span-7   { @include calculate-column-width($columnWidth, 7, $gutterWidth); }
+	.span-8   { @include calculate-column-width($columnWidth, 8, $gutterWidth); }
+	.span-9   { @include calculate-column-width($columnWidth, 9, $gutterWidth); }
+	.span-10  { @include calculate-column-width($columnWidth, 10, $gutterWidth); }
+}
+
+
+
+// CSS3 PROPERTIES
+// --------------------------------------------------
+
+@mixin box-sizing($box-value) {
+	-moz-box-sizing: $box-value;
+			 box-sizing: $box-value;
+}
+
+// Opacity
+@mixin opacity($opacity: 100) {
+  opacity: $opacity / 100;
+   filter: alpha(opacity=$opacity);
+}
+
+
+
+// BACKGROUNDS
+// --------------------------------------------------
+
+@mixin translucent-background($color: $white, $alpha: 1) {
+    background-color: hsla(hue($color), saturation($color), lightness($color), $alpha);
+}
+
+@mixin translucent-border($color: $white, $alpha: 1) {
+  border-color: hsla(hue($color), saturation($color), lightness($color), $alpha);
+  @include background-clip(padding-box);
+}
+
+// Gradients
+@mixin gradient-horizontal($startColor: #555, $endColor: #333) {
+  background-color: $endColor;
+  background-image: -moz-linear-gradient(left, $startColor, $endColor); // FF 3.6+
+  background-image: -ms-linear-gradient(left, $startColor, $endColor); // IE10
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, from($startColor), to($endColor)); // Safari 4+, Chrome 2+
+  background-image: -webkit-linear-gradient(left, $startColor, $endColor); // Safari 5.1+, Chrome 10+
+  background-image: -o-linear-gradient(left, $startColor, $endColor); // Opera 11.10
+  background-image: linear-gradient(left, $startColor, $endColor); // Le standard
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$startColor}', endColorstr='#{$endColor}', GradientType=1), $startColor, $endColor; // IE9 and down
+}
+@mixin gradient-vertical($startColor: #555, $endColor: #333) {
+  background-color: mix($startColor, $endColor, 60%);
+  background-image: -moz-linear-gradient(top, $startColor, $endColor); // FF 3.6+
+  background-image: -ms-linear-gradient(top, $startColor, $endColor); // IE10
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($startColor), to($endColor)); // Safari 4+, Chrome 2+
+  background-image: -webkit-linear-gradient(top, $startColor, $endColor); // Safari 5.1+, Chrome 10+
+  background-image: -o-linear-gradient(top, $startColor, $endColor); // Opera 11.10
+  background-image: linear-gradient(top, $startColor, $endColor); // The standard
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$startColor}', endColorstr='#{$endColor}', GradientType=0),$startColor,$endColor; // IE9 and down
+}
+
+

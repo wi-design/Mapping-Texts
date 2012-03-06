@@ -1,0 +1,82 @@
+// Variables.scss
+// Variables to customize appearance
+// -----------------------------------------------------
+
+// GLOBAL VALUES
+// --------------------------------------------------
+
+// Links
+$defaultLinkColor:             #0088cc;
+$defaultLinkColorHover:        darken($defaultLinkColor, 30%);
+
+// Grays
+$black:                 #000;
+$silver:								#c0c0c0;
+$grayDarker:            #111;
+$grayDark:              #333;
+$gray:                  #555;
+$grayLight:             #777;
+$grayLighter:           #999;
+$grayLightest:					#e2e2e2;
+$white:                 #fff;
+
+// Accent colors
+$blue:                  #36a5d1;
+$navy:              		#0064cd;
+$green:                 #2e912e;
+$red:                   #e81414;
+$yellow:                #fcf823;
+$orange:                #f99a13;
+$teal:									#0b8c8f;
+$pink:                  #ba3b61;
+$purple:                #720172;
+
+// Theming Coloring
+$primaryThemeColor:			#990000;
+$secondaryThemeColor:		#e7b19a;
+
+// Typography
+$defaultFontSize:				1em;
+$defaultFontFamily:			"Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif;
+$defaultLineHeight:			1.3125em; //21px / 16px
+$defaultTextColor:			$grayDark;
+
+// Spacing
+// -------------
+// Margins
+$defaultMargin:					1.25em; // 20px / 16px	
+// Padding
+$defaultPadding:				0.625em; // 10px / 16px
+
+// Buttons
+$primaryButtonBackground:		$defaultLinkColor;
+
+// Component (think of another name)
+				
+// Hr border color
+$hrBorder:              					$grayLightest !default;
+
+// Main Header 
+$mainHeaderText:									$white;
+$mainHeaderHeight:                40px !default; // 40px / 16px 
+$mainHeaderBackground:						$black;
+
+// Main-Nav
+$mainNavBackground:              	$primaryThemeColor !default;
+$mainNavBackgroundHighlight:      lighten($primaryThemeColor, 15%) !default;
+$mainNavLinkBackgroundHover:      lighten($primaryThemeColor, 5%) !default;
+
+$mainNavText:                      $white !default;
+$mainNavLinkColor:                 $white !default;
+$mainNavLinkColorHover:            $white !default;
+
+
+// scaffolding
+// --------------------------------------------------
+
+$pageWidth:							100%;
+$innerWidth:						90%;
+
+// Responsive grid
+$columnWidth:    10%;
+$gutterWidth:    2%;

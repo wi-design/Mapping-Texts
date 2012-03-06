@@ -1,0 +1,287 @@
+// Typography.scss
+// Headings, body text, lists, code..
+// ----------------------------------------------------------------------------------------
+
+// Sectional Content
+// -----------------
+// Body
+
+body {
+	font: #{$defaultFontSize}/#{$defaultLineHeight} #{$defaultFontFamily};
+	color: $defaultTextColor;
+}
+
+
+// Headers
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+	
+	color: $grayDark;
+  font-weight: bold;
+  text-rendering: optimizelegibility; // Fix the character spacing for headings
+	text-transform: capitalize;
+  
+	small {
+    font-weight: normal;
+    color: $grayLight;
+  }
+}
+
+h1 {
+  font-size: convert-to-em( 30px, 16px );
+  line-height: $defaultLineHeight * 2;
+  
+	small {
+    font-size: convert-to-em( 18px, 16px );
+  }
+}
+
+h2 {
+  font-size: convert-to-em( 24px, 16px );
+  line-height: $defaultLineHeight * 2;
+  
+	small {
+    font-size: convert-to-em( 18px, 16px );
+  }
+}
+
+h3 {
+  line-height: $defaultLineHeight * 1.5;
+  font-size: convert-to-em( 18px, 16px );
+  
+	small {
+    font-size: convert-to-em( 14px, 16px );
+  }
+}
+
+h4, h5, h6 {
+  line-height: $defaultLineHeight;
+}
+
+h4 {
+  font-size: conver-to-em( 14px, 16px );
+  
+	small {
+    font-size: conver-to-em( 12px, 16px );
+  }
+}
+
+h5 {
+  font-size: conver-to-em( 12px, 16px );
+}
+
+h6 {
+  font-size: conver-to-em( 11px, 16px );
+  color: $grayLight;
+  text-transform: uppercase;
+}
+
+
+// Additional Header Classes
+
+// special h1 class for application name
+.app-name {
+	font-size: convert-to-em( 20px, 16px);
+	line-height: $mainHeaderHeight;
+	text-shadow: 0 1px 0 rgba( 255,255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5);
+	text-transform: uppercase;
+	
+	a { //make it a link
+		color: $primaryThemeColor;
+		
+		&:hover {
+			color: $primaryThemeColor;
+		}
+	}
+}
+
+
+// Grouping Content
+// ---------
+
+// Blockquotes
+blockquote {
+	margin: 0 0 $defaultLineHeight;
+	padding: 0 0 0 15px;
+ 
+	border-left: 5px solid $grayLighter;
+	
+	p {
+	 margin-bottom: 0;
+	 font: 16px/#{$defaultLineHeight * 1.25};
+	}
+ 
+	small {
+	  display: block;
+
+	  line-height: $defaultLineHeight;
+	  color: $grayLight;
+  
+		&:before {
+	    content: '\2014 \00A0';
+	  }
+	}
+}
+
+
+// Horizontal rules
+hr {
+  margin: $defaultMargin 0;
+  border: 0;
+  border-top: 1px solid $grayLightest;
+  border-bottom: 1px solid $white;
+}
+
+
+// Lists
+// Unordered and Ordered lists
+ul, ol {
+  padding: 0;
+  margin: 0 0 $defaultMargin / 2 $defaultMargin;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin-bottom: 0;
+}
+
+ul {
+  list-style: disc;
+}
+
+ol {
+  list-style: decimal;
+}
+
+li {
+  line-height: $defaultLineHeight;
+}
+
+ul.no-style,
+ol.no-style {
+  margin-left: 0;
+  list-style: none;
+}
+
+// Description Lists
+dl {
+  margin-bottom: $defaultLineHeight;
+}
+
+dt,
+dd {
+  line-height: $defaultLineHeight;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: $defaultLineHeight / 2;
+}
+
+// Paragraphs
+p {
+	margin: 0 0 $defaultLineHeight / 2;
+
+	font-family: $defaultFontFamily;
+	font-size: $defaultFontSize;
+	line-height: $defaultLineHeight;
+	
+	&:first-letter {
+		text-transform: uppercase;
+	}
+
+	small {
+	  font-size: $defaultFontSize - 2;
+	  color: $grayLight;
+	}
+}
+
+
+// Text-Level Semantics
+// --------------------
+// Abbreviations and acronyms
+abbr {
+	border-bottom: 1px dotted #ddd;
+  
+	font-size: 90%;
+  text-transform: uppercase;
+ 
+  cursor: help;
+}
+
+
+// Addresses
+address {
+	display: block;
+	margin-bottom: $defaultLineHeight;
+
+	font-style: normal;
+	line-height: $defaultLineHeight;
+}
+
+
+// Cite
+cite {
+	font-style: normal;
+}
+
+// Code 
+code {
+	color: $teal;
+}
+
+
+// Emphasis
+strong {
+  font-weight: bold;
+}
+
+em {
+	font-style: italic;
+}
+
+// Quotes
+q:before,
+q:after,
+blockquote:before, 
+blockquote:after {
+  content: "";
+}
+
+small {
+	font-size: 100%;
+}
+
+// Additional text-level classes
+
+.author {
+	color: $white;
+	font-size: convert-to-em( 13px, 16px );
+	line-height: convert-to-em( 13px, 16px);
+	text-transform: capitalize;
+	
+	&:hover {
+		color: $secondaryThemeColor;	
+	}
+}
+
+
+// Links
+// -----
+
+a {
+  color: $defaultLinkColor;
+  text-decoration: none;
+
+	&:hover {
+  	color: $defaultLinkColorHover;
+	}
+}
+
+
+

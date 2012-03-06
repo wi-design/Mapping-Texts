@@ -1,0 +1,37 @@
+/*
+ * Wi-Design v1.0
+ *
+ * Copyright 2012 Wi-Design, Inc.
+ *
+ */
+
+// CSS Reset
+@import "normalize";
+
+// Core (for customization)
+@import "variables";
+@import "mixins";
+
+// Scaffolding: templates, and grids
+@import "templates";
+@import "grid.scss";
+
+//Base styles
+@import "typography";
+
+// Components: Header 
+@import "header";
+
+// Components: Nav
+@import "navs";
+@import "pagination";
+
+// Plugins: jQuery UI
+@import "jquery-ui";
+
+// Plugins: extended styles
+@import "slider";
+
+// Helper classes
+@import "helpers";
+
