@@ -20,12 +20,15 @@
 @import "typography";
 @import "forms";
 
-// Components: Header 
+// Components: Partials
 @import "header";
 
 // Components: Nav
 @import "navs";
 @import "pagination";
+
+// Components: Common
+@import "widget";
 
 // Plugins: jQuery UI
 @import "jquery-ui";

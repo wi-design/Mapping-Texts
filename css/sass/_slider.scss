@@ -17,7 +17,6 @@
 	
 	.ui-slider-handle {
 		border: none;
-		@include box-shadow($shadow:  0 0 1px rgba(0, 0, 0, 0.9));
 		background: $secondaryThemeColor; 
 		cursor: move;
 		
@@ -46,8 +45,9 @@
 	}
 	
 	.ui-slider-range {
-		@include gradient-gloss($bgColor: $red)
+		background-color: lighten($primaryThemeColor, 10%);
 	}
+	
 	.screenReaderContext {
 		@include screenReaderText();
 	}

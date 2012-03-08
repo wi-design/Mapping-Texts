@@ -68,6 +68,10 @@
   width: ( $columnWidth * $columns ) - $gutterWidth;
 }
 
+@mixin calculate-column-width-fraction( $numerator: 1, $denominator: 1, $gutterWidth: $gutterWidth ) {
+	width: ( $numerator / $denominator ) * 100 - $gutterWidth;
+}
+
 @mixin create-grid( $columnWidth, $gutterWidth ) {      
 	.row {
 	  display: block;
@@ -87,16 +91,20 @@
 		margin-right: 0;
 	}
 	
-	.span-1		{ @include calculate-column-width($columnWidth, 1, $gutterWidth); }
-	.span-2		{ @include calculate-column-width($columnWidth, 2, $gutterWidth); }
-	.span-3   { @include calculate-column-width($columnWidth, 3, $gutterWidth); }
-	.span-4   { @include calculate-column-width($columnWidth, 4, $gutterWidth); }
-	.span-5   { @include calculate-column-width($columnWidth, 5, $gutterWidth); }
-	.span-6   { @include calculate-column-width($columnWidth, 6, $gutterWidth); }
-	.span-7   { @include calculate-column-width($columnWidth, 7, $gutterWidth); }
-	.span-8   { @include calculate-column-width($columnWidth, 8, $gutterWidth); }
-	.span-9   { @include calculate-column-width($columnWidth, 9, $gutterWidth); }
-	.span-10  { @include calculate-column-width($columnWidth, 10, $gutterWidth); }
+	.span-1				{ @include calculate-column-width($columnWidth, 1, $gutterWidth); }
+	.span-2				{ @include calculate-column-width($columnWidth, 2, $gutterWidth); }
+	.span-3   		{ @include calculate-column-width($columnWidth, 3, $gutterWidth); }
+	.span-4   		{ @include calculate-column-width($columnWidth, 4, $gutterWidth); }
+	.span-5   		{ @include calculate-column-width($columnWidth, 5, $gutterWidth); }
+	.span-6   		{ @include calculate-column-width($columnWidth, 6, $gutterWidth); }
+	.span-7   		{ @include calculate-column-width($columnWidth, 7, $gutterWidth); }
+	.span-8   		{ @include calculate-column-width($columnWidth, 8, $gutterWidth); }
+	.span-9   		{ @include calculate-column-width($columnWidth, 9, $gutterWidth); }
+	.span-10  		{ @include calculate-column-width($columnWidth, 10, $gutterWidth); }
+	
+	.span-fourth 	{ @include calculate-column-width-fraction( $denominator: 4 ); }
+	.span-third 	{ @include calculate-column-width-fraction( $denominator: 3 ); }
+	.span-half		{ @include calculate-column-width-fraction( $denominator: 2 ); }
 }
 
 

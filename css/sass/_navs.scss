@@ -54,4 +54,40 @@
 	}
 }
 
+// TABS
+// ----
+
+// Give the tabs something to sit on
+.tabs {
+  border-bottom: 1px solid #ddd;
+
+	@include clearfix();
+}
+
+// Make the list-items overlay the bottom border
+.tabs > li {
+	float: left;
+  margin-bottom: -1px;
+}
+
+// Actual tabs (as links)
+.tabs > li > a {
+	margin-right: 2px;
+  padding: convert-to-em(9px, 16px) convert-to-em(12px, 16px);
+  border: 1px solid transparent;
+	line-height: convert-to-em(14px, 16px); 
+  
+&:hover {
+    border-color: $grayLighter $grayLighter #ddd;
+  }
+}
+// Active state, and it's :hover to override normal :hover
+.tabs > li > .active,
+.tabs > li > .active:hover {
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+	background-color: $white;
+	color: $gray;
+}
+
 
