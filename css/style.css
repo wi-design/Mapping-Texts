@@ -233,6 +233,14 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+#wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 5px solid red;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
 .page {
   width: 100%;
   *zoom: 1; }
@@ -296,47 +304,40 @@ footer > .inner {
   margin-right: 2%; }
 
 [class*="span-"]:last-child {
-  display: table-cell;
-  margin-right: 0; }
+  overflow: hidden;
+  float: none;
+  margin-right: 0;
+  width: auto; }
 
-.span-1 {
-  width: 8%; }
-
-.span-2 {
+/*
+.span-1				{ @include calculate-column-width($columnWidth, 1, $gutterWidth); }
+.span-2				{ @include calculate-column-width($columnWidth, 2, $gutterWidth); }
+.span-3   		{ @include calculate-column-width($columnWidth, 3, $gutterWidth); }
+.span-4   		{ @include calculate-column-width($columnWidth, 4, $gutterWidth); }
+.span-5   		{ @include calculate-column-width($columnWidth, 5, $gutterWidth); }
+.span-6   		{ @include calculate-column-width($columnWidth, 6, $gutterWidth); }
+.span-7   		{ @include calculate-column-width($columnWidth, 7, $gutterWidth); }
+.span-8   		{ @include calculate-column-width($columnWidth, 8, $gutterWidth); }
+.span-9   		{ @include calculate-column-width($columnWidth, 9, $gutterWidth); }
+.span-10  		{ @include calculate-column-width($columnWidth, 10, $gutterWidth); }
+*/
+.span-20pct {
   width: 18%; }
 
-.span-3 {
-  width: 28%; }
-
-.span-4 {
-  width: 38%; }
-
-.span-5 {
-  width: 48%; }
-
-.span-6 {
-  width: 58%; }
-
-.span-7 {
-  width: 68%; }
-
-.span-8 {
-  width: 78%; }
-
-.span-9 {
-  width: 88%; }
-
-.span-10 {
-  width: 98%; }
-
-.span-fourth {
+.span-25pct {
   width: 23%; }
 
-.span-third {
+.span-33pct {
   width: 31.333%; }
 
-.span-half {
+.span-50pct {
   width: 48%; }
+
+.span-66pct {
+  width: 64.667%; }
+
+.span-80pct {
+  width: 78%; }
 
 body {
   font: 1em/1.313em "Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif;
@@ -578,8 +579,8 @@ header {
   .nav > li > a {
     display: block; }
   .nav > li > a:hover {
-    text-decoration: none;
-    background-color: #999999; }
+    background-color: #999999;
+    text-decoration: none; }
 
 .main-nav {
   overflow: visible;
@@ -599,8 +600,8 @@ header {
       text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
       text-transform: capitalize; }
       .main-nav .nav > li > a:hover, .main-nav .nav > li > a:active {
-        color: white;
-        background: #b30000; }
+        background: #b30000;
+        color: white; }
 
 .tabs {
   border-bottom: 1px solid #ddd;
@@ -710,15 +711,15 @@ header {
     margin: 0 0.625em; }
   .module .tabs {
     border-bottom-color: #999999; }
-    .module .tabs > li > a {
+    .module .tabs > li > a,
+    .module .tabs > li > .active,
+    .module .tabs > li > .active:hover {
       border-color: #999999;
       border-bottom-width: 0;
       border-bottom-style: none;
       border-bottom-color: transparent; }
-    .module .tabs > li > .active {
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-      box-shadow: none;
+    .module .tabs > li > .active,
+    .module .tabs > li > .active:hover {
       background-color: #dedede;
       background-image: -moz-linear-gradient(top, #eaeaea, #cccccc);
       background-image: -ms-linear-gradient(top, #eaeaea, #cccccc);
@@ -1140,3 +1141,99 @@ header {
 
 .push {
   float: right; }
+
+.ptn, .pvn, .pan {
+  padding-top: 0 !important; }
+
+.pts, .pvs, .pas {
+  padding-top: 0.313em !important; }
+
+.ptm, .pvm, .pam {
+  padding-top: 0.625em !important; }
+
+.ptl, .pvl, .pal {
+  padding-top: 1.25em !important; }
+
+.prn, .phn, .pan {
+  padding-right: 0 !important; }
+
+.prs, .phs, .pas {
+  padding-right: 0.313em !important; }
+
+.prm, .phm, .pam {
+  padding-right: 0.625em !important; }
+
+.prl, .phl, .pal {
+  padding-right: 1.25em !important; }
+
+.pbn, .pvn, .pan {
+  padding-bottom: 0 !important; }
+
+.pbs, .pvs, .pas {
+  padding-bottom: 0.313em !important; }
+
+.pbm, .pvm, .pam {
+  padding-bottom: 0.625em !important; }
+
+.pbl, .pvl, .pal {
+  padding-bottom: 1.25em !important; }
+
+.pln, .phn, .pan {
+  padding-left: 0 !important; }
+
+.pls, .phs, .pas {
+  padding-left: 0.313em !important; }
+
+.plm, .phm, .pam {
+  padding-left: 0.625em !important; }
+
+.pll, .phl, .pal {
+  padding-left: 1.25em !important; }
+
+.mtn, .mvn, .man {
+  margin-top: 0 !important; }
+
+.mts, .mvs, .mas {
+  margin-top: 0.313em !important; }
+
+.mtm, .mvm, .mam {
+  margin-top: 0.625em !important; }
+
+.mtl, .mvl, .mal {
+  margin-top: 1.25em !important; }
+
+.mrn, .mhn, .man {
+  margin-right: 0 !important; }
+
+.mrs, .mhs, .mas {
+  margin-right: 0.313em !important; }
+
+.mrm, .mhm, .mam {
+  margin-right: 0.625em !important; }
+
+.mrl, .mhl, .mal {
+  margin-right: 1.25em !important; }
+
+.mbn, .mvn, .man {
+  margin-bottom: 0 !important; }
+
+.mbs, .mvs, .mas {
+  margin-bottom: 0.313em !important; }
+
+.mbm, .mvm, .mam {
+  margin-bottom: 0.625em !important; }
+
+.mbl, .mvl, .mal {
+  margin-bottom: 1.25em !important; }
+
+.mln, .mhn, .man {
+  margin-left: 0 !important; }
+
+.mls, .mhs, .mas {
+  margin-left: 0.313em !important; }
+
+.mlm, .mhm, .mam {
+  margin-left: 0.625em !important; }
+
+.mll, .mhl, .mal {
+  margin-left: 1.25em !important; }

@@ -6,6 +6,7 @@
 .nav {
 	margin-bottom: $defaultLineHeight;
   margin-left: 0;
+
   list-style: none;
 	
 	// link styles
@@ -14,8 +15,9 @@
 	}
 	
 	 > li > a:hover {
-	  text-decoration: none;
 	  background-color: $grayLighter;
+	
+		text-decoration: none;
 	}
 }
 
@@ -24,11 +26,13 @@
 // ---------------
 .main-nav {
 	overflow: visible;
+	
 	float: left;
 	
 	.nav {
 		display: block;
 		position: relative;
+		
 		float: left; 
 		margin: 0 $defaultMargin / 2 0 0;
 		
@@ -40,6 +44,7 @@
 		// Links
 		> li > a {
 			padding: 0 $defaultPadding;
+			
 			color: $mainNavLinkColor;
 			line-height: $mainHeaderHeight;
 			text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -47,8 +52,8 @@
 			
 			&:hover,
 			&:active {
-				color: $mainNavLinkColorHover;
 				background: $mainNavLinkBackgroundHover;
+				color: $mainNavLinkColorHover;
 			}
 		}
 	}
@@ -75,6 +80,7 @@
 	margin-right: 2px;
   padding: convert-to-em(9px, 16px) convert-to-em(12px, 16px);
   border: 1px solid transparent;
+
 	line-height: convert-to-em(14px, 16px); 
   
 &:hover {
@@ -86,7 +92,9 @@
 .tabs > li > .active:hover {
   border: 1px solid #ddd;
   border-bottom-color: transparent;
+
 	background-color: $white;
+	
 	color: $gray;
 }
 

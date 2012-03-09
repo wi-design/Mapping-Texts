@@ -87,10 +87,14 @@
 	}
 
 	[class*="span-"]:last-child {
-		display: table-cell;
+		overflow: hidden;
+		
+		float: none;
 		margin-right: 0;
+		width: auto;
 	}
 	
+	/*
 	.span-1				{ @include calculate-column-width($columnWidth, 1, $gutterWidth); }
 	.span-2				{ @include calculate-column-width($columnWidth, 2, $gutterWidth); }
 	.span-3   		{ @include calculate-column-width($columnWidth, 3, $gutterWidth); }
@@ -101,10 +105,14 @@
 	.span-8   		{ @include calculate-column-width($columnWidth, 8, $gutterWidth); }
 	.span-9   		{ @include calculate-column-width($columnWidth, 9, $gutterWidth); }
 	.span-10  		{ @include calculate-column-width($columnWidth, 10, $gutterWidth); }
+	*/
 	
-	.span-fourth 	{ @include calculate-column-width-fraction( $denominator: 4 ); }
-	.span-third 	{ @include calculate-column-width-fraction( $denominator: 3 ); }
-	.span-half		{ @include calculate-column-width-fraction( $denominator: 2 ); }
+	.span-20pct			{ @include calculate-column-width-fraction( $denominator: 5 ); }
+	.span-25pct 		{ @include calculate-column-width-fraction( $denominator: 4 ); }
+	.span-33pct 		{ @include calculate-column-width-fraction( $denominator: 3 ); }
+	.span-50pct			{ @include calculate-column-width-fraction( $denominator: 2 ); }
+	.span-66pct			{ @include calculate-column-width-fraction( $numerator: 2, $denominator: 3 ); }
+	.span-80pct			{ @include calculate-column-width-fraction( $numerator: 4, $denominator: 5 ); }
 }
 
 
