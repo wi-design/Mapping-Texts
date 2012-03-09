@@ -233,13 +233,8 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-#wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: 5px solid red;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
+body {
+  min-width: 768px; }
 
 .page {
   width: 100%;
@@ -256,6 +251,7 @@ table {
   width: auto; }
 
 .body {
+  position: relative;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
@@ -662,8 +658,6 @@ header {
   .widget > .inner {
     padding: 0.625em 0.625em 1.25em; }
   .widget .box {
-    overflow-y: scroll;
-    height: 12.5em;
     padding: 0.625em;
     -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.8) inset;
     -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.8) inset;
@@ -682,6 +676,9 @@ header {
   -moz-border-radius: 3px;
   border-radius: 3px;
   background-color: #e2e2e2; }
+  .tool .box {
+    overflow-y: scroll;
+    height: 12.5em; }
   .tool .hd small {
     color: #0088cc; }
 

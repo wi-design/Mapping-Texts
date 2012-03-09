@@ -5,15 +5,12 @@
 .widget {
 	margin-top: $defaultMargin;
 	margin-bottom: $defaultMargin;
-	
+
 	> .inner {
 		padding: $defaultPadding $defaultPadding $defaultPadding * 2;
 	}
 	
 	.box {
-		overflow-y: scroll;
-		
-		height: convert-to-em(200px, 16px);
 		padding: $defaultPadding;
 		@include box-shadow( $shadow: 0 0 3px rgba( 0, 0, 0, 0.8) inset);
 		@include border-radius( $radius: 3px );
@@ -35,6 +32,12 @@
 	@include border-radius( $radius: 3px );
 	
 	background-color: $grayLightest;
+	
+	.box {
+		overflow-y: scroll;
+		
+		height: convert-to-em(200px, 16px);
+	}
 	
 	.hd small {
 		color: $defaultLinkColor;

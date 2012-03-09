@@ -2,6 +2,10 @@
 // 
 // -----------------------------------------------------
 
+body {
+	min-width: 768px;
+}
+
 .page {
 	width: $pageWidth; 
 	
@@ -15,6 +19,8 @@
 	width: auto;
 }
 .body {
+	position: relative;
+	
 	@include box-sizing(border-box);
 }
 .body, .main {
