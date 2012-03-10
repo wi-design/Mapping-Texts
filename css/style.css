@@ -245,11 +245,6 @@ body {
   .page:after {
     clear: both; }
 
-.main {
-  display: table-cell;
-  *display: block;
-  width: auto; }
-
 .body {
   position: relative;
   -moz-box-sizing: border-box;
@@ -263,14 +258,19 @@ body {
   .body:after, .main:after {
     clear: both; }
 
+.main {
+  display: table-cell;
+  *display: block;
+  width: auto; }
+
 header > .inner,
 .body > .inner,
 footer > .inner {
-  padding-right: 1.25em;
-  padding-left: 1.25em;
   display: block;
   margin-right: auto;
   margin-left: auto;
+  padding-right: 1.25em;
+  padding-left: 1.25em;
   *zoom: 1; }
   header > .inner:before, header > .inner:after,
   .body > .inner:before,
@@ -302,21 +302,8 @@ footer > .inner {
 [class*="span-"]:last-child {
   overflow: hidden;
   float: none;
-  margin-right: 0;
-  width: auto; }
+  margin-right: 0; }
 
-/*
-.span-1				{ @include calculate-column-width($columnWidth, 1, $gutterWidth); }
-.span-2				{ @include calculate-column-width($columnWidth, 2, $gutterWidth); }
-.span-3   		{ @include calculate-column-width($columnWidth, 3, $gutterWidth); }
-.span-4   		{ @include calculate-column-width($columnWidth, 4, $gutterWidth); }
-.span-5   		{ @include calculate-column-width($columnWidth, 5, $gutterWidth); }
-.span-6   		{ @include calculate-column-width($columnWidth, 6, $gutterWidth); }
-.span-7   		{ @include calculate-column-width($columnWidth, 7, $gutterWidth); }
-.span-8   		{ @include calculate-column-width($columnWidth, 8, $gutterWidth); }
-.span-9   		{ @include calculate-column-width($columnWidth, 9, $gutterWidth); }
-.span-10  		{ @include calculate-column-width($columnWidth, 10, $gutterWidth); }
-*/
 .span-20pct {
   width: 18%; }
 
@@ -335,6 +322,18 @@ footer > .inner {
 .span-80pct {
   width: 78%; }
 
+/*
+.span-1				{ @include calculate-column-width($columnWidth, 1, $gutterWidth); }
+.span-2				{ @include calculate-column-width($columnWidth, 2, $gutterWidth); }
+.span-3   		{ @include calculate-column-width($columnWidth, 3, $gutterWidth); }
+.span-4   		{ @include calculate-column-width($columnWidth, 4, $gutterWidth); }
+.span-5   		{ @include calculate-column-width($columnWidth, 5, $gutterWidth); }
+.span-6   		{ @include calculate-column-width($columnWidth, 6, $gutterWidth); }
+.span-7   		{ @include calculate-column-width($columnWidth, 7, $gutterWidth); }
+.span-8   		{ @include calculate-column-width($columnWidth, 8, $gutterWidth); }
+.span-9   		{ @include calculate-column-width($columnWidth, 9, $gutterWidth); }
+.span-10  		{ @include calculate-column-width($columnWidth, 10, $gutterWidth); }
+*/
 body {
   font: 1em/1.313em "Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif;
   color: #333333; }
@@ -596,8 +595,13 @@ header {
       text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
       text-transform: capitalize; }
       .main-nav .nav > li > a:hover, .main-nav .nav > li > a:active {
-        background: #b30000;
-        color: white; }
+        background: none;
+        color: #e7b19a; }
+    .main-nav .nav > li > .active,
+    .main-nav .nav > li > .active:hover {
+      background: #b30000;
+      color: white;
+      cursor: default; }
 
 .tabs {
   border-bottom: 1px solid #ddd;
@@ -959,6 +963,7 @@ header {
 
 .ui-slider {
   clear: both;
+  margin: 0 1em;
   top: 1em;
   text-decoration: none !important; }
   .ui-slider .ui-slider-tooltip {
@@ -1000,8 +1005,10 @@ header {
     display: block;
     position: absolute;
     bottom: 2.5em;
-    margin-left: -3.7em;
-    width: 8em;
+    margin-left: -1.1em;
+    /*margin-left: -3.7em;
+    width: 8em;*/
+    width: 3em;
     padding: .3em .2em .4em;
     font-size: .9em;
     text-align: center; }

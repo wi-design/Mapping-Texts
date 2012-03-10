@@ -12,13 +12,7 @@ body {
 	@include clearfix();
 }
 
-.main {
-	display: table-cell;
-	*display: block;
-	
-	width: auto;
-}
-.body {
+.body { //use this class to wrap all content after header and before footer tags
 	position: relative;
 	
 	@include box-sizing(border-box);
@@ -27,13 +21,21 @@ body {
 	@include clearfix();
 }
 
+.main {
+	display: table-cell;
+	*display: block;
+	
+	width: auto;
+}
+
 header,
 .body,
 footer {
 	 >.inner { // allow for different full page backgrounds but centered content
+		@include center-elm();
 		padding-right: $defaultPadding * 2;
 		padding-left: $defaultPadding *2;
-	 	@include center-elm();
+	 	
 		@include clearfix();
 	}
 }

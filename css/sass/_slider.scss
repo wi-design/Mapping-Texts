@@ -9,6 +9,7 @@
 .ui-slider  {
 	clear: both; 
 	
+	margin: 0 $defaultMargin / 1.25;
 	top: 1em;
 	
 	text-decoration: none !important;
@@ -67,8 +68,10 @@
 		position: absolute;
 		
 		bottom: 2.5em;
-		margin-left: -3.7em;
-		width: 8em;
+		margin-left: -1.1em;
+		/*margin-left: -3.7em;
+		width: 8em;*/
+		width: 3em;
 		padding: .3em .2em .4em;
 		
 		font-size: .9em;
