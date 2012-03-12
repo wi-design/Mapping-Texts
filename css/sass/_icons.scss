@@ -1,0 +1,136 @@
+// icons.scss
+// -----------------------------------------------------
+
+// Base Icon styles (all icons inherent these base styles)
+// use <i> tag with a class of "icon-[type of icon]". 
+// ---------------------------------------------------------
+
+[class*="icon-"],
+[class^="icon-"] { 
+	display: inline-block;
+	position: relative;
+	
+	margin-right: $defaultMargin / 2;
+	
+	cursor: pointer;
+	@include transition($transition: all 0.3s ease-in);
+	
+	&:after,
+	&:before {
+		content: '';
+		position: absolute;
+	}
+	
+	&.push { //for icons floated right
+		margin-right: 0;
+		margin-left: $defaultMargin / 2;
+	}
+	
+	span {
+		@include screenReaderText();
+	}
+}
+
+
+// Arrow Icons
+// -----------
+
+// Base styles for icon arrow
+// Append appropriate class to "icon-arrow" for direction of arrow desired.
+// ie <i class="icon-arrow [direction (up,down,left,right)]"></i>
+// ------------------------------------------------------------------------
+.icon-arrow {
+	margin: $defaultMargin / 2 0 $defaultMargin / 4;
+	width: 2px;
+	height: 1px;
+	padding: $defaultPadding $defaultPadding;
+	border: 1px solid #f2f2f2;
+	
+	&:hover {
+		@include box-shadow( $shadow: ( 0 1px 1px rgba( 0, 0, 0, 0.1 ) ) );
+	}
+}
+
+.icon-arrow.up,
+.icon-arrow.down {
+	&:after {
+		margin-left: -5px;
+		border-width: 6px;
+		border-style: solid;
+	}
+}
+
+// Up arrow icon
+// -------------
+.icon-arrow.up:after {
+	margin-top: -8px;
+	border-color: transparent transparent $grayLighter transparent;
+}
+
+// Down arrow icon
+// -----
+.icon-arrow.down:after {
+	margin-top: -4px;
+	border-color: $grayLighter transparent transparent transparent;
+}
+
+
+// Clipboard icon
+// --------------
+.icon-clipboard {
+	width: 14px;
+	height: 18px;
+	@include border-radius($radius: 2px);
+	
+	background: $grayLighter;
+	
+	&:hover {
+		background: $grayLight;
+	}
+	
+	&:before {
+		z-index: 1;
+		
+		right: 0;
+		left: 0;
+		margin: 0 auto;
+		width: 2px;
+		height: 2px;
+		
+		background: $grayLightest;
+	}
+	
+	&:after {
+		right: 0;
+		left: 0;
+		margin: -1px auto 0;
+		width: 6px;
+		height: 4px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: $grayLight $grayLightest $grayLightest;
+		@include border-radius($radius: 2px);
+		
+		background: $grayLighter;
+	}
+}
+
+// Info icon
+// ----------
+.icon-info {
+	width: 18px;
+	height: 18px;
+	@include border-radius($radius: 9px);
+	
+	background: $grayLighter;
+	
+	color: $grayLightest;
+	font-style: normal;
+	text-align: center;
+	
+	&:hover {
+		background: $grayLight;
+	}
+}
+
+

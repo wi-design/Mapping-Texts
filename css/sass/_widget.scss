@@ -103,11 +103,6 @@
 	
 	padding: $defaultPadding /2 $defaultPadding;
 	@include clearfix();
-	
-	button {
-		float: right;
-		margin-left: $defaultPadding;
-	}
 }
 
 
