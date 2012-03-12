@@ -91,6 +91,7 @@
 		
 		float: none;
 		margin-right: 0;
+		width: auto;
 	}
 	
 	.span-20pct			{ @include calculate-column-width-fraction( $denominator: 5 ); }
