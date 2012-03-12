@@ -507,7 +507,12 @@ small {
 
 a {
   color: #0088cc;
-  text-decoration: none; }
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -ms-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in; }
   a:hover {
     color: #002233; }
 
@@ -650,9 +655,10 @@ header {
   .pagination a:hover,
   .pagination a .active a {
     background-color: #e2e2e2; }
-  .pagination a .active a {
-    color: #777777;
-    cursor: default; }
+
+.pagination .active a {
+  color: #777777;
+  cursor: default; }
 
 .pagination li:first-child a {
   border-left-width: 1px; }

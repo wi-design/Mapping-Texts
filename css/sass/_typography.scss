@@ -283,6 +283,7 @@ small {
 a {
   color: $defaultLinkColor;
   text-decoration: none;
+	@include transition($transition: all 0.3s ease-in);
 
 	&:hover {
   	color: $defaultLinkColorHover;
