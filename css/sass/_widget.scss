@@ -1,39 +1,64 @@
 // widgets.scss
 // -----------------------------------------------------
 
-
 .widget {
-	margin-top: $defaultMargin;
-	margin-bottom: $defaultMargin;
+	margin: $defaultMargin 0;
 
-	> .inner {
+	> .inner { //add this class to widget for default padding hd, bd, ft classes
 		padding: $defaultPadding $defaultPadding $defaultPadding * 2;
-	}
-	
-	.box {
-		padding: $defaultPadding;
-		@include box-shadow( $shadow: 0 0 3px rgba( 0, 0, 0, 0.8) inset);
-		@include border-radius( $radius: 3px );
-		
-		background-color: $white;
 	}
 	
 	.nav {
 		padding-right: $defaultPadding;
 		padding-left: $defaultPadding;
 	}
+	
+	.tabs {
+		margin-bottom: 0;
+	}
+}
+
+// add inner class to widget sections (bd,ft,hd) to allow for spacing from widget sides if need be
+.bd > .inner,
+.ft > .inner,
+.hd > .inner {
+	margin-right: $defaultPadding;
+	margin-left: $defaultPadding;
 }
 
 
-// tool (extends widget)
+// Action bar for copy and info buttons, goes inside module
+.action-bar {// wrap copy and info buttons in a div with this class
+	overflow: hidden;
+	
+	padding: $defaultPadding /2 $defaultPadding;
+}
 
-.tool {
+
+// Skins to style different widgets
+
+// basic (extends widget), used for basic style to widget
+.basic {
 	border: 1px solid rgba( 0, 0, 0,.09);
 	@include border-radius( $radius: 3px );
+}
+
+
+// box styles (child/extends bd class), default box styles
+.box { 
+	padding: $defaultPadding;
+	@include box-shadow( $shadow: 0 0 3px rgba( 0, 0, 0, 0.8) inset);
+	@include border-radius( $radius: 3px );
 	
+	background-color: $white;
+}
+
+
+// tool (extends widget), defines user interaction with this widget
+.tool { // used for div to toggle publications show on map
 	background-color: $grayLightest;
 	
-	.box {
+	.box { //
 		overflow-y: scroll;
 		
 		height: convert-to-em(200px, 16px);
@@ -45,65 +70,46 @@
 }
 
 
-// module ( extends widget - used for three horizontal blocks)
-
+// module ( extends widget - used for three horizontal blocks below map and publications tool)
+// modules are for displaying information from a user interaction from a tool
 .module {
 	padding-bottom: $defaultMargin;
-	border: 1px solid rgba( 0, 0, 0, .09);
-	@include border-radius( $radius: 3px );
 	
 	background-color: lighten($grayLightest, 5%);
 	
-	.hd {
-		padding: $defaultPadding 0;
-		
-		text-align: center;
-		
-		+ .bd {
-			margin-top: 33px;
-			border-top: 1px solid $grayLighter;
-		}
+	.hd + .bd { //for when tabs are not present in module
+		/*margin-top: 33px;*/
+		border-top: 1px solid $grayLighter;
 	}
 	
+	h1, h2, h3, h4 {
+		line-height: convert-to-em(41px, 16px);
+		text-align: center;
+	}
+		
 	.bd {
 		@include gradient-vertical($startColor: #ccc, $endColor: #eaeaea);
-	}
-	
-	.box {
-		margin: 0 $defaultPadding;
 	}
 	
 	.tabs {
 		border-bottom-color: $grayLighter;
 		
-		> li > a,
-		> li > .active,
-		> li > .active:hover {
+		a,
+		.active,
+		.active:hover {
 			border-color: $grayLighter;
 			border-bottom-width: 0;
 			border-bottom-style: none;
 			border-bottom-color: transparent;
 		}
 	
-		> li > .active,
-		> li > .active:hover {
+		.active,
+		.active:hover {
 			@include gradient-vertical($startColor: #eaeaea, $endColor: #ccc);
-		}
-		
-		+ .bd {
-			margin-top: -21px;
 		}
 	}
 }
 
-
-// Action bar for copy and infor buttons, goes inside module
-.action-bar {// wrap copy and info buttons in a div with this class
-	overflow: hidden;
-	
-	padding: $defaultPadding /2 $defaultPadding;
-	@include clearfix();
-}
 
 
 
