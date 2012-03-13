@@ -1,0 +1,36 @@
+// tooltip.scss
+// -------------
+
+.tooltip {
+	position: relative;
+	
+	padding: $defaultPadding;
+	border: 1px solid $primaryThemeColor;
+	
+  background-color: $secondaryThemeColor;
+
+  color: $grayDark;
+	font-size: convert-to-em(12px,16px);
+	
+	pointer-events: none;
+	
+	&:after {
+		content: '';
+		position: absolute;
+		z-index: 2;
+		
+		top: 100%;
+		left: 50%;
+		margin-top: -5px;
+		margin-left: -4px;
+		width: 8px;
+		height: 8px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: transparent $primaryThemeColor $primaryThemeColor transparent;
+		
+		background: $secondaryThemeColor;
+	
+		@include transformRotate($degrees: 45deg);
+	}
+}
