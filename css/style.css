@@ -727,10 +727,39 @@ header {
   border-radius: 9px;
   background: #999999;
   color: #e2e2e2;
-  font-style: normal;
+  font-style: oblique;
   text-align: center; }
   .icon-info:hover {
-    background: #777777; }
+    background: #777777;
+    color: white; }
+
+.tooltip {
+  position: relative;
+  padding: 0.625em;
+  border: 1px solid #990000;
+  background-color: #e7b19a;
+  color: #333333;
+  font-size: 0.75em;
+  pointer-events: none; }
+  .tooltip:after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    top: 100%;
+    left: 50%;
+    margin-top: -5px;
+    margin-left: -4px;
+    width: 8px;
+    height: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent #990000 #990000 transparent;
+    background: #e7b19a;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg); }
 
 .widget {
   margin: 1.25em 0; }
@@ -780,7 +809,7 @@ header {
   padding-bottom: 1.25em;
   background-color: #efefef; }
   .module .hd + .bd {
-    /*margin-top: 33px;*/
+    margin-top: 33px;
     border-top: 1px solid #999999; }
   .module h1, .module h2, .module h3, .module h4 {
     line-height: 2.563em;

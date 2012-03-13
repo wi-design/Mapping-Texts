@@ -2,8 +2,8 @@
 // -----------------------------------------------------
 
 // Base Icon styles (all icons inherent these base styles)
-// use <i> tag with a class of "icon-[type of icon]". 
-// ---------------------------------------------------------
+// use <a>, <span>, or <i> tag with a class of "icon-[type of icon]". 
+// ------------------------------------------------------------------
 
 [class*="icon-"],
 [class^="icon-"] { 
@@ -125,11 +125,13 @@
 	background: $grayLighter;
 	
 	color: $grayLightest;
-	font-style: normal;
+	font-style: oblique;
 	text-align: center;
 	
 	&:hover {
 		background: $grayLight;
+		
+		color: $white;
 	}
 }
 

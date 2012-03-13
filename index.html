@@ -521,8 +521,8 @@
 					<div class="bd">
 				
 						<div class="action-bar clearfix">
-							<i class="icon-info push" title="info">i</i>
-							<i class="icon-clipboard push" title="copy to clipboard"><span>copy to clipboard</span></i>
+							<a class="icon-info push" title="info">i</a>
+							<a class="icon-clipboard push" title="copy to clipboard"><span>copy to clipboard</span></a>
 						</div>
 			
 						<div class="inner box tab-content">
@@ -571,8 +571,8 @@
 					<div class="bd">
 				
 						<div class="action-bar clearfix">
-							<i class="icon-info push" title="info">i</i>
-							<i class="icon-clipboard push" title="copy to clipboard"><span>copy to clipboard</span></i>
+							<a class="icon-info push" title="info">i</a>
+							<a class="icon-clipboard push" title="copy to clipboard"><span>copy to clipboard</span></a>
 						</div>
 			
 						<div class="inner box tab-content">
@@ -616,8 +616,8 @@
 					<div class="bd">
 				
 						<div class="action-bar clearfix">
-							<a class="tt" title="info"><i class="icon-info push">i</i></a>
-							<a class="tt" title="copy to clipboard"><i class="icon-clipboard push"><span>copy to clipboard</span></i></a>
+							<a class="icon-info push" title="info">i<span>information button</span></a>
+							<a class="icon-clipboard push" title="copy to clipboard"><span>copy to clipboard</span></a>
 						</div>
 				
 						<div class="inner box">
@@ -653,8 +653,8 @@
 <!-- plugins/custom scripts -->
 <script src="js/plugins/selectToUISlider.jQuery.js"></script>
 <script src="js/plugins/tabs.js"></script>
+<script src="js/plugins/tooltip.js"></script>
 <script src="js/scripts.js"></script>
-
 
 <script>
 $(function() { 
@@ -664,6 +664,12 @@ $(function() {
 	
 	$('.tabs').tabs('.tab-content > .tab-pane', {
 		effect: 'fade'
+	});
+	
+	$('[title]').tooltip({
+		effect: 'fade',
+		offset: [-10,0],
+		predelay: 500
 	});
 	
 	matchHeights( $('section > .module .box') );

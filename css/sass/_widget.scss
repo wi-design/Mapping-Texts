@@ -78,7 +78,7 @@
 	background-color: lighten($grayLightest, 5%);
 	
 	.hd + .bd { //for when tabs are not present in module
-		/*margin-top: 33px;*/
+		margin-top: 33px; // need to find a better way to decouple this from the styling 
 		border-top: 1px solid $grayLighter;
 	}
 	
