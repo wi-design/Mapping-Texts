@@ -8,7 +8,10 @@
 
 .ui-slider  {
 	clear: both; 
+	
+	margin: 0 $defaultMargin / 1.25;
 	top: 1em;
+	
 	text-decoration: none !important;
 	
 	.ui-slider-tooltip {
@@ -17,12 +20,15 @@
 	
 	.ui-slider-handle {
 		border: none;
-		background: $secondaryThemeColor; 
+		
+		background: $secondaryThemeColor;
+		 
 		cursor: move;
 		
 		&:before {
 			content: '';
 			position: absolute;
+			
 			top: 0;
 			right: 0;
 			bottom: 0;
@@ -30,12 +36,15 @@
 			margin: auto;
 			width: 1px;
 			height: 10px;
+			
 			background-color: darken($secondaryThemeColor, 05%);
 		}
 		
 		&:after {
 			content: '';
+
 			position: absolute;
+			
 			top: 100%;
 			margin-left: -1px;
 			border-width: 10px;
@@ -57,10 +66,14 @@
 	.ui-state-hover .ui-slider-tooltip {
 		display: block;
 		position: absolute;
+		
 		bottom: 2.5em;
-		margin-left: -3.7em;
-		width: 8em;
+		margin-left: -1.1em;
+		/*margin-left: -3.7em;
+		width: 8em;*/
+		width: 3em;
 		padding: .3em .2em .4em;
+		
 		font-size: .9em;
 		text-align: center;
 	}
@@ -69,9 +82,11 @@
 	.ui-slider-tooltip .ui-tooltip-pointer-down-inner {
 		position: absolute; 
 		display: block;
+		
 		width:0; 
 		height:0; 
 		border-bottom-width: 0;
+		
 		background: none;
 	}
 	
@@ -105,12 +120,14 @@
 	dt {
 		margin: 0;
 		padding: 0;
+		
 		list-style: none;
 	}
 	
 	ol,
 	dl {
 		position: relative;
+		
 		top: 1.3em;
 		width: 100%;
 	}
@@ -120,6 +137,7 @@
 	dd {
 		overflow: visible;
 		position: absolute;
+		
 		color: $gray;
 	}
 	
@@ -128,6 +146,7 @@
 		height: .7em;
 		padding-top: .2em;
 		border-bottom: 1px dotted #ddd;
+		
 		text-align: center;
 		
 		&:first-child {
@@ -140,6 +159,7 @@
 		
 		span {
 			padding: 0 .5em;
+			
 			background: $white;
 		}
 	}
@@ -166,6 +186,7 @@
 	
 	span.ui-slider-tic {
 		position: absolute;
+		
 		top: -1.3em;
 		left: 0;
 		height: .8em;

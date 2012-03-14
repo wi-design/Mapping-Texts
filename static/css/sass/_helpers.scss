@@ -69,6 +69,46 @@
 }
 
 
+// spacing helpers
+// p,m = padding,margin
+// a,t,r,b,l,h,v = all,top,right,bottom,left,horizontal,vertical
+// ------------------------------------------------------------
+
+.ptn, .pvn, .pan { padding-top: 0 !important }
+.pts, .pvs, .pas { padding-top: $defaultPadding / 2 !important }
+.ptm, .pvm, .pam { padding-top: $defaultPadding !important }
+.ptl, .pvl, .pal { padding-top: $defaultPadding * 2 !important }
+.prn, .phn, .pan { padding-right: 0 !important }
+.prs, .phs, .pas { padding-right: $defaultPadding / 2 !important }
+.prm, .phm, .pam { padding-right: $defaultPadding !important }
+.prl, .phl, .pal { padding-right: $defaultPadding * 2 !important }
+.pbn, .pvn, .pan { padding-bottom: 0 !important }  
+.pbs, .pvs, .pas { padding-bottom: $defaultPadding / 2 !important }
+.pbm, .pvm, .pam { padding-bottom: $defaultPadding !important }
+.pbl, .pvl, .pal { padding-bottom: $defaultPadding * 2 !important }
+.pln, .phn, .pan { padding-left: 0 !important }
+.pls, .phs, .pas { padding-left: $defaultPadding / 2 !important }
+.plm, .phm, .pam { padding-left: $defaultPadding !important }
+.pll, .phl, .pal { padding-left: $defaultPadding * 2 !important }
+.mtn, .mvn, .man { margin-top: 0 !important }
+.mts, .mvs, .mas { margin-top: $defaultPadding / 2 !important }
+.mtm, .mvm, .mam { margin-top: $defaultPadding !important }
+.mtl, .mvl, .mal { margin-top: $defaultPadding * 2 !important }
+.mrn, .mhn, .man { margin-right: 0 !important }
+.mrs, .mhs, .mas { margin-right: $defaultPadding / 2 !important }
+.mrm, .mhm, .mam { margin-right: $defaultPadding !important }
+.mrl, .mhl, .mal { margin-right: $defaultPadding * 2 !important }
+.mbn, .mvn, .man { margin-bottom: 0 !important }  
+.mbs, .mvs, .mas { margin-bottom: $defaultPadding / 2 !important }
+.mbm, .mvm, .mam { margin-bottom: $defaultPadding !important }
+.mbl, .mvl, .mal { margin-bottom: $defaultPadding * 2 !important }
+.mln, .mhn, .man { margin-left: 0 !important }
+.mls, .mhs, .mas { margin-left: $defaultPadding / 2 !important }
+.mlm, .mhm, .mam { margin-left: $defaultPadding !important }
+.mll, .mhl, .mal { margin-left: $defaultPadding * 2 !important }
+
+
+
 
 
 
