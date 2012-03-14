@@ -1,0 +1,182 @@
+// slider.scss
+// New slider styles
+// -----------------------------------------------------
+
+.ui-slider-container {
+	height: 8em;
+}
+
+.ui-slider  {
+	clear: both; 
+	top: 1em;
+	text-decoration: none !important;
+	
+	.ui-slider-tooltip {
+		display: none;
+	}
+	
+	.ui-slider-handle {
+		border: none;
+		background: $secondaryThemeColor; 
+		cursor: move;
+		
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			width: 1px;
+			height: 10px;
+			background-color: darken($secondaryThemeColor, 05%);
+		}
+		
+		&:after {
+			content: '';
+			position: absolute;
+			top: 100%;
+			margin-left: -1px;
+			border-width: 10px;
+			border-style: solid;
+			border-color: $secondaryThemeColor transparent transparent;
+		}
+	}
+	
+	.ui-slider-range {
+		background-color: lighten($primaryThemeColor, 10%);
+	}
+	
+	.screenReaderContext {
+		@include screenReaderText();
+	}
+	
+	.ui-state-active .ui-slider-tootip,
+	.ui-state-focus .ui-slider-tooltip,
+	.ui-state-hover .ui-slider-tooltip {
+		display: block;
+		position: absolute;
+		bottom: 2.5em;
+		margin-left: -3.7em;
+		width: 8em;
+		padding: .3em .2em .4em;
+		font-size: .9em;
+		text-align: center;
+	}
+	
+	.ui-slider-tooltip .ui-tooltip-pointer-down,
+	.ui-slider-tooltip .ui-tooltip-pointer-down-inner {
+		position: absolute; 
+		display: block;
+		width:0; 
+		height:0; 
+		border-bottom-width: 0;
+		background: none;
+	}
+	
+	.ui-slider-tooltip .ui-tooltip-pointer-down {
+		bottom:	-8px;
+		right: auto;
+		left: 50%;
+		margin-left: -7px;
+		border-top-width: 8px;
+		border-left: 7px dashed transparent; 
+		border-right: 7px dashed transparent;
+	}
+	
+	.ui-slider-tooltip .ui-tooltip-pointer-down-inner {
+		top: -9px;
+		bottom:	auto;
+		left: -6px;
+		border-top: 7px solid #fff;
+		border-right: 6px dashed transparent;
+		border-left: 6px dashed transparent; 
+	}
+	
+	a {
+		text-decoration: none;
+	}
+	
+	ol,
+	li,
+	dl,
+	dd,
+	dt {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	
+	ol,
+	dl {
+		position: relative;
+		top: 1.3em;
+		width: 100%;
+	}
+	
+	dt,
+	li,
+	dd {
+		overflow: visible;
+		position: absolute;
+		color: $gray;
+	}
+	
+	dt {
+		top: 1.5em;
+		height: .7em;
+		padding-top: .2em;
+		border-bottom: 1px dotted #ddd;
+		text-align: center;
+		
+		&:first-child {
+			text-align: left;
+		}
+		
+		&:last-of-type {
+			text-align: right;
+		}
+		
+		span {
+			padding: 0 .5em;
+			background: $white;
+		}
+	}
+	
+	li,
+	dd {
+		.ui-slider-label {
+			display: none;
+			position: absolute;
+		}
+		
+		.ui-slider-label-show {
+			display: block;
+		}
+		
+		.ui-widget-content {
+			border-top: 0;
+			border-right: 0;
+			border-bottom: 0;
+			border-left-width: 1px;
+			border-left-style: solid;
+		}
+	}
+	
+	span.ui-slider-tic {
+		position: absolute;
+		top: -1.3em;
+		left: 0;
+		height: .8em;
+	}
+	
+	.first,
+	.last {
+		.ui-slider-tic {
+			display: none;
+		}
+	}
+	
+}
+

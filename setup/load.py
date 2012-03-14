@@ -630,7 +630,245 @@ if __name__ == "__main__":
 		runBase()
 		runNer()
 		runWcc()
+
+
+
+	elif sys.argv[1] == "--input-redis=epochs":
+		
+		epochs = [
+			('1829-1835', 'Mexican Era'),
+			('1836-1845', 'Republic of Texas'),
+			('1846-1860', 'Antebellum Era'),
+			('1861-1865', 'Civil War'),
+			('1866-1877', 'Reconstruction'),
+			('1878-1899', 'Gilded Age'),
+			('1900-1929', 'Progressive Era'),
+			('1930-1941', 'Depression'),
+			('1942-1945', 'World War II'),
+			('1946-2008', 'Modern Texas'),
+		]
+		
+		for epoch in epochs:
+			years,era = epoch
+			REDIS.hset('epochs', years, era)
+		
+		REDIS.hset('years', 'start', '1829')
+		REDIS.hset('years', 'end', '2008')
+		
+	elif sys.argv[1] == "--input-redis=templates":
+		
+		time_select_view = """
+<ul class="nav tabs">
+	<li><a href-"#">Historical Epochs</a></li>
+	<li><a href="#">Time Slider</a></li>
+</ul>
+
+<div class="tab-content">
 	
+	<ol class="tab-pane pagination">
+		{{#epochs}}
+			<li><a href="#" title="{{era}}">{{years}}</a></li>
+		{{/epochs}}
+	</ol>
+	
+	<div class="ui-slider-container tab-pane">
+	
+		<form>
+			<fieldset>
+				<label for="valueAA">From:</label>
+				<select name="valueAA" id="valueAA">
+					<optgroup label="1800">
+						{{#_1800s}}
+							<option value="{{.}}">{{.}}</option>
+						{{/_1800s}}
+					</optgroup>
+					<optgroup label="1900">
+						{{#_1900s}}
+							<option value="{{.}}">{{.}}</option>
+						{{/_1900s}}
+					</optgroup>
+					<optgroup label="2000">
+						{{#_2000s}}
+							<option value="{{.}}">{{.}}</option>
+						{{/_2000s}}
+					</optgroup>
+				</select>
+				
+				<label for="valueBB">To:</label>
+				<select name="valueBB" id="valueBB">
+					<optgroup label="1800">
+						{{#_1800s}}
+							<option value="{{.}}">{{.}}</option>
+						{{/_1800s}}
+					</optgroup>
+					<optgroup label="1900">
+						{{#_1900s}}
+							<option value="{{.}}">{{.}}</option>
+						{{/_1900s}}
+					</optgroup>
+					<optgroup label="2000">
+						{{#_2000s}}
+							<option value="{{.}}">{{.}}</option>
+						{{/_2000s}}
+					</optgroup>
+				</select>
+			</fieldset>
+		</form>
+	
+	</div><!-- /slider -->
+	
+</div><!-- /tab-contnet -->
+""".strip()
+
+		map_view = """
+Here is our map of Texas
+""".strip()
+
+		pub_view = """
+<div class="inner">
+
+	<div class="hd">
+		<h3>date range <small>[value]</small></h3>
+		<h4>publication by city:</h4>
+	</div>
+
+	<div class="bd box">
+
+		{{#publocs}}
+			<h5>{{city}}</h5>
+			<ul class="simple-list">
+				{{#pubs}}
+					<li><input type="checkbox" name="" id="pubseq-{{pubseq}}" checked="true"><label for="pubseq-{{pubseq}}" class="checkbox" title="{{pub}}">{{pub}}</label></li>
+				{{/pubs}}
+			</ul>
+		{{/publocs}}
+		
+	</div>
+
+</div>
+""".strip()
+		
+		wcc_view = """
+<div class="hd">
+	<h4>total word counts</h4>
+</div>
+
+<ul class="nav tabs">
+	<li><a href-"#" class="active">list</a></li>
+	<li><a href="#">tag cloud</a></li>
+</ul>
+
+<div class="bd">
+
+	<div class="action-bar">
+		<button>i</button>
+		<button>copy</button>
+	</div>
+
+	<div class="box tab-content">
+
+		<ul class="tab-pane">
+			{{#wcc}}
+				<li>{{word}}: {{count}}</li>
+			{{/wcc}}
+		</ul>
+
+		<div class="tab-pane">
+			<p>tag cloud</p>
+		</div>
+
+	</div>
+
+</div>
+""".strip()
+		
+		ner_view = """
+<div class="hd">
+	<h4>named entity counts</h4>
+</div>
+
+<ul class="nav tabs">
+	<li><a href-"#" class="active">list</a></li>
+	<li><a href="#">tag cloud</a></li>
+</ul>
+
+<div class="bd">
+	
+	<div class="action-bar">
+		<button>i</button>
+		<button>copy</button>
+	</div>
+
+	<div class="box tab-content">
+	
+		<ul class="tab-pane">
+			{{#ner}}
+				<li>{{entity}}: {{count}}, type: {{type}}</li>
+			{{/ner}}
+		</ul>
+
+		<div class="tab-pane">
+			<p>tag cloud</p>
+		</div>
+		
+	</div><!-- /tab-content -->
+	
+</div><!-- /bd -->
+""".strip()
+		
+		topic_view = """
+<div class="hd">
+	<h4>topic keys</h4>
+</div>
+	
+<div class="bd">
+	
+	<div class="action-bar">
+		<button>i</button>
+		<button>copy</button>
+	</div>
+	
+	<div class="box">
+		
+		<ul>
+			<li>topic key</li>
+			<li>topic key</li>
+			<li>topic key</li>
+			<li>topic key</li>
+			<li>topic key</li>
+			<li>topic key</li>
+		</ul>
+		
+	</div>
+	
+</div><!-- /bd -->
+""".strip()
+		
+		REDIS.hset('templates', 'time_select_view', time_select_view)
+		
+		REDIS.hset('templates', 'map_view', map_view)
+		REDIS.hset('templates', 'pub_view', pub_view)
+		
+		REDIS.hset('templates', 'wcc_view', wcc_view)
+		REDIS.hset('templates', 'ner_view', ner_view)
+		REDIS.hset('templates', 'topic_view', topic_view)
+
+
+
+
+
+	elif sys.argv[1] == "--migrate-redis=locs-into-pubs":
+		for pubseq_key in REDIS.keys('pub:[0-9]*'):
+			locseq = REDIS.hget(pubseq_key, 'loc')
+			locseq_key = makeLocKey(locseq)
+			city = REDIS.hget(locseq_key, 'val')
+			REDIS.hset(pubseq_key, 'loc', city)
+
+	elif sys.argv[1] == "--migrate-redis=pubseq-into-pubs":
+		for pubseq_key in REDIS.keys('pub:[0-9]*'):
+			pubseq = pubseq_key.split(':')[1]
+			REDIS.hset(pubseq_key, 'pubseq', pubseq)
+		
 	elif sys.argv[1] == "--make-redis=wcc-all":
 		
 		# too much memory ...

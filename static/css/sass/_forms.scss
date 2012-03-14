@@ -1,0 +1,55 @@
+// Forms.scss
+// Base styles for various input types, form layouts, and states
+// -------------------------------------------------------------
+
+// GENERAL STYLES
+// --------------
+
+form {
+  margin: 0 0 $defaultLineHeight;
+}
+
+fieldset {
+  border: none;
+}
+
+label,
+input,
+button,
+select,
+textarea {
+	@include font-shorthand($size: convert-to-em(13px, 16px));
+}
+
+
+// Identify controls by their labels
+label {
+  display: inline-block;
+	margin-right: $defaultMargin / 4;
+  margin-bottom: $defaultMargin / 4;
+  color: $grayDark;
+}
+
+
+// Inputs, Textareas, Selects
+input,
+textarea,
+select {
+  display: inline-block;
+  padding: convert-to-em(4px, 16px);
+  color: $gray;
+  border: 1px solid #ccc;
+}
+
+
+// CHECKBOXES & RADIOS
+// -------------------
+
+input[type="radio"] + label,
+input[type="checkbox"] + label {
+	padding-left: $defaultPadding;
+}
+
+
+
+

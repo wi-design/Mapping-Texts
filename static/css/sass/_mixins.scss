@@ -1,0 +1,186 @@
+// Mixins.scss
+// -----------------------------------------------------------------
+
+
+// Utility helpers
+// --------------------------------------------------
+
+// Clearfix
+// --------
+@mixin clearfix() {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+
+// Center-align a block level element
+// ----------------------------------
+@mixin center-elm() {
+  display: block;
+	margin-right: auto;
+  margin-left: auto;
+}
+
+
+// ScreenReader Text
+// ------------------
+
+@mixin screenReaderText() {
+	overflow: hidden;
+	position: absolute;
+	left: -999999999px;
+	width: 0;
+	height: 0;
+}
+
+
+// Conversion Functions 
+// --------------------
+
+@function convert-to-em( $targetValue, $baseValue ) {
+	@return ( $targetValue / $baseValue ) * 1em;
+}
+
+// FONTS
+// ----------------
+
+@mixin font-shorthand($weight: normal, $size: $defaultFontSize, $lineHeight: $defaultLineHeight, $family: $defaultFontFamily) {
+  font: $weight $size + /$lineHeight $family;
+}
+
+@mixin font-styles($size: $baseFontSize, $weight: normal, $lineHeight: $baseLineHeight) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+}
+
+
+// Responsive grid
+// -------------------------
+@mixin calculate-column-width( $columnWidth, $columns, $gutterWidth ) {
+  width: ( $columnWidth * $columns ) - $gutterWidth;
+}
+
+@mixin calculate-column-width-fraction( $numerator: 1, $denominator: 1, $gutterWidth: $gutterWidth ) {
+	width: ( $numerator / $denominator ) * 100 - $gutterWidth;
+}
+
+@mixin create-grid( $columnWidth, $gutterWidth ) {      
+	.row {
+	  display: block;
+		overflow: hidden;
+		*overflow: visible;
+
+	  @include clearfix();
+	}
+
+	[class*="span-"] {
+		float: left;
+		margin-right: $gutterWidth;
+	}
+
+	[class*="span-"]:last-child {
+		display: table-cell;
+		margin-right: 0;
+	}
+	
+	.span-1				{ @include calculate-column-width($columnWidth, 1, $gutterWidth); }
+	.span-2				{ @include calculate-column-width($columnWidth, 2, $gutterWidth); }
+	.span-3   		{ @include calculate-column-width($columnWidth, 3, $gutterWidth); }
+	.span-4   		{ @include calculate-column-width($columnWidth, 4, $gutterWidth); }
+	.span-5   		{ @include calculate-column-width($columnWidth, 5, $gutterWidth); }
+	.span-6   		{ @include calculate-column-width($columnWidth, 6, $gutterWidth); }
+	.span-7   		{ @include calculate-column-width($columnWidth, 7, $gutterWidth); }
+	.span-8   		{ @include calculate-column-width($columnWidth, 8, $gutterWidth); }
+	.span-9   		{ @include calculate-column-width($columnWidth, 9, $gutterWidth); }
+	.span-10  		{ @include calculate-column-width($columnWidth, 10, $gutterWidth); }
+	
+	.span-fourth 	{ @include calculate-column-width-fraction( $denominator: 4 ); }
+	.span-third 	{ @include calculate-column-width-fraction( $denominator: 3 ); }
+	.span-half		{ @include calculate-column-width-fraction( $denominator: 2 ); }
+}
+
+
+
+// CSS3 PROPERTIES
+// --------------------------------------------------
+
+// Border Radius
+@mixin border-radius($radius: 5px) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+}
+
+// Box shadows
+@mixin box-shadow($shadow: 0 1px 3px rgba(0,0,0,.25)) {
+  -webkit-box-shadow: $shadow;
+     -moz-box-shadow: $shadow;
+          box-shadow: $shadow;
+}
+
+@mixin box-sizing($box-value) {
+	-moz-box-sizing: $box-value;
+			 box-sizing: $box-value;
+}
+
+// Opacity
+@mixin opacity($opacity: 100) {
+  opacity: $opacity / 100;
+   filter: alpha(opacity=$opacity);
+}
+
+
+
+// BACKGROUNDS
+// --------------------------------------------------
+
+@mixin translucent-background($color: $white, $alpha: 1) {
+    background-color: hsla(hue($color), saturation($color), lightness($color), $alpha);
+}
+
+@mixin translucent-border($color: $white, $alpha: 1) {
+  border-color: hsla(hue($color), saturation($color), lightness($color), $alpha);
+  @include background-clip(padding-box);
+}
+
+// Gradients
+@mixin gradient-horizontal($startColor: #555, $endColor: #333) {
+  background-color: $endColor;
+  background-image: -moz-linear-gradient(left, $startColor, $endColor); // FF 3.6+
+  background-image: -ms-linear-gradient(left, $startColor, $endColor); // IE10
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, from($startColor), to($endColor)); // Safari 4+, Chrome 2+
+  background-image: -webkit-linear-gradient(left, $startColor, $endColor); // Safari 5.1+, Chrome 10+
+  background-image: -o-linear-gradient(left, $startColor, $endColor); // Opera 11.10
+  background-image: linear-gradient(left, $startColor, $endColor); // Le standard
+  background-repeat: repeat-x;
+}
+@mixin gradient-vertical($startColor: #555, $endColor: #333) {
+  background-color: mix($startColor, $endColor, 60%);
+  background-image: -moz-linear-gradient(top, $startColor, $endColor); // FF 3.6+
+  background-image: -ms-linear-gradient(top, $startColor, $endColor); // IE10
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($startColor), to($endColor)); // Safari 4+, Chrome 2+
+  background-image: -webkit-linear-gradient(top, $startColor, $endColor); // Safari 5.1+, Chrome 10+
+  background-image: -o-linear-gradient(top, $startColor, $endColor); // Opera 11.10
+  background-image: linear-gradient(top, $startColor, $endColor); // The standard
+  background-repeat: repeat-x;
+}
+
+@mixin gradient-gloss($bgColor: $red) {
+	background: $bgColor;
+	background: -moz-linear-gradient(top,  lighten($bgColor, 30%) 0%, lighten($bgColor, 20%) 50%, lighten($bgColor, 5%) 51%, $bgColor 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,lighten($bgColor, 30%)), color-stop(50%,lighten($bgColor, 20%)), color-stop(51%,lighten($bgColor, 5%)), color-stop(100%,$bgColor));
+	background: -webkit-linear-gradient(top,  lighten($bgColor, 30%) 0%,lighten($bgColor, 20%) 50%,lighten($bgColor, 5%) 51%,$bgColor 100%);
+	background: -o-linear-gradient(top,  lighten($bgColor, 30%) 0%,lighten($bgColor, 20%) 50%,lighten($bgColor, 5%) 51%,$bgColor 100%);
+	background: -ms-linear-gradient(top,  lighten($bgColor, 30%) 0%,lighten($bgColor, 20%) 50%,lighten($bgColor, 5%) 51%,$bgColor 100%);
+	background: linear-gradient(top,  lighten($bgColor, 30%) 0%,lighten($bgColor, 20%) 50%,lighten($bgColor, 5%) 51%,$bgColor 100%);
+}
+
+
