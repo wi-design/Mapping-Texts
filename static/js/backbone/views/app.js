@@ -130,7 +130,7 @@ $(function(){
 		
 		render_pubs: function() {
 			var pub_view = new STANFORD.MAPPING_TEXTS.views.pub_view();
-			$(this.el).find('#pub-view').replaceWith( pub_view.render().el );
+			$(this.el).find('#pub-view').html( pub_view.render().el );
 			STANFORD.MAPPING_TEXTS.cached.pub_cbs = $(this.el).find('#pub-view input[type="checkbox"]');
 			
 			this.render_map();
@@ -161,7 +161,7 @@ $(function(){
 			
 			$(this.el)
 			.find('#wcc-view')
-			.replaceWith( wcc_view.render().el );
+			.html( wcc_view.render().el );
 			
 			$(this.el)
 			.find('#wcc-view')
@@ -175,7 +175,7 @@ $(function(){
 			var ner_view = new STANFORD.MAPPING_TEXTS.views.ner_view();
 			$(this.el)
 			.find('#ner-view')
-			.replaceWith( ner_view.render().el );
+			.html( ner_view.render().el );
 			
 			$(this.el)
 			.find('#ner-view')
@@ -187,7 +187,7 @@ $(function(){
 		
 		render_topics: function() {
 			var topic_view = new STANFORD.MAPPING_TEXTS.views.topic_view();
-			$(this.el).find('#topic-view').replaceWith( topic_view.render().el );
+			$(this.el).find('#topic-view').html( topic_view.render().el );
 		}
 		
 	});

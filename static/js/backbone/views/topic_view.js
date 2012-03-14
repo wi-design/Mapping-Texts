@@ -2,11 +2,9 @@ $(function(){
 	
 	STANFORD.MAPPING_TEXTS.views.topic_view = Backbone.View.extend({
 		
-		tagName: "section",
+		tagName: "div",
 		
-		id: "topic-view",
-		
-		className: "span-third widget module",
+		className: "widget basic module",
 		
 		events : {},
 		

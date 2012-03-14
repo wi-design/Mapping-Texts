@@ -2,11 +2,9 @@ $(function(){
 	
 	STANFORD.MAPPING_TEXTS.views.pub_view = Backbone.View.extend({
 		
-		tagName: "section",
+		tagName: "div",
 		
-		id: "pub-view",
-		
-		className: "span-3 widget tool",
+		className: "widget basic tool",
 		
 		events : {
 			'change input[type="checkbox"]' : 'update'

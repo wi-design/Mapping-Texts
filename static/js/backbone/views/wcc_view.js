@@ -2,11 +2,9 @@ $(function(){
 	
 	STANFORD.MAPPING_TEXTS.views.wcc_view = Backbone.View.extend({
 		
-		tagName: "section",
+		tagName: "div",
 		
-		id: "wcc-view",
-		
-		className: "span-third widget module",
+		className: "widget basic module",
 		
 		events : {},
 		
