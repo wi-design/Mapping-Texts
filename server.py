@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 #
-# Copyright 2012 Wi-Design, Inc.
+# (c) 2012 Wi-Design, Inc.
 
+import os.path
 import logging
 
 import tornado.httpserver
@@ -24,11 +25,17 @@ define("redis_port",	default=6379,					help='port for redis server',				type=int
 class Application(tornado.web.Application):
 	def __init__(self):
 		handlers = [
+			(r"/", HomeHandler),
+			(r"/pub", PubsHandler),
 			(r"/wcc", WccHandler),
 			(r"/ner", NerHandler),
+			(r'/config', ConfigHandler),
 		]
 		
-		settings = dict()
+		settings = dict(
+			template_path=os.path.join(os.path.dirname(__file__), "templates"),
+			static_path=os.path.join(os.path.dirname(__file__), "static"),
+		)
 		
 		tornado.web.Application.__init__(self, handlers, **settings)
 		
@@ -43,6 +50,9 @@ class BaseHandler(tornado.web.RequestHandler):
 		return self.application.r
 	
 	# ---- make redis keys
+	def make_pubseq_key(self, pubseq):
+		return "pub:%s" % pubseq
+	
 	def make_range_key(self, prefix, years):
 		y1, y2 = years
 		return "%s:%s:%s" % (prefix, y1, y2)
@@ -56,7 +66,10 @@ class BaseHandler(tornado.web.RequestHandler):
 	def make_pub_rev_key(self, city, pub):
 		return "pub:%s:%s" % (city, pub)
 	
-	
+	def get_pubseq_key(self, pubseq_list):
+		for pubseq in pubseq_list:
+			yield self.make_pubseq_key(pubseq)
+
 	#
 	# ---- private helpers
 	#
@@ -84,10 +97,16 @@ class BaseHandler(tornado.web.RequestHandler):
 				logging.info("\tfiltered out pubseq %s" % pubseq)
 
 		return base_set
-		
-	def _make_all_keys_from_years(self, prefix, years, filter_out_pubs):
+	
+	def _make_range(self, years):
 		y1, y2 = years
-		year_range = range(y1, y2 + 1) # +1 to make inclusive
+		return range(y1, y2 + 1) # +1 to make inclusive
+	
+	def get_pubset_keys_from_years(self, years):
+		return [self.make_pub_set_by_year_key(year) for year in self._make_range(years)]
+			
+	def _make_all_keys_from_years(self, prefix, years, filter_out_pubs):
+		year_range = self._make_range(years)
 		
 		key_list = []
 		for year in year_range:
@@ -108,6 +127,17 @@ class BaseHandler(tornado.web.RequestHandler):
 				
 	
 	
+	def parse_query_params(self):
+		# years query strings
+		y1 = int( self.get_argument("y1", default="1829") )
+		y2 = int( self.get_argument("y2", default="2008") )
+		years = (y1, y2)
+		
+		# remove pubs from query
+		filter_out_pubs =self.request.arguments.get("x_pubs[]")	# e.g. ['abilene:the_reata', 'abilene:the_optimist']
+		if not filter_out_pubs: filter_out_pubs = set()
+		
+		return years, filter_out_pubs
 	
 	#
 	# ---- main functions
@@ -126,55 +156,112 @@ class BaseHandler(tornado.web.RequestHandler):
 		return result
 		
 
+
+
+#
+# ---- Handlers
+#
 class WccHandler(BaseHandler):
 	def get(self):
-		# ---- Parse query string
-		#
-		
-		# years query strings
-		y1 = int( self.get_argument("y1", default="1829") )
-		y2 = int( self.get_argument("y2", default="2008") )
-		years = (y1, y2)
-		
-		# remove pubs from query
-		filter_out_pubs =self.request.arguments.get("x_pubs[]")	# ['abilene:the_reata', 'abilene:the_optimist']
-		if not filter_out_pubs: filter_out_pubs = set()
-		
+		years, filter_out_pubs = self.parse_query_params()
 		
 		wcc = self.get_sorted_set('wcc', years, filter_out_pubs=filter_out_pubs)
 		
-		result = {
-			'wcc': wcc
-		}
+		result = {}
+		result['wcc'] = [
+			{ 'word': pair[0], 'count': pair[1] } for pair in wcc
+		]
 		
 		self.write( json.dumps(result, ensure_ascii=False, encoding="UTF-8") )
 		self.set_header("Content-Type", "application/json; charset=UTF-8")
 
 class NerHandler(BaseHandler):
 	def get(self):
-		# ---- Parse query string
-		#
-		
-		# years query strings
-		y1 = int( self.get_argument("y1", default="1829") )
-		y2 = int( self.get_argument("y2", default="2008") )
-		years = (y1, y2)
-		
-		# remove pubs from query
-		filter_out_pubs =self.request.arguments.get("x_pubs[]")	# ['abilene:the_reata', 'abilene:the_optimist']
-		if not filter_out_pubs: filter_out_pubs = set()
+		years, filter_out_pubs = self.parse_query_params()
 		
 		ner = self.get_sorted_set('ner', years, filter_out_pubs=filter_out_pubs)
 		
+		result = {}
+		result['ner'] = [
+			{ 'entity': pair[0].split(':')[1], 'type': pair[0].split(':')[0], 'count': pair[1] } for pair in ner
+		]
+		
+		self.write( json.dumps(result, ensure_ascii=False, encoding="UTF-8") )
+		self.set_header("Content-Type", "application/json; charset=UTF-8")
+
+class PubsHandler(BaseHandler):
+	def get(self):
+		years, filter_out_pubs = self.parse_query_params()
+		
+		logging.info("=== Location & Publications ===")
+		
+		pubset_keys = self.get_pubset_keys_from_years(years)
+		pubseq_list = self.r.sunion(pubset_keys)
+		
+		logging.info("pubset keys: %s" % pubset_keys)
+		logging.info("pubseq list: %s" % pubseq_list)
+		
+		final_pubseq_list = self.filter_out( 
+				base_set=pubseq_list,
+				filter_out_set=filter_out_pubs,
+				transform=self.get_pubseq_from_revkey
+		)
+		logging.info("final pubseq list: %s" % final_pubseq_list)
+		
+		
+		pipe = self.r.pipeline()
+		for pubseq_key in self.get_pubseq_key(final_pubseq_list):
+			pipe.hgetall( pubseq_key )
+		
+		publoc = {}
+		for item in pipe.execute():
+			pubseq, city, pub = item['pubseq'], item['loc'], item['val']
+			if city in publoc:
+				publoc[city].append({'pubseq': pubseq, 'pub': pub})
+			else:
+				publoc[city] = [{'pubseq': pubseq, 'pub': pub}]
+		
+		result = {}
+		result['pubs'] = [
+			{ 'city': k, 'pubs': v } for k,v in publoc.iteritems()
+		]
+		
+		self.write( json.dumps(result, ensure_ascii=False, encoding="UTF-8") )
+		self.set_header("Content-Type", "application/json; charset=UTF-8")
+	
+	
+	
+class ConfigHandler(BaseHandler):
+	def get(self):
+		pipe = self.r.pipeline()
+		
+		pipe.hgetall('templates')
+		pipe.hget('years', 'start')
+		pipe.hget('years', 'end')
+		pipe.hgetall('epochs')
+		
+		templates, start, end, epochs = pipe.execute()
+		
+		epoch_keys = epochs.keys()
+		epoch_keys.sort()
+		
 		result = {
-			'ner': ner
+			'templates': templates,
+			'start': start,
+			'end': end,
+			'epochs': [{ 'years': key, 'era': epochs[key] } for key in epoch_keys],
 		}
 		
 		self.write( json.dumps(result, ensure_ascii=False, encoding="UTF-8") )
 		self.set_header("Content-Type", "application/json; charset=UTF-8")
 
+class HomeHandler(BaseHandler):
+	def get(self):
+		self.render("index.html")
 
 
+
+		
 def main():
     tornado.options.parse_command_line()
     http_server = tornado.httpserver.HTTPServer(Application())

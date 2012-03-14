@@ -81,6 +81,7 @@ jQuery.fn.selectToUISlider = function(settings){
 		min: 0,
 		orientation: 'horizontal',
 		max: selectOptions.length-1,
+		values: [161, 166],
 		range: selects.length > 1,//multiple select elements = true
 		slide: function(e, ui) {//slide function
 				var thisHandle = jQuery(ui.handle);
@@ -95,14 +96,15 @@ jQuery.fn.selectToUISlider = function(settings){
 				//control original select menu
 				var currSelect = jQuery('#' + thisHandle.attr('id').split('handle_')[1]);
 				currSelect.find('option').eq(ui.value).attr('selected', 'selected');
-		},
+		}
+		/*
 		values: (function(){
 			var values = [];
 			selects.each(function(){
 				values.push( jQuery(this).get(0).selectedIndex );
 			});
 			return values;
-		})()
+		})()*/
 	};
 	
 	//slider options from settings
