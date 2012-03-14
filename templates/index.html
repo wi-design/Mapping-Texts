@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>mapping texts/texas</title>
+	
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" href="static/css/style.css">
+	
+	<!-- Google map api
+	 using my API key -->
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBpY7LNXm_rYk7I7wU6HxhKFir40Env3T8&sensor=false"></script>
+	
+	<script src="static/js/libs/modernizr-2.5.3.min.js"></script>
+	
+	<script src="static/js/libs/jquery-1.7.1.min.js"></script>
+	<script src="static/js/libs/jquery-ui-1.7.1.custom.min.js"></script>
+	
+	<!-- plugins/custom scripts -->
+	<script src="static/js/plugins/selectToUISlider.jQuery.js"></script>
+	<script src="static/js/plugins/tabs.js"></script>
+	
+	
+	<script src="static/js/libs/json2.js"></script>
+	<script src="static/js/libs/underscore-1.3.1.min.js"></script>
+	<script src="static/js/libs/mustache.js"></script>
+	
+	<script src="static/js/libs/backbone-0.9.1.min.js"></script>
+	
+	<!-- app namesapce -->
+	<script src="static/js/app.global.namespace.js"></script>
+
+	<!-- Bacbone models -->
+	<script src="static/js/backbone/models/wcc.js"></script>
+	<script src="static/js/backbone/models/ner.js"></script>
+
+	<!-- Bacbone collections -->
+	<script src="static/js/backbone/collections/wcc.js"></script>
+	<script src="static/js/backbone/collections/ner.js"></script>
+	<script src="static/js/backbone/collections/pub.js"></script>
+	<script src="static/js/backbone/collections/pubseq.js"></script>
+
+	<!-- Bacbone views -->
+	<script src="static/js/backbone/views/app.js"></script>
+	<script src="static/js/backbone/views/wcc_view.js"></script>
+	<script src="static/js/backbone/views/ner_view.js"></script>
+	<script src="static/js/backbone/views/topic_view.js"></script>
+	<script src="static/js/backbone/views/map_view.js"></script>
+	<script src="static/js/backbone/views/pub_view.js"></script>
+	<script src="static/js/backbone/views/time_select_view.js"></script>
+
+	<style type="text/css">
+    #map-view { height: 400px }
+  </style>
+	
+	<script>
+		$(function(){
+			var start_app = function(config) {
+				STANFORD.MAPPING_TEXTS.config = config;
+				
+				app = new STANFORD.MAPPING_TEXTS.views.app;
+				app.render();
+			};
+			
+			
+			// ----
+			$.getJSON('/config', function(config) { start_app(config); });			
+		});
+
+	</script>
+		
+</head>
+
+<body>
+	<header>
+		<div class="inner">
+			<nav class="main-nav">
+				<ul class="nav">
+					<li><a href="#">visualization tool</a></li>
+					<li><a href="#">about</a></li>
+					<li><a href="#">help</a></li>
+				</ul>
+			</nav>
+			<div class="branding">
+					<h1 class="app-name vr"><a href="#">mapping texts</a></h1>
+					<ul class="authors no-style">
+						<li><a href="#"><span class="author">stanford university</span></a></li>
+						<li><a href="#"><span class="author">university of north texas<span></a></li>
+					</ul>
+			</div>
+		</div>
+	</header>
+	
+	<div class="body">
+		
+		<div class="inner">
+			
+			<div class="row">
+				
+				<h2>time period</h2>
+				
+				<div class="row">
+					<div id="app-ds-view" class="span-2">
+						<p>select a historical epoch by clicking a button at the right, or use the time sliders to pick a start and end year yourself.</p>
+					</div>
+
+					<div id="time-select-view" class="span-8"></div>
+				</div>
+					
+				<div class="row">
+					<section id="map-view" class="span-7 widget"></section>
+					<section id="pub-view" class="span-3 widget tool"></section>
+				</div>
+			
+			</div>
+			
+			
+			<div class="row">
+				<section id="wcc-view" class="span-third widget module"></section>
+				<section id="ner-view" class="span-third widget module"></section>
+				<section id="topic-view" class="span-third widget module"></section>
+			</div>
+		
+		</div> <!-- end div.inner-->
+		
+	</div> <!-- end div.body-->
+</body>
+
+</html>

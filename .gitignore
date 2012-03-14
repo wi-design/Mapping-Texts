@@ -1,2 +1,6 @@
 .DS_Store
+*.rdb
+*.log
+*.py[co]
+setup/Texas_Newspaper_Data
 .sass-cache/
