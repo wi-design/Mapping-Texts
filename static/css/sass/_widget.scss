@@ -5,15 +5,12 @@
 .widget {
 	margin-top: $defaultMargin;
 	margin-bottom: $defaultMargin;
-	
+
 	> .inner {
 		padding: $defaultPadding $defaultPadding $defaultPadding * 2;
 	}
 	
 	.box {
-		overflow-y: scroll;
-		
-		height: convert-to-em(200px, 16px);
 		padding: $defaultPadding;
 		@include box-shadow( $shadow: 0 0 3px rgba( 0, 0, 0, 0.8) inset);
 		@include border-radius( $radius: 3px );
@@ -35,6 +32,12 @@
 	@include border-radius( $radius: 3px );
 	
 	background-color: $grayLightest;
+	
+	.box {
+		overflow-y: scroll;
+		
+		height: convert-to-em(200px, 16px);
+	}
 	
 	.hd small {
 		color: $defaultLinkColor;
@@ -73,15 +76,17 @@
 	.tabs {
 		border-bottom-color: $grayLighter;
 		
-		> li > a {
+		> li > a,
+		> li > .active,
+		> li > .active:hover {
 			border-color: $grayLighter;
 			border-bottom-width: 0;
 			border-bottom-style: none;
 			border-bottom-color: transparent;
 		}
 	
-		> li > .active {
-			@include box-shadow( $shadow: none );	
+		> li > .active,
+		> li > .active:hover {
 			@include gradient-vertical($startColor: #eaeaea, $endColor: #ccc);
 		}
 		
@@ -92,17 +97,12 @@
 }
 
 
-
+// Action bar for copy and infor buttons, goes inside module
 .action-bar {// wrap copy and info buttons in a div with this class
 	overflow: hidden;
 	
 	padding: $defaultPadding /2 $defaultPadding;
 	@include clearfix();
-	
-	button {
-		float: right;
-		margin-left: $defaultPadding;
-	}
 }
 
 
