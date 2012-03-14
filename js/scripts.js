@@ -60,12 +60,11 @@ toggleRow.init();
  
 });*/
 
-
 (function() {
-	var toggle = $('i').data('data-toggle', 'height'),
+	var toggle = $('[data-toggle="height"]'),
 			rowSpans = $('.row').find('> div'),
 			icon = $('.row').find('i');
-	
+
 	toggle.on('click', function(e) {
 			$(this).parent('.row').find('> div').animate({
 				height : 'toggle'
@@ -80,8 +79,11 @@ toggleRow.init();
 		});
 		
 	});
-	
-
-	
 })();
+
+
+
+
+
+
 

@@ -26,11 +26,11 @@
 	.active a {
 		background-color: $grayLightest;
 	}
-	
-	.active a {
-		color: $grayLight;
-	  cursor: default;
-	}
+}
+
+.pagination .active a {
+	color: $grayLight;
+  cursor: default;
 }
 
 .pagination li:first-child a {

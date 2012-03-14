@@ -10,14 +10,14 @@
   list-style: none;
 	
 	// link styles
-	> li > a {
+	a {
 	  display: block;
-	}
 	
-	 > li > a:hover {
-	  background-color: $grayLighter;
+		&:hover {
+			background-color: $grayLighter;
 	
-		text-decoration: none;
+			text-decoration: none;
+		}
 	}
 }
 
@@ -36,35 +36,35 @@
 		float: left; 
 		margin: 0 $defaultMargin / 2 0 0;
 		
-	> li {
-		display: block;
-		float: left;
-		}
-	
-		// Links
-		> li > a {
-			padding: 0 $defaultPadding;
-			
-			color: $mainNavLinkColor;
-			line-height: $mainHeaderHeight;
-			text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-			text-transform: capitalize;
-			
-			&:hover,
-			&:active {
-				background: none;
-				color: $secondaryThemeColor;
+		> li {
+			display: block;
+			float: left;
 			}
 		}
+	
+	// Links
+	a {
+		padding: 0 $defaultPadding;
 		
-		> li > .active,
-		> li > .active:hover {
-			background: $mainNavLinkBackgroundHover;
-			
-			color: $mainNavLinkColorHover;
-			
-			cursor: default;
+		color: $mainNavLinkColor;
+		line-height: $mainHeaderHeight;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+		text-transform: capitalize;
+		
+		&:hover,
+		&:active {
+			background: none;
+			color: $secondaryThemeColor;
 		}
+	}
+	
+	.active,
+	.active:hover {
+		background: $mainNavLinkBackgroundHover;
+		
+		color: $mainNavLinkColorHover;
+		
+		cursor: default;
 	}
 }
 
@@ -85,7 +85,7 @@
 }
 
 // Actual tabs (as links)
-.tabs > li > a {
+.tabs a {
 	margin-right: 2px;
   padding: convert-to-em(9px, 16px) convert-to-em(12px, 16px);
   border: 1px solid transparent;
@@ -97,8 +97,8 @@
   }
 }
 // Active state, and it's :hover to override normal :hover
-.tabs > li > .active,
-.tabs > li > .active:hover {
+.tabs .active,
+.tabs .active:hover {
   border: 1px solid #ddd;
   border-bottom-color: transparent;
 
