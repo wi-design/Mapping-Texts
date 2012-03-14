@@ -22,7 +22,7 @@
 	<!-- plugins/custom scripts -->
 	<script src="static/js/plugins/selectToUISlider.jQuery.js"></script>
 	<script src="static/js/plugins/tabs.js"></script>
-	
+	<script src="static/js/plugins/tooltip.js"></script>
 	
 	<script src="static/js/libs/json2.js"></script>
 	<script src="static/js/libs/underscore-1.3.1.min.js"></script>
@@ -100,23 +100,20 @@
 			
 			<div class="row">
 				
-				<h2>time period</h2>
-				
-				<div class="row">
-					<div id="app-ds-view" class="span-2">
-						<p>select a historical epoch by clicking a button at the right, or use the time sliders to pick a start and end year yourself.</p>
-					</div>
-
-					<div id="time-select-view" class="span-8"></div>
+				<div id="app-ds-view" class="span-20pct">
+					<h2>time period</h2>
+					<p>select a historical epoch by clicking a button at the right, or use the time sliders to pick a start and end year yourself.</p>
 				</div>
+
+				<div id="time-select-view" class="span-80pct mtl"></div>
+				
+				<a class="push icon-arrow up" data-toggle="height"></a>
+			</div><!-- /row -->
 					
-				<div class="row">
+			<div class="row">
 					<section id="map-view" class="span-66pct"></section>
 					<section id="pub-view" class="span-33pct"></section>
 				</div>
-			
-			</div>
-			
 			
 			<div class="row">
 				<section id="wcc-view" class="span-33pct"></section>

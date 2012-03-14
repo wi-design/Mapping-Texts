@@ -131,7 +131,14 @@ $(function(){
 		render_pubs: function() {
 			var pub_view = new STANFORD.MAPPING_TEXTS.views.pub_view();
 			$(this.el).find('#pub-view').html( pub_view.render().el );
-			STANFORD.MAPPING_TEXTS.cached.pub_cbs = $(this.el).find('#pub-view input[type="checkbox"]');
+			STANFORD.MAPPING_TEXTS.cached.pub_cbs = $(this.el).find('#pub-view input[type="checkbox"]')
+			.end()
+			.find('[title]')
+			.tooltip({
+				effect: 'fade',
+				predelay: 500,
+				offset: [-10,0]
+			});
 			
 			this.render_map();
 		},
@@ -168,6 +175,13 @@ $(function(){
 			.find('.tabs')
 			.tabs('.tab-content > .tab-pane', {
 				effect: 'fade'
+			})
+			.end()
+			.find('[title]')
+			.tooltip({
+				effect: 'fade',
+				predelay: 500,
+				offset: [-10,0]
 			});
 		},
 		
@@ -182,12 +196,26 @@ $(function(){
 			.find('.tabs')
 			.tabs('.tab-content > .tab-pane', {
 				effect: 'fade'
+			})
+			.end()
+			.find('[title]')
+			.tooltip({
+				effect: 'fade',
+				predelay: 500,
+				offset: [-10,0]
 			});
 		},
 		
 		render_topics: function() {
 			var topic_view = new STANFORD.MAPPING_TEXTS.views.topic_view();
-			$(this.el).find('#topic-view').html( topic_view.render().el );
+			$(this.el).find('#topic-view').html( topic_view.render().el )
+			.end()
+			.find('[title]')
+			.tooltip({
+				effect: 'fade',
+				predelay: 500,
+				offset: [-10,0]
+			});
 		}
 		
 	});

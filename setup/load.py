@@ -717,7 +717,7 @@ if __name__ == "__main__":
 	
 	</div><!-- /slider -->
 	
-</div><!-- /tab-contnet -->
+</div><!-- /tab-content -->
 """.strip()
 
 		map_view = """
@@ -761,11 +761,11 @@ Here is our map of Texas
 <div class="bd">
 
 	<div class="action-bar">
-		<button>i</button>
-		<button>copy</button>
+		<a class="icon-info push" title="info">i</a>
+		<a class="icon-clipboard push" title="copy to clipboard"><span>copy to clipboard</span></a>
 	</div>
 
-	<div class="box tab-content">
+	<div class="inner box tab-content">
 
 		<ul class="tab-pane">
 			{{#wcc}}
@@ -795,11 +795,11 @@ Here is our map of Texas
 <div class="bd">
 	
 	<div class="action-bar">
-		<button>i</button>
-		<button>copy</button>
+		<a class="icon-info push" title="info">i</a>
+		<a class="icon-clipboard push" title="copy to clipboard"><span>copy to clipboard</span></a>
 	</div>
 
-	<div class="box tab-content">
+	<div class="inner box tab-content">
 	
 		<ul class="tab-pane">
 			{{#ner}}
@@ -824,11 +824,11 @@ Here is our map of Texas
 <div class="bd">
 	
 	<div class="action-bar">
-		<button>i</button>
-		<button>copy</button>
+		<a class="icon-info push" title="info">i</a>
+		<a class="icon-clipboard push" title="copy to clipboard"><span>copy to clipboard</span></a>
 	</div>
 	
-	<div class="box">
+	<div class="inner box">
 		
 		<ul>
 			<li>topic key</li>

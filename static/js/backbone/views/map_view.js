@@ -6,7 +6,7 @@ $(function(){
 		
 		id: "map-view",
 		
-		className: "span-66pct",
+		className: "span-66pct mtl",
 		
 		events : {},
 		

@@ -5,9 +5,9 @@
 	position: relative;
 	
 	padding: $defaultPadding;
-	border: 1px solid $primaryThemeColor;
+	border: 1px solid $secondaryThemeColor;
 	
-  background-color: $secondaryThemeColor;
+  background-color: $white;
 
   color: $grayDark;
 	font-size: convert-to-em(12px,16px);
@@ -27,9 +27,9 @@
 		height: 8px;
 		border-width: 1px;
 		border-style: solid;
-		border-color: transparent $primaryThemeColor $primaryThemeColor transparent;
+		border-color: transparent $secondaryThemeColor $secondaryThemeColor transparent;
 		
-		background: $secondaryThemeColor;
+		background-color: $white;
 	
 		@include transformRotate($degrees: 45deg);
 	}

@@ -618,7 +618,7 @@ header {
 
 .pagination a {
   float: left;
-  padding: 0.313em 0.625em;
+  padding: 0.313em;
   border: 1px solid #ddd;
   border-left-width: 0;
   font-size: 0.875em;
@@ -667,7 +667,7 @@ header {
   margin: 0.625em 0 0.313em;
   width: 2px;
   height: 1px;
-  padding: 0.625em 0.625em;
+  padding: 0.625em;
   border: 1px solid #f2f2f2; }
   .icon-arrow:hover {
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -736,8 +736,8 @@ header {
 .tooltip {
   position: relative;
   padding: 0.625em;
-  border: 1px solid #990000;
-  background-color: #e7b19a;
+  border: 1px solid #e7b19a;
+  background-color: white;
   color: #333333;
   font-size: 0.75em;
   pointer-events: none; }
@@ -753,8 +753,8 @@ header {
     height: 8px;
     border-width: 1px;
     border-style: solid;
-    border-color: transparent #990000 #990000 transparent;
-    background: #e7b19a;
+    border-color: transparent #e7b19a #e7b19a transparent;
+    background-color: white;
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
