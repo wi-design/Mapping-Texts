@@ -203,7 +203,7 @@ $(function(){
 				effect: 'fade',
 				predelay: 500,
 				offset: [-10,0]
-			});
+			});			
 		},
 		
 		render_topics: function() {

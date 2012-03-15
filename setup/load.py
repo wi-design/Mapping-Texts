@@ -766,7 +766,7 @@ Here is our map of Texas
 	</div>
 
 	<div class="inner box tab-content">
-
+	
 		<ul class="tab-pane">
 			{{#wcc}}
 				<li>{{word}}: {{count}}</li>
@@ -829,7 +829,7 @@ Here is our map of Texas
 	</div>
 	
 	<div class="inner box">
-		
+	
 		<ul>
 			<li>topic key</li>
 			<li>topic key</li>

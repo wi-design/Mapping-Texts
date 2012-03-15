@@ -1,6 +1,12 @@
 // widgets.scss
 // -----------------------------------------------------
 
+.widget,
+.bd > .inner,
+.ft > .inner,
+.hd > .inner { 
+	position: relative;
+}
 
 .widget {
 	margin: $defaultMargin 0;

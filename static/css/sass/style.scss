@@ -11,6 +11,7 @@
 // Core (for customization)
 @import "variables";
 @import "mixins";
+@import "css3-mixins";
 
 // Scaffolding: templates, and grids
 @import "templates";
@@ -28,14 +29,16 @@
 @import "pagination";
 
 // Components: Common
+@import "ajax-loader";
 @import "icons";
 @import "tooltip";
 @import "widget";
 
+// Effects: Animations
+@import "animations";
+
 // Plugins: jQuery UI
 @import "jquery-ui";
-
-// Plugins: extended styles
 @import "slider";
 
 // Helper classes
