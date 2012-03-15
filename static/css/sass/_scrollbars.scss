@@ -1,7 +1,64 @@
 // scrollbarss.scss
+// Browser/Device support: -webkit-browsers (Chrome and Safari) and on IOS devices
+//
+// Scrollbar pseudo-element selectors (right now need to be prefixed with -webkit - ie ::-webkit-scrollbar etc.):
+// ::scrollbar              { }
+// ::scrollbar-button       { }
+// ::scrollbar-track        { }
+// ::scrollbar-track-piece  { }
+// ::scrollbar-thumb        { }
+// ::scrollbar-corner       { }
+// ::resizer                { }
+// 
+// The following pseudo classes can be applied to the pseudo elements ( from above)
+// :horizontal - applies to any scrollbar pieces that have a horizontal orientation.
+// :vertical - applies to any scrollbar pieces that have a vertical orientation.
+// :decrement - applies to buttons and track pieces. It indicates whether or not the button or track piece will decrement the view’s position when used.
+// :increment - applies to buttons and track pieces. It indicates whether or not a button or track piece will increment the view’s position when used.
+// :start - applies to buttons and track pieces. It indicates whether the object is placed after the thumb.
+// :end - applies to buttons and track pieces. It indicates whether the object is placed after the thumb.
+// :double-button - applies to buttons and track pieces. It is used to detect whether a button is part of a pair of buttons that are together at the same end of a scrollbar.
+// :single-button - applies to buttons and track pieces. It is used to detect whether a button is by itself at the end of a scrollbar.
+// :no-button - applies to track pieces and indicates whether or not the track piece runs to the edge of the scrollbar, i.e., there is no button at that end of the track.
+// :corner-present - applies to all scrollbar pieces and indicates whether or not a scrollbar corner is present.
+// :window-inactive - applies to all scrollbar pieces and indicates whether or not the window containing he scrollbar is currently active.
+// 
+// More information on custom scrollbars:
+// http://www.webkit.org/blog/363/styling-scrollbars/ ( information above attributed to this article)
 // -----------------------------------------------------
 
-// will only work in -webkit-browsers and on IOS
+
+// Main Browser Scrollbar styles
+// Note: we are only using -webkit vendor prefix since there is no support beyond webkit for this feature currently.
+// ------------------------------
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+// Track piece
+::-webkit-scrollbar-track {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+
+	background-color: $white;
+}
+ 
+// Handle
+::-webkit-scrollbar-thumb {
+	border: 1px solid $grayLight;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	
+	background-color: $grayLighter;
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+	background-color: $grayLighter; 
+}
+
+
+// Extended Scrollbar styles
+// can extend widget, toold, or box styles
 .spiffy-scrollbar {
 	overflow-y: scroll;
 	
@@ -20,12 +77,15 @@
 
 }
 
-.spiffy-scrollbar::-webkit-scrollbar-track-piece {}
+.spiffy-scrollbar::-webkit-scrollbar-track {
+	-webkit-box-shadow: none;
+}
 
 .spiffy-scrollbar::-webkit-scrollbar-thumb {
-	
 	width: 7px;
-	@include border-radius( $radius: 10px );
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
 	
 	background-color: rgba(0,0,0,.3);
 }
+

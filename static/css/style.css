@@ -780,6 +780,23 @@ header {
     background: #777777;
     color: white; }
 
+::-webkit-scrollbar {
+  width: 12px; }
+
+::-webkit-scrollbar-track {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white; }
+
+::-webkit-scrollbar-thumb {
+  border: 1px solid #777777;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background-color: #999999; }
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background-color: #999999; }
+
 .spiffy-scrollbar {
   overflow-y: scroll;
   height: 18.25em;
@@ -792,10 +809,12 @@ header {
   width: 8px;
   background-color: transparent; }
 
+.spiffy-scrollbar::-webkit-scrollbar-track {
+  -webkit-box-shadow: none; }
+
 .spiffy-scrollbar::-webkit-scrollbar-thumb {
   width: 7px;
   -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.3); }
 
