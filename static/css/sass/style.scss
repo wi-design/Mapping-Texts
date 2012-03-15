@@ -32,15 +32,16 @@
 // Components: Common
 @import "ajax-loader";
 @import "icons";
-@import "tooltip";
+@import "scrollbars";
 @import "widget";
 
 // Effects: Animations
 @import "animations";
 
-// Plugins: jQuery UI
+// Plugins: 
 @import "jquery-ui";
 @import "slider";
+@import "tooltip";
 
 // Helper classes
 @import "helpers";

@@ -73,10 +73,8 @@
 .tool { // used for div to toggle publications show on map
 	background-color: $grayLightest;
 	
-	.box { //
-		overflow-y: scroll;
-		
-		height: convert-to-em(200px, 16px);
+	.box { //override padding b/c spiffy-scrollbar will bring the padding back in
+		padding: 0;
 	}
 	
 	.hd small {

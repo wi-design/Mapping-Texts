@@ -1,0 +1,31 @@
+// scrollbarss.scss
+// -----------------------------------------------------
+
+// will only work in -webkit-browsers and on IOS
+.spiffy-scrollbar {
+	overflow-y: scroll;
+	
+	height: convert-to-em(292px, 16px);
+	padding: $defaultPadding;
+	
+	// this allows padding b/w the edge of the box and top,right,bottom scrollbar
+	border-top: 3px solid transparent;
+	border-right: 3px solid transparent;
+	border-bottom: 3px solid transparent;
+}
+
+.spiffy-scrollbar::-webkit-scrollbar {
+	width: 8px;
+	background-color: transparent;
+
+}
+
+.spiffy-scrollbar::-webkit-scrollbar-track-piece {}
+
+.spiffy-scrollbar::-webkit-scrollbar-thumb {
+	
+	width: 7px;
+	@include border-radius( $radius: 10px );
+	
+	background-color: rgba(0,0,0,.3);
+}

@@ -733,16 +733,18 @@ Here is our map of Texas
 	</div>
 
 	<div class="bd box">
-
-		{{#publocs}}
-			<h5>{{city}}</h5>
-			<ul class="simple-list">
-				{{#pubs}}
-					<li><input type="checkbox" name="" id="pubseq-{{pubseq}}" checked="true"><label for="pubseq-{{pubseq}}" class="checkbox" title="{{pub}}">{{pub}}</label></li>
-				{{/pubs}}
-			</ul>
-		{{/publocs}}
+		<div class="spiffy-scrollbar">
 		
+			{{#publocs}}
+				<h5>{{city}}</h5>
+				<ul class="simple-list">
+					{{#pubs}}
+						<li><input type="checkbox" name="" id="pubseq-{{pubseq}}" checked="true"><label for="pubseq-{{pubseq}}" class="checkbox" title="{{pub}}">{{pub}}</label></li>
+					{{/pubs}}
+				</ul>
+			{{/publocs}}
+			
+		</div>
 	</div>
 
 </div>
