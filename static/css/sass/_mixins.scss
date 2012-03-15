@@ -40,6 +40,14 @@
 	height: 0;
 }
 
+// Text overflow
+// -------------------------
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 
 // Conversion Functions 
 // --------------------

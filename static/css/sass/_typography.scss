@@ -1,8 +1,12 @@
 // Typography.scss
-// Headings, body text, lists, code..
+// Sections
+// 	@Sectional Content
+//	@Grouping Content
+// 	@Text-level Semantics
+// 	@Links
 // ----------------------------------------------------------------------------------------
 
-// Sectional Content
+// @Sectional Content
 // -----------------
 // Body
 
@@ -97,7 +101,7 @@ h6 {
 }
 
 
-// Grouping Content
+// @Grouping Content
 // ---------
 
 // Blockquotes
@@ -208,7 +212,7 @@ p {
 }
 
 
-// Text-Level Semantics
+// @Text-Level Semantics
 // --------------------
 // Abbreviations and acronyms
 abbr {
@@ -277,7 +281,7 @@ small {
 }
 
 
-// Links
+// @Links
 // -----
 
 a {
@@ -289,6 +293,5 @@ a {
   	color: $defaultLinkColorHover;
 	}
 }
-
 
 

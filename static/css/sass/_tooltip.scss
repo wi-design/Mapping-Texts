@@ -2,8 +2,8 @@
 // -------------
 
 .tooltip {
-	position: relative;
-	
+	display: none;
+		
 	padding: $defaultPadding;
 	border: 1px solid $secondaryThemeColor;
 	
@@ -34,3 +34,4 @@
 		@include transformRotate($degrees: 45deg);
 	}
 }
+

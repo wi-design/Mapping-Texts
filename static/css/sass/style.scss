@@ -21,27 +21,36 @@
 @import "typography";
 @import "forms";
 
-// Components: Partials
+// Partials
 @import "header";
 @import "footer";
 
-// Components: Nav
+// Navigations
 @import "navs";
 @import "pagination";
 
-// Components: Common
-@import "ajax-loader";
+// Widgets
+@import "widget";
+
+// Content
+@import "content";
+
+// Plugins
+@import "jquery-ui";
+
+// UI Interaction Cues
 @import "icons";
 @import "scrollbars";
-@import "widget";
+
+// UI Interaction Events
+@import "slider";
+@import "tooltip";
+
+// UI Behavioral Events
+@import "ajax-loader";
 
 // Effects: Animations
 @import "animations";
-
-// Plugins: 
-@import "jquery-ui";
-@import "slider";
-@import "tooltip";
 
 // Helper classes
 @import "helpers";

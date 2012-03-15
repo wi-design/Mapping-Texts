@@ -659,7 +659,7 @@ if __name__ == "__main__":
 		
 		time_select_view = """
 <ul class="nav tabs">
-	<li><a href-"#">Historical Epochs</a></li>
+	<li><a href-"#">Historical Eras</a></li>
 	<li><a href="#">Time Slider</a></li>
 </ul>
 
@@ -739,7 +739,7 @@ Here is our map of Texas
 				<h5>{{city}}</h5>
 				<ul class="simple-list">
 					{{#pubs}}
-						<li><input type="checkbox" name="" id="pubseq-{{pubseq}}" checked="true"><label for="pubseq-{{pubseq}}" class="checkbox" title="{{pub}}">{{pub}}</label></li>
+						<li><input type="checkbox" name="" id="pubseq-{{pubseq}}" checked="true"><label for="pubseq-{{pubseq}}" class="checkbox">{{pub}}</label></li>
 					{{/pubs}}
 				</ul>
 			{{/publocs}}
@@ -832,8 +832,13 @@ Here is our map of Texas
 	
 	<div class="inner box">
 	
-		<ul>
-			<li>topic key</li>
+		<ul class="topic-keys">
+			<li>
+				<a id="topic-key">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</a>
+				<div class="tooltip">
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+				</div>
+			</li>
 			<li>topic key</li>
 			<li>topic key</li>
 			<li>topic key</li>
