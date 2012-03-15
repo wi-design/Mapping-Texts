@@ -9,7 +9,8 @@
 }
 
 .widget {
-	margin: $defaultMargin 0;
+	margin-top: $defaultMargin;
+	margin-bottom: $defaultMargin;
 
 	> .inner { //add this class to widget for default padding hd, bd, ft classes
 		padding: $defaultPadding $defaultPadding $defaultPadding * 2;
@@ -39,6 +40,13 @@
 	overflow: hidden;
 	
 	padding: $defaultPadding /2 $defaultPadding;
+}
+
+
+// Map 
+// special class for id:map-view container to provide a parent height 
+.map-view {
+	height: 400px;
 }
 
 

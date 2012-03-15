@@ -296,18 +296,6 @@ footer > .inner {
 .span-80pct {
   width: 78%; }
 
-/*
-.span-1				{ @include calculate-column-width($columnWidth, 1, $gutterWidth); }
-.span-2				{ @include calculate-column-width($columnWidth, 2, $gutterWidth); }
-.span-3   		{ @include calculate-column-width($columnWidth, 3, $gutterWidth); }
-.span-4   		{ @include calculate-column-width($columnWidth, 4, $gutterWidth); }
-.span-5   		{ @include calculate-column-width($columnWidth, 5, $gutterWidth); }
-.span-6   		{ @include calculate-column-width($columnWidth, 6, $gutterWidth); }
-.span-7   		{ @include calculate-column-width($columnWidth, 7, $gutterWidth); }
-.span-8   		{ @include calculate-column-width($columnWidth, 8, $gutterWidth); }
-.span-9   		{ @include calculate-column-width($columnWidth, 9, $gutterWidth); }
-.span-10  		{ @include calculate-column-width($columnWidth, 10, $gutterWidth); }
-*/
 body {
   font: 1em/1.313em "Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif;
   color: #333333; }
@@ -818,7 +806,8 @@ header {
   position: relative; }
 
 .widget {
-  margin: 1.25em 0; }
+  margin-top: 1.25em;
+  margin-bottom: 1.25em; }
   .widget > .inner {
     padding: 0.625em 0.625em 1.25em; }
   .widget .nav {
@@ -836,6 +825,9 @@ header {
 .action-bar {
   overflow: hidden;
   padding: 0.313em 0.625em; }
+
+.map-view {
+  height: 400px; }
 
 .basic {
   border: 1px solid rgba(0, 0, 0, 0.09);

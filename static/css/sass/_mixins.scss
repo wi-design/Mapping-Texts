@@ -48,6 +48,7 @@
 	@return ( $targetValue / $baseValue ) * 1em;
 }
 
+
 // Font mixins
 // ----------------
 
@@ -83,6 +84,7 @@
 
 	[class*="span-"] {
 		position: relative;
+		
 		float: left;
 		margin-right: $gutterWidth;
 	}
@@ -102,17 +104,16 @@
 	.span-66pct			{ @include calculate-column-width-fraction( $numerator: 2, $denominator: 3 ); }
 	.span-80pct			{ @include calculate-column-width-fraction( $numerator: 4, $denominator: 5 ); }
 	
-	/*
-	.span-1				{ @include calculate-column-width($columnWidth, 1, $gutterWidth); }
-	.span-2				{ @include calculate-column-width($columnWidth, 2, $gutterWidth); }
-	.span-3   		{ @include calculate-column-width($columnWidth, 3, $gutterWidth); }
-	.span-4   		{ @include calculate-column-width($columnWidth, 4, $gutterWidth); }
-	.span-5   		{ @include calculate-column-width($columnWidth, 5, $gutterWidth); }
-	.span-6   		{ @include calculate-column-width($columnWidth, 6, $gutterWidth); }
-	.span-7   		{ @include calculate-column-width($columnWidth, 7, $gutterWidth); }
-	.span-8   		{ @include calculate-column-width($columnWidth, 8, $gutterWidth); }
-	.span-9   		{ @include calculate-column-width($columnWidth, 9, $gutterWidth); }
-	.span-10  		{ @include calculate-column-width($columnWidth, 10, $gutterWidth); }
-	*/
+	
+	//.span-1				{ @include calculate-column-width($columnWidth, 1, $gutterWidth); }
+	//.span-2				{ @include calculate-column-width($columnWidth, 2, $gutterWidth); }
+	//.span-3   		{ @include calculate-column-width($columnWidth, 3, $gutterWidth); }
+	//.span-4   		{ @include calculate-column-width($columnWidth, 4, $gutterWidth); }
+	//.span-5   		{ @include calculate-column-width($columnWidth, 5, $gutterWidth); }
+	//.span-6   		{ @include calculate-column-width($columnWidth, 6, $gutterWidth); }
+	//.span-7   		{ @include calculate-column-width($columnWidth, 7, $gutterWidth); }
+	//.span-8   		{ @include calculate-column-width($columnWidth, 8, $gutterWidth); }
+	//.span-9   		{ @include calculate-column-width($columnWidth, 9, $gutterWidth); }
+	//.span-10  		{ @include calculate-column-width($columnWidth, 10, $gutterWidth); }
 }
 
