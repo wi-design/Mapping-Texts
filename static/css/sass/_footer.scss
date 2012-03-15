@@ -1,0 +1,14 @@
+// footer.scss
+// ---------------------------
+
+.footer {
+	margin: $defaultMargin 0 0;
+	padding: $defaultPadding 0 $defaultPadding * 2;
+	border-top: 1px solid $primaryThemeColor;
+	
+	background-color: rgba($secondaryThemeColor, 0.2);
+}
+
+.footer p {
+	margin-bottom: 0;
+}

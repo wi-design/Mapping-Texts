@@ -534,6 +534,15 @@ header {
   .authors li {
     line-height: 20px; }
 
+.footer {
+  margin: 1.25em 0 0;
+  padding: 0.625em 0 1.25em;
+  border-top: 1px solid #990000;
+  background-color: rgba(231, 177, 154, 0.2); }
+
+.footer p {
+  margin-bottom: 0; }
+
 .nav {
   margin-bottom: 1.313em;
   margin-left: 0;
