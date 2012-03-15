@@ -1,0 +1,23 @@
+// animations.scss
+// -----------------
+
+
+@-webkit-keyframes infinite-circle {
+	from { -webkit-transform: rotate(0deg) translateZ(0); }
+		to { -webkit-transform: rotate(360deg) translateZ(0); }
+} 
+
+@-moz-keyframes infinite-circle {
+	from 	{ -moz-transform: rotate(0deg) translateZ(0); }
+		to	{ -moz-transform: rotate(360deg) translateZ(0); }
+}
+
+@-ms-keyframes infinite-circle {
+	from 	{ -ms-transform: rotate(0deg) translateZ(0); }
+		to	{ -ms-transform: rotate(360deg) translateZ(0); }
+}
+
+@keyframes infinite-circle {
+	from 	{ transform: rotate(0deg) translateZ(0); }
+		to	{ transform: rotate(360deg) translateZ(0); }
+}

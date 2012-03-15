@@ -1,0 +1,59 @@
+// ajax-loader.scss
+// Use:
+// Position the html inside any element with a position set to relative.
+// 
+// Syntax for ajax loader:
+// <div class=ajax-container><div class=ajax-loading></div></div>
+// -----------------
+
+
+.ajax-container {
+	position: absolute;
+	z-index: 1000001;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	
+	background-color: rgba(0, 0, 0, 0.5);
+	
+	&:after {
+		content: 'Loading...';
+		position: absolute;
+		
+		top: 20%;
+		bottom: 0;
+		margin-top: auto;
+		margin-bottom: auto;
+		width: 100%;
+		height: 20px;
+		
+		color: $grayLightest;
+		text-align: center;
+	}
+	
+	.ajax-loading { 
+		position: absolute;
+		
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		width: 64px;
+		height: 64px;
+		border-width: 3px;
+		border-style: solid;
+		border-color: $primaryThemeColor $secondaryThemeColor $primaryThemeColor $secondaryThemeColor;
+		@include border-radius($radius: 64px);
+		
+		// Need to set intial position for animation
+		@include transform( $value: rotate(0deg) );
+		
+		@include transition( $transition: 0ms );
+		
+		//animations are set in _animations.scss
+		@include animation( $value: infinite-circle 2s linear infinite );
+	}
+}
+
