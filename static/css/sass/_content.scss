@@ -1,0 +1,38 @@
+// Content.scss
+// Use this style sheet for creation of additional application site selectors
+// ----------------------------------------------------------------------------------------
+
+
+// Special Formatting Classes 
+// --------------------------------
+
+// @Grouping Content
+// ------------------
+
+.topic-keys {//used for topic key widget list styling
+	position: relative;
+	
+	margin-left: 7px;
+	
+	li {
+		list-style: none;
+		
+		&:before {
+			content: '-';
+			position: absolute;
+			margin-left: -7px;
+		}
+	}
+	
+	a {
+		display: block;
+		
+		@include text-overflow();
+		
+		cursor: pointer;
+	}
+}
+
+
+
+
