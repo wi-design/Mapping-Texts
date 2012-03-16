@@ -29,6 +29,7 @@ class Application(tornado.web.Application):
 			(r"/pub", PubsHandler),
 			(r"/wcc", WccHandler),
 			(r"/ner", NerHandler),
+			(r"/topic", TopicHandler),
 			(r'/config', ConfigHandler),
 		]
 		
@@ -65,6 +66,12 @@ class BaseHandler(tornado.web.RequestHandler):
 	
 	def make_pub_rev_key(self, city, pub):
 		return "pub:%s:%s" % (city, pub)
+	
+	def make_topic_key_epoch(self, epoch):
+		return "topics:%s" % epoch
+	
+	def make_topic_key_epoch_postfix(self, epoch, postfix):
+		return "topics:%s:%s" % (epoch, postfix)
 	
 	def get_pubseq_key(self, pubseq_list):
 		for pubseq in pubseq_list:
@@ -188,6 +195,26 @@ class NerHandler(BaseHandler):
 		
 		self.write( json.dumps(result, ensure_ascii=False, encoding="UTF-8") )
 		self.set_header("Content-Type", "application/json; charset=UTF-8")
+
+class TopicHandler(BaseHandler):
+	def get(self):
+		epoch = self.get_argument("v", default="1829:1835")
+		postfix = self.get_argument("postfix", default=None)
+		
+		if postfix is None:
+			topic_key = self.make_topic_key_epoch(epoch)
+		else:
+			topic_key = self.make_topic_key_epoch_postfix(epoch, postfix)
+		
+		result = {
+			'topics': self.r.get(topic_key)
+		}
+		
+		self.write( json.dumps(result, ensure_ascii=False, encoding="UTF-8") )
+		self.set_header("Content-Type", "application/json; charset=UTF-8")
+		
+
+
 
 class PubsHandler(BaseHandler):
 	def get(self):

@@ -14,7 +14,8 @@ $(function(){
 		
 		render: function() {
 			var template = STANFORD.MAPPING_TEXTS.config.templates.topic_view,
-					data = {},
+					model = STANFORD.MAPPING_TEXTS.cached.topics,
+					data = { topics: model.has('topics') ? model.get('topics').split('<br>') : [] },
 					html = Mustache.to_html(template, data);
 		
 			$(this.el).html(html);

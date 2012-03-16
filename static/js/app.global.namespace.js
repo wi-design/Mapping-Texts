@@ -53,7 +53,126 @@ STANFORD.MAPPING_TEXTS = {
 	// Backbone objects
 	models: {},
 	collections: {},
-	views: {}
+	views: {},
+	
+	helpers: {
+		add_ajax_loader_template: function($parent_el) {
+			$parent_el.append( STANFORD.MAPPING_TEXTS.config.templates.ajax_loader );
+		},
+		del_ajax_loader_template: function($parent_el) {
+			$parent_el.children('.ajax-container').remove();
+		},
+		
+		
+		// Fetch collection helpers
+		//
+		fetch_publications: function(args) {
+			STANFORD.MAPPING_TEXTS.cached.pubs.fetch({
+				data: {
+					y1		: args.y1,
+					y2		: args.y2,
+					x_pubs: args.x_pubs
+				},
+				success: function() {
+					console.log("**** pubs fetched success");
+					
+					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#pub-view') );
+					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#map-view') );
+					
+					args.fetched_set.set_fetched_pubs();
+					
+					if (args.fetched_set.all_fetched() === true) {
+						console.log("**** all fetched fetch_pubs()");
+					}
+				}
+			});
+			
+			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#pub-view') );
+			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#map-view') );
+		},
+		
+		fetch_wcc: function(args) {
+			STANFORD.MAPPING_TEXTS.cached.wcc_collection.fetch({
+				data: {
+					y1		: args.y1,
+					y2		: args.y2,
+					x_pubs: args.x_pubs
+				},
+				success: function() {
+					console.log("**** wcc fetched success");
+					
+					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#wcc-view') );
+					
+					args.fetched_set.set_fetched_wcc();
+					
+					if (args.fetched_set.all_fetched() === true) {
+						console.log("**** all fetched fetch_wcc()");
+					}
+				}
+			});
+			
+			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#wcc-view') );
+		},
+		
+		fetch_ner: function(args) {
+			STANFORD.MAPPING_TEXTS.cached.ner_collection.fetch({
+				data: {
+					y1		: args.y1,
+					y2		: args.y2,
+					x_pubs: args.x_pubs
+				},
+				success: function() {
+					console.log("**** ner fetched success");
+					
+					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#ner-view') );
+										
+					args.fetched_set.set_fetched_ner();
+					
+					if (args.fetched_set.all_fetched() === true) {
+						console.log("**** all fetched fetch_ner()");
+					}
+				}
+			});
+			
+			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#ner-view') );
+		}
+		
+		
+		
+		
+	}, // end helper functions
+	
+	objects: {
+		TrackFetchedSet: function() {
+			var fetched_pubs = false,
+					fetched_wcc = false,
+					fetched_ner = false;
+			
+			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#time-select-view') );
+			
+			return {
+				all_fetched: function() {
+					if (fetched_pubs === true && fetched_wcc === true && fetched_ner === true) {
+						STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#time-select-view') );
+						return true;
+					} 
+					return false;
+				},
+				
+				set_fetched_pubs: function() { fetched_pubs = true; },
+				set_fetched_wcc: function() { fetched_wcc = true; },
+				set_fetched_ner: function() { fetched_ner = true; }
+			};
+		}
+	}, // end helper objects
 
-
+	traits: {
+		fetch_all: function(args) {
+			var helpers = STANFORD.MAPPING_TEXTS.helpers;
+				
+			helpers.fetch_publications(args);
+			helpers.fetch_wcc(args);
+			helpers.fetch_ner(args);	
+		}
+	}
 };

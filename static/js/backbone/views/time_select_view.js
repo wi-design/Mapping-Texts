@@ -9,7 +9,8 @@ $(function(){
 		className: "span-80pct mtl",
 		
 		events : {
-			'slidestop': 'update'
+			'slidestop'			: 'update',
+			'click a.epoch'	: 'epoch_update'
 		},
 		
 		initialize: function(attr) {
@@ -40,34 +41,42 @@ $(function(){
 		
 		update: function(ev) {
 			var y1 = STANFORD.MAPPING_TEXTS.cached.select_aa.val(),
-					y2 = STANFORD.MAPPING_TEXTS.cached.select_bb.val();
+					y2 = STANFORD.MAPPING_TEXTS.cached.select_bb.val(),
+					x_pubs = [],
+					fetched_set = STANFORD.MAPPING_TEXTS.objects.TrackFetchedSet();
 			
-			STANFORD.MAPPING_TEXTS.cached.pubs.fetch({
+			this.fetch_all({
+				y1					: y1,
+				y2					: y2,
+				x_pubs			: x_pubs,
+				fetched_set	: fetched_set
+			});			
+		},
+		
+		epoch_update: function(ev) {
+			var epoch = $(ev.target).text().replace('-', ':');
+			
+			STANFORD.MAPPING_TEXTS.cached.topics.fetch({
 				data: {
-					y1: y1,
-					y2: y2,
-					x_pubs: ['brownwood:the_yellow_jacket', 'abilene:the_reata']
+					v: epoch
+				},
+				success: function(model){
+					console.log("success fetching topic model");
+					console.log(model.get('topics').split('<br>'));
 				}
-			});
+			})
 			
-			STANFORD.MAPPING_TEXTS.cached.wcc_collection.fetch({
-				data: {
-					y1: y1,
-					y2: y2,
-					x_pubs: ['brownwood:the_yellow_jacket', 'abilene:the_reata']
-				}
-			});
-			
-			STANFORD.MAPPING_TEXTS.cached.ner_collection.fetch({
-				data: {
-					y1: y1,
-					y2: y2,
-					x_pubs: [/*'brownwood:the_yellow_jacket', */'abilene:the_reata']
-				}
-			});		
-			
+			console.log('epoch clicked: ' + epoch);
 		}
 		
 	});
+	
+	// Mix in traits
+	_.extend(
+		STANFORD.MAPPING_TEXTS.views.time_select_view.prototype,
+		{
+			fetch_all: STANFORD.MAPPING_TEXTS.traits.fetch_all
+		}
+	);
 	
 });

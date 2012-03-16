@@ -66,7 +66,7 @@ LOCATION_EPOCH_PATTERN = re.compile(r"""10\.topic-keys\.(?P<location>.+?),(?P<st
 # 10.topic-keys.Brazos_Courier,_Brazoria,_Texas,_1836-04-22_1845-12-29
 TITLE_LOCATION_EPOCH_PATTERN = re.compile(r"""10\.topic-keys\.(?P<title>.+?),(?P<location>.+?),(?P<state>.+?),(?P<epoch>.+?)\.tsv""") 
 
-
+TOPIC_LINE_PATTER = re.compile(r"""[\d\t]+?(?P<topic>[^\d\t]+)""")
 
 # Exception patterns
 RICHMOND_TELESCOPE_PATTERN = re.compile(r""".*?Richmond.+?Telescope.+?Register.*?""", re.I)
@@ -291,10 +291,83 @@ def ner(extract):
 
 
 
+#
+# Topic cluster implementation
+#
+EPOCH_MAP = {
+	'1829-01-01_1836-04-21' : '1829:1835',
+	'1836-04-22_1845-12-29' : '1836:1845',
+	'1845-12-30_1861-04-12' : '1846:1860',
+	'1861-04-13_1865-04-09' : '1861:1865',
+	'1865-04-10_1877-12-31' : '1866:1877',
+	'1878-01-01_1899-12-31' : '1878:1899',
+	'1900-01-01_1929-10-29' : '1900:1929',
+	'1929-10-30_1941-12-07' : '1930:1941',
+	'1941-12-08_1945-10-15' : '1942:1945',
+	'1945-10-16_2008-12-31' : '1946:2008',
+}
 
+def make_topic_key_epoch_city_pub(epoch, city, title):
+	return "topics:%s:%s:%s" % (epoch, slugify(city), slugify(title))
+def make_topic_key_epoch_city(epoch, city):
+	return "topics:%s:%s" % (epoch, slugify(city))
+def make_topic_key_epoch(epoch):
+	return "topics:%s" % (epoch)
 
+def topic(extract):
+	msg, package = extract
+	
+	if msg == "topics:tle":
+		title, city, state, epoch, topics = package
+				
+		if epoch in EPOCH_MAP:
+			epoch = EPOCH_MAP[epoch]
+			
+			tle_topic_key = make_topic_key_epoch_city_pub(epoch, city, title)
+			
+			if REDIS.exists(tle_topic_key):
+				raise Exception("ERROR tle topic key exists already (%s)" % tle_topic_key)
+			else:
+				REDIS.set(tle_topic_key, topics)
+			
+		else:
+			raise Exception("ERROR: epoch (%s) not in epoch map" % epoch)
 
-
+		
+	elif msg == "topics:le":
+		city, state, epoch, topics = package
+		
+		if epoch in EPOCH_MAP:
+			epoch = EPOCH_MAP[epoch]
+		
+			le_topic_key = make_topic_key_epoch_city(epoch, city)
+			
+			if REDIS.exists(le_topic_key):
+				raise Exception("ERROR le topic key exists already (%s)" % le_topic_key)
+			else:
+				REDIS.set(le_topic_key, topics)
+			
+		else:
+			raise Exception("ERROR: epoch (%s) not in epoch map" % epoch)
+		
+	elif msg == "topics:e":
+		epoch, topics = package
+		
+		if epoch in EPOCH_MAP:
+			epoch = EPOCH_MAP[epoch]
+			
+			e_topic_key = make_topic_key_epoch(epoch)
+			
+			if REDIS.exists(e_topic_key):
+				raise Exception("ERROR le topic key exists already (%s)" % e_topic_key)
+			else:
+				REDIS.set(e_topic_key, topics)
+			
+		else:
+			raise Exception("ERROR: epoch (%s) not in epoch map" % epoch)
+	
+	else:
+		raise Exception("ERROR: msg (%s) sent to topic() dne" % msg)
 
 
 
@@ -418,52 +491,56 @@ def readFile(fh, cb):
 def parse_T_L_S_E_fromFilename(filenames, pattern, cb):
 
 	for filename in filenames:
+		with open(filename, 'r') as fh:
+	
+			path,sep,base = filename.rpartition("/")
+			m = pattern.match(base)
 
-		path,sep,base = filename.rpartition("/")
-		m = pattern.match(base)
+			d = m.groupdict()
 
-		d = m.groupdict()
-
-		if d.has_key('title'):
-			title = correctFromExceptions( d['title'].replace("_", " ") ).lower()
-		else:
-			title = None
-
-		if d.has_key('location'):
-			if d['location'].startswith("_"):	
-				city = d['location'][1:].replace("_", " ").lower()
+			if d.has_key('title'):
+				title = correctFromExceptions( d['title'].replace("_", " ") ).lower()
 			else:
-				city = d['location'].replace("_", " ").lower()
-		else:
-			city = None
+				title = None
 
-		if d.has_key('state'):
-			if d['state'].startswith("_"):
-				state = d['state'][1:].lower()
+			if d.has_key('location'):
+				if d['location'].startswith("_"):	
+					city = d['location'][1:].replace("_", " ").lower()
+				else:
+					city = d['location'].replace("_", " ").lower()
 			else:
-				state = d['state'].lower()
-		else:
-			state = None
+				city = None
 
-		if d.has_key('epoch'):
-			if d['epoch'].startswith("_"):
-				epoch = d['epoch'][1:]
+			if d.has_key('state'):
+				if d['state'].startswith("_"):
+					state = d['state'][1:].lower()
+				else:
+					state = d['state'].lower()
 			else:
-				epoch = d['epoch']
-		else:
-			epoch = None
+				state = None
 
-		if title and city and state and epoch:
-			extract = ("topics:tle", (title, city, state, epoch))
-			cb(extract)
-		elif city and state and epoch:
-			extract = ("topics:le", (city, state, epoch))
-			cb(extract)
-		elif epoch:
-			extract = ("topics:e", (epoch))
-			cb(extract)
-		else:
-			raise Exception("ERROR: problem parsing filename: %s")
+			if d.has_key('epoch'):
+				if d['epoch'].startswith("_"):
+					epoch = d['epoch'][1:]
+				else:
+					epoch = d['epoch']
+			else:
+				epoch = None
+			
+			lines = [TOPIC_LINE_PATTER.match(line).groupdict()['topic'] for line in fh.readlines()]
+			topics = ''.join( lines ).strip().replace('\n', '<br>')
+			
+			if title and city and state and epoch:
+				extract = ("topics:tle", (title, city, state, epoch, topics))
+				cb(extract)
+			elif city and state and epoch:
+				extract = ("topics:le", (city, state, epoch, topics))
+				cb(extract)
+			elif epoch:
+				extract = ("topics:e", (epoch, topics))
+				cb(extract)
+			else:
+				raise Exception("ERROR: problem parsing filename: %s")
 			
 			
 			
@@ -560,7 +637,12 @@ def runWcc():
 	cb = wcc
 	readWcc(cb)
 
-
+def runTopics():
+	print "Reading topics"
+	
+	cb = topic
+	readFilenameTopics(cb)
+	
 
 
 def usage():
@@ -630,7 +712,9 @@ if __name__ == "__main__":
 		runBase()
 		runNer()
 		runWcc()
-
+	
+	elif sys.argv[1] == "--input-redis=topics":
+		runTopics()
 
 
 	elif sys.argv[1] == "--input-redis=epochs":
@@ -657,6 +741,8 @@ if __name__ == "__main__":
 		
 	elif sys.argv[1] == "--input-redis=templates":
 		
+		ajax_loader = """<div class="ajax-container"><div class="ajax-loading"></div></div>"""
+		
 		time_select_view = """
 <ul class="nav tabs">
 	<li><a href-"#">Historical Epochs</a></li>
@@ -667,7 +753,7 @@ if __name__ == "__main__":
 	
 	<ol class="tab-pane pagination">
 		{{#epochs}}
-			<li><a href="#" title="{{era}}">{{years}}</a></li>
+			<li><a href="#" title="{{era}}" class="epoch">{{years}}</a></li>
 		{{/epochs}}
 	</ol>
 	
@@ -833,12 +919,9 @@ Here is our map of Texas
 	<div class="inner box">
 	
 		<ul>
-			<li>topic key</li>
-			<li>topic key</li>
-			<li>topic key</li>
-			<li>topic key</li>
-			<li>topic key</li>
-			<li>topic key</li>
+			{{#topics}}
+				<li>{{.}}</li>
+			{{/topics}}
 		</ul>
 		
 	</div>
@@ -846,6 +929,7 @@ Here is our map of Texas
 </div><!-- /bd -->
 """.strip()
 		
+		REDIS.hset('templates', 'ajax_loader', ajax_loader)
 		REDIS.hset('templates', 'time_select_view', time_select_view)
 		
 		REDIS.hset('templates', 'map_view', map_view)

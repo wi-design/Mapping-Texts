@@ -5,17 +5,13 @@ $(function(){
 		el: 'body',
 		
 		initialize: function(attr) {
-			var self = this;
-			
 			console.log('app view created');
+			
+			STANFORD.MAPPING_TEXTS.cached.topics = new STANFORD.MAPPING_TEXTS.models.topics();
+			STANFORD.MAPPING_TEXTS.cached.topics.on('change', this.render_topics, this);
 			
 			STANFORD.MAPPING_TEXTS.cached.pubs = new STANFORD.MAPPING_TEXTS.collections.pubs();
 			STANFORD.MAPPING_TEXTS.cached.pubs.on('reset', this.render_pubs, this);
-			
-			/*
-			STANFORD.MAPPING_TEXTS.cached.pubseq_collection = new STANFORD.MAPPING_TEXTS.collections.pubseqs();
-			STANFORD.MAPPING_TEXTS.cached.pubseq_collection.on('reset', this.update_pub_view, this);
-			*/
 			
 			STANFORD.MAPPING_TEXTS.cached.wcc_collection = new STANFORD.MAPPING_TEXTS.collections.wcc();
 			STANFORD.MAPPING_TEXTS.cached.wcc_collection.on('reset', this.render_wcc, this);
@@ -26,42 +22,15 @@ $(function(){
 		},
 		
 		render: function() {
+			this.fetch_all({
+				y1					: 1991,
+				y2					: 1991,
+				x_pubs			: ['brownwood:the_yellow_jacket', 'abilene:the_reata'],
+				fetched_set	: STANFORD.MAPPING_TEXTS.objects.TrackFetchedSet()
+			});
+				
 			this.render_time();
-			
-			STANFORD.MAPPING_TEXTS.cached.pubs.fetch({
-				data: {
-					y1: 1991,
-					y2: 1991,
-					x_pubs: ['brownwood:the_yellow_jacket', 'abilene:the_reata']
-				}
-			});
-			
-			/*
-			STANFORD.MAPPING_TEXTS.cached.pubseq_collection.fetch({
-				data: {
-					y1: 1991,
-					y2: 1991,
-					x_pubs: ['brownwood:the_yellow_jacket', 'abilene:the_reata']
-				}
-			});
-			*/
-			
-			STANFORD.MAPPING_TEXTS.cached.wcc_collection.fetch({
-				data: {
-					y1: 1991,
-					y2: 1991,
-					x_pubs: ['brownwood:the_yellow_jacket', 'abilene:the_reata']
-				}
-			});
-			
-			STANFORD.MAPPING_TEXTS.cached.ner_collection.fetch({
-				data: {
-					y1: 1991,
-					y2: 1991,
-					x_pubs: [/*'brownwood:the_yellow_jacket', */'abilene:the_reata']
-				}
-			});
-			
+		
 			this.render_topics();
 		},
 		
@@ -128,11 +97,16 @@ $(function(){
 			});
 		},
 		
-		render_pubs: function() {
+		render_pubs: function() {		
 			var pub_view = new STANFORD.MAPPING_TEXTS.views.pub_view();
-			$(this.el).find('#pub-view').html( pub_view.render().el );
-			STANFORD.MAPPING_TEXTS.cached.pub_cbs = $(this.el).find('#pub-view input[type="checkbox"]')
-			.end()
+			$(this.el)
+			.find('#pub-view')
+			.html( pub_view.render().el );
+			
+			STANFORD.MAPPING_TEXTS.cached.pub_cbs = $(this.el).find('#pub-view input[type="checkbox"]');
+			
+			$(this.el)
+			.find('#pub-view')
 			.find('[title]')
 			.tooltip({
 				effect: 'fade',
@@ -185,8 +159,9 @@ $(function(){
 			});
 		},
 		
-		render_ner: function() {
+		render_ner: function() {	
 			var ner_view = new STANFORD.MAPPING_TEXTS.views.ner_view();
+
 			$(this.el)
 			.find('#ner-view')
 			.html( ner_view.render().el );
@@ -208,6 +183,7 @@ $(function(){
 		
 		render_topics: function() {
 			var topic_view = new STANFORD.MAPPING_TEXTS.views.topic_view();
+			
 			$(this.el).find('#topic-view').html( topic_view.render().el )
 			.end()
 			.find('[title]')
@@ -219,5 +195,14 @@ $(function(){
 		}
 		
 	});
+	
+	
+	// Mix in traits
+	_.extend(
+		STANFORD.MAPPING_TEXTS.views.app.prototype,
+		{
+			fetch_all: STANFORD.MAPPING_TEXTS.traits.fetch_all
+		}
+	);
 	
 });
