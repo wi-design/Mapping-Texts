@@ -73,6 +73,9 @@ class BaseHandler(tornado.web.RequestHandler):
 	def make_topic_key_epoch_postfix(self, epoch, postfix):
 		return "topics:%s:%s" % (epoch, postfix)
 	
+	def make_topics_epoch_pubs_key(self, epoch):
+		return "topics:y:%s" % epoch
+	
 	def get_pubseq_key(self, pubseq_list):
 		for pubseq in pubseq_list:
 			yield self.make_pubseq_key(pubseq)
@@ -95,10 +98,14 @@ class BaseHandler(tornado.web.RequestHandler):
 	def filter_out(self, base_set=set(), filter_out_set=set(), transform=None):
 		pipe = self.application.r.pipeline()
 		
+		logging.info("@@@ filter out set UN-transformed: %s" % filter_out_set)
+		
 		for filter_out_elem in transform( filter_out_set ):
+			logging.info("\t@@@ filter out elemenet transformed: %s" % filter_out_elem)
 			pipe.get(filter_out_elem)
 		
 		for pubseq in pipe.execute():
+			logging.info("\trying to filtered out pubseq %s" % pubseq)
 			if pubseq in base_set:
 				base_set.remove( pubseq )
 				logging.info("\tfiltered out pubseq %s" % pubseq)
@@ -152,6 +159,9 @@ class BaseHandler(tornado.web.RequestHandler):
 	def get_sorted_set(self, prefix, years, filter_out_pubs=set(), p=0):
 		key_list = self._make_all_keys_from_years(prefix, years, filter_out_pubs)
 		
+		if not key_list:
+			return []
+			
 		pipe = self.application.r.pipeline()
 		temp_res = 'out'
 		
@@ -218,22 +228,41 @@ class TopicHandler(BaseHandler):
 
 class PubsHandler(BaseHandler):
 	def get(self):
-		years, filter_out_pubs = self.parse_query_params()
+		epoch = self.get_argument("epoch", default=None)
 		
 		logging.info("=== Location & Publications ===")
 		
-		pubset_keys = self.get_pubset_keys_from_years(years)
-		pubseq_list = self.r.sunion(pubset_keys)
+		if not epoch:
+			years, filter_out_pubs = self.parse_query_params()
+			
+			pubset_keys = self.get_pubset_keys_from_years(years)
+			pubseq_list = self.r.sunion(pubset_keys)
+
+			logging.info("pubset keys: %s" % pubset_keys)
+			logging.info("pubseq list: %s" % pubseq_list)
+
+			final_pubseq_list = self.filter_out( 
+					base_set=pubseq_list,
+					filter_out_set=filter_out_pubs,
+					transform=self.get_pubseq_from_revkey
+			)
+			
+			logging.info("")
+			logging.info("final pubseq list: %s" % final_pubseq_list)
+			
+		else:
+			topics_epoch_pubs_key = self.make_topics_epoch_pubs_key(epoch)
+			
+			final_pubseq_list = self.r.smembers(topics_epoch_pubs_key)
+			
+			logging.info("pubset key (topic): %s" % topics_epoch_pubs_key)
+			logging.info("pubseq list: %s" % final_pubseq_list)
+			
+			logging.info("")
+			logging.info("final pubseq list: %s" % final_pubseq_list)
 		
-		logging.info("pubset keys: %s" % pubset_keys)
-		logging.info("pubseq list: %s" % pubseq_list)
 		
-		final_pubseq_list = self.filter_out( 
-				base_set=pubseq_list,
-				filter_out_set=filter_out_pubs,
-				transform=self.get_pubseq_from_revkey
-		)
-		logging.info("final pubseq list: %s" % final_pubseq_list)
+
 		
 		
 		pipe = self.r.pipeline()
@@ -250,7 +279,7 @@ class PubsHandler(BaseHandler):
 		
 		result = {}
 		result['pubs'] = [
-			{ 'city': k, 'pubs': v } for k,v in publoc.iteritems()
+			{ 'city': key, 'pubs': publoc[key] } for key in sorted(publoc.iterkeys())
 		]
 		
 		self.write( json.dumps(result, ensure_ascii=False, encoding="UTF-8") )

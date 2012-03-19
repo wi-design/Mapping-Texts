@@ -5,35 +5,56 @@ $(function(){
 		el: 'body',
 		
 		initialize: function(attr) {
+			var cached = STANFORD.MAPPING_TEXTS.cached;
+			
 			console.log('app view created');
 			
-			STANFORD.MAPPING_TEXTS.cached.topics = new STANFORD.MAPPING_TEXTS.models.topics();
-			STANFORD.MAPPING_TEXTS.cached.topics.on('change', this.render_topics, this);
+			cached.topics = new STANFORD.MAPPING_TEXTS.models.topics();
+			cached.topics.on('change', this.render_topics, this);
 			
-			STANFORD.MAPPING_TEXTS.cached.pubs = new STANFORD.MAPPING_TEXTS.collections.pubs();
-			STANFORD.MAPPING_TEXTS.cached.pubs.on('reset', this.render_pubs, this);
+			cached.pubs = new STANFORD.MAPPING_TEXTS.collections.pubs();
+			cached.pubs.on('reset', this.render_map, this);
+			cached.pubs.on('reset', this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner'] });
 			
-			STANFORD.MAPPING_TEXTS.cached.wcc_collection = new STANFORD.MAPPING_TEXTS.collections.wcc();
-			STANFORD.MAPPING_TEXTS.cached.wcc_collection.on('reset', this.render_wcc, this);
+			cached.wcc_collection = new STANFORD.MAPPING_TEXTS.collections.wcc();
+			cached.wcc_collection.on('reset', this.render_wcc, this);
 			
-			STANFORD.MAPPING_TEXTS.cached.ner_collection = new STANFORD.MAPPING_TEXTS.collections.ner();
-			STANFORD.MAPPING_TEXTS.cached.ner_collection.on('reset', this.render_ner, this);
+			cached.ner_collection = new STANFORD.MAPPING_TEXTS.collections.ner();
+			cached.ner_collection.on('reset', this.render_ner, this);
 
 		},
 		
 		render: function() {
-			this.fetch_all({
-				y1					: 1991,
-				y2					: 1991,
-				x_pubs			: ['brownwood:the_yellow_jacket', 'abilene:the_reata'],
-				fetched_set	: STANFORD.MAPPING_TEXTS.objects.TrackFetchedSet()
-			});
+			var c = STANFORD.MAPPING_TEXTS.cached;
+			
+			c.selected_year_range = {y1: 1991, y2: 1995};
+			this.fetch_data.call({ fetch_funs: ['fetch_publications'] });
+					
+			//this.fetch_all(args, fetch_funs);
 				
 			this.render_time();
-		
 			this.render_topics();
 		},
+
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// ----
+		// ---- Top row
+		// ----
+		
+		// Render time view
+		//  #time-view (replaces #map-view with new #map-veiw for each render)
+		//
 		render_time: function() {
 			var time_select_view = new STANFORD.MAPPING_TEXTS.views.time_select_view(),
 					time_select_view_elem = $(this.el).find('#time-select-view');
@@ -57,10 +78,37 @@ $(function(){
 			
 			STANFORD.MAPPING_TEXTS.cached.select_aa = time_select_view_elem.find('select#valueAA');
 			STANFORD.MAPPING_TEXTS.cached.select_bb = time_select_view_elem.find('select#valueBB');
-			
 		},
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// ----
+		// ---- Middle row
+		// ----
+		
+		// Render map view
+		//  #map-view (replaces #map-view with new #map-veiw for each render)
+		//
 		render_map: function() {
+			// 
+			this.render_pub_view();
+			
+			
+			//
+			//
 			var map_view = new STANFORD.MAPPING_TEXTS.views.map_view(),
 					center = STANFORD.MAPPING_TEXTS.geocoding['texas'],
 					map_options = {
@@ -74,12 +122,12 @@ $(function(){
 			
 			map = new google.maps.Map( $(this.el).find('#map-view').get(0), map_options );
 
-			console.log("pubs:");
-			STANFORD.MAPPING_TEXTS.cached.pubs.forEach(function(model) {
-				var city = model.get('city'),
-						pubs_tally = model.get('pubs').length,
-						center = STANFORD.MAPPING_TEXTS.geocoding[city],
+			STANFORD.MAPPING_TEXTS.cached.pubs.forEach(function(city) {
+				var city_norm = city.get('city').replace(/ /g, '_'),
+						center = STANFORD.MAPPING_TEXTS.geocoding[city_norm],
+						pubs_tally = city.get('pubs').length,
 						radius = 20000 + (pubs_tally * 5000),
+						zIndex = 1000000,
 						city_options = {
 							strokeColor: "#FF0000",
 							strokeOpacity: 0.8,
@@ -88,55 +136,68 @@ $(function(){
 							fillOpacity: 0.35,
 							map: map,
 							center: center,
-							radius: radius
+							radius: radius,
+							zIndex: zIndex - radius
 				    },
+						
 						city_circle = new google.maps.Circle(city_options);
+						
+				google.maps.event.addListener(city_circle, 'click', function() {
+					
+					if (city.get('display') === true) { return; }
+					
+					city.set({display: true});
+					
+			    city_circle.setOptions({
+						strokeColor: "#CCFF33"
+					});
+					
+					console.log('clicked on city code name: ' + city.get('city'));
+			  });
 				
-				console.log('city ' + city);
-				console.log('pubs tally ' + pubs_tally);
+				google.maps.event.addListener(city_circle, 'rightclick', function() {
+					
+					city.set({display: false});
+					
+			    city_circle.setOptions({
+						strokeColor: "#FF0000"
+					});
+			  });
+					
 			});
 		},
 		
-		render_pubs: function() {		
-			var pub_view = new STANFORD.MAPPING_TEXTS.views.pub_view();
+		
+		// Render pub view
+		//  #pub-view
+		//
+		render_pub_view: function() {
+			var views = STANFORD.MAPPING_TEXTS.views,
+					pub_view = new views.pub_view();
+			
 			$(this.el)
 			.find('#pub-view')
-			.html( pub_view.render().el );
-			
-			STANFORD.MAPPING_TEXTS.cached.pub_cbs = $(this.el).find('#pub-view input[type="checkbox"]');
-			
-			$(this.el)
-			.find('#pub-view')
-			.find('[title]')
-			.tooltip({
-				effect: 'fade',
-				predelay: 500,
-				offset: [-10,0]
-			});
-			
-			this.render_map();
+			.html( pub_view.render().el )
 		},
 		
-		update_pub_view: function() {
-			var self = this,
-					each_pubseq = function(model) {
-						var pubseq = model.get('id'),
-								selector_str = "#pubseq-" + pubseq;
-								
-						console.log('pubseq selector => ' + selector_str);
-				
-						STANFORD.MAPPING_TEXTS.cached.pub_cbs
-						.filter(selector_str)
-						.attr('checked', true)
-						.removeAttr('disabled');
-					}; 
-			
-			STANFORD.MAPPING_TEXTS.cached.pub_cbs.attr('checked', false);
-			STANFORD.MAPPING_TEXTS.cached.pub_cbs.attr('disabled', true);
-			
-			STANFORD.MAPPING_TEXTS.cached.pubseq_collection.forEach(each_pubseq);
-		},
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// ----
+		// ---- bottom row
+		// ----
+		
+		// Render word correct counts view
+		//  #wcc-view
+		//
 		render_wcc: function() {
 			var wcc_view = new STANFORD.MAPPING_TEXTS.views.wcc_view();
 			
@@ -159,6 +220,9 @@ $(function(){
 			});
 		},
 		
+		// Render name entity counts view
+		//  #ner-view
+		//
 		render_ner: function() {	
 			var ner_view = new STANFORD.MAPPING_TEXTS.views.ner_view();
 
@@ -181,6 +245,9 @@ $(function(){
 			});			
 		},
 		
+		// Render topics view
+		//  #topic-view
+		//
 		render_topics: function() {
 			var topic_view = new STANFORD.MAPPING_TEXTS.views.topic_view();
 			
@@ -197,11 +264,15 @@ $(function(){
 	});
 	
 	
+	
+	
+	
 	// Mix in traits
 	_.extend(
 		STANFORD.MAPPING_TEXTS.views.app.prototype,
 		{
-			fetch_all: STANFORD.MAPPING_TEXTS.traits.fetch_all
+			fetch_all: STANFORD.MAPPING_TEXTS.traits.fetch_all,
+			fetch_data: STANFORD.MAPPING_TEXTS.traits.fetch_data
 		}
 	);
 	

@@ -313,6 +313,8 @@ def make_topic_key_epoch_city(epoch, city):
 	return "topics:%s:%s" % (epoch, slugify(city))
 def make_topic_key_epoch(epoch):
 	return "topics:%s" % (epoch)
+def make_topic_locs_key(epoch):
+	return "topics:y:%s" % (epoch)
 
 def topic(extract):
 	msg, package = extract
@@ -322,6 +324,27 @@ def topic(extract):
 				
 		if epoch in EPOCH_MAP:
 			epoch = EPOCH_MAP[epoch]
+			
+			
+			
+			# ADD  pubseqs for each epoch
+			# 
+			
+			# get publication for this entity (by year,loc,pub)
+			pubLookupKey = makePubReverseKey(city, title)
+
+			# insert ner entity in ordered set for pub,year
+			if REDIS.exists(pubLookupKey):
+				pubseq = REDIS.get(pubLookupKey)
+				
+				topic_locs_key = make_topic_locs_key(epoch)
+				REDIS.sadd(topic_locs_key, pubseq)
+				
+			else:
+				raise Exception("ERROR: pub reverse key lookup failed for (%s,%s)" % (city, title))
+				
+				
+				
 			
 			tle_topic_key = make_topic_key_epoch_city_pub(epoch, city, title)
 			
@@ -814,26 +837,26 @@ Here is our map of Texas
 <div class="inner">
 
 	<div class="hd">
-		<h3>date range <small>[value]</small></h3>
+		<h3>date range <small>{{y1}} - {{y2}}</small></h3>
 		<h4>publication by city:</h4>
 	</div>
 
 	<div class="bd box">
 		<div class="spiffy-scrollbar">
-		
-			{{#publocs}}
-				<h5>{{city}}</h5>
-				<ul class="simple-list">
-					{{#pubs}}
-						<li><input type="checkbox" name="" id="pubseq-{{pubseq}}" checked="true"><label for="pubseq-{{pubseq}}" class="checkbox">{{pub}}</label></li>
-					{{/pubs}}
-				</ul>
-			{{/publocs}}
-			
+			<span>No cities selected...</span>
 		</div>
 	</div>
 
 </div>
+""".strip()
+		
+		city_view = """
+<h5>{{city}}</h5>
+<ul class="simple-list">
+	{{#pubs}}
+		<li><input type="checkbox" name="" id="pubseq-{{pubseq}}" checked="true"><label for="pubseq-{{pubseq}}" class="checkbox">{{pub}}</label></li>
+	{{/pubs}}
+</ul>
 """.strip()
 		
 		wcc_view = """
@@ -937,6 +960,7 @@ Here is our map of Texas
 		
 		REDIS.hset('templates', 'map_view', map_view)
 		REDIS.hset('templates', 'pub_view', pub_view)
+		REDIS.hset('templates', 'city_view', city_view)
 		
 		REDIS.hset('templates', 'wcc_view', wcc_view)
 		REDIS.hset('templates', 'ner_view', ner_view)

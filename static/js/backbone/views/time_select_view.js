@@ -40,33 +40,38 @@ $(function(){
 		},
 		
 		update: function(ev) {
-			var y1 = STANFORD.MAPPING_TEXTS.cached.select_aa.val(),
-					y2 = STANFORD.MAPPING_TEXTS.cached.select_bb.val(),
-					x_pubs = [],
-					fetched_set = STANFORD.MAPPING_TEXTS.objects.TrackFetchedSet();
-			
-			this.fetch_all({
-				y1					: y1,
-				y2					: y2,
-				x_pubs			: x_pubs,
-				fetched_set	: fetched_set
-			});			
+			var c = STANFORD.MAPPING_TEXTS.cached,
+					y1 = c.select_aa.val(),
+					y2 = c.select_bb.val();
+
+			c.selected_year_range = {y1: y1, y2: y2};
+			this.fetch_data.call({ fetch_funs: ['fetch_publications'] });
+				
+			//this.fetch_all(args, fetch_funs);
 		},
 		
 		epoch_update: function(ev) {
-			var epoch = $(ev.target).text().replace('-', ':');
+			var cached = STANFORD.MAPPING_TEXTS.cached,
+					epoch = $(ev.target).text().replace('-', ':'),
+					years = epoch.split(':'),
+					y1 = years[0],
+					y2 = years[1],
+					
+					fetch_funs = ['fetch_publications', 'fetch_topics', 'fetch_wcc', 'fetch_ner'],
+					els_to_load_until_complete = $('#time-select-view'),
+					fetched_set = STANFORD.MAPPING_TEXTS.objects.TrackFetchedSet(fetch_funs, els_to_load_until_complete),
+					
+					args = {
+						y1: y1,
+						y2: y2,
+						x_pubs: [], // not using
+						fetched_set: fetched_set,
+						epoch: epoch
+					};
 			
-			STANFORD.MAPPING_TEXTS.cached.topics.fetch({
-				data: {
-					v: epoch
-				},
-				success: function(model){
-					console.log("success fetching topic model");
-					console.log(model.get('topics').split('<br>'));
-				}
-			})
+			cached.selected_year_range = {y1: y1, y2: y2};
 			
-			console.log('epoch clicked: ' + epoch);
+			this.fetch_all(args, fetch_funs);
 		}
 		
 	});
@@ -75,7 +80,8 @@ $(function(){
 	_.extend(
 		STANFORD.MAPPING_TEXTS.views.time_select_view.prototype,
 		{
-			fetch_all: STANFORD.MAPPING_TEXTS.traits.fetch_all
+			fetch_all: STANFORD.MAPPING_TEXTS.traits.fetch_all,
+			fetch_data: STANFORD.MAPPING_TEXTS.traits.fetch_data
 		}
 	);
 	
