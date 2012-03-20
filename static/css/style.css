@@ -1089,12 +1089,11 @@ header {
   background-color: rgba(0, 0, 0, 0.3); }
 
 .ui-slider-container {
-  height: 8em; }
+  height: 5em; }
 
 .ui-slider {
   clear: both;
   margin: 0 0.616em;
-  top: 1em;
   text-decoration: none !important; }
   .ui-slider .ui-slider-tooltip {
     display: none; }

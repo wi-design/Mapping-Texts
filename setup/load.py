@@ -784,8 +784,8 @@ if __name__ == "__main__":
 	
 		<form>
 			<fieldset>
-				<label for="valueAA">From:</label>
-				<select name="valueAA" id="valueAA">
+				<label class="visuallyhidden" for="valueAA">From:</label>
+				<select name="valueAA" id="valueAA" class="visuallyhidden">
 					<optgroup label="1800">
 						{{#_1800s}}
 							<option value="{{.}}">{{.}}</option>
@@ -803,8 +803,8 @@ if __name__ == "__main__":
 					</optgroup>
 				</select>
 				
-				<label for="valueBB">To:</label>
-				<select name="valueBB" id="valueBB">
+				<label class="visuallyhidden" for="valueBB">To:</label>
+				<select name="valueBB" id="valueBB" class="visuallyhidden">
 					<optgroup label="1800">
 						{{#_1800s}}
 							<option value="{{.}}">{{.}}</option>

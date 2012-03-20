@@ -2,15 +2,15 @@
 // New slider styles
 // -----------------------------------------------------
 
-.ui-slider-container {
-	height: 8em;
+.ui-slider-container { // use 8em if select elements are visible
+	height: 5em;
 }
 
 .ui-slider  {
 	clear: both; 
 	
 	margin: 0 $defaultMargin / 1.25;
-	top: 1em;
+	//top: 1em; //uncomment if select elements are visible
 	
 	text-decoration: none !important;
 	
