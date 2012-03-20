@@ -113,7 +113,7 @@ $(function(){
 					center = STANFORD.MAPPING_TEXTS.geocoding['texas'],
 					map_options = {
         		center: center,
-        		zoom: 6,
+        		zoom: 5,
         		mapTypeId: google.maps.MapTypeId.ROADMAP
       		},
 					map;
