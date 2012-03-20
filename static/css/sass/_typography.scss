@@ -37,7 +37,7 @@ h1 {
   line-height: $defaultLineHeight * 2;
   
 	small {
-		font-size: convert-to-em( $targetValue: 16px );
+		font-size: convert-to-em( $targetValue: 16px, $baseValue: 28px );
   }
 }
 
@@ -46,7 +46,7 @@ h2 {
   line-height: $defaultLineHeight * 2;
   
 	small {
-		font-size: convert-to-em( $targetValue: 16px );
+		font-size: convert-to-em( $targetValue: 16px, $baseValue: 24px );
   }
 }
 
@@ -55,7 +55,7 @@ h3 {
   line-height: $defaultLineHeight * 1.5;
   
 	small {
-		font-size: convert-to-em( $targetValue: 14px );
+		font-size: convert-to-em( $targetValue: 14px, $baseValue: 18px );
   }
 }
 
@@ -67,7 +67,7 @@ h4 {
 	font-size: convert-to-em( $targetValue: 16px );
   
 	small {
-		font-size: convert-to-em( $targetValue: 12px );
+		font-size: convert-to-em( $targetValue: 12px, $baseValue: 16px );
   }
 }
 
