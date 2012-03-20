@@ -87,10 +87,10 @@
 // Actual tabs (as links)
 .tabs a {
 	margin-right: 2px;
-  padding: convert-to-em(9px, 16px) convert-to-em(12px, 16px);
+  padding: convert-to-em( 9px ) convert-to-em( 12px );
   border: 1px solid transparent;
 
-	line-height: convert-to-em(14px, 16px); 
+	line-height: convert-to-em( 14px ); 
   
 &:hover {
     border-color: $grayLighter $grayLighter #ddd;

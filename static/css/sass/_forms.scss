@@ -18,7 +18,7 @@ input,
 button,
 select,
 textarea {
-	@include font-shorthand($size: convert-to-em(13px, 16px));
+	@include font-shorthand($size: convert-to-em( 13px ));
 }
 
 
@@ -37,7 +37,7 @@ input,
 textarea,
 select {
   display: inline-block;
-  padding: convert-to-em(4px, 16px);
+  padding: convert-to-em( 4px );
   color: $gray;
   border: 1px solid #ccc;
 }

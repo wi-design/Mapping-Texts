@@ -253,8 +253,8 @@ footer > .inner {
   display: block;
   margin-right: auto;
   margin-left: auto;
-  padding-right: 1.25em;
-  padding-left: 1.25em; }
+  padding-right: 1.54em;
+  padding-left: 1.54em; }
 
 .row {
   display: block;
@@ -297,7 +297,7 @@ footer > .inner {
   width: 78%; }
 
 body {
-  font: 1em/1.313em "Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif;
+  font: 0.813em/1.384em "Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif;
   color: #333333; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -311,41 +311,41 @@ h1, h2, h3, h4, h5, h6 {
     color: #777777; }
 
 h1 {
-  font-size: 1.875em;
-  line-height: 2.625em; }
+  font-size: 2.154em;
+  line-height: 2.768em; }
   h1 small {
-    font-size: 1.125em; }
+    font-size: 1.231em; }
 
 h2 {
-  font-size: 1.5em;
-  line-height: 2.625em; }
+  font-size: 1.846em;
+  line-height: 2.768em; }
   h2 small {
-    font-size: 1.125em; }
+    font-size: 1.231em; }
 
 h3 {
-  line-height: 1.969em;
-  font-size: 1.125em; }
+  font-size: 1.385em;
+  line-height: 2.076em; }
   h3 small {
-    font-size: 0.875em; }
+    font-size: 1.077em; }
 
 h4, h5, h6 {
-  line-height: 1.313em; }
+  line-height: 1.384em; }
 
 h4 {
-  font-size: conver-to-em(14px, 16px); }
+  font-size: 1.231em; }
   h4 small {
-    font-size: conver-to-em(12px, 16px); }
+    font-size: 0.923em; }
 
 h5 {
-  font-size: conver-to-em(12px, 16px); }
+  font-size: 1.077em; }
 
 h6 {
-  font-size: conver-to-em(11px, 16px);
+  font-size: 0.923em;
   color: #777777;
   text-transform: uppercase; }
 
 .app-name {
-  font-size: 1.25em;
+  font-size: 1.538em;
   line-height: 40px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5);
   text-transform: uppercase; }
@@ -355,28 +355,28 @@ h6 {
       color: #990000; }
 
 blockquote {
-  margin: 0 0 1.313em;
+  margin: 0 0 1.384em;
   padding: 0 0 0 15px;
   border-left: 5px solid #999999; }
   blockquote p {
     margin-bottom: 0;
-    font: 16px/1.641em; }
+    font: 1em/1.73em; }
   blockquote small {
     display: block;
-    line-height: 1.313em;
+    line-height: 1.384em;
     color: #777777; }
     blockquote small:before {
       content: '\2014 \00A0'; }
 
 hr {
-  margin: 1.25em 0;
+  margin: 0.77em 0;
   border: 0;
   border-top: 1px solid #e2e2e2;
   border-bottom: 1px solid white; }
 
 ul, ol {
   padding: 0;
-  margin: 0 0 0.625em 1.25em; }
+  margin: 0 0 0.385em 0.77em; }
 
 ul ul,
 ul ol,
@@ -391,7 +391,7 @@ ol {
   list-style: decimal; }
 
 li {
-  line-height: 1.313em; }
+  line-height: 1.384em; }
 
 ul.no-style,
 ol.no-style {
@@ -402,27 +402,26 @@ ul.simple-list {
   list-style: none; }
 
 dl {
-  margin-bottom: 1.313em; }
+  margin-bottom: 1.384em; }
 
 dt,
 dd {
-  line-height: 1.313em; }
+  line-height: 1.384em; }
 
 dt {
   font-weight: bold; }
 
 dd {
-  margin-left: 0.656em; }
+  margin-left: 0.692em; }
 
 p {
-  margin: 0 0 0.656em;
+  margin: 0 0 0.692em;
   font-family: "Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif;
-  font-size: 1em;
-  line-height: 1.313em; }
+  line-height: 1.384em; }
   p:first-letter {
     text-transform: uppercase; }
   p small {
-    font-size: -1em;
+    font-size: -1.188em;
     color: #777777; }
 
 abbr {
@@ -433,9 +432,9 @@ abbr {
 
 address {
   display: block;
-  margin-bottom: 1.313em;
+  margin-bottom: 1.384em;
   font-style: normal;
-  line-height: 1.313em; }
+  line-height: 1.384em; }
 
 cite {
   font-style: normal; }
@@ -460,8 +459,8 @@ small {
 
 .author {
   color: white;
-  font-size: 0.813em;
-  line-height: 0.813em;
+  font-size: 1em;
+  line-height: 1em;
   text-transform: capitalize; }
   .author:hover {
     color: #e7b19a; }
@@ -478,7 +477,7 @@ a {
     color: #002233; }
 
 form {
-  margin: 0 0 1.313em; }
+  margin: 0 0 1.384em; }
 
 fieldset {
   border: none; }
@@ -488,12 +487,12 @@ input,
 button,
 select,
 textarea {
-  font: normal 0.813em/1.313em "Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif; }
+  font: normal 1em/1.384em "Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif; }
 
 label {
   display: inline-block;
-  margin-right: 0.313em;
-  margin-bottom: 0.313em;
+  margin-right: 0.193em;
+  margin-bottom: 0.193em;
   color: #333333;
   text-transform: capitalize; }
 
@@ -501,13 +500,13 @@ input,
 textarea,
 select {
   display: inline-block;
-  padding: 0.25em;
+  padding: 0.308em;
   color: #555555;
   border: 1px solid #ccc; }
 
 input[type="radio"] + label,
 input[type="checkbox"] + label {
-  padding-left: 0.625em; }
+  padding-left: 0.77em; }
 
 header {
   height: 40px;
@@ -527,7 +526,7 @@ header {
     margin: 0; }
     header .branding .app-name {
       float: left;
-      margin-right: 1.25em; }
+      margin-right: 0.77em; }
 
 .authors {
   float: right;
@@ -536,8 +535,8 @@ header {
     line-height: 20px; }
 
 .footer {
-  margin: 1.25em 0 0;
-  padding: 0.625em 0 1.25em;
+  margin: 0.77em 0 0;
+  padding: 0.77em 0 1.54em;
   border-top: 1px solid #990000;
   background-color: rgba(231, 177, 154, 0.2); }
 
@@ -545,7 +544,7 @@ header {
   margin-bottom: 0; }
 
 .nav {
-  margin-bottom: 1.313em;
+  margin-bottom: 1.384em;
   margin-left: 0;
   list-style: none; }
   .nav a {
@@ -561,12 +560,12 @@ header {
     display: block;
     position: relative;
     float: left;
-    margin: 0 0.625em 0 0; }
+    margin: 0 0.385em 0 0; }
     .main-nav .nav > li {
       display: block;
       float: left; }
   .main-nav a {
-    padding: 0 0.625em;
+    padding: 0 0.77em;
     color: white;
     line-height: 40px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -595,9 +594,9 @@ header {
 
 .tabs a {
   margin-right: 2px;
-  padding: 0.563em 0.75em;
+  padding: 0.692em 0.923em;
   border: 1px solid transparent;
-  line-height: 0.875em; }
+  line-height: 1.077em; }
   .tabs a:hover {
     border-color: #999999 #999999 #dddddd; }
 
@@ -610,18 +609,17 @@ header {
 
 .pagination {
   display: inline-block;
-  height: 2.625em;
+  height: 2.768em;
   margin: 0; }
   .pagination li {
     display: inline; }
 
 .pagination a {
   float: left;
-  padding: 0.313em;
+  padding: 0.385em;
   border: 1px solid #ddd;
   border-left-width: 0;
-  font-size: 0.875em;
-  line-height: 1.313em;
+  line-height: 1.384em;
   text-decoration: none; }
   .pagination a:hover,
   .pagination a .active a {
@@ -641,28 +639,28 @@ header {
   position: relative; }
 
 .widget {
-  margin-top: 1.25em;
-  margin-bottom: 1.25em; }
+  margin-top: 0.77em;
+  margin-bottom: 0.77em; }
   .widget > .inner {
-    padding: 0.625em 0.625em 1.25em; }
+    padding: 0.77em 0.77em 1.54em; }
   .widget .nav {
-    padding-right: 0.625em;
-    padding-left: 0.625em; }
+    padding-right: 0.77em;
+    padding-left: 0.77em; }
   .widget .tabs {
     margin-bottom: 0; }
 
 .bd > .inner,
 .ft > .inner,
 .hd > .inner {
-  margin-right: 0.625em;
-  margin-left: 0.625em; }
+  margin-right: 0.77em;
+  margin-left: 0.77em; }
 
 .action-bar {
   overflow: hidden;
-  padding: 0.313em 0.625em; }
+  padding: 0.385em 0.77em; }
 
 .map-view {
-  height: 400px; }
+  height: 300px; }
 
 .basic {
   border: 1px solid rgba(0, 0, 0, 0.09);
@@ -671,7 +669,7 @@ header {
   border-radius: 3px; }
 
 .box {
-  padding: 0.625em;
+  padding: 0.77em;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.8) inset;
   -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.8) inset;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.8) inset;
@@ -688,7 +686,7 @@ header {
     color: #0088cc; }
 
 .module {
-  padding-bottom: 1.25em;
+  padding-bottom: 0.77em;
   background-color: #efefef; }
   .module .hd + .bd {
     margin-top: 33px;
@@ -958,7 +956,7 @@ header {
 [class^="icon-"] {
   display: inline-block;
   position: relative;
-  margin-right: 0.625em;
+  margin-right: 0.385em;
   cursor: pointer;
   -webkit-transition: all 0.3s ease-in;
   -moz-transition: all 0.3s ease-in;
@@ -973,7 +971,7 @@ header {
   [class*="icon-"].push,
   [class^="icon-"].push {
     margin-right: 0;
-    margin-left: 0.625em; }
+    margin-left: 0.385em; }
   [class*="icon-"] span,
   [class^="icon-"] span {
     overflow: hidden;
@@ -983,10 +981,10 @@ header {
     height: 0; }
 
 .icon-arrow {
-  margin: 0.625em 0 0.313em;
+  margin: 0.385em 0 0.193em;
   width: 2px;
   height: 1px;
-  padding: 0.625em;
+  padding: 0.77em;
   border: 1px solid #f2f2f2; }
   .icon-arrow:hover {
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -1071,8 +1069,8 @@ header {
 
 .spiffy-scrollbar {
   overflow-y: scroll;
-  height: 18.25em;
-  padding: 0.625em;
+  height: 14.154em;
+  padding: 0.77em;
   border-top: 3px solid transparent;
   border-right: 3px solid transparent;
   border-bottom: 3px solid transparent; }
@@ -1095,7 +1093,7 @@ header {
 
 .ui-slider {
   clear: both;
-  margin: 0 1em;
+  margin: 0 0.616em;
   top: 1em;
   text-decoration: none !important; }
   .ui-slider .ui-slider-tooltip {
@@ -1226,7 +1224,7 @@ header {
 
 .tooltip {
   display: none;
-  padding: 0.625em;
+  padding: 0.77em;
   border: 1px solid #e7b19a;
   background-color: white;
   color: #333333;
@@ -1387,94 +1385,94 @@ header {
   padding-top: 0 !important; }
 
 .pts, .pvs, .pas {
-  padding-top: 0.313em !important; }
+  padding-top: 0.385em !important; }
 
 .ptm, .pvm, .pam {
-  padding-top: 0.625em !important; }
+  padding-top: 0.77em !important; }
 
 .ptl, .pvl, .pal {
-  padding-top: 1.25em !important; }
+  padding-top: 1.54em !important; }
 
 .prn, .phn, .pan {
   padding-right: 0 !important; }
 
 .prs, .phs, .pas {
-  padding-right: 0.313em !important; }
+  padding-right: 0.385em !important; }
 
 .prm, .phm, .pam {
-  padding-right: 0.625em !important; }
+  padding-right: 0.77em !important; }
 
 .prl, .phl, .pal {
-  padding-right: 1.25em !important; }
+  padding-right: 1.54em !important; }
 
 .pbn, .pvn, .pan {
   padding-bottom: 0 !important; }
 
 .pbs, .pvs, .pas {
-  padding-bottom: 0.313em !important; }
+  padding-bottom: 0.385em !important; }
 
 .pbm, .pvm, .pam {
-  padding-bottom: 0.625em !important; }
+  padding-bottom: 0.77em !important; }
 
 .pbl, .pvl, .pal {
-  padding-bottom: 1.25em !important; }
+  padding-bottom: 1.54em !important; }
 
 .pln, .phn, .pan {
   padding-left: 0 !important; }
 
 .pls, .phs, .pas {
-  padding-left: 0.313em !important; }
+  padding-left: 0.385em !important; }
 
 .plm, .phm, .pam {
-  padding-left: 0.625em !important; }
+  padding-left: 0.77em !important; }
 
 .pll, .phl, .pal {
-  padding-left: 1.25em !important; }
+  padding-left: 1.54em !important; }
 
 .mtn, .mvn, .man {
   margin-top: 0 !important; }
 
 .mts, .mvs, .mas {
-  margin-top: 0.313em !important; }
+  margin-top: 0.385em !important; }
 
 .mtm, .mvm, .mam {
-  margin-top: 0.625em !important; }
+  margin-top: 0.77em !important; }
 
 .mtl, .mvl, .mal {
-  margin-top: 1.25em !important; }
+  margin-top: 1.54em !important; }
 
 .mrn, .mhn, .man {
   margin-right: 0 !important; }
 
 .mrs, .mhs, .mas {
-  margin-right: 0.313em !important; }
+  margin-right: 0.385em !important; }
 
 .mrm, .mhm, .mam {
-  margin-right: 0.625em !important; }
+  margin-right: 0.77em !important; }
 
 .mrl, .mhl, .mal {
-  margin-right: 1.25em !important; }
+  margin-right: 1.54em !important; }
 
 .mbn, .mvn, .man {
   margin-bottom: 0 !important; }
 
 .mbs, .mvs, .mas {
-  margin-bottom: 0.313em !important; }
+  margin-bottom: 0.385em !important; }
 
 .mbm, .mvm, .mam {
-  margin-bottom: 0.625em !important; }
+  margin-bottom: 0.77em !important; }
 
 .mbl, .mvl, .mal {
-  margin-bottom: 1.25em !important; }
+  margin-bottom: 1.54em !important; }
 
 .mln, .mhn, .man {
   margin-left: 0 !important; }
 
 .mls, .mhs, .mas {
-  margin-left: 0.313em !important; }
+  margin-left: 0.385em !important; }
 
 .mlm, .mhm, .mam {
-  margin-left: 0.625em !important; }
+  margin-left: 0.77em !important; }
 
 .mll, .mhl, .mal {
-  margin-left: 1.25em !important; }
+  margin-left: 1.54em !important; }

@@ -52,7 +52,7 @@
 // Conversion Functions 
 // --------------------
 
-@function convert-to-em( $targetValue, $baseValue ) {
+@function convert-to-em( $targetValue, $baseValue: 13px ) {
 	@return ( $targetValue / $baseValue ) * 1em;
 }
 

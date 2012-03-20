@@ -6,50 +6,50 @@
 // --------------------------------------------------
 
 // Links
-$defaultLinkColor:             #0088cc;
-$defaultLinkColorHover:        darken($defaultLinkColor, 30%);
+$defaultLinkColor:             #0088cc !default;
+$defaultLinkColorHover:        darken($defaultLinkColor, 30%) !default;
 
 // Grays
-$black:                 #000;
-$silver:								#c0c0c0;
-$grayDarker:            #111;
-$grayDark:              #333;
-$gray:                  #555;
-$grayLight:             #777;
-$grayLighter:           #999;
-$grayLightest:					#e2e2e2;
-$white:                 #fff;
+$black:                 #000 !default;
+$silver:								#c0c0c0 !default;
+$grayDarker:            #111 !default;
+$grayDark:              #333 !default;
+$gray:                  #555 !default;
+$grayLight:             #777 !default;
+$grayLighter:           #999 !default;
+$grayLightest:					#e2e2e2 !default;
+$white:                 #fff !default;
 
 // Accent colors
-$blue:                  #36a5d1;
-$navy:              		#0064cd;
-$green:                 #2e912e;
-$red:                   #e81414;
-$yellow:                #fcf823;
-$orange:                #f99a13;
-$teal:									#0b8c8f;
-$pink:                  #ba3b61;
-$purple:                #720172;
+$blue:                  #36a5d1 !default;
+$navy:              		#0064cd !default;
+$green:                 #2e912e !default;
+$red:                   #e81414 !default;
+$yellow:                #fcf823 !default;
+$orange:                #f99a13 !default;
+$teal:									#0b8c8f !default;
+$pink:                  #ba3b61 !default;
+$purple:                #720172 !default;
 
 // Theming Coloring
-$primaryThemeColor:			#990000;
-$secondaryThemeColor:		#e7b19a;
+$primaryThemeColor:			#990000 !default;
+$secondaryThemeColor:		#e7b19a !default;
 
 // Typography
-$defaultFontSize:				1em;
-$defaultFontFamily:			"Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif;
-$defaultLineHeight:			1.3125em; //21px / 16px
-$defaultTextColor:			$grayDark;
+$defaultFontSize:				0.8125em !default; // 13px equivalent
+$defaultFontFamily:			"Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif !default;
+$defaultLineHeight:			1.384em !default; //18px / 13px
+$defaultTextColor:			$grayDark !default;
 
 // Spacing
 // -------------
 // Margins
-$defaultMargin:					1.25em; // 20px / 16px	
+$defaultMargin:					0.770em  !default; // 20px / 13px	
 // Padding
-$defaultPadding:				0.625em; // 10px / 16px
+$defaultPadding:				0.770em !default; // 10px / 13px
 
 // Buttons
-$primaryButtonBackground:		$defaultLinkColor;
+$primaryButtonBackground:		$defaultLinkColor !default;
 
 // Component (think of another name)
 				
@@ -57,9 +57,9 @@ $primaryButtonBackground:		$defaultLinkColor;
 $hrBorder:              					$grayLightest !default;
 
 // Main Header 
-$mainHeaderText:									$white;
-$mainHeaderHeight:                40px !default; // 40px / 16px 
-$mainHeaderBackground:						$black;
+$mainHeaderText:									$white !default;
+$mainHeaderHeight:                40px !default; 
+$mainHeaderBackground:						$black !default;
 
 // Main-Nav
 $mainNavBackground:              	$primaryThemeColor !default;
@@ -74,9 +74,9 @@ $mainNavLinkColorHover:            $white !default;
 // scaffolding
 // --------------------------------------------------
 
-$pageWidth:							100%;
-$innerWidth:						90%;
+$pageWidth:				100% !default;
+$innerWidth:			90% !default;
 
 // Responsive grid
-$columnWidth:    10%;
-$gutterWidth:    2%;
+$columnWidth:    10% !default;
+$gutterWidth:    2% !default;
