@@ -768,22 +768,15 @@ if __name__ == "__main__":
 		
 		time_select_view = """
 <ul class="nav tabs">
-	<li><a href-"#">Historical Eras</a></li>
 	<li><a href="#">Time Slider</a></li>
+	<li><a href-"#">Historical Eras</a></li>
 </ul>
 
 <div class="tab-content">
 	
-	<ol class="tab-pane pagination">
-		{{#epochs}}
-			<li><a href="#" title="{{era}}" class="epoch">{{years}}</a></li>
-		{{/epochs}}
-	</ol>
-	
 	<div class="ui-slider-container tab-pane">
 	
 		<form>
-			<fieldset>
 				<label class="visuallyhidden" for="valueAA">From:</label>
 				<select name="valueAA" id="valueAA" class="visuallyhidden">
 					<optgroup label="1800">
@@ -821,10 +814,16 @@ if __name__ == "__main__":
 						{{/_2000s}}
 					</optgroup>
 				</select>
-			</fieldset>
 		</form>
 	
 	</div><!-- /slider -->
+	
+	<ol class="tab-pane pagination">
+		{{#epochs}}
+			<li><a href="#" title="{{era}}" class="epoch">{{years}}</a></li>
+		{{/epochs}}
+	</ol>
+	
 	
 </div><!-- /tab-content -->
 """.strip()

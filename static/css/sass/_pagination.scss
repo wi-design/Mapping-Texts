@@ -18,18 +18,17 @@
 	border: 1px solid #ddd;
   border-left-width: 0;
 	
-	//font-size: $defaultFontSize;
   line-height: $defaultLineHeight;
   text-decoration: none;
-
-	&:hover,
-	.active a {
-		background-color: $grayLightest;
-	}
 }
 
-.pagination .active a {
-	color: $grayLight;
+.pagination a:hover,
+.pagination .active {
+		background-color: $grayLightest;
+}
+
+.pagination .active {
+	color: $defaultLinkColorHover;
   cursor: default;
 }
 

@@ -621,12 +621,13 @@ header {
   border-left-width: 0;
   line-height: 1.384em;
   text-decoration: none; }
-  .pagination a:hover,
-  .pagination a .active a {
-    background-color: #e2e2e2; }
 
-.pagination .active a {
-  color: #777777;
+.pagination a:hover,
+.pagination .active {
+  background-color: #e2e2e2; }
+
+.pagination .active {
+  color: #002233;
   cursor: default; }
 
 .pagination li:first-child a {
