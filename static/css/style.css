@@ -1279,10 +1279,13 @@ header {
 .tooltip {
   display: none;
   padding: 0.77em;
-  border: 1px solid #e7b19a;
-  background-color: white;
-  color: #333333;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: black;
+  color: white;
   font-size: 0.75em;
+  font-weight: bold;
   pointer-events: none; }
   .tooltip:after {
     content: '';
@@ -1294,10 +1297,7 @@ header {
     margin-left: -4px;
     width: 8px;
     height: 8px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: transparent #e7b19a #e7b19a transparent;
-    background-color: white;
+    background-color: inherit;
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
     -ms-transform: rotate(45deg);

@@ -5,12 +5,13 @@
 	display: none;
 		
 	padding: $defaultPadding;
-	border: 1px solid $secondaryThemeColor;
+	@include border-radius( $radius: 3px );
 	
-  background-color: $white;
+  background-color: $black;
 
-  color: $grayDark;
+  color: $white;
 	font-size: convert-to-em(12px,16px);
+	font-weight: bold;
 	
 	pointer-events: none;
 	
@@ -25,11 +26,8 @@
 		margin-left: -4px;
 		width: 8px;
 		height: 8px;
-		border-width: 1px;
-		border-style: solid;
-		border-color: transparent $secondaryThemeColor $secondaryThemeColor transparent;
 		
-		background-color: $white;
+		background-color: inherit;
 	
 		@include transformRotate($degrees: 45deg);
 	}
