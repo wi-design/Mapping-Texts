@@ -1171,8 +1171,8 @@ header {
       content: '';
       position: absolute;
       top: 100%;
-      margin-left: -1px;
-      border-width: 10px;
+      margin-left: 0;
+      border-width: 8px;
       border-style: solid;
       border-color: #e7b19a transparent transparent; }
   .ui-slider .ui-slider-range {
