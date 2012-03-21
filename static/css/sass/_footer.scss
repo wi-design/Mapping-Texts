@@ -6,7 +6,6 @@
 	padding: $defaultPadding 0 $defaultPadding * 2;
 	border-top: 1px solid $primaryThemeColor;
 	
-	//background-color: rgba($secondaryThemeColor, 0.2);
 	@include gradient-vertical($startColor: rgba($secondaryThemeColor, 0.1), $endColor: $white)
 }
 
