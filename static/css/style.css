@@ -954,6 +954,58 @@ header {
   .ui-slider-vertical .ui-slider-range-max {
     top: 0; }
 
+.button {
+  display: inline-block;
+  position: relative;
+  padding: 0.385em 0.77em;
+  border: 1px solid #b4b4b4;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #f0f0f0;
+  background-image: -moz-linear-gradient(top, #f4f4f4, #ececec);
+  background-image: -ms-linear-gradient(top, #f4f4f4, #ececec);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+  background-image: -webkit-linear-gradient(top, #f4f4f4, #ececec);
+  background-image: -o-linear-gradient(top, #f4f4f4, #ececec);
+  background-image: linear-gradient(top, #f4f4f4, #ececec);
+  background-repeat: repeat-x;
+  color: #333;
+  font-family: 'Helvetica', arial, sans-serif;
+  font-size: 0.923em;
+  font-weight: bold;
+  line-height: 1.384em;
+  text-align: center;
+  text-shadow: 1px 1px 0 #fff;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-transition: background-position 0.1s linear;
+  -moz-transition: background-position 0.1s linear;
+  -ms-transition: background-position 0.1s linear;
+  -o-transition: background-position 0.1s linear;
+  transition: background-position 0.1s linear; }
+
+.button:active {
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) inset;
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2) inset;
+  background-image: none;
+  outline: 0; }
+
+.button:focus {
+  outline: thin dotted #333; }
+
+.button:hover {
+  background-color: #f7f7f7;
+  background-image: -moz-linear-gradient(top, white, #ececec);
+  background-image: -ms-linear-gradient(top, white, #ececec);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#ececec));
+  background-image: -webkit-linear-gradient(top, white, #ececec);
+  background-image: -o-linear-gradient(top, white, #ececec);
+  background-image: linear-gradient(top, white, #ececec);
+  background-repeat: repeat-x;
+  text-decoration: none; }
+
 [class*="icon-"],
 [class^="icon-"] {
   display: inline-block;
@@ -1047,6 +1099,7 @@ header {
   background: #999999;
   color: #e2e2e2;
   font-style: oblique;
+  line-height: 1.384em;
   text-align: center; }
   .icon-info:hover {
     background: #777777;

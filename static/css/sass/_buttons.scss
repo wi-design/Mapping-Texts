@@ -1,0 +1,60 @@
+// buttons.scss
+// Interactive Link styles
+// -----------------------
+
+
+// Interactions States
+// -----------------------
+
+// Base
+// --------
+.button {
+	display: inline-block;
+	position: relative;
+	
+	padding: $defaultPadding / 2 $defaultPadding;
+	border: 1px solid #b4b4b4;
+	@include border-radius( $radius: 3px );
+	
+	@include gradient-vertical($startColor: #f4f4f4, $endColor: #ececec);
+	
+	color: #333;
+	font-family: 'Helvetica', arial, sans-serif;
+	font-size: convert-to-em( $targetValue: 12px );
+	font-weight: bold;
+	line-height: $defaultLineHeight;
+	text-align: center;
+	text-shadow: 1px 1px 0 #fff;
+	white-space: nowrap;
+	
+	cursor: pointer;
+	@include transition( $transition: background-position .1s linear );
+}
+
+// Active
+// -------
+.button:active {
+	$shadow: 0 1px 1px rgba(0, 0, 0, .20) inset;
+	@include box-shadow( $shadow );
+	
+	background-image: none;
+	
+	outline: 0;
+}
+
+
+// Focus 
+// -----
+.button:focus {
+	outline: thin dotted #333;
+}
+
+
+// Hover
+// --------
+.button:hover {
+	@include gradient-vertical($startColor: $white, $endColor: #ececec);
+
+	text-decoration: none;
+}
+

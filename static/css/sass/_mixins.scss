@@ -48,6 +48,12 @@
   white-space: nowrap;
 }
 
+// Webkit-style focus
+// ------------------
+@mixin tab_focus() { //
+  outline: thin dotted #333;
+}
+
 
 // Conversion Functions 
 // --------------------

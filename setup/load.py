@@ -871,8 +871,8 @@ Here is our map of Texas
 <div class="bd">
 
 	<div class="action-bar">
-		<a class="icon-info push" title="info">i</a>
-		<a class="icon-clipboard push" title="copy to clipboard"><span>copy to clipboard</span></a>
+		<a class="button push" title="info">info</a>
+		<a class="button" title="copy to clipboard">copy</a>
 	</div>
 
 	<div class="inner box tab-content">
@@ -905,8 +905,8 @@ Here is our map of Texas
 <div class="bd">
 	
 	<div class="action-bar">
-		<a class="icon-info push" title="info">i</a>
-		<a class="icon-clipboard push" title="copy to clipboard"><span>copy to clipboard</span></a>
+		<a class="button push" title="info">info</a>
+		<a class="button" title="copy to clipboard">copy</a>
 	</div>
 
 	<div class="inner box tab-content">
@@ -934,8 +934,8 @@ Here is our map of Texas
 <div class="bd">
 	
 	<div class="action-bar">
-		<a class="icon-info push" title="info">i</a>
-		<a class="icon-clipboard push" title="copy to clipboard"><span>copy to clipboard</span></a>
+		<a class="button push" title="info">info</a>
+		<a class="button" title="copy to clipboard">copy</a>
 	</div>
 	
 	<div class="inner box">

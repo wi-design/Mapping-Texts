@@ -126,6 +126,7 @@
 	
 	color: $grayLightest;
 	font-style: oblique;
+	line-height: $defaultLineHeight;
 	text-align: center;
 	
 	&:hover {
@@ -134,5 +135,6 @@
 		color: $white;
 	}
 }
+
 
 
