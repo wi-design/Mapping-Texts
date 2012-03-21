@@ -538,7 +538,14 @@ header {
   margin: 0.77em 0 0;
   padding: 0.77em 0 1.54em;
   border-top: 1px solid #990000;
-  background-color: rgba(231, 177, 154, 0.2); }
+  background-color: rgba(253, 249, 247, 0.46);
+  background-image: -moz-linear-gradient(top, rgba(231, 177, 154, 0.1), white);
+  background-image: -ms-linear-gradient(top, rgba(231, 177, 154, 0.1), white);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(231, 177, 154, 0.1)), to(white));
+  background-image: -webkit-linear-gradient(top, rgba(231, 177, 154, 0.1), white);
+  background-image: -o-linear-gradient(top, rgba(231, 177, 154, 0.1), white);
+  background-image: linear-gradient(top, rgba(231, 177, 154, 0.1), white);
+  background-repeat: repeat-x; }
 
 .footer p {
   margin-bottom: 0; }
