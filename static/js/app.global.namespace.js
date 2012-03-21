@@ -131,7 +131,7 @@ STANFORD.MAPPING_TEXTS = {
 				success: function() {
 					console.log("**** pubs fetched success");
 					
-					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#pub-view') );
+					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#pub-view').find('.bd') );
 					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#map-view') );
 					
 					/*
@@ -144,7 +144,7 @@ STANFORD.MAPPING_TEXTS = {
 				}
 			});
 			
-			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#pub-view') );
+			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#pub-view').find('.box') );
 			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#map-view') );
 		},
 		
@@ -154,7 +154,7 @@ STANFORD.MAPPING_TEXTS = {
 				success: function() {
 					console.log("**** wcc fetched success");
 					
-					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#wcc-view') );
+					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#wcc-view').find('.inner') );
 					
 					/*
 					args.fetched_set.set_fetched_wcc();
@@ -166,7 +166,7 @@ STANFORD.MAPPING_TEXTS = {
 				}
 			});
 			
-			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#wcc-view') );
+			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#wcc-view').find('.inner') );
 		},
 		
 		fetch_ner: function(args) {
@@ -175,7 +175,7 @@ STANFORD.MAPPING_TEXTS = {
 				success: function() {
 					console.log("**** ner fetched success");
 					
-					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#ner-view') );
+					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#ner-view').find('.inner') );
 							
 					/*			
 					args.fetched_set.set_fetched_ner();
@@ -187,7 +187,7 @@ STANFORD.MAPPING_TEXTS = {
 				}
 			});
 			
-			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#ner-view') );
+			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#ner-view').find('.inner') );
 		},
 		
 		fetch_topics: function(args) {

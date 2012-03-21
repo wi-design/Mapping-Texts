@@ -114,7 +114,7 @@ $(function(){
 					map_options = {
         		center: center,
         		zoom: 5,
-        		mapTypeId: google.maps.MapTypeId.ROADMAP
+        		mapTypeId: google.maps.MapTypeId.HYBRID
       		},
 					map;
 

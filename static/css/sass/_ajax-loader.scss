@@ -15,20 +15,21 @@
 	width: 100%;
 	height: 100%;
 	
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(255, 255, 255, 0.7);
 	
 	&:after {
 		content: 'Loading...';
 		position: absolute;
 		
-		top: 20%;
+		top: 0;
 		bottom: 0;
 		margin-top: auto;
 		margin-bottom: auto;
+		margin-left: 32px;
 		width: 100%;
 		height: 20px;
 		
-		color: $grayLightest;
+		color: $grayDark;
 		text-align: center;
 	}
 	
@@ -38,14 +39,14 @@
 		top: 0;
 		right: 0;
 		bottom: 0;
-		left: 0;
+		left: -32px;
 		margin: auto;
-		width: 64px;
-		height: 64px;
+		width: 32px;
+		height: 32px;
 		border-width: 3px;
 		border-style: solid;
 		border-color: $primaryThemeColor $secondaryThemeColor $primaryThemeColor $secondaryThemeColor;
-		@include border-radius($radius: 64px);
+		@include border-radius($radius: 32px);
 		
 		// Need to set intial position for animation
 		@include transform( $value: rotate(0deg) );

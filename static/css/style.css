@@ -634,6 +634,7 @@ header {
   border-left-width: 1px; }
 
 .widget,
+.bd,
 .bd > .inner,
 .ft > .inner,
 .hd > .inner {
@@ -1257,33 +1258,34 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); }
+  background-color: rgba(255, 255, 255, 0.7); }
   .ajax-container:after {
     content: 'Loading...';
     position: absolute;
-    top: 20%;
+    top: 0;
     bottom: 0;
     margin-top: auto;
     margin-bottom: auto;
+    margin-left: 32px;
     width: 100%;
     height: 20px;
-    color: #e2e2e2;
+    color: #333333;
     text-align: center; }
   .ajax-container .ajax-loading {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
-    left: 0;
+    left: -32px;
     margin: auto;
-    width: 64px;
-    height: 64px;
+    width: 32px;
+    height: 32px;
     border-width: 3px;
     border-style: solid;
     border-color: #990000 #e7b19a #990000 #e7b19a;
-    -webkit-border-radius: 64px;
-    -moz-border-radius: 64px;
-    border-radius: 64px;
+    -webkit-border-radius: 32px;
+    -moz-border-radius: 32px;
+    border-radius: 32px;
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
