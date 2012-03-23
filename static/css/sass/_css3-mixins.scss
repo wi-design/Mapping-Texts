@@ -26,9 +26,9 @@
           box-shadow: $shadow;
 }
 
-@mixin box-sizing($box-value) {
-	-moz-box-sizing: $box-value;
-			 box-sizing: $box-value;
+@mixin box-sizing($value) {
+	-moz-box-sizing: $value;
+			 box-sizing: $value;
 }
 
 // Opacity

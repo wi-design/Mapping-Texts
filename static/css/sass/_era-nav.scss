@@ -1,0 +1,49 @@
+// era-nav.scss
+// use era-nav for historical era-nav
+// ----------------
+
+
+.era-nav { //add this class to an <ol> or <li>
+	width: 100%;
+	height: $defaultLineHeight * 2;
+	margin: 0;
+
+	li {
+		display: inline;
+	}
+}
+
+.era-nav a { // anchor tags should be embedded in an li
+	display: block;
+	
+  float: left;
+	width: 20%;
+  padding: $defaultPadding / 2;
+	border: 1px solid #ddd;
+  border-left-width: 0;
+	@include box-sizing( $value: border-box );
+	
+  line-height: $defaultLineHeight;
+	text-align: center;
+  text-decoration: none;
+
+	@include transition( $transition: width 0.2s ease-in );
+}
+
+.era-nav li:nth-child(6) a {
+	border-left-width: 1px;
+}
+
+.era-nav a:hover,
+.era-nav .active { // append active class to <a> not <li>
+	background-color: $grayLightest;
+}
+
+.era-nav .active {
+	color: $defaultLinkColorHover;
+  cursor: default;
+}
+
+.era-nav li:first-child a {
+  border-left-width: 1px;
+}

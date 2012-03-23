@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
 	font-size: convert-to-em( $targetValue: 28px );
-  line-height: $defaultLineHeight * 2;
+  line-height: $defaultLineHeight;
   
 	small {
 		font-size: convert-to-em( $targetValue: 16px, $baseValue: 28px );
@@ -43,7 +43,7 @@ h1 {
 
 h2 {
 	font-size: convert-to-em( $targetValue: 24px );
-  line-height: $defaultLineHeight * 2;
+  line-height: $defaultLineHeight;
   
 	small {
 		font-size: convert-to-em( $targetValue: 16px, $baseValue: 24px );
@@ -52,7 +52,7 @@ h2 {
 
 h3 {
 	font-size: convert-to-em( $targetValue: 18px );
-  line-height: $defaultLineHeight * 1.5;
+  line-height: $defaultLineHeight;
   
 	small {
 		font-size: convert-to-em( $targetValue: 14px, $baseValue: 18px );
@@ -247,17 +247,15 @@ small {
 	font-size: 100%;
 }
 
+
 // Additional text-level classes
 
-.author {
-	color: $defaultTextColor;
-	font-size: convert-to-em( $targetValue: 13px );
-	line-height: convert-to-em( $targetValue: 13px );
+.era-header { // use in <span> for inline or <div> for block, created for historical era-nav.
+	font-size: convert-to-em( $targetValue: 12px );
+  color: $grayLight;
+  font-weight: bold;
+  text-rendering: optimizelegibility; 
 	text-transform: capitalize;
-	
-	&:hover {
-		color: $secondaryThemeColor;	
-	}
 }
 
 

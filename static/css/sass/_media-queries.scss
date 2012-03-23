@@ -1,0 +1,18 @@
+// media-queries.scss
+// use this sheet to add responsiveness to application elements
+// -------------------------------------------------------------
+
+
+@media (min-width: 1200px) {
+	.era-nav a {
+		width: 10%;
+	}
+	.era-nav li:nth-child(6) a {
+		border-left-width: 0;
+	}
+	
+	.ui-slider-container { // use 8em if select elements are visible
+		margin-top: 0;
+		margin-bottom: 1.5em;
+	}
+}
