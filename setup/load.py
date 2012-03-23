@@ -768,7 +768,7 @@ if __name__ == "__main__":
 		
 		time_select_view = """
 	
-	
+	<h3>Time Period</h3>
 	<ol class="era-nav">
 		{{#epochs}}
 			<li><a href="#" class="epoch"><div class="era-header">{{era}}</div> {{years}}</a></li>
