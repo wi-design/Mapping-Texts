@@ -537,31 +537,6 @@ header {
       background-color: #999999;
       text-decoration: none; }
 
-.main-nav {
-  overflow: visible;
-  float: left; }
-  .main-nav .nav {
-    display: block;
-    position: relative;
-    float: left;
-    margin: 0 0.385em 0 0; }
-    .main-nav .nav > li {
-      display: block;
-      float: left; }
-  .main-nav a {
-    padding: 0 0.77em;
-    color: black;
-    line-height: 50px;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    text-transform: capitalize; }
-    .main-nav a:hover, .main-nav a:active {
-      background: none;
-      color: #e7b19a; }
-  .main-nav .active,
-  .main-nav .active:hover {
-    color: black;
-    cursor: default; }
-
 .tabs {
   border-bottom: 1px solid #ddd;
   *zoom: 1; }

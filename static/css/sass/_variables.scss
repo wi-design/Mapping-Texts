@@ -56,20 +56,6 @@ $primaryButtonBackground:		$defaultLinkColor !default;
 // Hr border color
 $hrBorder:              					$grayLightest !default;
 
-// Main Header 
-$mainHeaderText:									$white !default;
-$mainHeaderHeight:                50px !default; 
-$mainHeaderBackground:						$black !default;
-
-// Main-Nav
-$mainNavBackground:              	$primaryThemeColor !default;
-$mainNavBackgroundHighlight:      lighten($primaryThemeColor, 15%) !default;
-$mainNavLinkBackgroundHover:      lighten($primaryThemeColor, 5%) !default;
-
-$mainNavText:                      $black !default;
-$mainNavLinkColor:                 $black !default;
-$mainNavLinkColorHover:            $black !default;
-
 
 // scaffolding
 // --------------------------------------------------
