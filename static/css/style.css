@@ -250,6 +250,7 @@ body {
 header > .inner,
 .body > .inner,
 footer > .inner {
+  overflow: hidden;
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -343,16 +344,6 @@ h6 {
   font-size: 0.923em;
   color: #777777;
   text-transform: uppercase; }
-
-.app-name {
-  font-size: 1.538em;
-  line-height: 40px;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5);
-  text-transform: uppercase; }
-  .app-name a {
-    color: #990000; }
-    .app-name a:hover {
-      color: #990000; }
 
 blockquote {
   margin: 0 0 1.384em;
@@ -458,7 +449,7 @@ small {
   font-size: 100%; }
 
 .author {
-  color: white;
+  color: #333333;
   font-size: 1em;
   line-height: 1em;
   text-transform: capitalize; }
@@ -509,30 +500,16 @@ input[type="checkbox"] + label {
   padding-left: 0.77em; }
 
 header {
-  height: 40px;
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.5) inset;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.5) inset;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.5) inset;
-  background-color: #b70000;
-  background-image: -moz-linear-gradient(top, #990000, #e60000);
-  background-image: -ms-linear-gradient(top, #990000, #e60000);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#990000), to(#e60000));
-  background-image: -webkit-linear-gradient(top, #990000, #e60000);
-  background-image: -o-linear-gradient(top, #990000, #e60000);
-  background-image: linear-gradient(top, #990000, #e60000);
-  background-repeat: repeat-x; }
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25); }
+  header h1 {
+    line-height: 0; }
   header .branding {
-    float: right;
-    margin: 0; }
-    header .branding .app-name {
-      float: left;
-      margin-right: 0.77em; }
-
-.authors {
-  float: right;
-  margin: 0; }
-  .authors li {
-    line-height: 20px; }
+    display: inline-block;
+    width: 676px;
+    height: 50px;
+    background: url("/static/images/mappingtexts_header_title.png") no-repeat left 1px; }
 
 .footer {
   margin: 0.77em 0 0;
@@ -573,8 +550,8 @@ header {
       float: left; }
   .main-nav a {
     padding: 0 0.77em;
-    color: white;
-    line-height: 40px;
+    color: black;
+    line-height: 50px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     text-transform: capitalize; }
     .main-nav a:hover, .main-nav a:active {
@@ -582,8 +559,7 @@ header {
       color: #e7b19a; }
   .main-nav .active,
   .main-nav .active:hover {
-    background: #b30000;
-    color: white;
+    color: black;
     cursor: default; }
 
 .tabs {
@@ -1442,6 +1418,13 @@ header {
 
 .push {
   float: right; }
+
+.screen-reader-text {
+  overflow: hidden;
+  position: absolute;
+  left: -999999999px;
+  width: 0;
+  height: 0; }
 
 .ptn, .pvn, .pan {
   padding-top: 0 !important; }

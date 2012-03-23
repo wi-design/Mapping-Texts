@@ -4,29 +4,21 @@
 // Main header
 // ------------
 header {
-	height: $mainHeaderHeight;
-	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.50) inset;
-	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.50) inset;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 -1px 0 rgba(0, 0, 0, 0.50) inset;
+	$shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+	@include box-shadow( $shadow );
 	
-	@include gradient-vertical($mainNavBackground, $mainNavBackgroundHighlight);
-	
-	.branding {
-		float: right;
-		margin: 0;
-		
-		.app-name { // see typography.scss for font styling
-			float: left;
-			margin-right: $defaultMargin;
-		}
+	h1 { //reset line-height to zero to fit background branding image
+		line-height: 0;
 	}
-}
-
-.authors {
-		float: right;
-		margin: 0;
 	
-	li {
-		line-height: $mainHeaderHeight / 2;
+	.branding { 
+		// set display inline-block so link does stretch all the way across viewport
+		// need to specify width and height to render background image
+		display: inline-block; 
+		
+		width: 676px;
+		height: 50px;
+		
+		background: url('/static/images/mappingtexts_header_title.png') no-repeat left 1px;
 	}
 }

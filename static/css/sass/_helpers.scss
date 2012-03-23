@@ -68,6 +68,12 @@
 	float: right;
 }
 
+// ScreenReader
+
+.screen-reader-text {
+	@include screenReaderText();
+}
+
 
 // spacing helpers
 // p,m = padding,margin
