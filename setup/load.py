@@ -928,7 +928,7 @@ Here is our map of Texas
 		
 		topic_view = """
 <div class="hd">
-	<h4>topic keys</h4>
+	<h4>topic models</h4>
 </div>
 	
 <div class="bd">

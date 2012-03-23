@@ -62,7 +62,7 @@
 .spiffy-scrollbar {
 	overflow-y: scroll;
 	
-	height: convert-to-em( 287px );
+	height: convert-to-em( 287px ); //Should add this declaration somewhere else, does not belong here
 	padding: $defaultPadding;
 	
 	// this allows padding b/w the edge of the box and top,right,bottom scrollbar
