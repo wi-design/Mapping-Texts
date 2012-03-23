@@ -669,7 +669,7 @@ header {
   padding: 0.385em 0.77em; }
 
 .map-view {
-  height: 300px; }
+  height: 400px; }
 
 .basic {
   border: 1px solid rgba(0, 0, 0, 0.09);
@@ -1131,7 +1131,7 @@ header {
 
 .spiffy-scrollbar {
   overflow-y: scroll;
-  height: 14.154em;
+  height: 22.077em;
   padding: 0.77em;
   border-top: 3px solid transparent;
   border-right: 3px solid transparent;

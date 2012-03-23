@@ -111,16 +111,73 @@ $(function(){
 			//
 			var map_view = new STANFORD.MAPPING_TEXTS.views.map_view(),
 					center = STANFORD.MAPPING_TEXTS.geocoding['texas'],
+					myMapTypeId = "Dark",
+	    		myMapTypeStyle = [
+		        {
+		            featureType: "all",
+		            elementType: "all",
+		            stylers: [
+		                {
+		                    invert_lightness: true,
+		                },
+		            ],
+		        },
+		        {
+		            featureType: "administrative",
+		            elementType: "all",
+		            stylers: [
+		                {
+		                    visibility: 'off',
+		                },
+		            ],
+		        },
+		        {
+		            featureType: "road",
+		            elementType: "all",
+		            stylers: [
+		                {
+		                    visibility: 'off',
+		                },
+		            ],
+		        },
+					],
 					map_options = {
+						mapTypeControlOptions: {
+		          mapTypeIds: [
+								google.maps.MapTypeId.TERRAIN,
+		            google.maps.MapTypeId.ROADMAP,
+		            myMapTypeId
+							],
+						},
         		center: center,
-        		zoom: 5,
-        		mapTypeId: google.maps.MapTypeId.HYBRID
+        		zoom: 6,
+        		mapTypeId: google.maps.MapTypeId.TERRAIN
       		},
 					map;
 
 			$(this.el).find('#map-view').replaceWith( map_view.render().el );
 			
 			map = new google.maps.Map( $(this.el).find('#map-view').get(0), map_options );
+			map.mapTypes.set(myMapTypeId, new google.maps.StyledMapType(myMapTypeStyle, {name: myMapTypeId}));
+			drawContour(map);
+			
+			function drawContour(map) {
+			    var c = [],
+							contour = STANFORD.MAPPING_TEXTS.geocoding.contour;
+							
+			    for (var i = 0; i < contour.length; i++) {
+			        c.push(new google.maps.LatLng(contour[i][0], contour[i][1]));
+			    }
+
+			    new google.maps.Polygon({
+			        paths: c,
+			        strokeColor: "#666666",
+			        strokeOpacity: 0.6,
+			        strokeWeight: 4,
+			        fillColor: "#000000",
+			        fillOpacity: 0,
+			    }).setMap(map);
+			}
 
 			STANFORD.MAPPING_TEXTS.cached.pubs.forEach(function(city) {
 				var city_norm = city.get('city').replace(/ /g, '_'),
