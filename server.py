@@ -50,19 +50,21 @@ class BaseHandler(tornado.web.RequestHandler):
 	def r(self):
 		return self.application.r
 	
-	# ---- make redis keys
+	
+	#
+	# make redis keys
 	def make_pubseq_key(self, pubseq):
 		return "pub:%s" % pubseq
-	
-	def make_range_key(self, prefix, years):
-		y1, y2 = years
-		return "%s:%s:%s" % (prefix, y1, y2)
-	
+
 	def make_pub_set_by_year_key(self, year):
 		return "pub:y:%s" % year
-	
+
 	def make_sorted_set_key(self, prefix, pubseq, year):
 		return "%s:%s:%s" % (prefix, pubseq, year)
+		
+#	def make_range_key(self, prefix, years):
+#		y1, y2 = years
+#		return "%s:%s:%s" % (prefix, y1, y2)
 	
 	def make_pub_rev_key(self, city, pub):
 		return "pub:%s:%s" % (city, pub)
@@ -80,85 +82,18 @@ class BaseHandler(tornado.web.RequestHandler):
 		for pubseq in pubseq_list:
 			yield self.make_pubseq_key(pubseq)
 
-	#
-	# ---- private helpers
-	#
-	
-	# transform implementation 1
-	def default_transform(self, filter_out_set):
-		return filter_out_set
-		
-	# transform implementation 2
-	def get_pubseq_from_revkey(self, filter_out_set):
-		for elem in filter_out_set:
-			city, pub = elem.split(':')
-			yield self.make_pub_rev_key( city, pub )
-		
-			
-	def filter_out(self, base_set=set(), filter_out_set=set(), transform=None):
-		pipe = self.application.r.pipeline()
-		
-		logging.info("@@@ filter out set UN-transformed: %s" % filter_out_set)
-		
-		for filter_out_elem in transform( filter_out_set ):
-			logging.info("\t@@@ filter out elemenet transformed: %s" % filter_out_elem)
-			pipe.get(filter_out_elem)
-		
-		for pubseq in pipe.execute():
-			logging.info("\trying to filtered out pubseq %s" % pubseq)
-			if pubseq in base_set:
-				base_set.remove( pubseq )
-				logging.info("\tfiltered out pubseq %s" % pubseq)
 
-		return base_set
-	
-	def _make_range(self, years):
-		y1, y2 = years
-		return range(y1, y2 + 1) # +1 to make inclusive
-	
-	def get_pubset_keys_from_years(self, years):
-		return [self.make_pub_set_by_year_key(year) for year in self._make_range(years)]
-			
-	def _make_all_keys_from_years(self, prefix, years, filter_out_pubs):
-		year_range = self._make_range(years)
-		
-		key_list = []
-		for year in year_range:
-			logging.info("year %s ..." % year)
-			all_pubseq_for_year = self.filter_out( 
-					base_set=self.application.r.smembers( self.make_pub_set_by_year_key(year) ),
-					filter_out_set=filter_out_pubs,
-					transform=self.get_pubseq_from_revkey
-			)
-			
-			for pubseq in all_pubseq_for_year:
-				key_list.append( self.make_sorted_set_key(prefix, pubseq, year) )
-		
-		logging.info("final key list:\n")
-		logging.info("keys => %s" % key_list)
-		return key_list
-	
-				
-	
-	
-	def parse_query_params(self):
-		# years query strings
-		y1 = int( self.get_argument("y1", default="1829") )
-		y2 = int( self.get_argument("y2", default="2008") )
-		years = (y1, y2)
-		
-		# remove pubs from query
-		filter_out_pubs =self.request.arguments.get("x_pubs[]")	# e.g. ['abilene:the_reata', 'abilene:the_optimist']
-		if not filter_out_pubs: filter_out_pubs = set()
-		
-		return years, filter_out_pubs
-	
+
+
+
 	#
-	# ---- main functions
-	#
-	def get_sorted_set(self, prefix, years, filter_out_pubs=set(), p=0):
-		key_list = self._make_all_keys_from_years(prefix, years, filter_out_pubs)
-		
+	# private helpers	for WCC, NER key list generation
+	def compute_sorted_set(self, prefix, years, user_city_pub_list):
+		if len(user_city_pub_list) == 0:
+			return []
+			
+		key_list = self.make_keylist(prefix, years, user_city_pub_list)
+	
 		if not key_list:
 			return []
 			
@@ -171,6 +106,57 @@ class BaseHandler(tornado.web.RequestHandler):
 		
 		status1, result, status2 = pipe.execute()
 		return result
+	
+	def make_keylist(self, prefix, years, user_city_pub_list):
+		total_user_pubseq_set = set( self.make_total_user_pubseq_set(user_city_pub_list) )
+
+		key_list = []
+		for year in self.make_range(years):
+
+			pubseq_set_for_year = self.application.r.smembers( self.make_pub_set_by_year_key(year) )
+
+			user_pubseq_set_for_year = pubseq_set_for_year.intersection(total_user_pubseq_set)
+
+			for pubseq in user_pubseq_set_for_year:
+				key_list.append( self.make_sorted_set_key(prefix, pubseq, year) )
+
+		logging.info("final key list:")
+		logging.info("keys => %s" % key_list)
+		return key_list
+			
+	def make_total_user_pubseq_set(self, user_city_pub_list):
+		pipe = self.application.r.pipeline()
+		
+		for elem in user_city_pub_list:
+			city, pub = elem.split(':')
+			pub_rev_key = self.make_pub_rev_key( city, pub )
+			pipe.get(pub_rev_key)
+		
+		return pipe.execute()
+
+	def make_range(self, years):
+		y1, y2 = years
+		return range(y1, y2 + 1) # +1 to make inclusive
+	
+
+
+	
+				
+	
+	
+	def parse_query_params(self):
+		# years query string
+		y1 = int( self.get_argument("y1", default="1829") )
+		y2 = int( self.get_argument("y2", default="2008") )
+		years = (y1, y2)
+		
+		# pubs query string
+		user_city_pub_list = self.request.arguments.get("pubs[]")	# e.g. ['abilene:the_reata', 'abilene:the_optimist']
+		if not user_city_pub_list: user_city_pub_list = set()
+		
+		return years, user_city_pub_list
+	
+
 		
 
 
@@ -180,9 +166,13 @@ class BaseHandler(tornado.web.RequestHandler):
 #
 class WccHandler(BaseHandler):
 	def get(self):
-		years, filter_out_pubs = self.parse_query_params()
+		logging.info('** WCC **')
 		
-		wcc = self.get_sorted_set('wcc', years, filter_out_pubs=filter_out_pubs)
+		years, user_city_pub_list = self.parse_query_params()
+		
+		logging.info('user: %s' % user_city_pub_list)
+		
+		wcc = self.compute_sorted_set('wcc', years, user_city_pub_list)
 		
 		result = {}
 		result['wcc'] = [
@@ -194,9 +184,13 @@ class WccHandler(BaseHandler):
 
 class NerHandler(BaseHandler):
 	def get(self):
-		years, filter_out_pubs = self.parse_query_params()
+		logging.info('** NER **')
 		
-		ner = self.get_sorted_set('ner', years, filter_out_pubs=filter_out_pubs)
+		years, user_city_pub_list = self.parse_query_params()
+		
+		logging.info('user: %s' % user_city_pub_list)
+		
+		ner = self.compute_sorted_set('ner', years, user_city_pub_list)
 		
 		result = {}
 		result['ner'] = [
@@ -230,24 +224,19 @@ class PubsHandler(BaseHandler):
 	def get(self):
 		epoch = self.get_argument("epoch", default=None)
 		
-		logging.info("=== Location & Publications ===")
+		logging.info("** City & Pub **")
 		
 		if not epoch:
-			years, filter_out_pubs = self.parse_query_params()
+			years, ignore = self.parse_query_params()
 			
-			pubset_keys = self.get_pubset_keys_from_years(years)
+			pubset_keys = [self.make_pub_set_by_year_key(year) for year in self.make_range(years)]
 			pubseq_list = self.r.sunion(pubset_keys)
 
 			logging.info("pubset keys: %s" % pubset_keys)
 			logging.info("pubseq list: %s" % pubseq_list)
 
-			final_pubseq_list = self.filter_out( 
-					base_set=pubseq_list,
-					filter_out_set=filter_out_pubs,
-					transform=self.get_pubseq_from_revkey
-			)
+			final_pubseq_list = pubseq_list
 			
-			logging.info("")
 			logging.info("final pubseq list: %s" % final_pubseq_list)
 			
 		else:
@@ -257,15 +246,9 @@ class PubsHandler(BaseHandler):
 			
 			logging.info("pubset key (topic): %s" % topics_epoch_pubs_key)
 			logging.info("pubseq list: %s" % final_pubseq_list)
-			
-			logging.info("")
-			logging.info("final pubseq list: %s" % final_pubseq_list)
-		
-		
-
-		
 		
 		pipe = self.r.pipeline()
+		
 		for pubseq_key in self.get_pubseq_key(final_pubseq_list):
 			pipe.hgetall( pubseq_key )
 		

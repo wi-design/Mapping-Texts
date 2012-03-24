@@ -81,7 +81,7 @@ jQuery.fn.selectToUISlider = function(settings){
 		min: 0,
 		orientation: 'horizontal',
 		max: selectOptions.length-1,
-		values: [161, 166],
+		values: [0, selectOptions.length-1],
 		range: selects.length > 1,//multiple select elements = true
 		slide: function(e, ui) {//slide function
 				var thisHandle = jQuery(ui.handle);

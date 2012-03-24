@@ -69,30 +69,6 @@ STANFORD.MAPPING_TEXTS = {
 	
 	
 	helpers: {
-		// parse y1, y2, x_pubs
-		//
-		parse_xpubs: function() {
-			var x_pubs = [],
-					foreach_cb = function() {
-						var cb = $(this),
-								pub,
-								city;
-
-						if ( !cb.is(':checked') ) {
-							pub = cb.next('label').text().replace(/ /g, '_');
-							city = cb.closest('ul').prev('h5').text().replace(/ /g, '_');
-
-							x_pubs.push(city+':'+pub);
-						}
-					};
-			
-			STANFORD.MAPPING_TEXTS.cached.pub_cbs.each( foreach_cb );
-			
-			return x_pubs;
-		},
-		
-		
-		
 		
 		// Ajax loader
 		//
@@ -110,109 +86,69 @@ STANFORD.MAPPING_TEXTS = {
 		// Fetch collection helpers
 		//
 		fetch_publications: function(args) {
-			/*
-			var data;
+			var h = STANFORD.MAPPING_TEXTS.helpers,
+			 		c = STANFORD.MAPPING_TEXTS.cached;
 			
-			if (args.epoch) {
-				data = {
-					epoch: args.epoch
-				};
-			} else {
-				data = {
-					y1: args.y1,
-					y2: args.y2,
-					x_pubs: args.x_pubs
-				};
-			}
-			*/
-			
-			STANFORD.MAPPING_TEXTS.cached.pubs.fetch({
+			c.pubs.fetch({
 				data: args,
 				success: function() {
 					console.log("**** pubs fetched success");
 					
-					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#pub-view').find('.bd') );
-					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#map-view') );
-					
-					/*
-					args.fetched_set.set_fetched_pubs();
-					
-					if (args.fetched_set.all_fetched() === true) {
-						console.log("**** all fetched fetch_pubs()");
-					}
-					*/
+					h.del_ajax_loader_template( $('#pub-view').find('.bd') );
+					h.del_ajax_loader_template( $('#map-view') );
 				}
 			});
 			
-			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#pub-view').find('.box') );
-			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#map-view') );
+			h.add_ajax_loader_template( $('#pub-view').find('.box') );
+			h.add_ajax_loader_template( $('#map-view') );
 		},
 		
 		fetch_wcc: function(args) {
-			STANFORD.MAPPING_TEXTS.cached.wcc_collection.fetch({
+			var h = STANFORD.MAPPING_TEXTS.helpers,
+			 		c = STANFORD.MAPPING_TEXTS.cached;
+			
+			c.wcc_collection.fetch({
 				data: args,
 				success: function() {
 					console.log("**** wcc fetched success");
 					
-					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#wcc-view').find('.inner') );
-					
-					/*
-					args.fetched_set.set_fetched_wcc();
-					
-					if (args.fetched_set.all_fetched() === true) {
-						console.log("**** all fetched fetch_wcc()");
-					}
-					*/
+					h.del_ajax_loader_template( $('#wcc-view').find('.inner') );
 				}
 			});
 			
-			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#wcc-view').find('.inner') );
+			h.add_ajax_loader_template( $('#wcc-view').find('.inner') );
 		},
 		
 		fetch_ner: function(args) {
-			STANFORD.MAPPING_TEXTS.cached.ner_collection.fetch({
+			var h = STANFORD.MAPPING_TEXTS.helpers,
+			 		c = STANFORD.MAPPING_TEXTS.cached;
+			
+			c.ner_collection.fetch({
 				data: args,
 				success: function() {
 					console.log("**** ner fetched success");
 					
-					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#ner-view').find('.inner') );
-							
-					/*			
-					args.fetched_set.set_fetched_ner();
-					
-					if (args.fetched_set.all_fetched() === true) {
-						console.log("**** all fetched fetch_ner()");
-					}
-					*/
+					h.del_ajax_loader_template( $('#ner-view').find('.inner') );
 				}
 			});
 			
-			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#ner-view').find('.inner') );
+			h.add_ajax_loader_template( $('#ner-view').find('.inner') );
 		},
 		
 		fetch_topics: function(args) {
-			STANFORD.MAPPING_TEXTS.cached.topics.fetch({
-				
-				data: {
-					v: args.epoch
-				},
-				
+			var h = STANFORD.MAPPING_TEXTS.helpers,
+			 		c = STANFORD.MAPPING_TEXTS.cached;
+			
+			c.topics.fetch({
+				data: args,
 				success: function(model){
 					console.log("**** topics fetched success");
 					
-					STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $('#topic-view') );
-					
-					/*					
-					args.fetched_set.set_fetched_topic();
-					
-					if (args.fetched_set.all_fetched() === true) {
-						console.log("**** all fetched fetch_topics()");
-					}
-					*/
+					h.del_ajax_loader_template( $('#topic-view') );
 				}
 			});
 			
-			STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $('#topic-view') );
+			h.add_ajax_loader_template( $('#topic-view') );
 		}
 		
 	}, // end helper functions
@@ -227,47 +163,7 @@ STANFORD.MAPPING_TEXTS = {
 	
 	
 	objects: {
-		TrackFetchedSet: function(fetch_funs, els_to_load_until_complete) {
-			var state = {};
-			
-			_.each(
-				fetch_funs,
-				function(fetch_fun) {
-					state[fetch_fun] = false;
-				}
-			);
-			
-			els_to_load_until_complete.each(function() {
-				STANFORD.MAPPING_TEXTS.helpers.add_ajax_loader_template( $(this) );
-			});
-			
-			return {
-				all_fetched: function() {
-					var status = _.all(
-								state,
-								function(status, fetch_fun) {
-									return status;
-								}
-							);
-					
-					if (status === true) {
-						
-						els_to_load_until_complete.each(function() {
-							STANFORD.MAPPING_TEXTS.helpers.del_ajax_loader_template( $(this) );
-						});
-						return true;
-						
-					} 
-					
-					return false;
-				},
-				
-				set_fetched_topic: function() { state['fetch_topics'] = true; },
-				set_fetched_pubs: function() { state['fetch_publications'] = true; },
-				set_fetched_wcc: function() { state['fetch_wcc'] = true; },
-				set_fetched_ner: function() { state['fetch_ner'] = true; }
-			};
-		}
+
 	}, // end helper objects
 
 
@@ -280,52 +176,53 @@ STANFORD.MAPPING_TEXTS = {
 
 
 	traits: {
-		fetch_all: function(args, fetch_funs) {
-			var helpers = STANFORD.MAPPING_TEXTS.helpers;
-			
-			_.each(
-				fetch_funs,
-				function(fetch_fun){
-					helpers[fetch_fun](args);
-				}
-			);		
-		},
-		
+
 		fetch_data: function() {
 			var c = STANFORD.MAPPING_TEXTS.cached,
-					h = STANFORD.MAPPING_TEXTS.helpers;
-
-			/*
-			console.log("y1: " + y1);
-			console.log("y2: " + y2);
-			console.log("x_pubs:");
-			console.log(x_pubs);
-			*/
+					h = STANFORD.MAPPING_TEXTS.helpers,
+					
+					cb = function(fetch_fun) {
+						var data;
+						if (fetch_fun === 'fetch_publications') {
+							
+							if (c.selected_epoch === false) {
+								
+								data = {
+									y1: c.selected_year_range.y1,
+									y2: c.selected_year_range.y2
+								};
+								
+							} else {
+								
+								data = {
+									epoch: c.selected_epoch 
+								};
+								
+							}
+						
+						} else if (fetch_fun === 'fetch_topics') {
+							
+							data = {
+								v: c.selected_epoch
+							};
+							
+						} else {
+							
+							data = {
+								y1: c.selected_year_range.y1,
+								y2: c.selected_year_range.y2,
+								pubs: c.pubs.parse_pubs()
+							};
+						
+						}
+						
+						h[fetch_fun](data);
+					};
 			
+			_.each( this.fetch_funs, cb );
 			
-			_.each(
-				this.fetch_funs,
-				function(fetch_fun) {
-					
-					if (fetch_fun === 'fetch_publications') {
-						
-						h[fetch_fun]({
-							y1: c.selected_year_range.y1,
-							y2: c.selected_year_range.y2
-						});
-					
-					} else {
-						
-						h[fetch_fun]({
-							y1: c.selected_year_range.y1,
-							y2: c.selected_year_range.y2,
-							x_pubs: c.pubs.parse_xpubs()
-						});
-						
-					}
-					
-				}
-			);
+			console.log('fetch_data() called');
+			c.pubs.get_city_if_one_selected();
 		}
 		
 		

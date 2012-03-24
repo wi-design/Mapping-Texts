@@ -34,31 +34,47 @@
 			);
 		},
 		
-		parse_xpubs : function() {
-			var x_pubs = [];
+		parse_pubs: function() {
+			pubs = [];
 			
 			this.forEach(
 				function(city) {
 					
-					city.get('pubs').forEach(
-						function(publication) {
-							var c, p, add = false;
-							
-							if ( !city.get('display') ) { add = true; } 
-							else if ( !publication.get('checked') ) { add = true; }
-							
-							if (add) {
-								c = city.get('city').replace(/ /g, '_');
-								p = publication.get('pub').replace(/ /g, '_');
-								x_pubs.push(c + ':' + p);
+					if (city.get('display')) {
+						
+						city.get('pubs').forEach(
+							function(publication) {
+								var c, p;
+								
+								if (publication.get('checked')) {
+									c = city.get('city').replace(/ /g, '_');
+									p = publication.get('pub').replace(/ /g, '_');
+									pubs.push(c + ':' + p);
+								}	
 							}
-						}
-					);
+						);
 					
+					}
+				
 				}
 			);
+
+			return pubs;
+		},
+		
+		
+		// topic models
+		get_city_if_one_selected: function() {
+			var query = function(city) { return city.get('display'); },
+					displayed_cities = this.filter( query );
 			
-			return x_pubs;
+			if (displayed_cities.length === 1) {
+				console.log('Cities selected: ' + displayed_cities[0].get('city'));
+			}
+		},
+		
+		get_pub_if_one_selected: function() {
+			
 		}
 		
 	});

@@ -5,35 +5,43 @@ $(function(){
 		el: 'body',
 		
 		initialize: function(attr) {
-			var cached = STANFORD.MAPPING_TEXTS.cached;
+			var c = STANFORD.MAPPING_TEXTS.cached;
 			
 			console.log('app view created');
 			
-			cached.topics = new STANFORD.MAPPING_TEXTS.models.topics();
-			cached.topics.on('change', this.render_topics, this);
+			c.pubs = new STANFORD.MAPPING_TEXTS.collections.pubs();
+			c.pubs.on('reset', this.render_map, this);
+			c.pubs.on('reset', this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner'] });
 			
-			cached.pubs = new STANFORD.MAPPING_TEXTS.collections.pubs();
-			cached.pubs.on('reset', this.render_map, this);
-			cached.pubs.on('reset', this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner'] });
+			c.wcc_collection = new STANFORD.MAPPING_TEXTS.collections.wcc();
+			c.wcc_collection.on('reset', this.render_wcc, this);
 			
-			cached.wcc_collection = new STANFORD.MAPPING_TEXTS.collections.wcc();
-			cached.wcc_collection.on('reset', this.render_wcc, this);
+			c.ner_collection = new STANFORD.MAPPING_TEXTS.collections.ner();
+			c.ner_collection.on('reset', this.render_ner, this);
 			
-			cached.ner_collection = new STANFORD.MAPPING_TEXTS.collections.ner();
-			cached.ner_collection.on('reset', this.render_ner, this);
+			c.topics = new STANFORD.MAPPING_TEXTS.models.topics();
+			c.topics.on('change', this.render_topics, this);
 
 		},
 		
 		render: function() {
-			var c = STANFORD.MAPPING_TEXTS.cached;
-			
-			c.selected_year_range = {y1: 1991, y2: 1995};
-			this.fetch_data.call({ fetch_funs: ['fetch_publications'] });
+			var c = STANFORD.MAPPING_TEXTS.cached,
 					
-			//this.fetch_all(args, fetch_funs);
-				
+					// default date range
+					config = STANFORD.MAPPING_TEXTS.config,
+					start = parseInt(config.start, 10),
+					end = parseInt(config.end, 10);
+			
+			c.selected_year_range = {y1: start, y2: end};
+			c.selected_epoch = false;
+			
+			this.fetch_data.call({ fetch_funs: ['fetch_publications'] });
+
 			this.render_time();
+			this.render_wcc();
+			this.render_ner();
 			this.render_topics();
+			
 		},
 
 		
@@ -114,7 +122,7 @@ $(function(){
 					map_options = {
         		center: center,
         		zoom: 5,
-        		mapTypeId: google.maps.MapTypeId.HYBRID
+        		mapTypeId: google.maps.MapTypeId.TERRAIN
       		},
 					map;
 
@@ -271,7 +279,6 @@ $(function(){
 	_.extend(
 		STANFORD.MAPPING_TEXTS.views.app.prototype,
 		{
-			fetch_all: STANFORD.MAPPING_TEXTS.traits.fetch_all,
 			fetch_data: STANFORD.MAPPING_TEXTS.traits.fetch_data
 		}
 	);
