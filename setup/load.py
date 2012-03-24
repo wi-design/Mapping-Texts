@@ -844,9 +844,10 @@ Here is our map of Texas
 		
 		city_view = """
 <h5>{{city}}</h5>
-<ul class="simple-list">
+<ul class="simple-list pub-listings">
+	<li><input type="checkbox" class="check-all" checked="true"><label for="check-all">check all</label></li>
 	{{#pubs}}
-		<li><input type="checkbox" name="" id="pubseq-{{pubseq}}" checked="true"><label for="pubseq-{{pubseq}}" class="checkbox">{{pub}}</label></li>
+		<li><input type="checkbox" name="" id="pubseq-{{pubseq}}" class="pub-cb" checked="true"><label for="pubseq-{{pubseq}}" class="checkbox">{{pub}}</label></li>
 	{{/pubs}}
 </ul>
 """.strip()
