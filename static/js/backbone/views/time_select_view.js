@@ -6,7 +6,7 @@ $(function(){
 		
 		id: "time-select-view",
 		
-		className: "span-80pct mtl",
+		className: "span-full",
 		
 		events : {
 			'slidestop'			: 'slider_updated',

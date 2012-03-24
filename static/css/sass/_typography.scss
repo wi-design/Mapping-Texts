@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
 	font-size: convert-to-em( $targetValue: 28px );
-  line-height: $defaultLineHeight * 2;
+  line-height: $defaultLineHeight;
   
 	small {
 		font-size: convert-to-em( $targetValue: 16px, $baseValue: 28px );
@@ -43,7 +43,7 @@ h1 {
 
 h2 {
 	font-size: convert-to-em( $targetValue: 24px );
-  line-height: $defaultLineHeight * 2;
+  line-height: $defaultLineHeight;
   
 	small {
 		font-size: convert-to-em( $targetValue: 16px, $baseValue: 24px );
@@ -52,7 +52,7 @@ h2 {
 
 h3 {
 	font-size: convert-to-em( $targetValue: 18px );
-  line-height: $defaultLineHeight * 1.5;
+  line-height: $defaultLineHeight;
   
 	small {
 		font-size: convert-to-em( $targetValue: 14px, $baseValue: 18px );
@@ -79,25 +79,6 @@ h6 {
 	font-size: convert-to-em( $targetValue: 12px );
   color: $grayLight;
   text-transform: uppercase;
-}
-
-
-// Additional Header Classes
-
-// special h1 class for application name
-.app-name {
-	font-size: convert-to-em( $targetValue: 20px );
-	line-height: $mainHeaderHeight;
-	text-shadow: 0 1px 0 rgba( 255,255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5);
-	text-transform: uppercase;
-	
-	a { //make it a link
-		color: $primaryThemeColor;
-		
-		&:hover {
-			color: $primaryThemeColor;
-		}
-	}
 }
 
 
@@ -266,17 +247,15 @@ small {
 	font-size: 100%;
 }
 
+
 // Additional text-level classes
 
-.author {
-	color: $white;
-	font-size: convert-to-em( $targetValue: 13px );
-	line-height: convert-to-em( $targetValue: 13px );
+.era-header { // use in <span> for inline or <div> for block, created for historical era-nav.
+	font-size: convert-to-em( $targetValue: 12px );
+  color: $grayLight;
+  font-weight: bold;
+  text-rendering: optimizelegibility; 
 	text-transform: capitalize;
-	
-	&:hover {
-		color: $secondaryThemeColor;	
-	}
 }
 
 

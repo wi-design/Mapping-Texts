@@ -767,65 +767,57 @@ if __name__ == "__main__":
 		ajax_loader = """<div class="ajax-container"><div class="ajax-loading"></div></div>"""
 		
 		time_select_view = """
-<ul class="nav tabs">
-	<li><a href="#">Time Slider</a></li>
-	<li><a href-"#">Historical Eras</a></li>
-</ul>
-
-<div class="tab-content">
 	
-	<div class="ui-slider-container tab-pane">
-	
-		<form>
-				<label class="visuallyhidden" for="valueAA">From:</label>
-				<select name="valueAA" id="valueAA" class="visuallyhidden">
-					<optgroup label="1800">
-						{{#_1800s}}
-							<option value="{{.}}">{{.}}</option>
-						{{/_1800s}}
-					</optgroup>
-					<optgroup label="1900">
-						{{#_1900s}}
-							<option value="{{.}}">{{.}}</option>
-						{{/_1900s}}
-					</optgroup>
-					<optgroup label="2000">
-						{{#_2000s}}
-							<option value="{{.}}">{{.}}</option>
-						{{/_2000s}}
-					</optgroup>
-				</select>
-				
-				<label class="visuallyhidden" for="valueBB">To:</label>
-				<select name="valueBB" id="valueBB" class="visuallyhidden">
-					<optgroup label="1800">
-						{{#_1800s}}
-							<option value="{{.}}">{{.}}</option>
-						{{/_1800s}}
-					</optgroup>
-					<optgroup label="1900">
-						{{#_1900s}}
-							<option value="{{.}}">{{.}}</option>
-						{{/_1900s}}
-					</optgroup>
-					<optgroup label="2000">
-						{{#_2000s}}
-							<option value="{{.}}">{{.}}</option>
-						{{/_2000s}}
-					</optgroup>
-				</select>
-		</form>
-	
-	</div><!-- /slider -->
-	
-	<ol class="tab-pane pagination">
+	<h3>Time Period</h3>
+	<ol class="era-nav">
 		{{#epochs}}
-			<li><a href="#" title="{{era}}" class="epoch">{{years}}</a></li>
+			<li><a href="#" class="epoch"><div class="era-header">{{era}}</div> {{years}}</a></li>
 		{{/epochs}}
 	</ol>
+
+	<div class="ui-slider-container">
+		<form>
+			<label class="visuallyhidden" for="valueAA">From:</label>
+			<select name="valueAA" id="valueAA" class="visuallyhidden">
+				<optgroup label="1800">
+					{{#_1800s}}
+						<option value="{{.}}">{{.}}</option>
+					{{/_1800s}}
+				</optgroup>
+				<optgroup label="1900">
+					{{#_1900s}}
+						<option value="{{.}}">{{.}}</option>
+					{{/_1900s}}
+				</optgroup>
+				<optgroup label="2000">
+					{{#_2000s}}
+						<option value="{{.}}">{{.}}</option>
+					{{/_2000s}}
+				</optgroup>
+			</select>
+
+			<label class="visuallyhidden" for="valueBB">To:</label>
+			<select name="valueBB" id="valueBB" class="visuallyhidden">
+				<optgroup label="1800">
+					{{#_1800s}}
+						<option value="{{.}}">{{.}}</option>
+					{{/_1800s}}
+				</optgroup>
+				<optgroup label="1900">
+					{{#_1900s}}
+						<option value="{{.}}">{{.}}</option>
+					{{/_1900s}}
+				</optgroup>
+				<optgroup label="2000">
+					{{#_2000s}}
+						<option value="{{.}}">{{.}}</option>
+					{{/_2000s}}
+				</optgroup>
+			</select>
+		</form>
+	</div><!-- /slider -->
+
 	
-	
-</div><!-- /tab-content -->
 """.strip()
 
 		map_view = """
@@ -928,7 +920,7 @@ Here is our map of Texas
 		
 		topic_view = """
 <div class="hd">
-	<h4>topic keys</h4>
+	<h4>topic models</h4>
 </div>
 	
 <div class="bd">

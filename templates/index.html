@@ -80,20 +80,13 @@
 <body>
 <header>
 	<div class="inner">
-		<nav class="main-nav">
-			<ul class="nav">
-				<li><a href="#" class="active">visualization tool</a></li>
-				<li><a href="#">about</a></li>
-				<li><a href="#">help</a></li>
-			</ul>
-		</nav>
-		<div class="branding">
-				<h1 class="app-name vr"><a href="#">mapping texts</a></h1>
-				<ul class="authors no-style">
-					<li><a href="#"><span class="author">stanford university</span></a></li>
-					<li><a href="#"><span class="author">university of north texas<span></a></li>
-				</ul>
-		</div>
+		
+		<h1>
+			<a href="http://mappingtexts.org/" target="_blank" class="branding">
+				<span class="screen-reader-text">MappingTexts - Stanford University and University of North Texas</span>
+			</a>
+		</h1>
+	
 	</div>
 </header>
 
@@ -101,28 +94,28 @@
 		
 		<div class="inner">
 			
-			<div class="row">
-				
-				<div id="app-ds-view" class="span-20pct">
-					<h2>time period</h2>
-					<p>select a historical epoch by clicking a button at the right, or use the time sliders to pick a start and end year yourself.</p>
-				</div>
-
-				<div id="time-select-view" class="span-80pct mtl"></div>
-				
-				<a class="push icon-arrow up" data-toggle="height"></a>
+			<div class="row">	
+				<section id="app-ds-view" class="span-full">
+					<h2>Assessing Language Patterns: <small>A Look at Texas Newspapers, 1829-2008</small></h2>
+			
+					<p>This visualization plots the language patterns embedded in 232,567 pages of historical Texas newspapers, as they evolved over time and space. For any date range and location, you can browse the most common words (word counts), named entities (people, places, etc), and highly correlated words (topic models). [ <a href="#">read more</a> ]</p>
+				</section>
 			</div><!-- /row -->
-					
+			
 			<div class="row">
-					<section id="map-view" class="span-66pct"></section>
-					<section id="pub-view" class="span-33pct"></section>
-				</div>
+				<section id="time-select-view" class="span-full"></section>
+			</div><!-- /row -->
+				
+			<div class="row">
+				<section id="map-view" class="span-66pct"></section>
+				<section id="pub-view" class="span-33pct"></section>
+			</div><!-- /row -->
 			
 			<div class="row">
 				<section id="wcc-view" class="span-33pct"></section>
 				<section id="ner-view" class="span-33pct"></section>
 				<section id="topic-view" class="span-33pct"></section>
-			</div>
+			</div><!-- /row -->
 		
 		</div> <!-- /inner -->
 		

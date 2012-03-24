@@ -38,37 +38,20 @@ $secondaryThemeColor:		#e7b19a !default;
 // Typography
 $defaultFontSize:				0.8125em !default; // 13px equivalent
 $defaultFontFamily:			"Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif !default;
-$defaultLineHeight:			1.384em !default; //18px / 13px
+$defaultLineHeight:			1.615em !default; //21px / 13px
 $defaultTextColor:			$grayDark !default;
 
 // Spacing
 // -------------
-// Margins
-$defaultMargin:					0.770em  !default; // 20px / 13px	
-// Padding
+$defaultMargin:					0.770em  !default; // 10px / 13px	
 $defaultPadding:				0.770em !default; // 10px / 13px
 
-// Buttons
-$primaryButtonBackground:		$defaultLinkColor !default;
 
-// Component (think of another name)
+// Basic Variables
+// -----------------
 				
 // Hr border color
-$hrBorder:              					$grayLightest !default;
-
-// Main Header 
-$mainHeaderText:									$white !default;
-$mainHeaderHeight:                40px !default; 
-$mainHeaderBackground:						$black !default;
-
-// Main-Nav
-$mainNavBackground:              	$primaryThemeColor !default;
-$mainNavBackgroundHighlight:      lighten($primaryThemeColor, 15%) !default;
-$mainNavLinkBackgroundHover:      lighten($primaryThemeColor, 5%) !default;
-
-$mainNavText:                      $white !default;
-$mainNavLinkColor:                 $white !default;
-$mainNavLinkColorHover:            $white !default;
+$hrBorder:              $grayLightest !default;
 
 
 // scaffolding

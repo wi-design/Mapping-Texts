@@ -111,6 +111,7 @@
 		width: auto;
 	}
 	
+	.span-full 			{ float: none; }
 	.span-20pct			{ @include calculate-column-width-fraction( $denominator: 5 ); }
 	.span-25pct 		{ @include calculate-column-width-fraction( $denominator: 4 ); }
 	.span-33pct 		{ @include calculate-column-width-fraction( $denominator: 3 ); }
