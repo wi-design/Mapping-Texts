@@ -10,7 +10,8 @@ $(function(){
 		
 		events : {
 			'slidestop'			: 'slider_updated',
-			'click a.epoch'	: 'epoch_updated'
+			'click li.epoch'	: 'epoch_updated',
+			'click .epoch a': 'prevent'
 		},
 		
 		initialize: function(attr) {
@@ -52,25 +53,45 @@ $(function(){
 			this.fetch_data.call({ fetch_funs: ['fetch_publications'] });
 		},
 		
-		epoch_updated: function(ev) {
+		process_epoch: function(epoch) {
 			var c = STANFORD.MAPPING_TEXTS.cached,
-					epoch = $(ev.target).text().replace('-', ':'),
-					years = epoch.split(':'),
+					epoch_norm = epoch.replace('-', ':'),
+					years = epoch_norm.split(':'),
 					y1 = years[0],
 					y2 = years[1];
 			
-			if (c.selected_epoch_el) {
-				// prev selected epoch
-				c.selected_epoch_el.removeClass('active');
-			}
-			c.selected_epoch_el = $(ev.target);
-			c.selected_epoch_el.addClass('active');
-			
 			c.selected_year_range = {y1: y1, y2: y2};
-			c.selected_epoch = epoch;
+			c.selected_epoch = epoch_norm;
 			
 			this.fetch_data.call({ fetch_funs: ['fetch_publications', 'fetch_topics'] });
-		}
+		},
+		
+		
+		epoch_updated: function(ev) {
+			var c = STANFORD.MAPPING_TEXTS.cached;
+						
+			if ($(ev.target).get(0).nodeName === "A" || $(ev.target).get(0).nodeName === "DIV") {
+				
+				this.process_epoch( $(ev.target).attr('data-epoch') );
+				
+				
+				if (c.selected_epoch_el) {
+					// prev selected epoch
+					c.selected_epoch_el.removeClass('active');
+				}
+				
+				if ($(ev.target).get(0).nodeName === "DIV") {
+					c.selected_epoch_el = $(ev.target).closest('a');
+				} else {
+					c.selected_epoch_el = $(ev.target);
+				}
+				
+				c.selected_epoch_el.addClass('active');
+			}
+			
+		},
+		
+		prevent: function(ev) { ev.preventDefault(); }
 		
 	});
 	
