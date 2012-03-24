@@ -63,7 +63,9 @@
 				.add()
 				.next('label')
 				// need to add same id from sibling check all input to for attr. for silbing label
+				// this will enable clicking on label or checkbox to deselect or check all pubs
 				.attr('for', 'check-all-' + ( i + 1 ));
+				// invoke check all plugin
 				$(this).setupCheckboxAll( {closestWrapper: $(this).closest('ul')} ) 
 			});
 			

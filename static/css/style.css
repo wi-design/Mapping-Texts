@@ -502,6 +502,14 @@ input[type="checkbox"] + label {
   padding-left: 0.77em;
   cursor: pointer; }
 
+.check-all:checked + label:after {
+  content: 'Deselect All';
+  position: relative; }
+
+.check-all + label:after {
+  content: 'Check All';
+  position: relative; }
+
 header {
   margin-bottom: 1.54em;
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
@@ -1098,6 +1106,7 @@ header {
   background-color: #999999; }
 
 .spiffy-scrollbar {
+  overflow-x: hidden;
   overflow-y: scroll;
   height: 22.077em;
   padding: 0.77em;

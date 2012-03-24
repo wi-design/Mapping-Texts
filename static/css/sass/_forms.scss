@@ -54,5 +54,20 @@ input[type="checkbox"] + label {
 }
 
 
+// Extended Form elements
+// -------------------------
+
+//labels
+.check-all:checked + label:after { // goes with setupCheckboxAll plugin
+	content: 'Deselect All';
+	position: relative;
+}
+
+.check-all + label:after { // goes with setupCheckboxAll plugin
+	content: 'Check All';
+	position: relative;
+}
+
+
 
 
