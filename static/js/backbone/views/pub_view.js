@@ -7,7 +7,7 @@ $(function(){
 		className: "widget basic tool",
 		
 		events : {
-			'change input[type="checkbox"]' : 'update'
+			'change .pub-cb' : 'update'
 		},
 		
 		initialize: function(attr) {

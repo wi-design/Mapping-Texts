@@ -53,7 +53,9 @@
 			.addClass('hidden')
 			.end()
 			
-			.append( city_view.render().el );
+			.append( city_view.render().el )
+			.find('.check-all')
+			.each( function() { $(this).setupCheckboxAll( {closestWrapper: $(this).closest('ul')} ) });
 			
 			
 		},
