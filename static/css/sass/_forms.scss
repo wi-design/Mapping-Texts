@@ -49,6 +49,23 @@ select {
 input[type="radio"] + label,
 input[type="checkbox"] + label {
 	padding-left: $defaultPadding;
+	
+	cursor: pointer;
+}
+
+
+// Extended Form elements
+// -------------------------
+
+//labels
+.check-all:checked + label:after { // goes with setupCheckboxAll plugin
+	content: 'Deselect All';
+	position: relative;
+}
+
+.check-all + label:after { // goes with setupCheckboxAll plugin
+	content: 'Check All';
+	position: relative;
 }
 
 

@@ -60,6 +60,7 @@
 // Extended Scrollbar styles
 // can extend widget, toold, or box styles
 .spiffy-scrollbar {
+	overflow-x: hidden;
 	overflow-y: scroll;
 	
 	height: convert-to-em( 287px ); //Should add this declaration somewhere else, does not belong here
