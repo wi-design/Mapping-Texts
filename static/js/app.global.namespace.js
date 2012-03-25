@@ -541,20 +541,10 @@ STANFORD.MAPPING_TEXTS = {
 						var data;
 						if (fetch_fun === 'fetch_publications') {
 							
-							if (c.selected_epoch === false) {
-								
-								data = {
-									y1: c.selected_year_range.y1,
-									y2: c.selected_year_range.y2
-								};
-								
-							} else {
-								
-								data = {
-									epoch: c.selected_epoch 
-								};
-								
-							}
+							data = {
+								y1: c.selected_year_range.y1,
+								y2: c.selected_year_range.y2
+							};
 						
 						} else if (fetch_fun === 'fetch_topics') {
 							
@@ -562,7 +552,7 @@ STANFORD.MAPPING_TEXTS = {
 								v: c.selected_epoch
 							};
 							
-						} else {
+						} else if (fetch_fun === 'fetch_wcc' || fetch_fun === 'fetch_ner') {
 							
 							data = {
 								y1: c.selected_year_range.y1,
@@ -570,6 +560,11 @@ STANFORD.MAPPING_TEXTS = {
 								pubs: c.pubs.parse_pubs()
 							};
 						
+						} else {
+							
+							throw 'Oh ooo! fetch_fun is ' + 
+										fetch_fun + 
+										', which is not in (fetch_publications, fetch_topics, fetch_wcc, fetch_ner)' 
 						}
 						
 						h[fetch_fun](data);

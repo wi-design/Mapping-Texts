@@ -222,34 +222,19 @@ class TopicHandler(BaseHandler):
 
 class PubsHandler(BaseHandler):
 	def get(self):
-		epoch = self.get_argument("epoch", default=None)
+		years, ignore = self.parse_query_params()
 		
 		logging.info("** City & Pub **")
 		
-		if not epoch:
-			years, ignore = self.parse_query_params()
-			
-			pubset_keys = [self.make_pub_set_by_year_key(year) for year in self.make_range(years)]
-			pubseq_list = self.r.sunion(pubset_keys)
+		pubset_keys = [self.make_pub_set_by_year_key(year) for year in self.make_range(years)]
+		pubseq_list = self.r.sunion(pubset_keys)
 
-			logging.info("pubset keys: %s" % pubset_keys)
-			logging.info("pubseq list: %s" % pubseq_list)
-
-			final_pubseq_list = pubseq_list
-			
-			logging.info("final pubseq list: %s" % final_pubseq_list)
-			
-		else:
-			topics_epoch_pubs_key = self.make_topics_epoch_pubs_key(epoch)
-			
-			final_pubseq_list = self.r.smembers(topics_epoch_pubs_key)
-			
-			logging.info("pubset key (topic): %s" % topics_epoch_pubs_key)
-			logging.info("pubseq list: %s" % final_pubseq_list)
+		logging.info("pubset keys: %s" % pubset_keys)
+		logging.info("pubseq list: %s" % pubseq_list)
 		
 		pipe = self.r.pipeline()
 		
-		for pubseq_key in self.get_pubseq_key(final_pubseq_list):
+		for pubseq_key in self.get_pubseq_key(pubseq_list):
 			pipe.hgetall( pubseq_key )
 		
 		publoc = {}
@@ -262,7 +247,7 @@ class PubsHandler(BaseHandler):
 		
 		result = {}
 		result['pubs'] = [
-			{ 'city': key, 'pubs': publoc[key] } for key in sorted(publoc.iterkeys())
+			{ 'city': key, 'pubs': publoc[key] } for key in publoc.iterkeys()
 		]
 		
 		self.write( json.dumps(result, ensure_ascii=False, encoding="UTF-8") )
