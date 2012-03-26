@@ -843,8 +843,10 @@ Here is our map of Texas
 """.strip()
 		
 		city_view = """
-<h5 data-pub="label">{{city}} <input type="checkbox" class="check-all-pubs hidden" checked="checked" data-checkbox="check-all"><label><span class="screen-reader-text">check all</span></label></h5>
-<ul class="simple-list" data-pub="listings">
+<h5 data-details="summary" data-pub="label">{{city}} 
+	<input type="checkbox" class="check-all-pubs hidden" checked="checked" data-checkbox="check-all"><label><span class="screen-reader-text">check all</span></label>
+</h5>
+<ul class="simple-list" data-details="content" data-pub="listings">
 	{{#pubs}}
 		<li><input type="checkbox" name="" id="pubseq-{{pubseq}}" class="pub-cb" checked="true"><label for="pubseq-{{pubseq}}" class="checkbox">{{pub}}</label> 
 		 <small>[ <a href="http://texashistory.unt.edu/search/?q={{pub}}&t=fulltext&fq=dc_type%3Atext_newspaper" target="_blank">view</a> ]</small>

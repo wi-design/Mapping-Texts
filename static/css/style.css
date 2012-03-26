@@ -622,6 +622,51 @@ header {
 .era-nav li:first-child a {
   border-left-width: 1px; }
 
+[data-details="details"],
+[data-details="summary"] {
+  position: relative; }
+
+[data-details="details"]:after,
+[data-details="details"] [data-details="summary"]:before,
+[data-details="details"] [data-details="summary"]:after {
+  content: '';
+  display: block;
+  position: absolute; }
+
+[data-details="details"]:after {
+  z-index: 10;
+  top: 7px;
+  left: 4px;
+  width: 2px;
+  height: 6px;
+  background-color: #999999; }
+
+[data-details="details"].open:after {
+  background-color: transparent; }
+
+[data-details="summary"] {
+  padding-left: 16px;
+  cursor: pointer; }
+  [data-details="summary"]:before, [data-details="summary"]:after {
+    top: 5px; }
+  [data-details="summary"]:before {
+    left: 16px;
+    margin: 0 0 0 -16px;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #999999; }
+  [data-details="summary"]:after {
+    left: 1px;
+    margin-top: 4px;
+    margin-left: 1px;
+    width: 6px;
+    height: 2px;
+    background-color: #999999; }
+
+[data-details="details"] ul,
+[data-details="details"] ol {
+  margin-left: 1.54em; }
+
 .widget,
 .bd,
 .bd > .inner,

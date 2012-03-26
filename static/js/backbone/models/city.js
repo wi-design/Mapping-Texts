@@ -71,9 +71,7 @@
 													.closest('[data-pub="label"]')
 													.next('[data-pub="listings"]')
 					} )
-			});
-			
-			
+			});			
 		},
 		
 		remove_city: function() {
