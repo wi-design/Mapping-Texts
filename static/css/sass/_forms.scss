@@ -58,15 +58,26 @@ input[type="checkbox"] + label {
 // -------------------------
 
 //labels
-.check-all:checked + label:after { // goes with setupCheckboxAll plugin
+// labels used for checking and unchecking all publications in pub-view widget of UI
+.check-all-pubs:checked + label:after { // goes with setupCheckboxAll plugin
 	content: 'Deselect All';
 	position: relative;
+	
+	color: $red;
 }
 
-.check-all + label:after { // goes with setupCheckboxAll plugin
+.check-all-pubs + label:after { // goes with setupCheckboxAll plugin
 	content: 'Check All';
 	position: relative;
+
+	color: $green;
 }
+
+.check-all-pubs + label:after,
+.check-all-pubs:checked + label:after { 
+	font-size: 75%;
+}
+
 
 
 

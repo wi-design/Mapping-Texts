@@ -502,13 +502,19 @@ input[type="checkbox"] + label {
   padding-left: 0.77em;
   cursor: pointer; }
 
-.check-all:checked + label:after {
+.check-all-pubs:checked + label:after {
   content: 'Deselect All';
-  position: relative; }
+  position: relative;
+  color: #e81414; }
 
-.check-all + label:after {
+.check-all-pubs + label:after {
   content: 'Check All';
-  position: relative; }
+  position: relative;
+  color: #2e912e; }
+
+.check-all-pubs + label:after,
+.check-all-pubs:checked + label:after {
+  font-size: 75%; }
 
 header {
   margin-bottom: 1.54em;
