@@ -771,7 +771,7 @@ if __name__ == "__main__":
 	<ol class="era-nav">
 		{{#epochs}}
 			<li class="epoch">
-				<a href="#" data-epoch="{{years}}"><div class="era-header" data-epoch="{{years}}">{{era}}</div> {{years}}</a>
+				<a href="#" data-epoch="{{years}}">{{era}}</a>
 			</li>
 		{{/epochs}}
 	</ol>
