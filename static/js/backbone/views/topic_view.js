@@ -6,7 +6,10 @@ $(function(){
 		
 		className: "widget basic module",
 		
-		events : {},
+		events: {
+			'mouseenter [data-hover]' : 'showTopicKeys',
+			'mouseleave [data-hover]' : 'hideTopicKeys'
+		},
 		
 		initialize: function(attr) {
 			console.log('topic_view view created');
@@ -20,6 +23,16 @@ $(function(){
 		
 			$(this.el).html(html);
 			return this;
+		},
+		
+		showTopicKeys: function(ev) {
+			$(ev.target)
+			.attr('data-hover' , 'true')
+		},
+		
+		hideTopicKeys: function(ev) {
+			$(ev.target)
+			.attr('data-hover' , '')
 		}
 		
 	});

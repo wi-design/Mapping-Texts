@@ -937,14 +937,14 @@ Here is our map of Texas
 	
 	<div class="inner box">
 	
-		<ul class="topic-keys">
+		<ol class="topic-keys">
 			{{#topics}}
 				<li>
-					<a title="{{.}}">{{.}}</a>
+					<div class="topic-key-row" data-hover="">{{.}}</div>
 				</li>
 			{{/topics}}
 
-		</ul>
+		</ol>
 		
 	</div>
 	
