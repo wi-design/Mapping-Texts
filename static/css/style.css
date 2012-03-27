@@ -254,8 +254,8 @@ footer > .inner {
   display: block;
   margin-right: auto;
   margin-left: auto;
-  padding-right: 1.54em;
-  padding-left: 1.54em; }
+  margin-right: 1.54em;
+  margin-left: 1.54em; }
 
 .row {
   display: block;
@@ -530,17 +530,11 @@ header {
     background: url("/static/images/mappingtexts_header_title.png") no-repeat left 1px; }
 
 .footer {
-  margin: 0.77em 0 0;
-  padding: 0.77em 0 1.54em;
-  border-top: 1px solid #990000;
-  background-color: rgba(253, 249, 247, 0.46);
-  background-image: -moz-linear-gradient(top, rgba(231, 177, 154, 0.1), white);
-  background-image: -ms-linear-gradient(top, rgba(231, 177, 154, 0.1), white);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(231, 177, 154, 0.1)), to(white));
-  background-image: -webkit-linear-gradient(top, rgba(231, 177, 154, 0.1), white);
-  background-image: -o-linear-gradient(top, rgba(231, 177, 154, 0.1), white);
-  background-image: linear-gradient(top, rgba(231, 177, 154, 0.1), white);
-  background-repeat: repeat-x; }
+  margin: 0.77em 0 0; }
+  .footer > .inner {
+    padding-top: 0.77em;
+    padding-bottom: 1.54em;
+    border-top: 1px solid #333333; }
 
 .footer p {
   margin-bottom: 0; }
