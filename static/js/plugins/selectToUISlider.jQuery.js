@@ -236,6 +236,7 @@ jQuery.fn.selectToUISlider = function(settings){
 		sliderComponent.find('.ui-slider-tooltip .ttContent').eq(0).text( ttText(values) );
 	}
 	
+	this.jqui_slider = sliderComponent;
 	return this;
 }
 

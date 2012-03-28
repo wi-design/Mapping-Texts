@@ -8,12 +8,13 @@ $(function(){
 		
 		render: function() {
 			var template = STANFORD.MAPPING_TEXTS.config.templates.city_view, 
+					h = STANFORD.MAPPING_TEXTS.helpers,
 					data = {
 						city: this.model.get('city'),
 						pubs: this.model.get('pubs').toJSON()
 					},
 					html = Mustache.to_html(template, data),
-					city_norm = this.model.get('city').replace(/ /g, '_');
+					city_norm = h.normalize( this.model.get('city') );
 
 			$(this.el)
 			.html(html)

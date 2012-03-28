@@ -11,7 +11,7 @@ $(function(){
 			
 			c.pubs = new STANFORD.MAPPING_TEXTS.collections.pubs();
 			c.pubs.on('reset', this.render_map, this);
-			c.pubs.on('reset', this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner'] });
+			c.pubs.on('reset', this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] });
 			
 			c.wcc_collection = new STANFORD.MAPPING_TEXTS.collections.wcc();
 			c.wcc_collection.on('reset', this.render_wcc, this);
@@ -33,7 +33,6 @@ $(function(){
 					end = parseInt(config.end, 10);
 			
 			c.selected_year_range = {y1: start, y2: end};
-			c.selected_epoch = false;
 			
 			this.fetch_data.call({ fetch_funs: ['fetch_publications'] });
 
@@ -41,6 +40,8 @@ $(function(){
 			this.render_wcc();
 			this.render_ner();
 			this.render_topics();
+			
+			c.epochs.set_selected({y: end});
 			
 		},
 
@@ -64,28 +65,23 @@ $(function(){
 		//  #time-view (replaces #map-view with new #map-veiw for each render)
 		//
 		render_time: function() {
-			var time_select_view = new STANFORD.MAPPING_TEXTS.views.time_select_view(),
+			var c = STANFORD.MAPPING_TEXTS.cached,
+					time_select_view = new STANFORD.MAPPING_TEXTS.views.time_select_view(),
 					time_select_view_elem = $(this.el).find('#time-select-view');
 			
 			time_select_view_elem.replaceWith( time_select_view.render().el );
 			time_select_view_elem = $(this.el).find('#time-select-view');
 			
-			time_select_view_elem
+			c.jqui = time_select_view_elem
+						// slider
+						.find('select#valueAA, select#valueBB').selectToUISlider({
+							labels: 10
+						});
 
-			// slider
-			.find('select#valueAA, select#valueBB').selectToUISlider({
-				labels: 10
-			})
-			.end()
+			c.select_aa = time_select_view_elem.find('select#valueAA');
+			c.select_bb = time_select_view_elem.find('select#valueBB');
 			
-			// tabs
-			.find('.tabs')
-			.tabs('.tab-content > .tab-pane', {
-				effect: 'fade'
-			});
-			
-			STANFORD.MAPPING_TEXTS.cached.select_aa = time_select_view_elem.find('select#valueAA');
-			STANFORD.MAPPING_TEXTS.cached.select_bb = time_select_view_elem.find('select#valueBB');
+			c.select_aa.change(function(){console.log("change happened!!!!!!!");});
 		},
 		
 		
@@ -119,6 +115,7 @@ $(function(){
 			//
 			var map_view = new STANFORD.MAPPING_TEXTS.views.map_view(),
 					c = STANFORD.MAPPING_TEXTS.cached,
+					h = STANFORD.MAPPING_TEXTS.helpers,
 					center = STANFORD.MAPPING_TEXTS.geocoding['texas'],
 					myMapTypeId = "Dark",
 	    		myMapTypeStyle = [
@@ -168,6 +165,67 @@ $(function(){
 			
 			map = new google.maps.Map( $(this.el).find('#map-view').get(0), map_options );
 			map.mapTypes.set(myMapTypeId, new google.maps.StyledMapType(myMapTypeStyle, {name: myMapTypeId}));
+			
+			
+			// Create the DIV to hold the control and
+		  // call the HomeControl() constructor passing
+		  // in this DIV.
+			function HomeControl(controlDiv, map) {
+
+			  // Set CSS styles for the DIV containing the control
+			  // Setting padding to 5 px will offset the control
+			  // from the edge of the map
+			  controlDiv.style.padding = '5px';
+
+			  // Set CSS for the control border
+			  var controlUI = document.createElement('DIV');
+			  controlUI.style.backgroundColor = 'white';
+			  controlUI.style.borderStyle = 'solid';
+			  controlUI.style.borderWidth = '1px';
+			  controlUI.style.cursor = 'pointer';
+			  controlUI.style.textAlign = 'center';
+			  controlUI.title = 'Select All Cities';
+			  controlDiv.appendChild(controlUI);
+
+			  // Set CSS for the control interior
+			  var controlText = document.createElement('DIV');
+			  controlText.style.fontFamily = 'Arial,sans-serif';
+			  controlText.style.fontSize = '12px';
+			  controlText.style.paddingLeft = '4px';
+			  controlText.style.paddingRight = '4px';
+			  controlText.innerHTML = '<b>Select All</b>';
+			  controlUI.appendChild(controlText);
+
+			  // Click handler for "Select All"
+			  google.maps.event.addDomListener(controlUI, 'click', function() {
+					var city_overlay;
+					
+					_(c.pubs.initial()).forEach(
+						function(city) {
+							var city_overlay = city.get('circle_overlay');
+							
+							console.log("City ===> " + city.get('city'));
+							
+							google.maps.event.trigger(city_overlay, 'click', {silent: true});
+						}
+					);
+					
+					console.log("LAST City ===> " + c.pubs.last().get('city'));
+					
+					city_overlay = c.pubs.last().get('circle_overlay');
+					
+					google.maps.event.trigger(city_overlay, 'click', {silent: false});
+			  });
+
+			}
+		  var homeControlDiv = document.createElement('DIV');
+		  var homeControl = new HomeControl(homeControlDiv, map);
+
+		  homeControlDiv.index = 1;
+		  map.controls[google.maps.ControlPosition.TOP_LEFT].push(homeControlDiv);
+			
+			
+			
 			drawContour(map);
 			
 			function drawContour(map) {
@@ -189,7 +247,7 @@ $(function(){
 			}
 
 			c.pubs.forEach(function(city) {
-				var city_norm = city.get('city').replace(/ /g, '_'),
+				var city_norm = h.normalize( city.get('city') ),
 						center = STANFORD.MAPPING_TEXTS.geocoding[city_norm],
 						pubs_tally = city.get('pubs').length,
 						radius = 20000 + (pubs_tally * 5000),
@@ -208,19 +266,25 @@ $(function(){
 						
 						city_circle = new google.maps.Circle(city_options);
 						
-				google.maps.event.addListener(city_circle, 'click', function() {
+				city.set({circle_overlay: city_circle});
+				
+				
+				// Click handler for "click" on circle overlay		
+				google.maps.event.addListener(city_circle, 'click', function(arg) {
+					
+					console.log('clicked on city code name: ' + city.get('city'));
 					
 					if (city.get('display') === true) { return; }
 					
-					city.set({display: true});
+					city.set({display: true}, arg);
 					
 			    city_circle.setOptions({
 						strokeColor: "#CCFF33"
 					});
-					
-					console.log('clicked on city code name: ' + city.get('city'));
+
 			  });
 				
+				// Click handler for "rightclick" on circle overlay
 				google.maps.event.addListener(city_circle, 'rightclick', function() {
 					
 					city.set({display: false});

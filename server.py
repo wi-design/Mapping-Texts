@@ -202,16 +202,22 @@ class NerHandler(BaseHandler):
 
 class TopicHandler(BaseHandler):
 	def get(self):
-		epoch = self.get_argument("v", default="1829:1835")
+		epoch = self.get_argument("v", default=None)
 		postfix = self.get_argument("postfix", default=None)
 		
 		if postfix is None:
-			topic_key = self.make_topic_key_epoch(epoch)
+			if epoch is not None:
+				result = self.r.get( self.make_topic_key_epoch(epoch) )
+			else:
+				result = None
 		else:
-			topic_key = self.make_topic_key_epoch_postfix(epoch, postfix)
+			if epoch is not None:
+				result = self.r.get( self.make_topic_key_epoch_postfix(epoch, postfix) )
+			else:
+				raise Exception('epoch not given as query param, required.')
 		
 		result = {
-			'topics': self.r.get(topic_key)
+			'topics': result
 		}
 		
 		self.write( json.dumps(result, ensure_ascii=False, encoding="UTF-8") )
@@ -271,9 +277,9 @@ class ConfigHandler(BaseHandler):
 		
 		result = {
 			'templates': templates,
-			'start': start,
-			'end': end,
-			'epochs': [{ 'years': key, 'era': epochs[key] } for key in epoch_keys],
+			'start': int(start),
+			'end': int(end),
+			'epochs': [{ 'years': key, 'era': epochs[key], 'begin': int(key.split('-')[0]), 'end': int(key.split('-')[1]) } for key in epoch_keys],
 		}
 		
 		self.write( json.dumps(result, ensure_ascii=False, encoding="UTF-8") )

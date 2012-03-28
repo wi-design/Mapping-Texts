@@ -423,7 +423,6 @@ STANFORD.MAPPING_TEXTS = {
 	
 	
 	
-	
 	helpers: {
 		
 		// Ajax loader
@@ -435,6 +434,43 @@ STANFORD.MAPPING_TEXTS = {
 			$parent_el.children('.ajax-container').remove();
 		},
 		
+		normalize: function(str) {
+			return str.replace(/ /g, '_');
+		},
+		
+		
+		
+		
+		
+		update_slider: function(y1, y2) {
+			var c = STANFORD.MAPPING_TEXTS.cached,
+					index1, index2;
+			
+			c.select_aa.find('option:selected').removeAttr('selected');
+			c.select_bb.find('option:selected').removeAttr('selected');
+			
+			c.select_aa.find('option[value="' + y1 + '"]').attr('selected', 'selected');
+			c.select_bb.find('option[value="' + y2 + '"]').attr('selected', 'selected');
+			
+			index1 = c.select_aa.get(0).selectedIndex;
+			index2 = c.select_bb.get(0).selectedIndex;
+			
+			c.jqui.jqui_slider.slider('values', 0, index1);
+			c.jqui.jqui_slider.slider('values', 1, index2);
+			
+			
+			$('#handle_valueAA')
+			.attr('aria-valuetext', y1)
+			.attr('aria-valuenow', index1)
+			.find('.ui-slider-tooltip .ttContent')
+			.text( y1 );
+			
+			$('#handle_valueBB')
+			.attr('aria-valuetext', y2)
+			.attr('aria-valuenow', index2)
+			.find('.ui-slider-tooltip .ttContent')
+			.text( y2 );
+		},
 		
 		
 		
@@ -505,6 +541,78 @@ STANFORD.MAPPING_TEXTS = {
 			});
 			
 			h.add_ajax_loader_template( $('#topic-view') );
+		},
+		
+		
+		// set of functions that return the data arg for
+		//  backbone fetch		
+		get_fetch_data_arg: function(c) {
+			return {
+				fetch_publications: function() {
+					return {
+						y1: c.selected_year_range.y1,
+						y2: c.selected_year_range.y2
+					};
+				},
+			
+				fetch_topics: function() {
+					var epoch_selected, city_selected, city_pub_selected;
+				
+					if ( c.epochs.epoch_is_not_selected() ) {
+						return {};
+					} else {
+					
+						// epic selected at this point ...
+						epoch_selected = c.pubs.get_if_all_cities_pubs_selected();
+						if (epoch_selected === true) {
+							return {
+								v: c.epochs.epoch_norm()
+							};
+						} else {
+						
+							city_selected = c.pubs.get_if_city_and_all_its_pubs_selected();
+							if (city_selected !== false) {
+								return {
+									v: c.epochs.epoch_norm(),
+									postfix: city_selected
+								};
+							} else {
+							
+								city_pub_selected = c.pubs.get_if_city_and_one_pub_selected();
+								if (city_pub_selected !== false) {
+									return {
+										v: c.epochs.epoch_norm(),
+										postfix: city_pub_selected
+									};
+							
+								} else {
+									return {};
+								} // end if city and pub selected
+							
+							} // end if city and all its pubs selected
+					
+						} // end if all cities/pubs selected
+					
+					} // end if epoch is not selected
+				}, // end function()
+			
+				fetch_wcc: function() {
+					return {
+						y1: c.selected_year_range.y1,
+						y2: c.selected_year_range.y2,
+						pubs: c.pubs.parse_pubs()
+					};
+				},
+			
+				fetch_ner: function() {
+					return {
+						y1: c.selected_year_range.y1,
+						y2: c.selected_year_range.y2,
+						pubs: c.pubs.parse_pubs()
+					};
+				}
+			
+			};
 		}
 		
 	}, // end helper functions
@@ -529,51 +637,25 @@ STANFORD.MAPPING_TEXTS = {
 
 
 
-
+	
 
 	traits: {
 
 		fetch_data: function() {
 			var c = STANFORD.MAPPING_TEXTS.cached,
 					h = STANFORD.MAPPING_TEXTS.helpers,
+					data_fun = h.get_fetch_data_arg(c),
 					
 					cb = function(fetch_fun) {
-						var data;
-						if (fetch_fun === 'fetch_publications') {
-							
-							data = {
-								y1: c.selected_year_range.y1,
-								y2: c.selected_year_range.y2
-							};
-						
-						} else if (fetch_fun === 'fetch_topics') {
-							
-							data = {
-								v: c.selected_epoch
-							};
-							
-						} else if (fetch_fun === 'fetch_wcc' || fetch_fun === 'fetch_ner') {
-							
-							data = {
-								y1: c.selected_year_range.y1,
-								y2: c.selected_year_range.y2,
-								pubs: c.pubs.parse_pubs()
-							};
-						
-						} else {
-							
-							throw 'Oh ooo! fetch_fun is ' + 
-										fetch_fun + 
-										', which is not in (fetch_publications, fetch_topics, fetch_wcc, fetch_ner)' 
-						}
-						
+						var data = data_fun[fetch_fun]();
+												
 						h[fetch_fun](data);
 					};
 			
 			_.each( this.fetch_funs, cb );
 			
 			console.log('fetch_data() called');
-			c.pubs.get_city_if_one_selected();
+			
 		}
 		
 		

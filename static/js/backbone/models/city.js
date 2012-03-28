@@ -18,7 +18,25 @@
 			});
 			
 			this.on("change:display", this.add_remove_city_to_pub_view);
-			this.on("change:display", this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner'] });
+			this.on("change:display", this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] });
+		},
+		
+		all_pubs_selected: function() {
+			var query = function(publication) { return publication.get('checked'); }
+			return this.get('pubs').all(query);
+		},
+		
+		get_if_one_pub_selected: function() {
+			var query = function(publication) { return publication.get('checked'); },
+					pubs_checked = this.get('pubs').filter( query ),
+					pub_selected;
+			
+			if (pubs_checked.length === 1) {
+				pub_selected = pubs_checked[0];
+				return pub_selected;
+			} else {
+				return false;
+			}
 		},
 		
 		
@@ -73,7 +91,8 @@
 		},
 		
 		remove_city: function() {
-			var city_norm = this.get('city').replace(/ /g, '_'),
+			var h = STANFORD.MAPPING_TEXTS.helpers,
+					city_norm = h.normalize( this.get('city') ),
 					spiffy_children = $('#pub-view').find('.spiffy-scrollbar').children(),
 					new_spiffy;
 			

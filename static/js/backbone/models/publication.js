@@ -12,7 +12,7 @@
 			console.log('publication model initialized');
 			
 			this.on("change:checked", this.info);
-			this.on("change:checked", this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner'] });
+			this.on("change:checked", this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] });
 		},
 		
 		info: function(model, checked) {
