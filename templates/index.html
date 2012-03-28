@@ -101,7 +101,7 @@
 				<section id="app-ds-view" class="span-full">
 					<h2>Assessing Language Patterns: <small>A Look at Texas Newspapers, 1829-2008</small></h2>
 			
-					<p>This visualization plots the language patterns embedded in 232,567 pages of historical Texas newspapers, as they evolved over time and space. For any date range and location, you can browse the most common words (word counts), named entities (people, places, etc), and highly correlated words (topic models). [ <a href="#" data-modal-box="#about">About Mapping Texts</a> ]</p>
+					<p>This visualization plots the language patterns embedded in 232,567 pages of historical Texas newspapers, as they evolved over time and space. For any date range and location, you can browse the most common words (word counts), named entities (people, places, etc), and highly correlated words (topic models). [ <a data-modal-box="#about">About Mapping Texts</a> ]</p>
 					
 					<!-- About Modal -->
 					<div class="modal description" id="about">
@@ -149,14 +149,46 @@
 		</div>
 	</footer>
 
+<!--============= modal dialogs =============-->
 	
+	<div id="word-counts-info" class="modal description">
+		<div class="modal-hd">
+			<h2>About for Word Counts</h2> 
+		</div>
+		<div class="modal-bd">	
+			Word counts are one of the most widely used metrics for assessing language use in texts. For any given date range and set of locations that you select, 
+			you will see a ranked tally of the most frequently appearing words in the newspapers. You can choose between viewing these counts as either a ranked list or a word cloud. 
+			Nonsensical words are the result of common mistakes introduced by the digitization process (e.g. "tho" for "the").
+		</div>
+	</div>
+	<!-- /word-counts-info -->
 	
-	<script>
-		$(function(){
-			$('a[data-modal-box]').modal();
-		});
-		
-	</script>
+	<div id="named-entity-info" class="modal description">
+		<div class="modal-hd">
+			<h2>About the Named Entity Counts</h2>
+		</div>
+		<div class="modal-bd">
+			<p>Named entity counts are counts of all the particular “entities” (things that are usually considered nouns, like people or places), which are counted and tallied just like basic word counts. For any given date range and set of locations that you select, you will see an ranked tally of the most frequently appearing named entities in the newspapers. You can choose between viewing these counts as either a ranked list or a word cloud. Nonsensical words are the result of common mistakes introduced by the digitization process.</p>
+		</div>
+	</div>
+	<!-- /named-entity-info -->
+	
+	<div id="topic-modeling-info" class="modal description">
+		<div class="modal-hd">
+			<h2>About the Topic Modeling</h2>
+		</div>
+		<div class="modal-bd">
+			<p>Topic modeling [link that to: http://mith.umd.edu/topic-modeling-in-the-humanities-an-overview/] is a method of text-analysis has grown in popularity among humanities scholars in recent years. The basic concept is to use statistical methods to uncover connections between collections of words (which are called “topics”) that appear in a given text. So, for example, running a topic modeling program over a body of text will produce a series of “topics,” which are strings of words (such as “texas, street, address, good, wanted, Houston, office”) that may not necessarily appear next to one another within the text but nonetheless appear to have some sort of statistical relationship to one another. Topic modeling, in other words, uses statistics to produce lists of words that appear to be highly correlated to one another in the hope of exposing larger, wider patterns in language use than a close-reading would be able to provide.</p>
+
+			<p>Because topic models are customize for particular collections of text, we divided up our topic models by commonly recognized eras from Texas history: 1829-1835 (Mexican Era), 1836-1845 (Republic of Texas), 1846-1860 (Antebellum Era), 1861-1865 (Civil War), 1866-1877 (Reconstruction), 1878-1899 (Gilded Age), 1900-1929 (Progressive Era), 1930-1941 (Depression), 1942-1945 (World War II), 1946-2008 (Modern Texas). We used the popular University of Massachusetts’s MALLET package (http://mallet.cs.umass.edu/).</p>
+
+			<p>Whenever you pick a date range, the ending date (so for 1820-1865, the end date would be 1860) will determine which topic modeling era is displayed. So, in this example, you would see the topic modeling results for the Civil War Era (1861-1865). For your convenience, we have provided buttons that will allow you to quickly preset the time slider for the topic modeling eras.</p>
+		</div>
+	</div>
+	<!-- /topic-modeling-info -->
+	
+<!--============= /modal dialogs =============-->
+	
 </body>
 
 </html>

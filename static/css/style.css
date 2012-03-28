@@ -1074,7 +1074,7 @@ header {
   background-color: #e81414;
   cursor: pointer; }
   .close:hover {
-    background-color: #8a0c0c; }
+    background-color: #8a0c0c !important; }
   .close:after, .close:before {
     content: '';
     position: absolute;
@@ -1376,7 +1376,7 @@ header {
 .modal {
   display: none;
   overflow: visible;
-  width: 80%;
+  width: 60%;
   max-height: 500px;
   padding-right: 1.54em;
   padding-left: 1.54em; }

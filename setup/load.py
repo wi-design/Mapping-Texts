@@ -868,7 +868,7 @@ Here is our map of Texas
 <div class="bd">
 
 	<div class="action-bar">
-		<a class="button push" title="info">info</a>
+		<a class="button push" data-modal-box="#word-counts-info" title="more about word counts">info</a>
 		<a class="button" title="copy to clipboard">copy</a>
 	</div>
 
@@ -902,7 +902,7 @@ Here is our map of Texas
 <div class="bd">
 	
 	<div class="action-bar">
-		<a class="button push" title="info">info</a>
+		<a class="button push" data-modal-box="#named-entity-info" title="more about named entity counts">info</a>
 		<a class="button" title="copy to clipboard">copy</a>
 	</div>
 
@@ -931,7 +931,7 @@ Here is our map of Texas
 <div class="bd">
 	
 	<div class="action-bar">
-		<a class="button push" title="info">info</a>
+		<a class="button push" data-modal-box="#topic-modeling-info" title="more about topic modeling">info</a>
 		<a class="button" title="copy to clipboard">copy</a>
 	</div>
 	

@@ -505,6 +505,38 @@ STANFORD.MAPPING_TEXTS = {
 			});
 			
 			h.add_ajax_loader_template( $('#topic-view') );
+		},
+		
+		// helper function to call plugins in the different views
+		invokePlugins: function( args ) {
+			
+			_.forEach(
+				args.plugins,
+				function(plugin) {
+					if (plugin === 'tabs') {
+						$(args.parentEl)
+						.find('.tabs')
+						.tabs('.tab-content > .tab-pane', {
+							effect: 'fade'
+						});
+					} else if (plugin === 'tooltip') {
+						$(args.parentEl)
+						.find('[title]')
+						.tooltip({
+							effect: 'fade',
+							predelay: 500,
+							offset: [-10,0]
+						});
+					} else if (plugin === 'modal') {
+						$(args.parentEl)
+						.find('a[data-modal-box]')
+						.modal();
+					} else {
+						throw "oops, plugin : " + plugin + " does not exist";
+					}
+				}
+			);
+			
 		}
 		
 	}, // end helper functions
