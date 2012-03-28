@@ -1239,10 +1239,9 @@ header {
   background-color: rgba(0, 0, 0, 0.3); }
 
 .ui-slider-container {
-  margin-top: 5em;
-  margin-bottom: 1em;
+  margin-top: 3em;
   height: 5em;
-  padding: 0 0.77em; }
+  padding: 0 1.54em; }
 
 .ui-slider {
   clear: both;
@@ -1338,6 +1337,7 @@ header {
     position: absolute;
     color: #555555; }
   .ui-slider dt {
+    display: none;
     top: 1.5em;
     height: .7em;
     padding-top: .2em;

@@ -3,10 +3,10 @@
 // -----------------------------------------------------
 
 .ui-slider-container { // use 8em if select elements are visible
-	margin-top: 5em;
-	margin-bottom: 1em;
+	margin-top: 3em; // change to 5em if you add in century markers
+	//margin-bottom: 1em; uncomment this if you add in century markers
 	height: 5em;
-	padding: 0 $defaultPadding;
+	padding: 0 $defaultPadding * 2;
 }
 
 .ui-slider  {
@@ -143,6 +143,7 @@
 	}
 	
 	dt {
+		display: none; //remove this declaration to show century markers
 		top: 1.5em;
 		height: .7em;
 		padding-top: .2em;

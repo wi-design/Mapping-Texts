@@ -71,7 +71,8 @@ $(function(){
 		//
 		render_time: function() {
 			var time_select_view = new STANFORD.MAPPING_TEXTS.views.time_select_view(),
-					time_select_view_elem = $(this.el).find('#time-select-view');
+					time_select_view_elem = $(this.el).find('#time-select-view'),
+					h = STANFORD.MAPPING_TEXTS.helpers;
 			
 			time_select_view_elem.replaceWith( time_select_view.render().el );
 			time_select_view_elem = $(this.el).find('#time-select-view');
@@ -84,10 +85,9 @@ $(function(){
 			})
 			.end()
 			
-			// tabs
-			.find('.tabs')
-			.tabs('.tab-content > .tab-pane', {
-				effect: 'fade'
+			h.invokePlugins({
+				parentEl: '#time-select-view',
+				plugins: [ 'tooltip' ]
 			});
 			
 			STANFORD.MAPPING_TEXTS.cached.select_aa = time_select_view_elem.find('select#valueAA');
