@@ -1427,8 +1427,8 @@ header {
   border-radius: 3px;
   background-color: black;
   color: white;
-  font-size: 0.75em;
-  font-weight: bold;
+  font-size: 0.875em;
+  font-weight: normal;
   pointer-events: none; }
   .tooltip:after {
     content: '';
