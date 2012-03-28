@@ -1,6 +1,81 @@
 // widgets.scss
 // -----------------------------------------------------
 
+// details widget
+// --------------
+// give details and summary elms position
+[data-details="details"],
+[data-details="summary"] { // need to set position for collapsible icons
+	position: relative;
+}
+
+// set up default options for details pseudo elemens
+[data-details="details"]:after,
+[data-details="details"] [data-details="summary"]:before,
+[data-details="details"] [data-details="summary"]:after { // set up collapsible icons
+	content: '';
+	display: block;
+	position: absolute;
+}
+
+[data-details="details"] { //works like a <details>, add this data attr. to elm ie <div>
+	&:after {
+		z-index: 10;
+		
+		top: 7px;
+		left: 4px;
+		width: 2px;
+		height: 6px;
+		
+		background-color: $grayLighter;
+	}
+}
+
+// remove vertical bar to uncollapse state of details widget
+[data-details="details"].open:after {
+	background-color: transparent;
+}
+
+// set up for summary
+[data-details="summary"] { //works like <summary> add this data attr. to elm (ie <h1>,<h2>,<h3>...<div> etc.)
+	padding-left: 16px;
+
+	cursor: pointer;
+	
+	&:before,
+	&:after { // set up collapsible icons
+		top: 5px;
+	}
+	
+	&:before {
+		left: 16px;
+		margin: 0 0 0 -16px;
+		width: 8px; 
+		height: 8px;
+		border: 1px solid $grayLighter;
+	}
+	
+	&:after {
+	  left: 1px; 
+		margin-top: 4px; 
+		margin-left: 1px;
+	  width: 6px; 
+	  height: 2px; 
+  
+	  background-color: $grayLighter;
+	}
+}
+
+// Add extra left margin to compensate for collapsible icons from widget
+[data-details="details"] ul,
+[data-details="details"] ol {
+	margin-left: $defaultMargin * 2;
+}
+
+
+// custom widgets
+// --------------
+
 .widget,
 .bd,
 .bd > .inner,

@@ -3,10 +3,12 @@
 
 .footer {
 	margin: $defaultMargin 0 0;
-	padding: $defaultPadding 0 $defaultPadding * 2;
-	border-top: 1px solid $primaryThemeColor;
-	
-	@include gradient-vertical($startColor: rgba($secondaryThemeColor, 0.1), $endColor: $white)
+		
+	> .inner {
+		padding-top: $defaultPadding;
+		padding-bottom: $defaultPadding * 2;
+		border-top: 1px solid $grayDark;
+	}
 }
 
 .footer p {

@@ -72,7 +72,7 @@
 			.end()
 			
 			.append( city_view.render().el )
-			.find('.check-all')
+			.find('[data-checkbox="check-all"]')
 			.each( function(i) { 
 				// need to add id separate id attr. for each check-all input
 				$(this)
@@ -84,10 +84,12 @@
 				// this will enable clicking on label or checkbox to deselect or check all pubs
 				.attr('for', 'check-all-' + ( i + 1 ));
 				// invoke check all plugin
-				$(this).setupCheckboxAll( {closestWrapper: $(this).closest('ul')} ) 
-			});
-			
-			
+				$(this).setupCheckboxAll( {
+					closestWrapper: $(this)
+													.closest('[data-pub="label"]')
+													.next('[data-pub="listings"]')
+					} )
+			});			
 		},
 		
 		remove_city: function() {

@@ -24,11 +24,11 @@ body {
 header,
 .body,
 footer {
-	 >.inner { // allow for different full page backgrounds but centered content
+	 > .inner { // allow for different full page backgrounds but centered content
 		overflow: hidden;
 		@include center-elm();
-		padding-right: $defaultPadding * 2;
-		padding-left: $defaultPadding *2;
+		margin-right: $defaultPadding * 2;
+		margin-left: $defaultPadding *2;
 	}
 }
 

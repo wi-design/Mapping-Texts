@@ -4,6 +4,8 @@ $(function(){
 		
 		tagName: "div",
 		
+		className: 'open',
+		
 		initialize: function() {},
 		
 		render: function() {
@@ -18,7 +20,8 @@ $(function(){
 
 			$(this.el)
 			.html(html)
-			.attr('id', city_norm);
+			.attr('id', city_norm)
+			.attr('data-details' , 'details');
 			
 			return this;
 		}

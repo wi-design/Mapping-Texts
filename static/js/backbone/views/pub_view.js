@@ -7,7 +7,8 @@ $(function(){
 		className: "widget basic tool",
 		
 		events : {
-			'change .pub-cb' : 'update'
+			'change .pub-cb' : 'update',
+			'click [data-details="details"] [data-details="summary"]' : 'disclosureWidget'
 		},
 		
 		initialize: function(attr) {
@@ -34,8 +35,19 @@ $(function(){
 					pubseq = cb.attr('id').split('-')[1];
 
 			c.pubs.set_pubseq(pubseq, checked);
-		}
+		},
 		
+		disclosureWidget: function(ev) { 
+			$(ev.target)
+			// this is the ul with the listings for publications
+			.next('[data-details="content"]')
+			.animate({
+				height : 'toggle'
+			}, 'fast')
+			// the equivalent if you used the <details>
+			.closest('[data-details="details"]')
+			.toggleClass('open');
+		}
 	});
 
 	
