@@ -1447,6 +1447,28 @@ header {
     -o-transform: rotate(45deg);
     transform: rotate(45deg); }
 
+.tag-cloud {
+  padding: 0.77em 1.54em;
+  text-align: center;
+  list-style-type: none; }
+  .tag-cloud [class*="tag-"] {
+    display: inline;
+    font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; }
+  .tag-cloud .tag-1 {
+    font-size: 90%; }
+  .tag-cloud .tag-2 {
+    font-size: 100%; }
+  .tag-cloud .tag-3 {
+    font-size: 110%; }
+  .tag-cloud .tag-4 {
+    font-size: 120%; }
+  .tag-cloud .tag-5 {
+    font-size: 130%; }
+  .tag-cloud .tag-6 {
+    font-size: 140%; }
+  .tag-cloud .tag-7 {
+    font-size: 150%; }
+
 .ajax-container {
   position: absolute;
   z-index: 1000001;
