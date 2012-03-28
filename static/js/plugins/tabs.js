@@ -1,9 +1,10 @@
-/**
- * @license 
- * jQuery Tools @VERSION Tabs- The basics of UI design.
- * 
- * NO COPYRIGHTS OR LICENSES. DO WHAT YOU LIKE.
- */  
+/*
+ * Tabs plugin
+ *
+ * More on this plugin http://jquerytools.org/demos/
+ */
+
+
 (function($) {
 		
 	// static constructs

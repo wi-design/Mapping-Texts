@@ -40,11 +40,13 @@
 
 // UI Interaction Cues
 @import "buttons";
+@import "close";
 @import "icons";
 @import "scrollbars";
 
 // UI Interaction Events
 @import "slider";
+@import "modal";
 @import "tooltip";
 
 // UI Behavioral Events

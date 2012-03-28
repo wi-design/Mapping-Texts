@@ -1,3 +1,10 @@
+/*
+ * Tooltip plugin
+ *
+ * More on this plugin http://jquerytools.org/demos/
+ */
+
+
 
 (function($) { 	
 	// static constructs

@@ -1058,6 +1058,48 @@ header {
   background-repeat: repeat-x;
   text-decoration: none; }
 
+.close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 22px;
+  height: 22px;
+  border: 2px solid white;
+  -webkit-border-radius: 22px;
+  -moz-border-radius: 22px;
+  border-radius: 22px;
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.7) inset;
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.7) inset;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.7) inset;
+  background-color: #e81414;
+  cursor: pointer; }
+  .close:hover {
+    background-color: #8a0c0c; }
+  .close:after, .close:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin-top: 2px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 2px;
+    height: 18px;
+    background-color: white; }
+  .close:after {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg); }
+  .close:before {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg); }
+
 [class*="icon-"],
 [class^="icon-"] {
   display: inline-block;
@@ -1330,6 +1372,52 @@ header {
   .ui-slider .first .ui-slider-tic,
   .ui-slider .last .ui-slider-tic {
     display: none; }
+
+.modal {
+  display: none;
+  overflow: visible;
+  width: 80%;
+  max-height: 500px;
+  padding-right: 1.54em;
+  padding-left: 1.54em; }
+  .modal .modal-hd,
+  .modal .modal-bd,
+  .modal .modal-ft {
+    padding-top: 0.77em;
+    padding-bottom: 0.77em; }
+
+.description {
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: rgba(63, 55, 58, 0.8);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0, 0, 0, 0.8)), color-stop(62%, rgba(61, 53, 56, 0.8)), to(rgba(71, 65, 69, 0.8)));
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.8), rgba(61, 53, 56, 0.8) 62%, rgba(71, 65, 69, 0.8));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.8), rgba(61, 53, 56, 0.8) 62%, rgba(71, 65, 69, 0.8));
+  background-image: -ms-linear-gradient(rgba(0, 0, 0, 0.8), rgba(61, 53, 56, 0.8) 62%, rgba(71, 65, 69, 0.8));
+  background-image: -o-linear-gradient(rgba(0, 0, 0, 0.8), rgba(61, 53, 56, 0.8) 62%, rgba(71, 65, 69, 0.8));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(61, 53, 56, 0.8) 62%, rgba(71, 65, 69, 0.8));
+  background-repeat: no-repeat;
+  color: white; }
+  .description .modal-hd {
+    padding-bottom: 0;
+    border-bottom: 1px solid rgba(238, 238, 238, 0.8); }
+  .description h1,
+  .description h2,
+  .description h3 {
+    border-bottom: 1px solid #555555;
+    color: #e2e2e2;
+    font-weight: 400; }
+  .description a:hover {
+    background-color: #0088cc; }
 
 .tooltip {
   display: none;

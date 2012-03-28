@@ -1,0 +1,57 @@
+// Modal.scss
+// -------------
+
+
+// Base modal
+// ----------
+.modal {
+	display: none;
+	overflow: visible;
+
+	width: 80%;
+	max-height: 500px;
+	padding-right: $defaultPadding * 2;
+	padding-left: $defaultPadding * 2;
+	
+	.modal-hd,
+	.modal-bd,
+	.modal-ft {
+		padding-top: $defaultPadding;
+		padding-bottom: $defaultPadding;
+	}
+}
+
+
+// @description (extends modal)
+// -----------------------------
+
+.description {
+	border: 1px solid #999;
+	border: 1px solid rgba(0,0,0,.3);
+	@include border-radius(6px);
+	
+	@include box-shadow($shadow:0 0 7px rgba(0, 0, 0, 0.5));
+	
+	@include background-clip(padding-box);
+	@include gradient-vertical-three-colors( $startColor: rgba(#000, 0.8), $midColor: rgba(#3D3538, 0.8), $colorStop: 62%, $endColor: rgba(#474145, 0.8) );
+	
+	color: $white;
+	
+	.modal-hd {
+		padding-bottom: 0;
+		border-bottom: 1px solid rgba(#eee, 0.8);
+	}
+	
+	h1,
+	h2,
+	h3 {
+		border-bottom: 1px solid rgba(#555, 1);
+				
+		color: $grayLightest;
+		font-weight: 400;
+	}
+	
+	a:hover {
+		background-color: $defaultLinkColor;
+	}
+}
