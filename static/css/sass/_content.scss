@@ -9,7 +9,7 @@
 // @Grouping Content
 // ------------------
 
-.topic-keys {//used for topic key widget list styling
+.topic-key-list {//used for topic key widget list styling
 	counter-reset: ordered;
 	list-style-type: none;
 	
@@ -17,7 +17,7 @@
 	
 	li {
 		position: relative;
-		
+	
 		&:before {
 			counter-increment: ordered;
 			content: counter(ordered) '.';
@@ -31,28 +31,43 @@
 	}
 }
 
-.topic-key-row {
+.topic-keys { 
 	@include text-overflow();
 	padding: 0; // specify a padding here so we can have some animation when the user hovers in and out of topic-key-row
+	margin: $defaultMargin / 2 0;
 	
-	cursor: default;
 	@include transition( $transition: all 0.2s ease-in );
+	
+	span[data-dismiss] { // extend shut button from close.scss
+		display: none;
+		position: absolute;
+		
+		float: none; 
+		right: 5px;
+		bottom: 15px;
+		width: 16px;
+		height: 16px;
+	}
 }
 
-.topic-key-row[data-hover="true"] {
+.topic-keys[data-click="true"] {
 	overflow: visible; // show rest of topic keys
 	
-	padding: $defaultPadding;
+	padding: $defaultPadding $defaultPadding $defaultPadding * 2;
 	border: 1px solid $white;
 	@include border-radius( $radius: 3px );
 	
 	$shadow: 0 0 3px rgba(0, 0, 0, 0.5), 0 0 4px rgba(0, 0, 0, 0.8) inset;
 	@include box-shadow( $shadow );
 		
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba(0, 0, 0, 0.9);
 	
 	color: $grayLightest;
 	white-space: normal; // will remove ellipsis
+	
+	span[data-dismiss] {
+		display: block;
+	}
 }
 
 

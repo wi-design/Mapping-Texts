@@ -1,8 +1,37 @@
 // Close.scss
+// sections
+// 	@shut
+//	@close
 // -------------
 
-// close button
-// goes with modal windows
+// @shut button
+// basic close button
+// use in <a> or <span>
+// ----------------------
+.shut { 
+  float: right;
+  
+	color: $grayLightest;
+	font-size: convert-to-em(20px, 13px);
+  font-weight: bold;
+	line-height: $defaultLineHeight;
+  text-shadow: 0 1px 0 rgba(255,255,255,1);
+
+  @include opacity(20);
+	@include transition($transition: all 0.2s ease-in);
+
+  &:hover {
+    color: $grayLightest;
+    text-decoration: none;
+    @include opacity(40);
+    cursor: pointer;
+  }
+}
+
+
+// @close button
+// goes with modal windows best
+// -----------------------------
 .close {
 	position: absolute;
 	top: -12px;

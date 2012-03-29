@@ -35,14 +35,14 @@
 // Content
 @import "content";
 
-// Plugins
-@import "jquery-ui";
-
 // UI Interaction Cues
 @import "buttons";
 @import "close";
 @import "icons";
 @import "scrollbars";
+
+// Plugins
+@import "jquery-ui";
 
 // UI Interaction Events
 @import "slider";

@@ -265,6 +265,8 @@ small {
 a {
   color: $defaultLinkColor;
   text-decoration: none;
+	
+	cursor: pointer;
 	@include transition($transition: color, background-color 0.3s ease-in);
 
 	&:hover {
