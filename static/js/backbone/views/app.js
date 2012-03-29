@@ -171,6 +171,9 @@ $(function(){
 		            myMapTypeId
 							]
 						},
+						navigationControlOptions: {
+						    style: google.maps.NavigationControlStyle.SMALL
+						},
         		center: center,
         		zoom: 6,
         		mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -246,8 +249,43 @@ $(function(){
 		  homeControlDiv.index = 1;
 		  map.controls[google.maps.ControlPosition.TOP_LEFT].push(homeControlDiv);
 			
+			// create legend
 			
+			function CreateLegend(el) {
+				// Set CSS styles for the DIV containing the control
+			  // Setting padding to 5 px will offset the control
+			  // from the edge of the map
+			  el.style.padding = '10px';
+
+			  // Set CSS for the control border
+			  var controlUI = document.createElement('DIV');
+				controlUI.style.width = '130px';
+				controlUI.style.padding = '10px';
+			  controlUI.style.backgroundColor = 'white';
+				controlUI.style.borderWidth = '1px';
+			  controlUI.style.borderStyle = 'solid';
+			 	controlUI.style.borderColor = '#555';
+				controlUI.style.opacity = '0.8';
+				controlUI.style.boxShadow = '0 0 3px rgba(0,0,0,0.5) inset';
+			  el.appendChild(controlUI);
+
+			  // Set CSS for the control interior
+			  var controlText = document.createElement('DIV');
+			  controlText.style.fontFamily = 'Arial,sans-serif';
+			  controlText.style.fontSize = '12px';
+			  controlText.style.paddingLeft = '4px';
+			  controlText.style.paddingRight = '4px';
+			  controlText.innerHTML = '<h6>Legend</h6><p>circle size is linearly proportional to the number of publications which is subject to the criteria of the time selected.';
+			  controlUI.appendChild(controlText);
+			}
 			
+			var legendControlDiv = document.createElement('DIV'),
+		  		legendControl = new CreateLegend(legendControlDiv);
+
+		  legendControlDiv.index = 1;
+		  map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legendControlDiv);
+			
+			// add border around Texas
 			drawContour(map);
 			
 			function drawContour(map) {

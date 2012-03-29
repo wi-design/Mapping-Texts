@@ -1,14 +1,15 @@
 // Content.scss
 // Use this style sheet for creation of additional application site selectors
+// Sections:
+//	-topic-key widget
 // ----------------------------------------------------------------------------------------
 
 
 // Special Formatting Classes 
 // --------------------------------
 
-// @Grouping Content
+// @topic-key widget
 // ------------------
-
 .topic-key-list {//used for topic key widget list styling
 	counter-reset: ordered;
 	list-style-type: none;
@@ -69,6 +70,27 @@
 		display: block;
 	}
 }
+
+
+// @map-legend
+// ------------------
+.map-legend {
+	position: absolute;
+	z-index: 1000000000;
+	
+	padding: $defaultPadding;
+	
+	background-color: $white;
+}
+
+//#map-view div:first-child div:nth-child(2) img[src*="google_white"] {
+//	display: none !important;
+//}
+
+
+
+
+
 
 
 

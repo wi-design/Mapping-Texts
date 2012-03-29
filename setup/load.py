@@ -851,6 +851,7 @@ if __name__ == "__main__":
 
 		map_view = """
 Here is our map of Texas
+
 """.strip()
 
 		pub_view = """
