@@ -1,4 +1,5 @@
 .DS_Store
+*.pid
 *.rdb
 *.log
 *.py[co]
