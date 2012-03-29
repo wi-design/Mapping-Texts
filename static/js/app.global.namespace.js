@@ -496,10 +496,13 @@ STANFORD.MAPPING_TEXTS = {
 				 		if (w < 10) return 'tag-1';
 						else if (w < 100) return 'tag-2';
 						else if (w < 1000) return 'tag-3';
-						else if (w < 10000) return 'tag-4';
-						else if (w < 100000) return 'tag-5';
-						else if (w < 1000000) return 'tag-6';
-						else return 'tag-7';
+						else if (w < 5000) return 'tag-4';
+						else if (w < 10000) return 'tag-5';
+						else if (w < 50000) return 'tag-6';
+						else if (w < 100000) return 'tag-7';
+						else if (w < 500000) return 'tag-8';
+						else if (w < 1000000) return 'tag-9';
+						else return 'tag-10';
 					},
 					tag_classes = _.map(weights, class_mapping),
 					

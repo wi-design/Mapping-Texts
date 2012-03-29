@@ -1526,19 +1526,35 @@ header {
     display: inline;
     font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; }
   .tag-cloud .tag-1 {
-    font-size: 90%; }
+    color: #999;
+    font-size: 3pt; }
   .tag-cloud .tag-2 {
-    font-size: 100%; }
+    color: #777;
+    font-size: 5pt; }
   .tag-cloud .tag-3 {
-    font-size: 110%; }
+    color: #555;
+    font-size: 7pt; }
   .tag-cloud .tag-4 {
-    font-size: 120%; }
+    color: #333;
+    font-size: 9pt; }
   .tag-cloud .tag-5 {
-    font-size: 130%; }
+    color: #222;
+    font-size: 12pt; }
   .tag-cloud .tag-6 {
-    font-size: 140%; }
+    color: #111;
+    font-size: 15pt;
+    font-weight: 400; }
   .tag-cloud .tag-7 {
-    font-size: 150%; }
+    font-size: 18pt;
+    font-weight: 500; }
+  .tag-cloud .tag-8 {
+    font-size: 21pt;
+    font-weight: 600; }
+  .tag-cloud .tag-9 {
+    font-size: 24pt;
+    font-weight: 700; }
+  .tag-cloud .tag-10 {
+    font-size: 26pt; }
 
 .ajax-container {
   position: absolute;
