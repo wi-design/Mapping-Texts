@@ -383,7 +383,7 @@ $(function(){
 			
 			h.invokePlugins({
 				parentEl: '#wcc-view',
-				plugins: [ 'tabs', 'tooltip', 'modal' ]
+				plugins: [ 'tabs', 'tooltip', 'modal', 'clipboard' ]
 			});
 									
 			h.make_bar_graph(
@@ -423,7 +423,7 @@ $(function(){
 			
 			h.invokePlugins({
 				parentEl: '#ner-view',
-				plugins: [ 'tabs', 'tooltip', 'modal' ]
+				plugins: [ 'tabs', 'tooltip', 'modal', 'clipboard' ]
 			});	
 			
 			h.make_bar_graph(
@@ -447,7 +447,7 @@ $(function(){
 			
 			h.invokePlugins({
 				parentEl: '#topic-view',
-				plugins: [ 'modal', 'tooltip' ]
+				plugins: [ 'modal', 'tooltip', 'clipboard' ]
 			});
 		}
 		

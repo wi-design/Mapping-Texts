@@ -511,6 +511,7 @@ STANFORD.MAPPING_TEXTS = {
 					},
 					tag_array = _.map(tags, make_tag_obj);
 			
+			// using: http://stackoverflow.com/a/962890
 			function shuffle(array) {
 			    var tmp, current, top = array.length;
 
@@ -728,6 +729,13 @@ STANFORD.MAPPING_TEXTS = {
 						$(args.parentEl)
 						.find('a[data-modal-box]')
 						.modal();
+					} else if (plugin === 'clipboard') {						
+						$(args.parentEl)
+						.find('[data-copy-clipboard="button"]')
+						.zclip({
+							path:'static/flash/ZeroClipboard.swf',
+							copy:$(args.parentEl).find('[data-copy-clipboard="text"]').text()
+						});
 					} else {
 						throw "oops, plugin : " + plugin + " does not exist";
 					}

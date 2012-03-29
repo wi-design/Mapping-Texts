@@ -31,6 +31,8 @@ class Application(tornado.web.Application):
 			(r"/ner", NerHandler),
 			(r"/topic", TopicHandler),
 			(r'/config', ConfigHandler),
+			
+			(r"/clipboard", ClipboardTestHandler),
 		]
 		
 		settings = dict(
@@ -289,7 +291,9 @@ class HomeHandler(BaseHandler):
 	def get(self):
 		self.render("index.html")
 
-
+class ClipboardTestHandler(BaseHandler):
+	def get(self):
+		self.render("clipboard.html")
 
 		
 def main():

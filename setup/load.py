@@ -897,7 +897,7 @@ Here is our map of Texas
 
 	<div class="action-bar">
 		<a class="button push" data-modal-box="#word-counts-info" title="more about word counts">info</a>
-		<a class="button" title="copy to clipboard">copy</a>
+		<a class="button" title="copy to clipboard" data-copy-clipboard="button">copy</a>
 	</div>
 
 	<div class="inner box tab-content">
@@ -914,6 +914,14 @@ Here is our map of Texas
 	</div>
 
 </div>
+<table class="hidden" data-copy-clipboard="text">
+	<tr>
+		{{#wcc}}
+			<td>{{word}}</td>
+			<td>{{count}}</td>
+		{{/wcc}}
+	</tr>
+</table>
 """.strip()
 		
 		ner_view = """
@@ -930,7 +938,7 @@ Here is our map of Texas
 	
 	<div class="action-bar">
 		<a class="button push" data-modal-box="#named-entity-info" title="more about named entity counts">info</a>
-		<a class="button" title="copy to clipboard">copy</a>
+		<a class="button" title="copy to clipboard" data-copy-clipboard="button">copy</a>
 	</div>
 
 	<div class="inner box tab-content">
@@ -948,6 +956,14 @@ Here is our map of Texas
 	</div><!-- /tab-content -->
 	
 </div><!-- /bd -->
+<table class="hidden" data-copy-clipboard="text">
+	<tr>
+		{{#ner}}
+			<td>{{entity}}</td>
+			<td>{{count}}</td>
+		{{/ner}}
+	</tr>
+</table>
 """.strip()
 		
 		topic_view = """
@@ -959,7 +975,7 @@ Here is our map of Texas
 	
 	<div class="action-bar">
 		<a class="button push" data-modal-box="#topic-modeling-info" title="more about topic modeling">info</a>
-		<a class="button" title="copy to clipboard">copy</a>
+		<a class="button" title="copy to clipboard" data-copy-clipboard="button">copy</a>
 	</div>
 	
 	<div class="inner box">
@@ -981,6 +997,13 @@ Here is our map of Texas
 	</div>
 	
 </div><!-- /bd -->
+<table class="hidden" data-copy-clipboard="text">
+	<tr>
+		{{#topics}}
+			<td>{{.}}</td>
+		{{/topics}}
+	</tr>
+</table>
 """.strip()
 		
 		REDIS.hset('templates', 'ajax_loader', ajax_loader)
