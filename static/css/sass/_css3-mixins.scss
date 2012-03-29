@@ -137,6 +137,16 @@
   background-image: linear-gradient(top, $startColor, $endColor); // The standard
   background-repeat: repeat-x;
 }
+@mixin gradient-vertical-three-colors($startColor: #00b3ee, $midColor: #7a43b6, $colorStop: 50%, $endColor: #c3325f) {
+  background-color: mix($midColor, $endColor, 80%);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($startColor), color-stop($colorStop, $midColor), to($endColor));
+  background-image: -webkit-linear-gradient($startColor, $midColor $colorStop, $endColor);
+  background-image: -moz-linear-gradient(top, $startColor, $midColor $colorStop, $endColor);
+  background-image: -ms-linear-gradient($startColor, $midColor $colorStop, $endColor);
+  background-image: -o-linear-gradient($startColor, $midColor $colorStop, $endColor);
+  background-image: linear-gradient($startColor, $midColor $colorStop, $endColor);
+  background-repeat: no-repeat;
+}
 
 @mixin gradient-gloss($bgColor: $red) {
 	background: $bgColor;

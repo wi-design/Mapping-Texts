@@ -1,0 +1,45 @@
+// Tag-cloud.scss
+// --------------
+
+
+.tag-cloud {
+	padding: $defaultPadding $defaultPadding * 2;
+	
+	text-align: center;
+	
+	list-style-type: none;
+	
+	[class*="tag-"] {
+		display: inline;
+		
+		font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+	}
+	
+	.tag-1 {
+		font-size: 90%;
+	}
+	
+	.tag-2 {
+		font-size: 100%;
+	}
+	
+	.tag-3 {
+		font-size: 110%;
+	}
+	
+	.tag-4 {
+		font-size: 120%;
+	}
+	
+	.tag-5 {
+		font-size: 130%;		
+	}
+	
+	.tag-6 {
+		font-size: 140%;
+	}
+	
+	.tag-7 {
+		font-size: 150%;
+	}
+}

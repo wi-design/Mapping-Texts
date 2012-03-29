@@ -6,7 +6,9 @@ $(function(){
 		
 		className: "widget basic module",
 		
-		events : {},
+		events : {
+			//'click a[data-modal-box]' : 'callModal'
+		},
 		
 		initialize: function(attr) {
 			console.log('wcc_view view created');
@@ -19,6 +21,10 @@ $(function(){
 		
 			$(this.el).html(html);
 			return this;
+		},
+		
+		callModal: function(ev) {
+			$(ev.target).modal();
 		}
 		
 	});

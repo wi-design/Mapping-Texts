@@ -30,6 +30,7 @@ $(function(){
 		
 		render: function() {
 			var c = STANFORD.MAPPING_TEXTS.cached,
+					h = STANFORD.MAPPING_TEXTS.helpers,
 					
 					// default date range
 					config = STANFORD.MAPPING_TEXTS.config,
@@ -46,6 +47,11 @@ $(function(){
 			this.render_topics();
 			
 			c.epochs.set_selected({y: end});
+
+			h.invokePlugins({
+				parentEl: '#app-ds-view',
+				plugins: [ 'modal' ]
+			});
 			
 		},
 
@@ -71,7 +77,8 @@ $(function(){
 		render_time: function() {
 			var c = STANFORD.MAPPING_TEXTS.cached,
 					time_select_view = new STANFORD.MAPPING_TEXTS.views.time_select_view(),
-					time_select_view_elem = $(this.el).find('#time-select-view');
+					time_select_view_elem = $(this.el).find('#time-select-view'),
+					h = STANFORD.MAPPING_TEXTS.helpers;
 			
 			time_select_view_elem.replaceWith( time_select_view.render().el );
 			time_select_view_elem = $(this.el).find('#time-select-view');
@@ -84,6 +91,11 @@ $(function(){
 
 			c.select_aa = time_select_view_elem.find('select#valueAA');
 			c.select_bb = time_select_view_elem.find('select#valueBB');
+			
+			h.invokePlugins({
+				parentEl: '#time-select-view',
+				plugins: [ 'tooltip' ]
+			});
 			
 			c.select_aa.change(function(){console.log("change happened!!!!!!!");});
 		},
@@ -349,6 +361,7 @@ $(function(){
 		//
 		render_wcc: function() {
 			var wcc_view = new STANFORD.MAPPING_TEXTS.views.wcc_view(),
+					h = STANFORD.MAPPING_TEXTS.helpers,
 			
 					wcc = STANFORD.MAPPING_TEXTS.cached.wcc_collection,
 					d3_chart = '#wcc-view .d3-chart',
@@ -360,21 +373,12 @@ $(function(){
 			.find('#wcc-view')
 			.html( wcc_view.render().el );
 			
-			$(this.el)
-			.find('#wcc-view')
-			.find('.tabs')
-			.tabs('.tab-content > .tab-pane', {
-				effect: 'fade'
-			})
-			.end()
-			.find('[title]')
-			.tooltip({
-				effect: 'fade',
-				predelay: 500,
-				offset: [-10,0]
+			h.invokePlugins({
+				parentEl: '#wcc-view',
+				plugins: [ 'tabs', 'tooltip', 'modal' ]
 			});
 									
-			STANFORD.MAPPING_TEXTS.helpers.make_bar_graph(
+			h.make_bar_graph(
 				data,
 				labels,
 				d3_chart,
@@ -387,7 +391,8 @@ $(function(){
 		//
 		render_ner: function() {	
 			var ner_view = new STANFORD.MAPPING_TEXTS.views.ner_view(),
-			
+					h = STANFORD.MAPPING_TEXTS.helpers,
+
 					ner = STANFORD.MAPPING_TEXTS.cached.ner_collection,
 					d3_chart = '#ner-view .d3-chart',
 					data = ner.pluck('count'),
@@ -398,21 +403,12 @@ $(function(){
 			.find('#ner-view')
 			.html( ner_view.render().el );
 			
-			$(this.el)
-			.find('#ner-view')
-			.find('.tabs')
-			.tabs('.tab-content > .tab-pane', {
-				effect: 'fade'
-			})
-			.end()
-			.find('[title]')
-			.tooltip({
-				effect: 'fade',
-				predelay: 500,
-				offset: [-10,0]
-			});
+			h.invokePlugins({
+				parentEl: '#ner-view',
+				plugins: [ 'tabs', 'tooltip', 'modal' ]
+			});	
 			
-			STANFORD.MAPPING_TEXTS.helpers.make_bar_graph(
+			h.make_bar_graph(
 				data,
 				labels,
 				d3_chart,
@@ -424,15 +420,16 @@ $(function(){
 		//  #topic-view
 		//
 		render_topics: function() {
-			var topic_view = new STANFORD.MAPPING_TEXTS.views.topic_view();
+			var topic_view = new STANFORD.MAPPING_TEXTS.views.topic_view(),
+					h = STANFORD.MAPPING_TEXTS.helpers;
 			
-			$(this.el).find('#topic-view').html( topic_view.render().el )
-			.end()
-			.find('[title]')
-			.tooltip({
-				effect: 'fade',
-				predelay: 500,
-				offset: [-10,0]
+			$(this.el)
+			.find('#topic-view')
+			.html( topic_view.render().el )
+			
+			h.invokePlugins({
+				parentEl: '#topic-view',
+				plugins: [ 'modal', 'tooltip' ]
 			});
 		}
 		

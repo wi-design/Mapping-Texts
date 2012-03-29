@@ -7,8 +7,8 @@ $(function(){
 		className: "widget basic module",
 		
 		events: {
-			'mouseenter [data-hover]' : 'showTopicKeys',
-			'mouseleave [data-hover]' : 'hideTopicKeys'
+			'click #topic-view [data-click]' : 'showTopicKeys',
+			'click .topic-key-list [data-dismiss]' : 'hideTopicKeys'
 		},
 		
 		initialize: function(attr) {
@@ -25,14 +25,21 @@ $(function(){
 			return this;
 		},
 		
-		showTopicKeys: function(ev) {
+		showTopicKeys: function(ev) {	
 			$(ev.target)
-			.attr('data-hover' , 'true')
+			.attr('data-click' , 'true')
+			
+			// find the other anchor links and if one is showing - shortened it
+			.closest('li')
+			.siblings('li')
+			.find('[data-click]')
+			.attr('data-click' , '')
 		},
 		
 		hideTopicKeys: function(ev) {
 			$(ev.target)
-			.attr('data-hover' , '')
+			.closest('div')
+			.attr('data-click' , 'false')
 		}
 		
 	});

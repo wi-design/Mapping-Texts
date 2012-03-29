@@ -801,7 +801,7 @@ if __name__ == "__main__":
 	<ol class="era-nav">
 		{{#epochs}}
 			<li class="epoch">
-				<a href="#" data-epoch="{{years}}">{{era}}</a>
+				<a href="#" data-epoch="{{years}}" title="{{years}}">{{era}}</a>
 			</li>
 		{{/epochs}}
 	</ol>
@@ -896,7 +896,7 @@ Here is our map of Texas
 <div class="bd">
 
 	<div class="action-bar">
-		<a class="button push" title="info">info</a>
+		<a class="button push" data-modal-box="#word-counts-info" title="more about word counts">info</a>
 		<a class="button" title="copy to clipboard">copy</a>
 	</div>
 
@@ -933,7 +933,7 @@ Here is our map of Texas
 <div class="bd">
 	
 	<div class="action-bar">
-		<a class="button push" title="info">info</a>
+		<a class="button push" data-modal-box="#named-entity-info" title="more about named entity counts">info</a>
 		<a class="button" title="copy to clipboard">copy</a>
 	</div>
 
@@ -966,16 +966,21 @@ Here is our map of Texas
 <div class="bd">
 	
 	<div class="action-bar">
-		<a class="button push" title="info">info</a>
+		<a class="button push" data-modal-box="#topic-modeling-info" title="more about topic modeling">info</a>
 		<a class="button" title="copy to clipboard">copy</a>
 	</div>
 	
 	<div class="inner box">
 	
-		<ol class="topic-keys">
+		<ol class="topic-key-list">
 			{{#topics}}
 				<li>
-					<div class="topic-key-row" data-hover="">{{.}}</div>
+					<a>
+						<div class="topic-keys" data-click="false">
+							{{.}}
+							<span class="shut" data-dismiss="shut">x</span>
+						</div>
+					</a>
 				</li>
 			{{/topics}}
 
