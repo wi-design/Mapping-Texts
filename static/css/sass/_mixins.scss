@@ -115,20 +115,24 @@
 	.span-20pct			{ @include calculate-column-width-fraction( $denominator: 5 ); }
 	.span-25pct 		{ @include calculate-column-width-fraction( $denominator: 4 ); }
 	.span-33pct 		{ @include calculate-column-width-fraction( $denominator: 3 ); }
+	.span-40pct			{ @include calculate-column-width-fraction( $numerator: 2, $denominator: 5 ); }
 	.span-50pct			{ @include calculate-column-width-fraction( $denominator: 2 ); }
+	.span-60pct			{ @include calculate-column-width-fraction( $numerator: 3, $denominator: 5 ); }
 	.span-66pct			{ @include calculate-column-width-fraction( $numerator: 2, $denominator: 3 ); }
+	.span-75pct 		{ @include calculate-column-width-fraction( $numerator: 3, $denominator: 4 ); }
 	.span-80pct			{ @include calculate-column-width-fraction( $numerator: 4, $denominator: 5 ); }
 	
+	// extra Grid Divisions
+	// grid divisions by 1/6
+	.span-16pct 		{ @include calculate-column-width-fraction( $numerator: 1, $denominator: 6 ); }
+	.span-83pct			{ @include calculate-column-width-fraction( $numerator: 5, $denominator: 6 ); }
 	
-	//.span-1				{ @include calculate-column-width($columnWidth, 1, $gutterWidth); }
-	//.span-2				{ @include calculate-column-width($columnWidth, 2, $gutterWidth); }
-	//.span-3   		{ @include calculate-column-width($columnWidth, 3, $gutterWidth); }
-	//.span-4   		{ @include calculate-column-width($columnWidth, 4, $gutterWidth); }
-	//.span-5   		{ @include calculate-column-width($columnWidth, 5, $gutterWidth); }
-	//.span-6   		{ @include calculate-column-width($columnWidth, 6, $gutterWidth); }
-	//.span-7   		{ @include calculate-column-width($columnWidth, 7, $gutterWidth); }
-	//.span-8   		{ @include calculate-column-width($columnWidth, 8, $gutterWidth); }
-	//.span-9   		{ @include calculate-column-width($columnWidth, 9, $gutterWidth); }
-	//.span-10  		{ @include calculate-column-width($columnWidth, 10, $gutterWidth); }
+	// grid divisions by 1/7
+	.span-14pct			{ @include calculate-column-width-fraction( $numerator: 1, $denominator: 7 ); }
+	.span-28pct			{ @include calculate-column-width-fraction( $numerator: 2, $denominator: 7 ); }
+	.span-42pct			{ @include calculate-column-width-fraction( $numerator: 3, $denominator: 7 ); }
+	.span-57pct			{ @include calculate-column-width-fraction( $numerator: 4, $denominator: 7 ); }
+	.span-71pct			{ @include calculate-column-width-fraction( $numerator: 5, $denominator: 7 ); }
+	.span-85pct			{ @include calculate-column-width-fraction( $numerator: 6, $denominator: 7 ); }
 }
 

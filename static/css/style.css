@@ -291,14 +291,47 @@ footer > .inner {
 .span-33pct {
   width: 31.333%; }
 
+.span-40pct {
+  width: 38%; }
+
 .span-50pct {
   width: 48%; }
+
+.span-60pct {
+  width: 58%; }
 
 .span-66pct {
   width: 64.667%; }
 
+.span-75pct {
+  width: 73%; }
+
 .span-80pct {
   width: 78%; }
+
+.span-16pct {
+  width: 14.667%; }
+
+.span-83pct {
+  width: 81.333%; }
+
+.span-14pct {
+  width: 12.286%; }
+
+.span-28pct {
+  width: 26.571%; }
+
+.span-42pct {
+  width: 40.857%; }
+
+.span-57pct {
+  width: 55.143%; }
+
+.span-71pct {
+  width: 69.429%; }
+
+.span-85pct {
+  width: 83.714%; }
 
 body {
   font: 0.813em/1.615em "Myriad Pro", "Segoe UI", Helvetica, Arial, sans-serif;
@@ -803,6 +836,12 @@ header {
   white-space: normal; }
   .topic-keys[data-click="true"] span[data-dismiss] {
     display: block; }
+
+.map-legend {
+  position: absolute;
+  z-index: 1000000000;
+  padding: 0.77em;
+  background-color: white; }
 
 .button {
   display: inline-block;

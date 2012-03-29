@@ -72,4 +72,25 @@
 }
 
 
+// @map-legend
+// ------------------
+.map-legend {
+	position: absolute;
+	z-index: 1000000000;
+	
+	padding: $defaultPadding;
+	
+	background-color: $white;
+}
+
+//#map-view div:first-child div:nth-child(2) img[src*="google_white"] {
+//	display: none !important;
+//}
+
+
+
+
+
+
+
 

@@ -6,7 +6,7 @@ $(function(){
 		
 		id: "map-view",
 		
-		className: "span-66pct widget basic map-view",
+		className: "span-50pct widget basic map-view",
 		
 		events : {},
 		

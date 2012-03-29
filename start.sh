@@ -9,7 +9,7 @@ echo ""
 echo "Stop server by running  ./stop.sh"
 
 PID_FILE="server.pid"
-python server.py &>server.log &
+python server.py --port=9000 &>server.log &
 PID=$!
 echo ${PID} > ${PID_FILE}
 
