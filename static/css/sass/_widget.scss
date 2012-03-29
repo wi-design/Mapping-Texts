@@ -110,6 +110,10 @@
 	margin-left: $defaultPadding;
 }
 
+.bd > .inner {
+	min-height: 50px;
+}
+
 
 // Action bar for copy and info buttons, goes inside module
 .action-bar {// wrap copy and info buttons in a div with this class

@@ -1,3 +1,13 @@
+/*
+ * Wi-Design v1.0
+ *
+ * Copyright 2012 Wi-Design, Inc.
+ * Author: Wi-Design, Inc. 
+ * Email: info@wi-design.com
+ *
+ * Project Name: Mapping Texts
+ */
+
 // Don't clobber mapping_texts namespace inside of stanford namespace if such
 // namespaces exist
 
@@ -639,11 +649,11 @@ STANFORD.MAPPING_TEXTS = {
 				success: function(model){
 					console.log("**** topics fetched success");
 					
-					h.del_ajax_loader_template( $('#topic-view') );
+					h.del_ajax_loader_template( $('#topic-view').find('.inner') );
 				}
 			});
 			
-			h.add_ajax_loader_template( $('#topic-view') );
+			h.add_ajax_loader_template( $('#topic-view').find('.inner') );
 		},
 		
 		// set of functions that return the data arg for
