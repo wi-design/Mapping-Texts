@@ -6,9 +6,7 @@ $(function(){
 		
 		className: "widget basic module",
 		
-		events : {
-			//'click a[data-modal-box]' : 'callModal'
-		},
+		events : {},
 		
 		initialize: function(attr) {
 			console.log('wcc_view view created');
@@ -16,15 +14,14 @@ $(function(){
 		
 		render: function() {
 			var template = STANFORD.MAPPING_TEXTS.config.templates.wcc_view,
-					data = { wcc: STANFORD.MAPPING_TEXTS.cached.wcc_collection.toJSON() },
+					data = { 
+						wcc: this.collection.toJSON(),
+						tags: this.options.tags 
+					},
 					html = Mustache.to_html(template, data);
 		
 			$(this.el).html(html);
 			return this;
-		},
-		
-		callModal: function(ev) {
-			$(ev.target).modal();
 		}
 		
 	});

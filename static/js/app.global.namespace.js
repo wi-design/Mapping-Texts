@@ -488,6 +488,47 @@ STANFORD.MAPPING_TEXTS = {
 		},
 		
 		
+		// tag cloud
+		
+		make_tag_cloud: function(tags, weights) {
+			
+			var class_mapping = function(w) {
+				 		if (w < 10) return 'tag-1';
+						else if (w < 100) return 'tag-2';
+						else if (w < 1000) return 'tag-3';
+						else if (w < 10000) return 'tag-4';
+						else if (w < 100000) return 'tag-5';
+						else if (w < 1000000) return 'tag-6';
+						else return 'tag-7';
+					},
+					tag_classes = _.map(weights, class_mapping),
+					
+					make_tag_obj = function(tag, index) {
+						return {
+							tag: tag,
+							class: tag_classes[index]
+						};
+					},
+					tag_array = _.map(tags, make_tag_obj);
+			
+			function shuffle(array) {
+			    var tmp, current, top = array.length;
+
+			    if(top) while(--top) {
+			        current = Math.floor(Math.random() * (top + 1));
+			        tmp = array[current];
+			        array[current] = array[top];
+			        array[top] = tmp;
+			    }
+
+			    return array;
+			}
+			
+			return shuffle(tag_array);
+			
+		},
+		
+		
 		
 		
 		

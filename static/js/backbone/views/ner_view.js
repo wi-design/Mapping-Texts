@@ -14,7 +14,10 @@ $(function(){
 		
 		render: function() {
 			var template = STANFORD.MAPPING_TEXTS.config.templates.ner_view,
-					data = { ner: STANFORD.MAPPING_TEXTS.cached.ner_collection.toJSON() },
+					data = { 
+						ner: this.collection.toJSON(),
+						tags: this.options.tags 
+					},
 					html = Mustache.to_html(template, data);
 		
 			$(this.el).html(html);
