@@ -592,8 +592,6 @@ STANFORD.MAPPING_TEXTS = {
 			h.add_ajax_loader_template( $('#topic-view') );
 		},
 		
-<<<<<<< HEAD
-		
 		// set of functions that return the data arg for
 		//  backbone fetch		
 		get_fetch_data_arg: function(c) {
