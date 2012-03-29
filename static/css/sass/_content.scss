@@ -1,14 +1,15 @@
 // Content.scss
 // Use this style sheet for creation of additional application site selectors
+// Sections:
+//	-topic-key widget
 // ----------------------------------------------------------------------------------------
 
 
 // Special Formatting Classes 
 // --------------------------------
 
-// @Grouping Content
+// @topic-key widget
 // ------------------
-
 .topic-key-list {//used for topic key widget list styling
 	counter-reset: ordered;
 	list-style-type: none;

@@ -29,7 +29,7 @@ $(function(){
 			$(ev.target)
 			.attr('data-click' , 'true')
 			
-			// find the other anchor links and if one is showing - shortened it
+			// find the other rows and if one is showing data-click=true - make it false
 			.closest('li')
 			.siblings('li')
 			.find('[data-click]')
