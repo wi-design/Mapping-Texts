@@ -360,14 +360,22 @@ $(function(){
 		//  #wcc-view
 		//
 		render_wcc: function() {
-			var wcc_view = new STANFORD.MAPPING_TEXTS.views.wcc_view(),
+			var c = STANFORD.MAPPING_TEXTS.cached,
 					h = STANFORD.MAPPING_TEXTS.helpers,
-			
-					wcc = STANFORD.MAPPING_TEXTS.cached.wcc_collection,
+					
+					wcc = c.wcc_collection,
+					
 					d3_chart = '#wcc-view .d3-chart',
-					data = wcc.pluck('count'),
-					labels = wcc.pluck('word'),
-					width = $(this.el).find('#wcc-view .box').width();
+					weights = data = wcc.pluck('count'),
+					tags = labels = wcc.pluck('word'),
+					width = $(this.el).find('#wcc-view .box').width(),
+					
+					tags = h.make_tag_cloud(tags, weights),
+					
+					wcc_view = new STANFORD.MAPPING_TEXTS.views.wcc_view({
+						collection: wcc,
+						tags: tags
+					});
 			
 			$(this.el)
 			.find('#wcc-view')
@@ -384,21 +392,31 @@ $(function(){
 				d3_chart,
 				width
 			);
+			
+			
 		},
 		
 		// Render name entity counts view
 		//  #ner-view
 		//
-		render_ner: function() {	
-			var ner_view = new STANFORD.MAPPING_TEXTS.views.ner_view(),
+		render_ner: function() {
+			var c = STANFORD.MAPPING_TEXTS.cached,
 					h = STANFORD.MAPPING_TEXTS.helpers,
-
-					ner = STANFORD.MAPPING_TEXTS.cached.ner_collection,
+					
+					ner = c.ner_collection,
+					
 					d3_chart = '#ner-view .d3-chart',
-					data = ner.pluck('count'),
-					labels = ner.pluck('entity'),
-					width = $(this.el).find('#wcc-view .box').width();
-
+					weights = data = ner.pluck('count'),
+					tags = labels = ner.pluck('entity'),
+					width = $(this.el).find('#ner-view .box').width(),
+					
+					tags = h.make_tag_cloud(tags, weights),
+					
+					ner_view = new STANFORD.MAPPING_TEXTS.views.ner_view({
+						collection: ner,
+						tags: tags
+					});
+			
 			$(this.el)
 			.find('#ner-view')
 			.html( ner_view.render().el );
