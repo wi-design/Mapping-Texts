@@ -29,7 +29,6 @@ $(function(){
 			$(ev.target)
 			.attr('data-click' , 'true')
 			
-			
 			// find the other anchor links and if one is showing - shortened it
 			.closest('li')
 			.siblings('li')
