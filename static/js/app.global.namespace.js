@@ -442,10 +442,14 @@ STANFORD.MAPPING_TEXTS = {
 		// d3 bar graph
 		make_bar_graph: function(data, labels, d3_chart, width) {
 			
-			var w = width-20,
-			    h = 20 * data.length,
-					left_translate = 80, 
-			    x = d3.scale.linear().domain([0, d3.max(data)]).range([0, w-125]),
+			var height_of_bar = padding_size = 20,
+					w = width - padding_size,
+			    h = height_of_bar * data.length,
+					left_translate = 90, 
+					space_to_shrink_bar_graph_by = 150,
+					width_of_bar = w - space_to_shrink_bar_graph_by,
+					
+			    x = d3.scale.linear().domain([0, d3.max(data)]).range([0, width_of_bar]),
 			    y = d3.scale.ordinal().domain(d3.range(data.length)).rangeBands([0, h], .2),
 
 					vis = d3.select(d3_chart)
@@ -464,27 +468,32 @@ STANFORD.MAPPING_TEXTS = {
 			    					.attr("transform", function(d, i) { return "translate(0," + y(i) + ")"; });
 
 			bars.append("svg:rect")
-					.attr("fill", "steelblue")
+					.attr("fill", "#FF0000")
 			    .attr("width", x)
 			    .attr("height", y.rangeBand());
 		
 			bars.append("svg:text")
-			    .attr("x", w - 125 + left_translate - 23)
+			    .attr("x", width_of_bar + left_translate - 26)
 			    .attr("y", y.rangeBand() / 2)
 			    .attr("dx", -1)
 			    .attr("dy", ".35em")
-			    .attr("fill", "#AAAAAA")
+			    .attr("fill", "#333")
 			    .attr("text-anchor", "end")
-			    .text(String);
+			    .text(function(d, i) { return numberWithCommas(data[i]); });
 
 			bars.append("svg:text")
 			    .attr("x", 0)
 			    .attr("y", y.rangeBand() / 2)
 			    .attr("dx", -6)
 			    .attr("dy", ".35em")
-					.attr("fill", "#AAAAAA")
+					.attr("fill", "#333")
 			    .attr("text-anchor", "end")
 			    .text(function(d, i) { return labels[i]; });
+			
+			// using: http://stackoverflow.com/a/2901298
+			function numberWithCommas(x) {
+			    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
 		},
 		
 		
@@ -514,6 +523,7 @@ STANFORD.MAPPING_TEXTS = {
 					},
 					tag_array = _.map(tags, make_tag_obj);
 			
+			// using: http://stackoverflow.com/a/962890
 			function shuffle(array) {
 			    var tmp, current, top = array.length;
 
@@ -731,6 +741,13 @@ STANFORD.MAPPING_TEXTS = {
 						$(args.parentEl)
 						.find('a[data-modal-box]')
 						.modal();
+					} else if (plugin === 'clipboard') {						
+						$(args.parentEl)
+						.find('[data-copy-clipboard="button"]')
+						.zclip({
+							path:'static/flash/ZeroClipboard.swf',
+							copy:$(args.parentEl).find('[data-copy-clipboard="text"]').text()
+						});
 					} else {
 						throw "oops, plugin : " + plugin + " does not exist";
 					}
