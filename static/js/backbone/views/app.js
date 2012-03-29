@@ -9,6 +9,10 @@ $(function(){
 			
 			console.log('app view created');
 			
+			$(window).resize(function() {
+				console.log('a resize happened on body');
+			});
+			
 			c.pubs = new STANFORD.MAPPING_TEXTS.collections.pubs();
 			c.pubs.on('reset', this.render_map, this);
 			c.pubs.on('reset', this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] });
@@ -198,28 +202,34 @@ $(function(){
 
 			  // Click handler for "Select All"
 			  google.maps.event.addDomListener(controlUI, 'click', function() {
-					var city_overlay;
+					var num_of_pubs = c.pubs.size(),
+							city_overlay,
+							
+							select_all_mode = 'Select All', 
+							unselect_all_mode = 'Unselect All',
+							text_mode = homeControlDivText.text() === select_all_mode ? unselect_all_mode : select_all_mode,
+							click_type = homeControlDivText.text() === select_all_mode ? 'click' : 'rightclick';
 					
-					_(c.pubs.initial()).forEach(
-						function(city) {
-							var city_overlay = city.get('circle_overlay');
-							
-							console.log("City ===> " + city.get('city'));
-							
-							google.maps.event.trigger(city_overlay, 'click', {silent: true});
+					
+					homeControlDivText.html(text_mode);
+						
+					c.pubs.forEach(
+						function(city, index) {
+
+							var city_overlay = city.get('circle_overlay'),
+									last_city = num_of_pubs === index+1;
+
+							google.maps.event.trigger(city_overlay, click_type, last_city);
+
 						}
-					);
+					);	
 					
-					console.log("LAST City ===> " + c.pubs.last().get('city'));
-					
-					city_overlay = c.pubs.last().get('circle_overlay');
-					
-					google.maps.event.trigger(city_overlay, 'click', {silent: false});
 			  });
 
 			}
-		  var homeControlDiv = document.createElement('DIV');
-		  var homeControl = new HomeControl(homeControlDiv, map);
+		  var homeControlDiv = document.createElement('DIV'),
+		  		homeControl = new HomeControl(homeControlDiv, map),
+					homeControlDivText = $(homeControlDiv).find('b');
 
 		  homeControlDiv.index = 1;
 		  map.controls[google.maps.ControlPosition.TOP_LEFT].push(homeControlDiv);
@@ -270,13 +280,16 @@ $(function(){
 				
 				
 				// Click handler for "click" on circle overlay		
-				google.maps.event.addListener(city_circle, 'click', function(arg) {
+				google.maps.event.addListener(city_circle, 'click', function(last_city) {
 					
-					console.log('clicked on city code name: ' + city.get('city'));
+					console.log('circle click:');
 					
 					if (city.get('display') === true) { return; }
 					
-					city.set({display: true}, arg);
+					city.set({display: true}, _.isBoolean(last_city) ? {fetch_data: last_city} : {});
+					
+					console.log('City data:');
+					console.log(city.toJSON());
 					
 			    city_circle.setOptions({
 						strokeColor: "#CCFF33"
@@ -285,9 +298,15 @@ $(function(){
 			  });
 				
 				// Click handler for "rightclick" on circle overlay
-				google.maps.event.addListener(city_circle, 'rightclick', function() {
+				google.maps.event.addListener(city_circle, 'rightclick', function(last_city) {
 					
-					city.set({display: false});
+					console.log('circle rightclick:');
+					
+					//city.set({display: false});
+					city.set({display: false}, _.isBoolean(last_city) ? {fetch_data: last_city} : {});
+					
+					console.log('City data:');
+					console.log(city.toJSON());
 					
 			    city_circle.setOptions({
 						strokeColor: "#FF0000"
@@ -329,7 +348,13 @@ $(function(){
 		//  #wcc-view
 		//
 		render_wcc: function() {
-			var wcc_view = new STANFORD.MAPPING_TEXTS.views.wcc_view();
+			var wcc_view = new STANFORD.MAPPING_TEXTS.views.wcc_view(),
+			
+					wcc = STANFORD.MAPPING_TEXTS.cached.wcc_collection,
+					d3_chart = '#wcc-view .d3-chart',
+					data = wcc.pluck('count'),
+					labels = wcc.pluck('word'),
+					width = $(this.el).find('#wcc-view .box').width();
 			
 			$(this.el)
 			.find('#wcc-view')
@@ -348,13 +373,26 @@ $(function(){
 				predelay: 500,
 				offset: [-10,0]
 			});
+									
+			STANFORD.MAPPING_TEXTS.helpers.make_bar_graph(
+				data,
+				labels,
+				d3_chart,
+				width
+			);
 		},
 		
 		// Render name entity counts view
 		//  #ner-view
 		//
 		render_ner: function() {	
-			var ner_view = new STANFORD.MAPPING_TEXTS.views.ner_view();
+			var ner_view = new STANFORD.MAPPING_TEXTS.views.ner_view(),
+			
+					ner = STANFORD.MAPPING_TEXTS.cached.ner_collection,
+					d3_chart = '#ner-view .d3-chart',
+					data = ner.pluck('count'),
+					labels = ner.pluck('entity'),
+					width = $(this.el).find('#wcc-view .box').width();
 
 			$(this.el)
 			.find('#ner-view')
@@ -372,7 +410,14 @@ $(function(){
 				effect: 'fade',
 				predelay: 500,
 				offset: [-10,0]
-			});			
+			});
+			
+			STANFORD.MAPPING_TEXTS.helpers.make_bar_graph(
+				data,
+				labels,
+				d3_chart,
+				width
+			);
 		},
 		
 		// Render topics view

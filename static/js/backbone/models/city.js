@@ -18,9 +18,11 @@
 			});
 			
 			this.on("change:display", this.add_remove_city_to_pub_view);
-			this.on("change:display", this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] });
+			this.on("change:display", this.fetch_data_if);
 		},
 		
+		
+		// city model custom methods
 		all_pubs_selected: function() {
 			var query = function(publication) { return publication.get('checked'); }
 			return this.get('pubs').all(query);
@@ -40,9 +42,13 @@
 		},
 		
 		
-		// Event handler for listening to changes to display attr
-		//  and adding or removing a city view
-		add_remove_city_to_pub_view: function(model, display) {
+		
+		
+		
+		// Event handlers for listening to changes to display attr
+		add_remove_city_to_pub_view: function(model, display, options) {
+			
+			console.log("called add_rm_city...()");
 			
 			if (model.previous("display") === false && display === true) {
 				console.log('add city to pub-view: ' + model.get('city'));
@@ -56,10 +62,21 @@
 			
 		},
 		
+		fetch_data_if: function(model, display, options) {
+			var context;
+			console.log("Fetch Data IF: " + options.fetch_data + " For city: " + model.get('city'));
+			
+			if ( options.fetch_data || typeof options.fetch_data === 'undefined' ) {
+				context = { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] };
+				this.fetch_data.call( context );
+			} 
+		},
 		
 		
-		// Model methods
-		//
+		
+		
+		
+		// helpers
 		add_new_city: function(model) {
 			var views = STANFORD.MAPPING_TEXTS.views,
 					city_view = new views.city_view({model: this});

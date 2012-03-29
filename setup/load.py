@@ -846,9 +846,7 @@ if __name__ == "__main__":
 				</optgroup>
 			</select>
 		</form>
-	</div><!-- /slider -->
-
-	
+	</div><!-- /slider -->	
 """.strip()
 
 		map_view = """
@@ -903,12 +901,15 @@ Here is our map of Texas
 	</div>
 
 	<div class="inner box tab-content">
-	
+		<div class="tab-pane d3-chart"></div>
+		
+		<!--
 		<ul class="tab-pane">
 			{{#wcc}}
 				<li>{{word}}: {{count}}</li>
 			{{/wcc}}
 		</ul>
+		-->
 
 		<div class="tab-pane">
 			<p>tag cloud</p>
@@ -938,11 +939,15 @@ Here is our map of Texas
 
 	<div class="inner box tab-content">
 	
+		<div class="tab-pane d3-chart"></div>
+		
+		<!--
 		<ul class="tab-pane">
 			{{#ner}}
 				<li>{{entity}}: {{count}}, type: {{type}}</li>
 			{{/ner}}
 		</ul>
+		-->
 
 		<div class="tab-pane">
 			<p>tag cloud</p>

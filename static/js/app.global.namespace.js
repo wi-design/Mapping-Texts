@@ -439,6 +439,55 @@ STANFORD.MAPPING_TEXTS = {
 		},
 		
 		
+		// d3 bar graph
+		make_bar_graph: function(data, labels, d3_chart, width) {
+			
+			var w = width-20,
+			    h = 20 * data.length,
+					left_translate = 80, 
+			    x = d3.scale.linear().domain([0, d3.max(data)]).range([0, w-125]),
+			    y = d3.scale.ordinal().domain(d3.range(data.length)).rangeBands([0, h], .2),
+
+					vis = d3.select(d3_chart)
+			  					.append("svg:svg")
+									.attr("class", 'chart')
+			    				.attr("width", w + left_translate)
+			    				.attr("height", h )
+			  					.append("svg:g")
+			    				.attr("transform", "translate(" + left_translate + ",0)"),
+
+					bars = vis.selectAll("g.bar")
+			    					.data(data)
+			  						.enter()
+										.append("svg:g")
+			    					.attr("class", "bar")
+			    					.attr("transform", function(d, i) { return "translate(0," + y(i) + ")"; });
+
+			bars.append("svg:rect")
+					.attr("fill", "steelblue")
+			    .attr("width", x)
+			    .attr("height", y.rangeBand());
+		
+			bars.append("svg:text")
+			    .attr("x", w - 125 + left_translate - 23)
+			    .attr("y", y.rangeBand() / 2)
+			    .attr("dx", -1)
+			    .attr("dy", ".35em")
+			    .attr("fill", "#AAAAAA")
+			    .attr("text-anchor", "end")
+			    .text(String);
+
+			bars.append("svg:text")
+			    .attr("x", 0)
+			    .attr("y", y.rangeBand() / 2)
+			    .attr("dx", -6)
+			    .attr("dy", ".35em")
+					.attr("fill", "#AAAAAA")
+			    .attr("text-anchor", "end")
+			    .text(function(d, i) { return labels[i]; });
+		},
+		
+		
 		
 		
 		
