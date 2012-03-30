@@ -1,8 +1,16 @@
-// Modal.scss
+// modal.scss
+//
+// Description:
+// overlay styles for UI modal windows
+// use .modal for base of modal window.  Create semantic class names to extend various styles of the .modal
+//
+// Sections: (sections are prepended with @ symbol for faster search)
+//	-Base modal
+//	-Description (extends modal)
 // -------------
 
 
-// Base modal
+// @Base modal
 // ----------
 .modal {
 	display: none;
@@ -22,7 +30,7 @@
 }
 
 
-// @description (extends modal)
+// @Description (extends modal)
 // -----------------------------
 
 .description {

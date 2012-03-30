@@ -1,4 +1,9 @@
 // scrollbarss.scss
+//
+// Description:
+// customized scrollbars for browser that support it
+//
+// Support:
 // Browser/Device support: -webkit-browsers (Chrome and Safari) and on IOS devices
 //
 // Scrollbar pseudo-element selectors (right now need to be prefixed with -webkit - ie ::-webkit-scrollbar etc.):
@@ -25,10 +30,15 @@
 // 
 // More information on custom scrollbars:
 // http://www.webkit.org/blog/363/styling-scrollbars/ ( information above attributed to this article)
+//
+// Sections: (sections are prepended with @ symbol for faster search)
+// 	-Main Browser Scrollbar styles
+//	-Extended Scrollbar styles (can extend widget, toold, or box styles)
+//		-spiffy-scrollbar
 // -----------------------------------------------------
 
 
-// Main Browser Scrollbar styles
+// @Main Browser Scrollbar styles
 // Note: we are only using -webkit vendor prefix since there is no support beyond webkit for this feature currently.
 // ------------------------------
 ::-webkit-scrollbar {
@@ -57,8 +67,10 @@
 }
 
 
-// Extended Scrollbar styles
-// can extend widget, toold, or box styles
+// @Extended Scrollbar styles
+
+// @spiffy-scrollbar
+// -----------------------------------------
 .spiffy-scrollbar {
 	overflow-x: hidden;
 	overflow-y: scroll;

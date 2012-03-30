@@ -1,5 +1,7 @@
-// Grid.scss
+// grid.scss
 // 
+// Description:
+// Basic UI grid styles
 // -----------------------------------------------------
 
 @include create-grid($columnWidth, $gutterWidth);

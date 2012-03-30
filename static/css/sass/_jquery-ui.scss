@@ -1,11 +1,24 @@
 // jQuery-ui.scss
+//
+// Description: 
+// Jquery UI CSS framework
+//
+// Sections: (sections are prepended with @ symbol for faster search)
+// 	-Layout helpers
+//	-Interaction Cues
+//	-Misc visuals
+// 	-Component containers
+//	-Interaction states
+//	-Slider
 // -----------------
 /*
 * jQuery UI CSS Framework
 * Copyright (c) 2009 AUTHORS.txt (http://jqueryui.com/about)
 * Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
 */
-// Layout helpers
+
+
+// @Layout helpers
 // ----------------
 .ui-helper-hidden { display: none; }
 .ui-helper-hidden-accessible { @include screenReaderText(); }
@@ -35,18 +48,57 @@
 }
 
 
-// Interaction Cues
+// @Interaction Cues
 // -----------------
 .ui-state-disabled { cursor: default !important; }
 
+.ui-state-highlight, 
+.ui-widget-content .ui-state-highlight { 
+	border: 1px solid $yellow; 
+	background: lighten($yellow, 50%); 
+	color: $defaultTextColor;
+	
+	a {
+	 color: $defaultTextColor;
+	}
+}
+.ui-state-error, 
+.ui-widget-content .ui-state-error {
+	border: 1px solid $red; 
+	background: lighten($red, 10%); 
+	color: $red; 
+	
+	a {
+		color: $red;
+	}
+}
+.ui-state-error-text, 
+.ui-widget-content .ui-state-error-text { 
+	color: $red; 
+}
+.ui-state-disabled, 
+.ui-widget-content .ui-state-disabled { 
+	@include opacity($opacity: 35);
+	background-image: none; 
+}
+.ui-priority-primary, 
+.ui-widget-content .ui-priority-primary { 
+	font-weight: bold; 
+}
+.ui-priority-secondary, 
+.ui-widget-content .ui-priority-secondary { 
+	@include opacity($opacity: 70);
+	font-weight: normal; 
+}
 
-// Misc visuals
+
+// @Misc visuals
 // --------------
 // Overlays 
 .ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
 
-// Component containers
+// @Component containers
 // ----------------------
 .ui-widget { //reset default JQuery styling
 	font-family: inherit; 
@@ -80,7 +132,8 @@
 	}
 }
 
-// Interaction states
+
+// @Interaction states
 // --------------------
 .ui-state-default, 
 .ui-widget-content .ui-state-default { 
@@ -134,48 +187,8 @@
 	}
 }
 
-// Interaction Cues
-// ------------------
-.ui-state-highlight, 
-.ui-widget-content .ui-state-highlight { 
-	border: 1px solid $yellow; 
-	background: lighten($yellow, 50%); 
-	color: $defaultTextColor;
-	
-	a {
-	 color: $defaultTextColor;
-	}
-}
-.ui-state-error, 
-.ui-widget-content .ui-state-error {
-	border: 1px solid $red; 
-	background: lighten($red, 10%); 
-	color: $red; 
-	
-	a {
-		color: $red;
-	}
-}
-.ui-state-error-text, 
-.ui-widget-content .ui-state-error-text { 
-	color: $red; 
-}
-.ui-state-disabled, 
-.ui-widget-content .ui-state-disabled { 
-	@include opacity($opacity: 35);
-	background-image: none; 
-}
-.ui-priority-primary, 
-.ui-widget-content .ui-priority-primary { 
-	font-weight: bold; 
-}
-.ui-priority-secondary, 
-.ui-widget-content .ui-priority-secondary { 
-	@include opacity($opacity: 70);
-	font-weight: normal; 
-}
 
-// Slider
+// @Slider
 // -----------
 .ui-slider { 
 	position: relative; 

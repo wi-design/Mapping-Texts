@@ -1,10 +1,15 @@
 /*
- * Wi-Design v1.0
+ * Mapping Texts v1.0
+ *
+ * Project Name: Mapping Texts
+ * URL: mappingtexts.org
  *
  * Copyright 2012 Wi-Design, Inc.
+ * Author: Wi-Design, Inc. 
+ * Email: info@wi-design.com
  *
  */
-/* normalize.css 2012-02-07T12:37 UTC - http://github.com/necolas/normalize.css */
+/* normalize.css - http://github.com/necolas/normalize.css */
 article,
 aside,
 details,
@@ -840,12 +845,6 @@ header {
   .topic-keys[data-click="true"] span[data-dismiss] {
     display: block; }
 
-.map-legend {
-  position: absolute;
-  z-index: 1000000000;
-  padding: 0.77em;
-  background-color: white; }
-
 .button {
   display: inline-block;
   position: relative;
@@ -1014,52 +1013,6 @@ header {
   margin-top: -4px;
   border-color: #999999 transparent transparent transparent; }
 
-.icon-clipboard {
-  width: 14px;
-  height: 18px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  background: #999999; }
-  .icon-clipboard:hover {
-    background: #777777; }
-  .icon-clipboard:before {
-    z-index: 1;
-    right: 0;
-    left: 0;
-    margin: 0 auto;
-    width: 2px;
-    height: 2px;
-    background: #e2e2e2; }
-  .icon-clipboard:after {
-    right: 0;
-    left: 0;
-    margin: -1px auto 0;
-    width: 6px;
-    height: 4px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #777777 #e2e2e2 #e2e2e2;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    background: #999999; }
-
-.icon-info {
-  width: 18px;
-  height: 18px;
-  -webkit-border-radius: 9px;
-  -moz-border-radius: 9px;
-  border-radius: 9px;
-  background: #999999;
-  color: #e2e2e2;
-  font-style: oblique;
-  line-height: 1.615em;
-  text-align: center; }
-  .icon-info:hover {
-    background: #777777;
-    color: white; }
-
 ::-webkit-scrollbar {
   width: 12px; }
 
@@ -1151,6 +1104,44 @@ header {
 .ui-state-disabled {
   cursor: default !important; }
 
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight {
+  border: 1px solid #fcf823;
+  background: white;
+  color: #333333; }
+  .ui-state-highlight a,
+  .ui-widget-content .ui-state-highlight a {
+    color: #333333; }
+
+.ui-state-error,
+.ui-widget-content .ui-state-error {
+  border: 1px solid #e81414;
+  background: #ef4040;
+  color: #e81414; }
+  .ui-state-error a,
+  .ui-widget-content .ui-state-error a {
+    color: #e81414; }
+
+.ui-state-error-text,
+.ui-widget-content .ui-state-error-text {
+  color: #e81414; }
+
+.ui-state-disabled,
+.ui-widget-content .ui-state-disabled {
+  opacity: 0.35;
+  filter: alpha(opacity=35);
+  background-image: none; }
+
+.ui-priority-primary,
+.ui-widget-content .ui-priority-primary {
+  font-weight: bold; }
+
+.ui-priority-secondary,
+.ui-widget-content .ui-priority-secondary {
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+  font-weight: normal; }
+
 .ui-widget-overlay {
   position: absolute;
   top: 0;
@@ -1230,44 +1221,6 @@ header {
     color: #333333;
     text-decoration: none;
     outline: none; }
-
-.ui-state-highlight,
-.ui-widget-content .ui-state-highlight {
-  border: 1px solid #fcf823;
-  background: white;
-  color: #333333; }
-  .ui-state-highlight a,
-  .ui-widget-content .ui-state-highlight a {
-    color: #333333; }
-
-.ui-state-error,
-.ui-widget-content .ui-state-error {
-  border: 1px solid #e81414;
-  background: #ef4040;
-  color: #e81414; }
-  .ui-state-error a,
-  .ui-widget-content .ui-state-error a {
-    color: #e81414; }
-
-.ui-state-error-text,
-.ui-widget-content .ui-state-error-text {
-  color: #e81414; }
-
-.ui-state-disabled,
-.ui-widget-content .ui-state-disabled {
-  opacity: 0.35;
-  filter: alpha(opacity=35);
-  background-image: none; }
-
-.ui-priority-primary,
-.ui-widget-content .ui-priority-primary {
-  font-weight: bold; }
-
-.ui-priority-secondary,
-.ui-widget-content .ui-priority-secondary {
-  opacity: 0.7;
-  filter: alpha(opacity=70);
-  font-weight: normal; }
 
 .ui-slider {
   position: relative;

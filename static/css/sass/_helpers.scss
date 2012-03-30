@@ -1,14 +1,25 @@
+// helpers.scss
+//
+// Description:
 // Non-Semantic Helper Classes
-// ---------------
+//
+// Sections: (sections are prepended with @ symbol for faster search)
+//	-Clearfix
+//	-Displays
+//	-Image Replacement
+//	-Positioning
+//	-Screenreader
+//	-Spacing
+// ------------------------------------------------------------------------
 
 
-// Clearfix
+// @Clearfix
 .clearfix {
 	@include clearfix();
 }
 
 
-// Display
+// @Displays
 .hidden { 
 	display: none !important; 
 	visibility: hidden; 
@@ -40,7 +51,7 @@
 	visibility: hidden; 
 }
 
-// Image Replacement
+// @Image Replacement
 .ir { 
 	overflow: hidden;
 	display: block; border: 0; 
@@ -59,7 +70,7 @@
 	display: none; 
 }
 
-// Positioning
+// @Positioning
 .pull {
 	float: left;
 }
@@ -68,14 +79,14 @@
 	float: right;
 }
 
-// ScreenReader
+// @ScreenReader
 
 .screen-reader-text {
 	@include screenReaderText();
 }
 
 
-// spacing helpers
+// @Spacing 
 // p,m = padding,margin
 // a,t,r,b,l,h,v = all,top,right,bottom,left,horizontal,vertical
 // ------------------------------------------------------------

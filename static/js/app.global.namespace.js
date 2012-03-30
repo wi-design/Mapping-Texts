@@ -1,11 +1,13 @@
 /*
- * Wi-Design v1.0
+ * Mapping Texts v1.0
+ *
+ * Project Name: Mapping Texts
+ * URL: mappingtexts.org
  *
  * Copyright 2012 Wi-Design, Inc.
  * Author: Wi-Design, Inc. 
  * Email: info@wi-design.com
  *
- * Project Name: Mapping Texts
  */
 
 // Don't clobber mapping_texts namespace inside of stanford namespace if such

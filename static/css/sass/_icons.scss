@@ -1,10 +1,23 @@
 // icons.scss
+//
+// Description:
+// some basic icon styles for visual UI aids
+//
+// Use:
+// Base Icon styles (all icons inherent these base styles)
+// use <a>, <span>, or <i> tag with a class of "icon-[type of icon]"
+//
+// Sections: (sections are prepended with @ symbol for faster search)
+//	-Base
+//	-Arrow icons
+//		-Up arrow icon
+//		-Down arrow icon
+//	-Clipboard icon (@NOTE: currently hidden since not in UI uncomment for use)
+//	-info icon			(@NOTE: currently hidden since not in UI uncomment for use)
 // -----------------------------------------------------
 
-// Base Icon styles (all icons inherent these base styles)
-// use <a>, <span>, or <i> tag with a class of "icon-[type of icon]". 
-// ------------------------------------------------------------------
-
+// @Base icon styles
+// -------------------
 [class*="icon-"],
 [class^="icon-"] { 
 	display: inline-block;
@@ -32,7 +45,7 @@
 }
 
 
-// Arrow Icons
+// @Arrow icons
 // -----------
 
 // Base styles for icon arrow
@@ -60,14 +73,14 @@
 	}
 }
 
-// Up arrow icon
+// @Up arrow icon
 // -------------
 .icon-arrow.up:after {
 	margin-top: -8px;
 	border-color: transparent transparent $grayLighter transparent;
 }
 
-// Down arrow icon
+// @Down arrow icon
 // -----
 .icon-arrow.down:after {
 	margin-top: -4px;
@@ -75,66 +88,66 @@
 }
 
 
-// Clipboard icon
+// @Clipboard icon
 // --------------
-.icon-clipboard {
-	width: 14px;
-	height: 18px;
-	@include border-radius($radius: 2px);
+//.icon-clipboard {
+//	width: 14px;
+//	height: 18px;
+//	@include border-radius($radius: 2px);
 	
-	background: $grayLighter;
+//	background: $grayLighter;
 	
-	&:hover {
-		background: $grayLight;
-	}
+//	&:hover {
+//		background: $grayLight;
+//	}
 	
-	&:before {
-		z-index: 1;
+//	&:before {
+//		z-index: 1;
 		
-		right: 0;
-		left: 0;
-		margin: 0 auto;
-		width: 2px;
-		height: 2px;
+//		right: 0;
+//		left: 0;
+//		margin: 0 auto;
+//		width: 2px;
+//		height: 2px;
 		
-		background: $grayLightest;
-	}
+//		background: $grayLightest;
+//	}
 	
-	&:after {
-		right: 0;
-		left: 0;
-		margin: -1px auto 0;
-		width: 6px;
-		height: 4px;
-		border-width: 1px;
-		border-style: solid;
-		border-color: $grayLight $grayLightest $grayLightest;
-		@include border-radius($radius: 2px);
+//	&:after {
+//		right: 0;
+//		left: 0;
+//		margin: -1px auto 0;
+//		width: 6px;
+//		height: 4px;
+//		border-width: 1px;
+//		border-style: solid;
+//		border-color: $grayLight $grayLightest $grayLightest;
+//		@include border-radius($radius: 2px);
 		
-		background: $grayLighter;
-	}
-}
+//		background: $grayLighter;
+//	}
+//}
 
-// Info icon
+// @Info icon
 // ----------
-.icon-info {
-	width: 18px;
-	height: 18px;
-	@include border-radius($radius: 9px);
+//.icon-info {
+//	width: 18px;
+//	height: 18px;
+//	@include border-radius($radius: 9px);
 	
-	background: $grayLighter;
+//	background: $grayLighter;
 	
-	color: $grayLightest;
-	font-style: oblique;
-	line-height: $defaultLineHeight;
-	text-align: center;
+//	color: $grayLightest;
+//	font-style: oblique;
+//	line-height: $defaultLineHeight;
+//	text-align: center;
 	
-	&:hover {
-		background: $grayLight;
+//	&:hover {
+//		background: $grayLight;
 		
-		color: $white;
-	}
-}
+//		color: $white;
+//	}
+//}
 
 
 
