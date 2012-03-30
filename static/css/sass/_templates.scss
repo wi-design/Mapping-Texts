@@ -4,7 +4,6 @@
 // basic UI template structure
 //
 // Use:
-// .page if you UI is fixed width
 // .body wraps everything b/w the header and footer sections
 // .main is used if UI required a middle column that fluid
 // ------------------------------------------------------------
@@ -15,10 +14,6 @@ html {
 
 body {
 	min-width: 768px;
-}
-
-.page {
-	width: $pageWidth;
 }
 
 .body { //use this class to wrap all content after header and before footer tags

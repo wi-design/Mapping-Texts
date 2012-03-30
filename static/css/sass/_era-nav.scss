@@ -29,8 +29,6 @@
   line-height: $defaultLineHeight;
 	text-align: center;
   text-decoration: none;
-
-	@include transition( $transition: width 0.2s ease-in );
 }
 
 .era-nav li:nth-child(6) a {

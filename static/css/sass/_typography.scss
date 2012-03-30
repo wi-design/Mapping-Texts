@@ -273,7 +273,7 @@ a {
   text-decoration: none;
 	
 	cursor: pointer;
-	@include transition($transition: color, background-color 0.3s ease-in);
+	@include transition($transition: all 0.3s ease-in);
 
 	&:hover {
   	color: $defaultLinkColorHover;
