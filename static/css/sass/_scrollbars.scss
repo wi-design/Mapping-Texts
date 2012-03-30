@@ -43,21 +43,28 @@
 // ------------------------------
 ::-webkit-scrollbar {
     width: 12px;
+		
+		background: $gray;
 }
  
 // Track piece
 ::-webkit-scrollbar-track {
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  @include border-radius($radius: 10px);
 
 	background-color: #e2e2e2;
 }
- 
+
 // Handle
 ::-webkit-scrollbar-thumb {
 	@include border-radius($radius: 10px);
 
-	background-color: rgba(0,0,0,.3);
+	background: rgba(0,0,0,.3);
+}
+
+// Button, corner
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
+	background: $gray;
 }
 
 ::-webkit-scrollbar-thumb:window-inactive {
@@ -87,7 +94,11 @@
 	
 	&::-webkit-scrollbar {
 		width: 8px;
-
+	}
+	
+	&::-webkit-scrollbar,
+	&::-webkit-scrollbar-button,
+	&::-webkit-scrollbar-corner {
 		background-color: transparent;
 	}
 	
