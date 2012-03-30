@@ -10,8 +10,7 @@ $(function(){
 		
 		events : {
 			'slidestop'				: 'slider_updated',
-			'click li.epoch'	: 'epoch_updated',
-			'click .epoch a'	: 'prevent'
+			'click .epoch a'	: 'epoch_updated'
 		},
 		
 		initialize: function(attr) {
@@ -19,16 +18,16 @@ $(function(){
 		},
 		
 		render: function() {
-			var template = STANFORD.MAPPING_TEXTS.config.templates.time_select_view,
-					config = STANFORD.MAPPING_TEXTS.config,
+			var t = STANFORD.MAPPING_TEXTS.config.templates.time_select_view,
 					c = STANFORD.MAPPING_TEXTS.cached,
+					config = STANFORD.MAPPING_TEXTS.config,
 					data = { 
-						epochs		: c.epochs.toJSON(),
+						epochs		: this.collection.toJSON(),
 						_1800s		: _.range(config.start, 1900),
 						_1900s		: _.range(1900, 2000),
 						_2000s		: _.range(2000, config.end+1)
 					},
-					html = Mustache.to_html(template, data);
+					html = Mustache.to_html(t, data);
 					
 				
 			$(this.el)
@@ -53,18 +52,10 @@ $(function(){
 		},
 		
 		
-		epoch_updated: function(ev) {
-			var c = STANFORD.MAPPING_TEXTS.cached, current_epoch_selected;
-						
-			if ($(ev.target).get(0).nodeName === "A" || $(ev.target).get(0).nodeName === "DIV") {
-				
-				this.process_epoch( $(ev.target).attr('data-epoch') );
-			}
-			
-		},
-		
-		prevent: function(ev) { ev.preventDefault(); },
-		
+		epoch_updated: function(ev) { 
+			ev.preventDefault();
+			this.process_epoch( $(ev.target).attr('data-epoch') );
+		},		
 		
 		process_epoch: function(epoch) {
 			var c = STANFORD.MAPPING_TEXTS.cached,

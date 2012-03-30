@@ -886,7 +886,7 @@ Here is our map of Texas
 		
 		wcc_view = """
 <div class="hd">
-	<h4>total word counts</h4>
+	<h4>total word counts <small>{{y1}} - {{y2}}</small></h4>
 </div>
 
 <ul class="nav tabs">
@@ -927,7 +927,7 @@ Here is our map of Texas
 		
 		ner_view = """
 <div class="hd">
-	<h4>named entity counts</h4>
+	<h4>named entity counts <small>{{y1}} - {{y2}}</small></h4>
 </div>
 
 <ul class="nav tabs">
@@ -969,7 +969,7 @@ Here is our map of Texas
 		
 		topic_view = """
 <div class="hd">
-	<h4>topic models</h4>
+	<h4>topic models <small>{{epoch}}</small></h4>
 </div>
 	
 <div class="bd">
@@ -986,7 +986,7 @@ Here is our map of Texas
 				<li>
 					<a>
 						<div class="topic-keys" data-click="false">
-							{{.}}
+							{{model}}
 							<span class="shut" data-dismiss="shut">x</span>
 						</div>
 					</a>
@@ -1001,7 +1001,7 @@ Here is our map of Texas
 <table class="hidden" data-copy-clipboard="text">
 	<tr>
 		{{#topics}}
-			<td>{{.}}</td>
+			<td>{{model}}</td>
 		{{/topics}}
 	</tr>
 </table>

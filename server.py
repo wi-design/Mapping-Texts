@@ -32,7 +32,7 @@ class Application(tornado.web.Application):
 			(r"/topic", TopicHandler),
 			(r'/config', ConfigHandler),
 			
-			(r"/clipboard", ClipboardTestHandler),
+			#(r"/clipboard", ClipboardTestHandler),
 		]
 		
 		settings = dict(
@@ -209,18 +209,18 @@ class TopicHandler(BaseHandler):
 		
 		if postfix is None:
 			if epoch is not None:
-				result = self.r.get( self.make_topic_key_epoch(epoch) )
+				topics = self.r.get( self.make_topic_key_epoch(epoch) )
 			else:
-				result = None
+				topics = None
 		else:
 			if epoch is not None:
-				result = self.r.get( self.make_topic_key_epoch_postfix(epoch, postfix) )
+				topics = self.r.get( self.make_topic_key_epoch_postfix(epoch, postfix) )
 			else:
 				raise Exception('epoch not given as query param, required.')
 		
-		result = {
-			'topics': result
-		}
+		models = topics.split('<br>') if topics else []
+		result = {}
+		result['topics'] = [{'model': m.strip()} for m in models]
 		
 		self.write( json.dumps(result, ensure_ascii=False, encoding="UTF-8") )
 		self.set_header("Content-Type", "application/json; charset=UTF-8")

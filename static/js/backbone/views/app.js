@@ -15,7 +15,8 @@ $(function(){
 			
 			c.pubs = new STANFORD.MAPPING_TEXTS.collections.pubs();
 			c.pubs.on('reset', this.render_map, this);
-			c.pubs.on('reset', this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] });
+			//c.pubs.on('reset', this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] });
+			c.pubs.on('reset', function() { google.maps.event.trigger(c.controlUI, 'click'); });
 			
 			c.wcc_collection = new STANFORD.MAPPING_TEXTS.collections.wcc();
 			c.wcc_collection.on('reset', this.render_wcc, this);
@@ -23,8 +24,8 @@ $(function(){
 			c.ner_collection = new STANFORD.MAPPING_TEXTS.collections.ner();
 			c.ner_collection.on('reset', this.render_ner, this);
 			
-			c.topics = new STANFORD.MAPPING_TEXTS.models.topics();
-			c.topics.on('change', this.render_topics, this);
+			c.topics = new STANFORD.MAPPING_TEXTS.collections.topics();
+			c.topics.on('reset', this.render_topics, this);
 
 		},
 		
@@ -37,17 +38,17 @@ $(function(){
 					start = parseInt(config.start, 10),
 					end = parseInt(config.end, 10);
 			
+			this.render_time();
+						
 			c.selected_year_range = {y1: start, y2: end};
+			c.epochs.set_selected({y: end});
 			
 			this.fetch_data.call({ fetch_funs: ['fetch_publications'] });
 
-			this.render_time();
 			this.render_wcc();
 			this.render_ner();
 			this.render_topics();
 			
-			c.epochs.set_selected({y: end});
-
 			h.invokePlugins({
 				parentEl: '#app-ds-view',
 				plugins: [ 'modal' ]
@@ -76,9 +77,12 @@ $(function(){
 		//
 		render_time: function() {
 			var c = STANFORD.MAPPING_TEXTS.cached,
-					time_select_view = new STANFORD.MAPPING_TEXTS.views.time_select_view(),
-					time_select_view_elem = $(this.el).find('#time-select-view'),
-					h = STANFORD.MAPPING_TEXTS.helpers;
+					h = STANFORD.MAPPING_TEXTS.helpers,
+					time_select_view = new STANFORD.MAPPING_TEXTS.views.time_select_view({
+						collection: c.epochs
+					}),
+					time_select_view_elem = $(this.el).find('#time-select-view');
+					
 			
 			time_select_view_elem.replaceWith( time_select_view.render().el );
 			time_select_view_elem = $(this.el).find('#time-select-view');
@@ -203,7 +207,6 @@ $(function(){
 			  controlUI.style.borderWidth = '1px';
 			  controlUI.style.cursor = 'pointer';
 			  controlUI.style.textAlign = 'center';
-			  controlUI.title = 'Select All Cities';
 			  controlDiv.appendChild(controlUI);
 
 			  // Set CSS for the control interior
@@ -216,6 +219,8 @@ $(function(){
 			  controlUI.appendChild(controlText);
 
 			  // Click handler for "Select All"
+				c.controlUI = controlUI;
+				
 			  google.maps.event.addDomListener(controlUI, 'click', function() {
 					var num_of_pubs = c.pubs.size(),
 							city_overlay,
@@ -313,6 +318,7 @@ $(function(){
 						radius = 20000 + (pubs_tally * 5000),
 						zIndex = 1000000,
 						city_options = {
+							clickable: true,
 							strokeColor: "#FF0000",
 							strokeOpacity: 0.8,
 							strokeWeight: 2,
@@ -324,10 +330,22 @@ $(function(){
 							zIndex: zIndex - radius
 				    },
 						
+						content = "<h6>" + city.get('city') + "</h6><p>Publications: " + pubs_tally,
+						infowindow = new google.maps.InfoWindow({content: content}),
+						
 						city_circle = new google.maps.Circle(city_options);
 						
 				city.set({circle_overlay: city_circle});
 				
+				// Mouse handlers for circle overlay
+				google.maps.event.addListener(city_circle, 'mouseover', function(ev) {
+					infowindow.setPosition(city_circle.getCenter());
+					infowindow.open(map);
+				});
+				
+				google.maps.event.addListener(city_circle, 'mouseout', function(ev) {
+					infowindow.close();
+				});
 				
 				// Click handler for "click" on circle overlay		
 				google.maps.event.addListener(city_circle, 'click', function(last_city) {
@@ -352,7 +370,6 @@ $(function(){
 					
 					console.log('circle rightclick:');
 					
-					//city.set({display: false});
 					city.set({display: false}, _.isBoolean(last_city) ? {fetch_data: last_city} : {});
 					
 					console.log('City data:');
@@ -476,8 +493,13 @@ $(function(){
 		//  #topic-view
 		//
 		render_topics: function() {
-			var topic_view = new STANFORD.MAPPING_TEXTS.views.topic_view(),
-					h = STANFORD.MAPPING_TEXTS.helpers;
+			var c = STANFORD.MAPPING_TEXTS.cached,
+					h = STANFORD.MAPPING_TEXTS.helpers,
+					
+					topics = c.topics,
+					topic_view = new STANFORD.MAPPING_TEXTS.views.topic_view({
+						collection: topics
+					});
 			
 			$(this.el)
 			.find('#topic-view')

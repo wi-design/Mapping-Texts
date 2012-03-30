@@ -16,11 +16,15 @@ $(function(){
 		},
 		
 		render: function() {
-			var template = STANFORD.MAPPING_TEXTS.config.templates.topic_view,
+			var c = STANFORD.MAPPING_TEXTS.cached,
+					t = STANFORD.MAPPING_TEXTS.config.templates.topic_view,
 					model = STANFORD.MAPPING_TEXTS.cached.topics,
-					data = { topics: model.has('topics') ? model.get('topics').split('<br>') : [] },
-					html = Mustache.to_html(template, data);
-		
+					data = { 
+						epoch: c.epochs.get_selected().get('years'),
+						topics: this.collection.toJSON()
+					},
+					html = Mustache.to_html(t, data);
+
 			$(this.el).html(html);
 			return this;
 		},

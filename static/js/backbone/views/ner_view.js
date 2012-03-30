@@ -13,12 +13,15 @@ $(function(){
 		},
 		
 		render: function() {
-			var template = STANFORD.MAPPING_TEXTS.config.templates.ner_view,
+			var c = STANFORD.MAPPING_TEXTS.cached,
+					t = STANFORD.MAPPING_TEXTS.config.templates.ner_view,
 					data = { 
 						ner: this.collection.toJSON(),
-						tags: this.options.tags 
+						tags: this.options.tags,
+						y1: c.selected_year_range.y1,
+						y2: c.selected_year_range.y2 
 					},
-					html = Mustache.to_html(template, data);
+					html = Mustache.to_html(t, data);
 		
 			$(this.el).html(html);
 			return this;
