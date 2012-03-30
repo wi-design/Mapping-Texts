@@ -5,7 +5,6 @@
  *  - Attach id="[value]" to modal element (ie. <div>)
  *  - Attach an attr. data-modal-window="#[value]" to the click element that will trigger the modal element (ie: <a>, <span> ...)
  *  - Call the plugin: $('<element>[data-modal-window]').modal();
- *    Plugin call should be called at bottom of <body> wrapped in a document ready handler: $(function){ });
  *
  * More on this plugin http://jquerytools.org/demos/
  */

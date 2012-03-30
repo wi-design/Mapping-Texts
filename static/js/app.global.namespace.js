@@ -4,8 +4,9 @@
  * Project Name: Mapping Texts
  * URL: mappingtexts.org
  *
- * Copyright 2012 Wi-Design, Inc.
+ * 
  * Author: Wi-Design, Inc. 
+ * Website: wi-design.com
  * Email: info@wi-design.com
  *
  */

@@ -5,10 +5,6 @@
 // GLOBAL VALUES
 // --------------------------------------------------
 
-// Links
-$defaultLinkColor:             #0088cc !default;
-$defaultLinkColorHover:        darken($defaultLinkColor, 30%) !default;
-
 // Grays
 $black:                 #000 !default;
 $silver:								#c0c0c0 !default;
@@ -31,6 +27,10 @@ $teal:									#0b8c8f !default;
 $pink:                  #ba3b61 !default;
 $purple:                #720172 !default;
 
+// Links
+$defaultLinkColor:             #0088cc !default;
+$defaultLinkColorHover:        darken($defaultLinkColor, 30%) !default;
+
 // Theming Coloring
 $primaryThemeColor:			#990000 !default;
 $secondaryThemeColor:		#e7b19a !default;
@@ -47,18 +47,8 @@ $defaultMargin:					0.770em  !default; // 10px / 13px
 $defaultPadding:				0.770em !default; // 10px / 13px
 
 
-// Basic Variables
-// -----------------
-				
-// Hr border color
-$hrBorder:              $grayLightest !default;
-
-
 // scaffolding
 // --------------------------------------------------
-
-$pageWidth:				100% !default;
-$innerWidth:			90% !default;
 
 // Responsive grid
 $columnWidth:    10% !default;
