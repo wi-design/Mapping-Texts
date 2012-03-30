@@ -907,7 +907,7 @@ Here is our map of Texas
 		<div class="tab-pane">
 			<ul class="tag-cloud">
 				{{#tags}}
-					<li class="{{class}}">{{tag}}</li>
+					<li class="tags" style="font-size:{{percentage}}%;">{{tag}}</li>
 				{{/tags}}
 			</ul>
 		</div>
@@ -949,7 +949,7 @@ Here is our map of Texas
 		<div class="tab-pane">
 			<ul class="tag-cloud">
 				{{#tags}}
-					<li class="{{class}}">{{tag}}</li>
+					<li class="tags" style="font-size:{{percentage}}%;">{{tag}}</li>
 				{{/tags}}
 			</ul>
 		</div>

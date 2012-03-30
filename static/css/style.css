@@ -1477,42 +1477,13 @@ header {
     transform: rotate(45deg); }
 
 .tag-cloud {
-  padding: 0.77em 1.54em;
+  margin-left: 0;
+  font-size: 400%;
   text-align: center;
   list-style-type: none; }
-  .tag-cloud [class*="tag-"] {
+  .tag-cloud .tags {
     display: inline;
     font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; }
-  .tag-cloud .tag-1 {
-    color: #999;
-    font-size: 6pt; }
-  .tag-cloud .tag-2 {
-    color: #777;
-    font-size: 7pt; }
-  .tag-cloud .tag-3 {
-    color: #555;
-    font-size: 9pt; }
-  .tag-cloud .tag-4 {
-    color: #333;
-    font-size: 11pt; }
-  .tag-cloud .tag-5 {
-    color: #222;
-    font-size: 14pt; }
-  .tag-cloud .tag-6 {
-    color: #111;
-    font-size: 17pt;
-    font-weight: 400; }
-  .tag-cloud .tag-7 {
-    font-size: 20pt;
-    font-weight: 500; }
-  .tag-cloud .tag-8 {
-    font-size: 23pt;
-    font-weight: 600; }
-  .tag-cloud .tag-9 {
-    font-size: 26pt;
-    font-weight: 700; }
-  .tag-cloud .tag-10 {
-    font-size: 28pt; }
 
 .ajax-container {
   position: absolute;

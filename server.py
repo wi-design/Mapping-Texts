@@ -103,7 +103,7 @@ class BaseHandler(tornado.web.RequestHandler):
 		temp_res = 'out'
 		
 		pipe.zunionstore(temp_res, key_list)
-		pipe.zrevrange(temp_res, 0, 24, withscores=True)
+		pipe.zrevrange(temp_res, 0, 49, withscores=True)
 		pipe.delete(temp_res)
 		
 		status1, result, status2 = pipe.execute()
