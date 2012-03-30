@@ -19,8 +19,9 @@ $(function(){
 			var c = STANFORD.MAPPING_TEXTS.cached,
 					t = STANFORD.MAPPING_TEXTS.config.templates.topic_view,
 					model = STANFORD.MAPPING_TEXTS.cached.topics,
+					epoch = c.epochs.get_selected(),
 					data = { 
-						epoch: c.epochs.get_selected().get('years'),
+						epoch: epoch ? epoch.get('years') : 'no era selected',
 						topics: this.collection.toJSON()
 					},
 					html = Mustache.to_html(t, data);

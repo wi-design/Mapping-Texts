@@ -36,16 +36,19 @@
 				
 		set_selected: function(args) {
 			var query,
-					result;
+					result,
+					y1, y2;
 			
 			if (args.epoch) {
 			
 				query = function(e) { return e.get('years') === args.epoch; };
 				result = this.find( query );
 			
-			} else if (args.y) {
-			
-				query = function(e) { return args.y > e.get('begin') && args.y <= e.get('end'); };
+			} else if (args.y1 && args.y2) {
+				
+				y1 = parseInt(args.y1, 10);
+				y2 = parseInt(args.y2, 10);
+				query = function(e) { return y1 === e.get('begin') && y2 === e.get('end'); };
 				result = this.find( query );
 				
 			}
