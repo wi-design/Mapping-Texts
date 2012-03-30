@@ -9,6 +9,10 @@
 // .main is used if UI required a middle column that fluid
 // ------------------------------------------------------------
 
+html {
+	overflow-y: scroll;
+}
+
 body {
 	min-width: 768px;
 }

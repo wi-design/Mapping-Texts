@@ -53,6 +53,7 @@ $(function(){
 				plugins: [ 'modal' ]
 			});
 			
+			h.toggleRows();
 		},
 
 		

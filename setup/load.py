@@ -873,7 +873,7 @@ Here is our map of Texas
 		
 		city_view = """
 <h5 data-details="summary" data-pub="label">{{city}} 
-	<input type="checkbox" class="check-all-pubs hidden" checked="checked" data-checkbox="check-all"><label><span class="screen-reader-text">check all</span></label>
+	<!--<input type="checkbox" class="check-all-pubs hidden" checked="checked" data-checkbox="check-all"><label><span class="screen-reader-text">check all</span></label>-->
 </h5>
 <ul class="simple-list" data-details="content" data-pub="listings">
 	{{#pubs}}

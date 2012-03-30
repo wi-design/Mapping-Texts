@@ -238,6 +238,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+html {
+  overflow-y: scroll; }
+
 body {
   min-width: 768px; }
 
@@ -989,20 +992,19 @@ header {
     height: 0; }
 
 .icon-arrow {
-  margin: 0.385em 0 0.193em;
   width: 2px;
   height: 1px;
-  padding: 0.77em;
+  padding: 0.615em;
   border: 1px solid #f2f2f2; }
   .icon-arrow:hover {
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); }
+    -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1); }
 
 .icon-arrow.up:after,
 .icon-arrow.down:after {
-  margin-left: -5px;
-  border-width: 6px;
+  margin-left: -4px;
+  border-width: 5px;
   border-style: solid; }
 
 .icon-arrow.up:after {
@@ -1010,7 +1012,7 @@ header {
   border-color: transparent transparent #999999 transparent; }
 
 .icon-arrow.down:after {
-  margin-top: -4px;
+  margin-top: -2px;
   border-color: #999999 transparent transparent transparent; }
 
 ::-webkit-scrollbar {
