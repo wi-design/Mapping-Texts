@@ -276,7 +276,7 @@ $(function(){
 			  controlText.style.fontSize = '12px';
 			  controlText.style.paddingLeft = '4px';
 			  controlText.style.paddingRight = '4px';
-			  controlText.innerHTML = '<h6>Legend</h6><p>circle size is linearly proportional to the number of publications which is subject to the criteria of the time selected.';
+			  controlText.innerHTML = '<h6>Legend</h6><p>Circle size corresponds to the number of publications per city for the selected time period.';
 			  controlUI.appendChild(controlText);
 			}
 			
