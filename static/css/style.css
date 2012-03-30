@@ -766,9 +766,11 @@ header {
   .module .hd + .bd {
     margin-top: 33px;
     border-top: 1px solid #999999; }
-  .module h1, .module h2, .module h3, .module h4 {
+  .module h1, .module h2, .module h3, .module h4, .module h5, .module h6 {
     line-height: 2.563em;
     text-align: center; }
+  .module h6 {
+    margin-top: -0.77em; }
   .module .bd {
     background-color: #d8d8d8;
     background-image: -moz-linear-gradient(top, #cccccc, #eaeaea);
