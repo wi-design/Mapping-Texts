@@ -864,7 +864,7 @@ Here is our map of Texas
 
 	<div class="bd box">
 		<div class="spiffy-scrollbar">
-			<span>No cities selected...</span>
+			<span>Please select cities using the map.</span>
 		</div>
 	</div>
 
