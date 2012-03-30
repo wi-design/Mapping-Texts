@@ -45,7 +45,7 @@ $(function(){
 					
 			c.selected_year_range = {y1: y1, y2: y2};
 			
-			c.epochs.set_selected({y: y2});
+			c.epochs.set_selected({y1: y1, y2: y2});
 			
 			this.fetch_data.call({ fetch_funs: ['fetch_publications'] });
 		},
