@@ -1273,7 +1273,12 @@ header {
   .ui-slider .ui-slider-handle {
     border: none;
     background: #e7b19a;
-    cursor: move; }
+    cursor: move;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none; }
     .ui-slider .ui-slider-handle:before {
       content: '';
       position: absolute;
@@ -1472,9 +1477,21 @@ header {
   font-size: 600%;
   text-align: center;
   list-style-type: none; }
-  .tag-cloud .tags {
+  .tag-cloud li[class*="tag-"] {
     display: inline;
     font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; }
+  .tag-cloud .tag-1 {
+    color: black;
+    font-weight: bold; }
+  .tag-cloud .tag-2 {
+    color: #f4765e;
+    font-weight: bold; }
+  .tag-cloud .tag-3 {
+    color: silver;
+    font-weight: normal; }
+  .tag-cloud .tag-4 {
+    color: #a2c609;
+    font-weight: normal; }
 
 .ajax-container {
   position: absolute;

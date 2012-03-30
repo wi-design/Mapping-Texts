@@ -18,7 +18,7 @@ $white:                 #fff !default;
 
 // Accent colors
 $blue:                  #36a5d1 !default;
-$navy:              		#0064cd !default;
+$navy:              		#01488e !default;
 $green:                 #2e912e !default;
 $red:                   #e81414 !default;
 $yellow:                #fcf823 !default;
@@ -45,6 +45,16 @@ $defaultTextColor:			$grayDark !default;
 // -------------
 $defaultMargin:					0.770em  !default; // 10px / 13px	
 $defaultPadding:				0.770em !default; // 10px / 13px
+
+
+// Extra variables
+// ----------------------
+
+// Tag clouds
+$cloud-1:	$black;						
+$cloud-2: #f4765e;
+$cloud-3: $silver;
+$cloud-4: #a2c609;
 
 
 // scaffolding

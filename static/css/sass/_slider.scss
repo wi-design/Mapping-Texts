@@ -27,6 +27,7 @@
 		background: $secondaryThemeColor;
 		 
 		cursor: move;
+		@include transition($transition: none);
 		
 		&:before {
 			content: '';
