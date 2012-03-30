@@ -1,7 +1,15 @@
 // navs.scss
+//
+// Description:
+// UI wide navigation should be placed here
+//
+// Sections: (sections are prepended with @ symbol for faster search)
+//	-Base Nav styles
+//	-Tabs
 // -----------------------------------------------------
 
-// Base Nav styles
+
+// @Base Nav styles
 // ----------
 .nav {
 	margin-bottom: $defaultLineHeight;
@@ -22,7 +30,7 @@
 }
 
 
-// TABS
+// @TABS
 // ----
 
 // Give the tabs something to sit on

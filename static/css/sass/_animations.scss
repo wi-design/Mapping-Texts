@@ -1,7 +1,14 @@
 // animations.scss
+//
+// Description: 
+// all CSS animations referenced throughout application are placed here
+//
+// Sections: (sections are prepended with @ symbol for faster search)
+//	-Infinite Circle
 // -----------------
 
-
+// @Infinite Circle
+//------------------
 @-webkit-keyframes infinite-circle {
 	from { -webkit-transform: rotate(0deg) translateZ(0); }
 		to { -webkit-transform: rotate(360deg) translateZ(0); }

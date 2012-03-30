@@ -1,6 +1,17 @@
-// Templates.scss
+// templates.scss
 // 
-// -----------------------------------------------------
+// Description:
+// basic UI template structure
+//
+// Use:
+// .page if you UI is fixed width
+// .body wraps everything b/w the header and footer sections
+// .main is used if UI required a middle column that fluid
+// ------------------------------------------------------------
+
+html {
+	overflow-y: scroll;
+}
 
 body {
 	min-width: 768px;

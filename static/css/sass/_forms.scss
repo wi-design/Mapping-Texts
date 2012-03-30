@@ -1,8 +1,17 @@
 // Forms.scss
+//
+// Description
 // Base styles for various input types, form layouts, and states
+//
+// Sections: (sections are prepended with @ symbol for faster search)
+//	-General styles
+//		-Inputs, Textareas, Selects
+//		-Checkboxes/Radio buttons
+//	-Extend Form elements
+//		-Extend labels
 // -------------------------------------------------------------
 
-// GENERAL STYLES
+// @General styles
 // --------------
 
 form {
@@ -32,7 +41,7 @@ label {
 }
 
 
-// Inputs, Textareas, Selects
+// @Inputs, Textareas, Selects
 input,
 textarea,
 select {
@@ -43,8 +52,8 @@ select {
 }
 
 
-// CHECKBOXES & RADIOS
-// -------------------
+// @Checkboxes/Radio buttons
+// ------------------------
 
 input[type="radio"] + label,
 input[type="checkbox"] + label {
@@ -54,10 +63,10 @@ input[type="checkbox"] + label {
 }
 
 
-// Extended Form elements
+// @Extend Form elements
 // -------------------------
 
-//labels
+// @Extend labels
 // labels used for checking and unchecking all publications in pub-view widget of UI
 .check-all-pubs:checked + label:after { // goes with setupCheckboxAll plugin
 	content: 'Deselect All';

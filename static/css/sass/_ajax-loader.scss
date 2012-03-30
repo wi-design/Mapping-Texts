@@ -1,12 +1,21 @@
 // ajax-loader.scss
+//
+// Description: 
+// Custom ajax loader for visual indication of application state for users
+//
 // Use:
 // Position the html inside any element with a position set to relative.
+// Example syntax: <div class=ajax-container><div class=ajax-loading></div></div>
 // 
-// Syntax for ajax loader:
-// <div class=ajax-container><div class=ajax-loading></div></div>
+// Sections: (sections are prepended with @ symbol for faster search)
+//	-Component container
+//	-Interaction cue
 // -----------------
 
 
+// @Component container
+// wraps interaction cue
+// ---------------------
 .ajax-container {
 	position: absolute;
 	z-index: 1000001;
@@ -33,6 +42,9 @@
 		text-align: center;
 	}
 	
+	// @Interaction cue
+	// signals to user that application is still fetching data
+	// --------------------------------------------------------
 	.ajax-loading { 
 		position: absolute;
 		

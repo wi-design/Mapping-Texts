@@ -1,7 +1,21 @@
 // widgets.scss
-// -----------------------------------------------------
+//
+// Descrition:
+// UI custom widget styles for various container within UI
+//
+// Sections: (sections are prepended with @ symbol for faster search)
+//	-Details widget
+//	-Base widget styles
+//		-Action bar
+//		-Map widget
+//	-Widget Skins 
+//		-Box skin
+//		-Tool skin
+//		-Module skin
+// --------------------------------------------------------------------
 
-// details widget
+
+// @Details widget
 // --------------
 // give details and summary elms position
 [data-details="details"],
@@ -73,8 +87,8 @@
 }
 
 
-// custom widgets
-// --------------
+// @Base widget styles
+// ---------------------
 
 .widget,
 .bd,
@@ -110,8 +124,13 @@
 	margin-left: $defaultPadding;
 }
 
+.bd > .inner {
+	min-height: 50px;
+}
 
-// Action bar for copy and info buttons, goes inside module
+
+// @Action bar
+// for copy and info buttons, goes inside module
 .action-bar {// wrap copy and info buttons in a div with this class
 	overflow: hidden;
 	
@@ -119,14 +138,15 @@
 }
 
 
-// Map 
+// @Map widget
 // special class for id:map-view container to provide a parent height 
 .map-view {
 	height: 400px;
 }
 
 
-// Skins to style different widgets
+// @Widget Skins 
+// to style different widgets
 
 // basic (extends widget), used for basic style to widget
 .basic {
@@ -135,6 +155,7 @@
 }
 
 
+// @Box skin
 // box styles (child/extends bd class), default box styles
 .box { 
 	padding: $defaultPadding;
@@ -144,7 +165,7 @@
 	background-color: $white;
 }
 
-
+// @Tool skin
 // tool (extends widget), defines user interaction with this widget
 .tool { // used for div to toggle publications show on map
 	background-color: $grayLightest;
@@ -158,9 +179,9 @@
 	}
 }
 
-
-// module ( extends widget - used for three horizontal blocks below map and publications tool)
-// modules are for displaying information from a user interaction from a tool
+// @Module skin
+// ( extends widget - used for three horizontal blocks below map and publications tool)
+// for displaying information from a user interaction from a tool
 .module {
 	padding-bottom: $defaultMargin;
 	

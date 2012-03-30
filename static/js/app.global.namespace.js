@@ -1,3 +1,15 @@
+/*
+ * Mapping Texts v1.0
+ *
+ * Project Name: Mapping Texts
+ * URL: mappingtexts.org
+ *
+ * Copyright 2012 Wi-Design, Inc.
+ * Author: Wi-Design, Inc. 
+ * Email: info@wi-design.com
+ *
+ */
+
 // Don't clobber mapping_texts namespace inside of stanford namespace if such
 // namespaces exist
 
@@ -498,7 +510,6 @@ STANFORD.MAPPING_TEXTS = {
 		
 		
 		// tag cloud
-		
 		make_tag_cloud: function(tags, weights) {
 			
 			var class_mapping = function(w) {
@@ -639,11 +650,11 @@ STANFORD.MAPPING_TEXTS = {
 				success: function(model){
 					console.log("**** topics fetched success");
 					
-					h.del_ajax_loader_template( $('#topic-view') );
+					h.del_ajax_loader_template( $('#topic-view').find('.inner') );
 				}
 			});
 			
-			h.add_ajax_loader_template( $('#topic-view') );
+			h.add_ajax_loader_template( $('#topic-view').find('.inner') );
 		},
 		
 		// set of functions that return the data arg for
@@ -753,6 +764,35 @@ STANFORD.MAPPING_TEXTS = {
 					}
 				}
 			);
+		},
+		
+		// toggle row heights
+		toggleRows: function() {
+			var rows = $('[data-toggle="height"]'), //find row/s to toggle height on
+					iconCont = $('<div><i></i></div>'), // create container to hold icon and icon
+					toggleSwitch = iconCont.find('i'); // target icon
+						
+					// append icon after row				
+					rows.after(iconCont); 
+					
+					// add classes for iconCont and icon itself
+					iconCont.css('overflow' , 'hidden');
+					iconCont.find('i').addClass('icon-arrow up push');
+					
+			toggleSwitch.on('click', function(e) { // toggle height of rows
+					$(rows).animate({
+						height : 'toggle'
+					}, 'fast');
+
+				toggleSwitch.toggleClass(function() { // toggle class of icon based on height of rows
+					if( $(this).find(rows).filter(':hidden') ) {
+						return 'down'
+					} else {
+						return 'up'
+					}
+				});
+
+			});
 		}
 		
 	}, // end helper functions

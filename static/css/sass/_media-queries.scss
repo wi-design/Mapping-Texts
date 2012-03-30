@@ -1,8 +1,15 @@
 // media-queries.scss
-// use this sheet to add responsiveness to application elements
+//
+// Description:
+// use this sheet to add special media-queries to make UI more resposive
+//
+// Sections: (sections are prepended with @ symbol for faster search)
+//	-Large Desktop - 1200
 // -------------------------------------------------------------
 
 
+// @Large Desktop - 1200
+// ------------------------------------
 @media (min-width: 1200px) {
 	.era-nav a {
 		width: 10%;

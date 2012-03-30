@@ -1,13 +1,26 @@
 // buttons.scss
+// 
+// Description:
 // Interactive Link styles
+//
+// Use:
+// Can be used to extend basically any interactive HTML element and some inline-elements
+// ie: <a>,<button>,<input type=button/submit>, or <span> for inline-elements
+//
+// Sections: (sections are prepended with @ symbol for faster search)
+//	-Interaction states
+//		-Base states
+//		-Active state 
+//		-Focus state
+//		-Hover state
 // -----------------------
 
 
-// Interactions States
+// @Interaction states
 // -----------------------
 
-// Base
-// --------
+// @Base state
+// -----------
 .button {
 	display: inline-block;
 	position: relative;
@@ -31,8 +44,8 @@
 	@include transition( $transition: background-position .1s linear );
 }
 
-// Active
-// -------
+// @Active state
+// -------------
 .button:active {
 	$shadow: 0 1px 1px rgba(0, 0, 0, .20) inset;
 	@include box-shadow( $shadow );
@@ -43,15 +56,15 @@
 }
 
 
-// Focus 
-// -----
+// @Focus state 
+// -------------
 .button:focus {
 	outline: thin dotted #333;
 }
 
 
-// Hover
-// --------
+// @Hover state
+// -------------
 .button:hover {
 	@include gradient-vertical($startColor: $white, $endColor: #ececec);
 

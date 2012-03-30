@@ -2,7 +2,7 @@ $(function(){
 	
 	STANFORD.MAPPING_TEXTS.views.time_select_view = Backbone.View.extend({
 		
-		tagName: "div",
+		tagName: "section",
 		
 		id: "time-select-view",
 		
@@ -29,7 +29,6 @@ $(function(){
 					},
 					html = Mustache.to_html(t, data);
 					
-				
 			$(this.el)
 			.html(html)
 			.find('#valueAA option[value="' + config.start + '"]').attr('selected','selected')

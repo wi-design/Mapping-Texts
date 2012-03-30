@@ -873,12 +873,12 @@ Here is our map of Texas
 		
 		city_view = """
 <h5 data-details="summary" data-pub="label">{{city}} 
-	<input type="checkbox" class="check-all-pubs hidden" checked="checked" data-checkbox="check-all"><label><span class="screen-reader-text">check all</span></label>
+	<!--<input type="checkbox" class="check-all-pubs hidden" checked="checked" data-checkbox="check-all"><label><span class="screen-reader-text">check all</span></label>-->
 </h5>
 <ul class="simple-list" data-details="content" data-pub="listings">
 	{{#pubs}}
 		<li><input type="checkbox" name="" id="pubseq-{{pubseq}}" class="pub-cb" checked="true"><label for="pubseq-{{pubseq}}" class="checkbox">{{pub}}</label> 
-		 <small>[ <a href="http://texashistory.unt.edu/search/?q={{pub}}&t=fulltext&fq=dc_type%3Atext_newspaper" target="_blank">view</a> ]</small>
+		 <small>[ <a href="http://texashistory.unt.edu/search/?q={{pub}}&t=fulltext&fq=dc_type%3Atext_newspaper" target="_blank">view pages</a> ]</small>
 		</li>
 	{{/pubs}}
 </ul>
@@ -890,15 +890,15 @@ Here is our map of Texas
 </div>
 
 <ul class="nav tabs">
-	<li><a href-"#" class="active">list</a></li>
-	<li><a href="#">tag cloud</a></li>
+	<li><a href-"#" class="active">ranked list</a></li>
+	<li><a href="#">word cloud</a></li>
 </ul>
 
 <div class="bd">
 
 	<div class="action-bar">
-		<a class="button push" data-modal-box="#word-counts-info" title="more about word counts">info</a>
-		<a class="button" title="copy to clipboard" data-copy-clipboard="button">copy</a>
+		<a class="button push" data-modal-box="#word-counts-info" title="more about word counts">about</a>
+		<a class="button" title="copy to clipboard" data-copy-clipboard="button">copy list</a>
 	</div>
 
 	<div class="inner box tab-content">
@@ -931,15 +931,15 @@ Here is our map of Texas
 </div>
 
 <ul class="nav tabs">
-	<li><a href-"#" class="active">list</a></li>
-	<li><a href="#">tag cloud</a></li>
+	<li><a href-"#" class="active">ranked list</a></li>
+	<li><a href="#">word cloud</a></li>
 </ul>
 
 <div class="bd">
 	
 	<div class="action-bar">
-		<a class="button push" data-modal-box="#named-entity-info" title="more about named entity counts">info</a>
-		<a class="button" title="copy to clipboard" data-copy-clipboard="button">copy</a>
+		<a class="button push" data-modal-box="#named-entity-info" title="more about named entity counts">about</a>
+		<a class="button" title="copy to clipboard" data-copy-clipboard="button">copy list</a>
 	</div>
 
 	<div class="inner box tab-content">
@@ -975,8 +975,8 @@ Here is our map of Texas
 <div class="bd">
 	
 	<div class="action-bar">
-		<a class="button push" data-modal-box="#topic-modeling-info" title="more about topic modeling">info</a>
-		<a class="button" title="copy to clipboard" data-copy-clipboard="button">copy</a>
+		<a class="button push" data-modal-box="#topic-modeling-info" title="more about topic modeling">about</a>
+		<a class="button" title="copy to clipboard" data-copy-clipboard="button">copy list</a>
 	</div>
 	
 	<div class="inner box">
