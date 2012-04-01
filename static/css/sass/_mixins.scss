@@ -49,12 +49,6 @@
   white-space: nowrap;
 }
 
-// Webkit-style focus
-// ------------------
-@mixin tab_focus() { //
-  outline: thin dotted #333;
-}
-
 
 // Conversion Functions 
 // --------------------
@@ -71,18 +65,9 @@
   font: $weight $size + /$lineHeight $family;
 }
 
-@mixin font-styles($size: $baseFontSize, $weight: normal, $lineHeight: $baseLineHeight) {
-  font-size: $size;
-  font-weight: $weight;
-  line-height: $lineHeight;
-}
-
 
 // Responsive grid
 // -------------------------
-@mixin calculate-column-width( $columnWidth, $columns, $gutterWidth ) {
-  width: ( $columnWidth * $columns ) - $gutterWidth;
-}
 
 @mixin calculate-fluid-columns( $numerator: 1, $denominator: 1, $gutterWidth: $gutterWidth ) {
 	width: ( $numerator / $denominator ) * 100 - $gutterWidth;
@@ -124,10 +109,6 @@
 	.span-80pct			{ @include calculate-fluid-columns( $numerator: 4, $denominator: 5 ); }
 	
 	// extra Grid Divisions
-	// grid divisions by 1/6
-	.span-16pct 		{ @include calculate-fluid-columns( $numerator: 1, $denominator: 6 ); }
-	.span-83pct			{ @include calculate-fluid-columns( $numerator: 5, $denominator: 6 ); }
-	
 	// grid divisions by 1/7
 	.span-14pct			{ @include calculate-fluid-columns( $numerator: 1, $denominator: 7 ); }
 	.span-28pct			{ @include calculate-fluid-columns( $numerator: 2, $denominator: 7 ); }

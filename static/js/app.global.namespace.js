@@ -4,8 +4,9 @@
  * Project Name: Mapping Texts
  * URL: mappingtexts.org
  *
- * Copyright 2012 Wi-Design, Inc.
+ * 
  * Author: Wi-Design, Inc. 
+ * Website: wi-design.com
  * Email: info@wi-design.com
  *
  */
@@ -513,16 +514,23 @@ STANFORD.MAPPING_TEXTS = {
 		make_tag_cloud: function(tags, weights) {
 			
 			var denominator = weights[0],
-					class_mapping = function(w) {
+					percentage_mapping = function(w) {
 						return Math.round((w / denominator) * 100);
 					},
-					
-					tag_classes = _.map(weights, class_mapping),
+					class_mapping = function(percentage, index) {
+						if (font_percentages[index] <= 25) return 'tag-1';
+						else if (font_percentages[index] <= 50) return 'tag-2';
+						else if (font_percentages[index] <= 75) return 'tag-3';
+						else return 'tag-4';
+					},
+					font_percentages = _.map(weights, percentage_mapping),
+					tag_classes = _.map(font_percentages, class_mapping),
 					
 					make_tag_obj = function(tag, index) {
 						return {
 							tag: tag,
-							percentage: tag_classes[index]
+							percentage: font_percentages[index],
+							class: tag_classes[index]
 						};
 					},
 					tag_array = _.map(tags, make_tag_obj);

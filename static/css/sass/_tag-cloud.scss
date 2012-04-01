@@ -8,15 +8,32 @@
 .tag-cloud {
 	margin-left: 0;
 	
-	font-size: 400%;
+	font-size: 600%;
 	text-align: center;
 	list-style-type: none;
 	
-	.tags {
+	li[class*="tag-"]{
 		display: inline;
 		
 		font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
 	}
+	
+	
+	$tags: 
+		1 $cloud-1 bold, 
+		2 $cloud-2 bold, 
+		3 $cloud-3 normal, 
+		4 $cloud-4 normal;
+
+	@each $i in $tags {
+	  .tag-#{nth($i, 1)} {
+	    color: nth($i, 2);
+			font-weight: nth($i, 3);
+	  }
+	}
+
 }
+
+
 
 

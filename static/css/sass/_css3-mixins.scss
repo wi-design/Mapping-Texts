@@ -107,15 +107,6 @@
 // BACKGROUNDS
 // --------------------------------------------------
 
-@mixin translucent-background($color: $white, $alpha: 1) {
-    background-color: hsla(hue($color), saturation($color), lightness($color), $alpha);
-}
-
-@mixin translucent-border($color: $white, $alpha: 1) {
-  border-color: hsla(hue($color), saturation($color), lightness($color), $alpha);
-  @include background-clip(padding-box);
-}
-
 // Gradients
 @mixin gradient-horizontal($startColor: #555, $endColor: #333) {
   background-color: $endColor;
@@ -127,6 +118,7 @@
   background-image: linear-gradient(left, $startColor, $endColor); // Le standard
   background-repeat: repeat-x;
 }
+
 @mixin gradient-vertical($startColor: #555, $endColor: #333) {
   background-color: mix($startColor, $endColor, 60%);
   background-image: -moz-linear-gradient(top, $startColor, $endColor); // FF 3.6+
@@ -137,6 +129,7 @@
   background-image: linear-gradient(top, $startColor, $endColor); // The standard
   background-repeat: repeat-x;
 }
+
 @mixin gradient-vertical-three-colors($startColor: #00b3ee, $midColor: #7a43b6, $colorStop: 50%, $endColor: #c3325f) {
   background-color: mix($midColor, $endColor, 80%);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from($startColor), color-stop($colorStop, $midColor), to($endColor));

@@ -4,8 +4,8 @@
  * Project Name: Mapping Texts
  * URL: mappingtexts.org
  *
- * Copyright 2012 Wi-Design, Inc.
- * Author: Wi-Design, Inc. 
+ * Author: Wi-Design, Inc.
+ * Website: wi-design.com 
  * Email: info@wi-design.com
  *
  */
@@ -244,9 +244,6 @@ html {
 body {
   min-width: 768px; }
 
-.page {
-  width: 100%; }
-
 .body {
   position: relative; }
 
@@ -316,12 +313,6 @@ footer > .inner {
 
 .span-80pct {
   width: 78%; }
-
-.span-16pct {
-  width: 14.667%; }
-
-.span-83pct {
-  width: 81.333%; }
 
 .span-14pct {
   width: 12.286%; }
@@ -503,11 +494,11 @@ a {
   color: #0088cc;
   text-decoration: none;
   cursor: pointer;
-  -webkit-transition: background-color 0.3s ease-in;
-  -moz-transition: background-color 0.3s ease-in;
-  -ms-transition: background-color 0.3s ease-in;
-  -o-transition: background-color 0.3s ease-in;
-  transition: background-color 0.3s ease-in; }
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -ms-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in; }
   a:hover {
     color: #002233; }
 
@@ -637,12 +628,7 @@ header {
   box-sizing: border-box;
   line-height: 1.615em;
   text-align: center;
-  text-decoration: none;
-  -webkit-transition: width 0.2s ease-in;
-  -moz-transition: width 0.2s ease-in;
-  -ms-transition: width 0.2s ease-in;
-  -o-transition: width 0.2s ease-in;
-  transition: width 0.2s ease-in; }
+  text-decoration: none; }
 
 .era-nav li:nth-child(6) a {
   border-left-width: 1px; }
@@ -1018,18 +1004,24 @@ header {
   border-color: #999999 transparent transparent transparent; }
 
 ::-webkit-scrollbar {
-  width: 12px; }
+  width: 12px;
+  background: #555555; }
 
 ::-webkit-scrollbar-track {
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  background-color: white; }
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-color: #e2e2e2; }
 
 ::-webkit-scrollbar-thumb {
-  border: 1px solid #777777;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  background-color: #999999; }
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3); }
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
+  background: #555555; }
 
 ::-webkit-scrollbar-thumb:window-inactive {
   background-color: #999999; }
@@ -1042,19 +1034,16 @@ header {
   border-top: 3px solid transparent;
   border-right: 3px solid transparent;
   border-bottom: 3px solid transparent; }
-
-.spiffy-scrollbar::-webkit-scrollbar {
-  width: 8px;
-  background-color: transparent; }
-
-.spiffy-scrollbar::-webkit-scrollbar-track {
-  -webkit-box-shadow: none; }
-
-.spiffy-scrollbar::-webkit-scrollbar-thumb {
-  width: 7px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.3); }
+  .spiffy-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent; }
+  .spiffy-scrollbar::-webkit-scrollbar {
+    width: 8px; }
+  .spiffy-scrollbar::-webkit-scrollbar, .spiffy-scrollbar::-webkit-scrollbar-button, .spiffy-scrollbar::-webkit-scrollbar-corner {
+    background-color: transparent; }
+  .spiffy-scrollbar::-webkit-scrollbar-track {
+    -webkit-box-shadow: none; }
+  .spiffy-scrollbar::-webkit-scrollbar-thumb {
+    width: 7px; }
 
 /*
 * jQuery UI CSS Framework
@@ -1284,7 +1273,12 @@ header {
   .ui-slider .ui-slider-handle {
     border: none;
     background: #e7b19a;
-    cursor: move; }
+    cursor: move;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none; }
     .ui-slider .ui-slider-handle:before {
       content: '';
       position: absolute;
@@ -1480,12 +1474,24 @@ header {
 
 .tag-cloud {
   margin-left: 0;
-  font-size: 400%;
+  font-size: 600%;
   text-align: center;
   list-style-type: none; }
-  .tag-cloud .tags {
+  .tag-cloud li[class*="tag-"] {
     display: inline;
     font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; }
+  .tag-cloud .tag-1 {
+    color: black;
+    font-weight: bold; }
+  .tag-cloud .tag-2 {
+    color: #f4765e;
+    font-weight: bold; }
+  .tag-cloud .tag-3 {
+    color: silver;
+    font-weight: normal; }
+  .tag-cloud .tag-4 {
+    color: #a2c609;
+    font-weight: normal; }
 
 .ajax-container {
   position: absolute;

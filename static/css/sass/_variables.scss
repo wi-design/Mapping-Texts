@@ -5,10 +5,6 @@
 // GLOBAL VALUES
 // --------------------------------------------------
 
-// Links
-$defaultLinkColor:             #0088cc !default;
-$defaultLinkColorHover:        darken($defaultLinkColor, 30%) !default;
-
 // Grays
 $black:                 #000 !default;
 $silver:								#c0c0c0 !default;
@@ -22,7 +18,7 @@ $white:                 #fff !default;
 
 // Accent colors
 $blue:                  #36a5d1 !default;
-$navy:              		#0064cd !default;
+$navy:              		#01488e !default;
 $green:                 #2e912e !default;
 $red:                   #e81414 !default;
 $yellow:                #fcf823 !default;
@@ -30,6 +26,10 @@ $orange:                #f99a13 !default;
 $teal:									#0b8c8f !default;
 $pink:                  #ba3b61 !default;
 $purple:                #720172 !default;
+
+// Links
+$defaultLinkColor:             #0088cc !default;
+$defaultLinkColorHover:        darken($defaultLinkColor, 30%) !default;
 
 // Theming Coloring
 $primaryThemeColor:			#990000 !default;
@@ -47,18 +47,18 @@ $defaultMargin:					0.770em  !default; // 10px / 13px
 $defaultPadding:				0.770em !default; // 10px / 13px
 
 
-// Basic Variables
-// -----------------
-				
-// Hr border color
-$hrBorder:              $grayLightest !default;
+// Extra variables
+// ----------------------
+
+// Tag clouds
+$cloud-1:	$black;						
+$cloud-2: #f4765e;
+$cloud-3: $silver;
+$cloud-4: #a2c609;
 
 
 // scaffolding
 // --------------------------------------------------
-
-$pageWidth:				100% !default;
-$innerWidth:			90% !default;
 
 // Responsive grid
 $columnWidth:    10% !default;
