@@ -84,7 +84,7 @@
 			$('#pub-view')
 			.find('.spiffy-scrollbar')
 			
-			.children('span')
+			.children('i')
 			.addClass('hidden')
 			.end()
 			

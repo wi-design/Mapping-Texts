@@ -864,7 +864,7 @@ Here is our map of Texas
 
 	<div class="bd box">
 		<div class="spiffy-scrollbar">
-			<span>No cities selected...</span>
+			<i>No cities selected...</i>
 		</div>
 	</div>
 
@@ -903,7 +903,9 @@ Here is our map of Texas
 	</div>
 
 	<div class="inner box tab-content">
-		<div class="tab-pane d3-chart"></div>
+		<div class="tab-pane d3-chart">
+			{{^tags}}<i>No words available...</i>{{/tags}}
+		</div>
 		
 		<div class="tab-pane">
 			<ul class="tag-cloud">
@@ -946,7 +948,9 @@ Here is our map of Texas
 
 	<div class="inner box tab-content">
 	
-		<div class="tab-pane d3-chart"></div>
+		<div class="tab-pane d3-chart">
+			{{^tags}}<i>No name entities available...</i>{{/tags}}
+		</div>
 
 		<div class="tab-pane">
 			<ul class="tag-cloud">
@@ -995,8 +999,8 @@ Here is our map of Texas
 					</a>
 				</li>
 			{{/topics}}
-
 		</ol>
+		{{^topics}}<i>No topic models available...</i>{{/topics}}
 		
 	</div>
 	
@@ -1037,20 +1041,17 @@ Here is our map of Texas
 			pubseq = pubseq_key.split(':')[1]
 			REDIS.hset(pubseq_key, 'pubseq', pubseq)
 		
-	elif sys.argv[1] == "--make-redis=wcc-all":
-		
-		# too much memory ...
-		for prefix, y1, y2 in gen_year_range_keys('wcc'):
-			k = make_range_key(prefix, (y1, y2))
-			key_list = make_all_keys_from_years(prefix, (y1, y2))
-			
-			REDIS.zunionstore(k, key_list)
-			REDIS.zremrangebyrank(k, 0, -101) # only store top 100 results
- 			
-			print "built %s" % k
+	elif sys.argv[1] == "--migrate-redis=x_tho":
+		for key in REDIS.keys('wcc:*'):
+			REDIS.zrem(key, "tho")
+		for key in REDIS.keys('ner:*'):
+			REDIS.zrem(key, "tho")
 	
-	elif sys.argv[1] == "--make-redis=ner-all":
-		REDIS.zunionstore('ner:1829:2008', REDIS.keys('ner:*'))
+	elif sys.argv[1] == "--make-redis=wcc-ner-all":
+		REDIS.delete('wcc:all')
+		REDIS.delete('ner:all')
+		REDIS.zunionstore('wcc:all', REDIS.keys('wcc:*'))
+		REDIS.zunionstore('ner:all', REDIS.keys('ner:*'))
 				
 	else:
 		usage()

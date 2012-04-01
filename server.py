@@ -91,9 +91,18 @@ class BaseHandler(tornado.web.RequestHandler):
 	#
 	# private helpers	for WCC, NER key list generation
 	def compute_sorted_set(self, prefix, years, user_city_pub_list):
-		if len(user_city_pub_list) == 0:
+		num_of_pubs = len(user_city_pub_list)
+		
+		logging.info("%s: # OF PUBS = %s" % (prefix, num_of_pubs))
+		
+		if num_of_pubs == 0:
 			return []
-			
+		
+		if years == (1829, 2008) and num_of_pubs == 114:
+			logging.info('Using cached results for %s' % prefix)
+			everything_key = "%s:all" % prefix
+			return self.application.r.zrevrange(everything_key, 0, 49, withscores=True)
+	
 		key_list = self.make_keylist(prefix, years, user_city_pub_list)
 	
 		if not key_list:
@@ -122,8 +131,8 @@ class BaseHandler(tornado.web.RequestHandler):
 			for pubseq in user_pubseq_set_for_year:
 				key_list.append( self.make_sorted_set_key(prefix, pubseq, year) )
 
-		logging.info("final key list:")
-		logging.info("keys => %s" % key_list)
+		#logging.info("final key list:")
+		#logging.info("keys => %s" % key_list)
 		return key_list
 			
 	def make_total_user_pubseq_set(self, user_city_pub_list):
@@ -172,7 +181,7 @@ class WccHandler(BaseHandler):
 		
 		years, user_city_pub_list = self.parse_query_params()
 		
-		logging.info('user: %s' % user_city_pub_list)
+		#logging.info('user: %s' % user_city_pub_list)
 		
 		wcc = self.compute_sorted_set('wcc', years, user_city_pub_list)
 		
@@ -190,7 +199,7 @@ class NerHandler(BaseHandler):
 		
 		years, user_city_pub_list = self.parse_query_params()
 		
-		logging.info('user: %s' % user_city_pub_list)
+		#logging.info('user: %s' % user_city_pub_list)
 		
 		ner = self.compute_sorted_set('ner', years, user_city_pub_list)
 		
@@ -237,8 +246,8 @@ class PubsHandler(BaseHandler):
 		pubset_keys = [self.make_pub_set_by_year_key(year) for year in self.make_range(years)]
 		pubseq_list = self.r.sunion(pubset_keys)
 
-		logging.info("pubset keys: %s" % pubset_keys)
-		logging.info("pubseq list: %s" % pubseq_list)
+		#logging.info("pubset keys: %s" % pubset_keys)
+		#logging.info("pubseq list: %s" % pubseq_list)
 		
 		pipe = self.r.pipeline()
 		
