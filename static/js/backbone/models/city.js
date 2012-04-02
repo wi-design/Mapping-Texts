@@ -2,7 +2,7 @@
 	
 	STANFORD.MAPPING_TEXTS.models.city = Backbone.Model.extend({
 		
-		// attrs are { city:'name', pubs: [{...}, ...], display: 1|0 }
+		// attrs are { city:'name', pubs: [{...}, ...], display: false }
 		
 		defaults: {
 			"display" : false
@@ -18,8 +18,25 @@
 			});
 			
 			this.on("change:display", this.add_remove_city_to_pub_view);
-			this.on("change:display", this.fetch_data_if);
+			this.on("change:display", function(model, display, options) {
+				
+				var context = { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] };
+				
+				if (options.mode === 'BULK_SELECT_OPT') {
+					if (options.fetch) this.fetch_data.call( context );
+				}
+				
+				if (options.mode === 'USER_CLICKED_OPT') { // options.fetch should always be true
+					if (options.fetch) this.fetch_data.call( context );
+				}
+				
+				console.log('FETCH city', model.get('city'), 'Mode:', options.mode, 'Fetch:', options.fetch);
+				
+			});
 		},
+		
+		
+		
 		
 		
 		// city model custom methods
@@ -48,7 +65,7 @@
 		// Event handlers for listening to changes to display attr
 		add_remove_city_to_pub_view: function(model, display, options) {
 			
-			console.log("called add_rm_city...()");
+			//console.log("called add_rm_city...()");
 			
 			if (model.previous("display") === false && display === true) {
 				console.log('add city to pub-view: ' + model.get('city'));
@@ -61,16 +78,7 @@
 			}
 			
 		},
-		
-		fetch_data_if: function(model, display, options) {
-			var context;
-			console.log("Fetch Data IF: " + options.fetch_data + " For city: " + model.get('city'));
-			
-			if ( options.fetch_data || typeof options.fetch_data === 'undefined' ) {
-				context = { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] };
-				this.fetch_data.call( context );
-			} 
-		},
+
 		
 		
 		

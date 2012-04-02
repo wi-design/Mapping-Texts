@@ -14,6 +14,9 @@
 			return json.pubs;
 		},
 		
+		comparator: function(city) {
+			return city.get('city');
+		},
 		
 		set_pubseq: function(pubseq, checked) {
 			

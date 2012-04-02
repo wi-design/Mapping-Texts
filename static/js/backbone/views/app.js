@@ -211,40 +211,60 @@ $(function(){
 			  controlDiv.appendChild(controlUI);
 
 			  // Set CSS for the control interior
-			  var controlText = document.createElement('DIV');
+			  var controlText = document.createElement('DIV'),
+						select_all_text = 'Select All', 
+						unselect_all_text = 'Unselect All';
+						
 			  controlText.style.fontFamily = 'Arial,sans-serif';
 			  controlText.style.fontSize = '12px';
 			  controlText.style.paddingLeft = '4px';
 			  controlText.style.paddingRight = '4px';
-			  controlText.innerHTML = '<b>Select All</b>';
+			  controlText.innerHTML = '<b>' + select_all_text + '</b>';
 			  controlUI.appendChild(controlText);
 
 			  // Click handler for "Select All"
 				c.controlUI = controlUI;
 				
-			  google.maps.event.addDomListener(controlUI, 'click', function() {
+			  google.maps.event.addDomListener(controlUI, 'click', function(ev) {
 					var num_of_pubs = c.pubs.size(),
-							city_overlay,
-							
-							select_all_mode = 'Select All', 
-							unselect_all_mode = 'Unselect All',
-							text_mode = homeControlDivText.text() === select_all_mode ? unselect_all_mode : select_all_mode,
-							click_type = homeControlDivText.text() === select_all_mode ? 'click' : 'rightclick';
+							fun;
 					
-					
-					homeControlDivText.html(text_mode);
+					if (homeControlDivText.text() === unselect_all_text) {
+						console.log('===SET from unselected to selected===');
+						homeControlDivText.html(select_all_text);
 						
-					c.pubs.forEach(
-						function(city, index) {
-
+						fun = function(city, index) {
 							var city_overlay = city.get('circle_overlay'),
-									last_city = num_of_pubs === index+1;
+									last_city = num_of_pubs === index+1,
+									options = {
+										mode: 'BULK_SELECT_OPT',
+										fetch: last_city
+									};
 
-							google.maps.event.trigger(city_overlay, click_type, last_city);
+							// set city attr
+							city.set({display: false}, options);
+							city_overlay.setOptions({ strokeColor: "#FF0000" });
+						};
+					} else {
+						console.log('===SET from selected to unselected===');
+						homeControlDivText.html(unselect_all_text);
+						
+						fun = function(city, index) {
+							var city_overlay = city.get('circle_overlay'),
+									last_city = num_of_pubs === index+1,
+									options = {
+										mode: 'BULK_SELECT_OPT',
+										fetch: last_city
+									};
 
-						}
-					);	
+							// set city attr
+							city.set({display: true}, options);
+							city_overlay.setOptions({ strokeColor: "#CCFF33" });
+						};
+					}
 					
+					c.pubs.forEach( fun );
+
 			  });
 
 			}
@@ -334,51 +354,45 @@ $(function(){
 						content = "<h6>" + city.get('city') + "</h6><p>Publications: " + pubs_tally,
 						infowindow = new google.maps.InfoWindow({content: content}),
 						
-						city_circle = new google.maps.Circle(city_options);
+						circle_overlay = new google.maps.Circle(city_options);
 						
-				city.set({circle_overlay: city_circle});
+				city.set({circle_overlay: circle_overlay});
 				
 				// Mouse handlers for circle overlay
-				google.maps.event.addListener(city_circle, 'mouseover', function(ev) {
-					infowindow.setPosition(city_circle.getCenter());
+				google.maps.event.addListener(circle_overlay, 'mouseover', function(ev) {
+					infowindow.setPosition(circle_overlay.getCenter());
 					infowindow.open(map);
 				});
 				
-				google.maps.event.addListener(city_circle, 'mouseout', function(ev) {
+				google.maps.event.addListener(circle_overlay, 'mouseout', function(ev) {
 					infowindow.close();
 				});
 				
 				// Click handler for "click" on circle overlay		
-				google.maps.event.addListener(city_circle, 'click', function(last_city) {
+				google.maps.event.addListener(circle_overlay, 'click', function(ev) {
+					var options = {
+								fetch: true,
+								mode: 'USER_CLICKED_OPT'
+							};
 					
-					console.log('circle click:');
-					
-					if (city.get('display') === true) { return; }
-					
-					city.set({display: true}, _.isBoolean(last_city) ? {fetch_data: last_city} : {});
-					
-					console.log('City data:');
-					console.log(city.toJSON());
-					
-			    city_circle.setOptions({
-						strokeColor: "#CCFF33"
-					});
+					if (city.get('display') === true) { 
+						console.log(city.get('city'), 'circle clicked, *DISPLAYED*');
+						
+						// set city attr
+						city.set({display: false}, options);
+						
+						circle_overlay.setOptions({ strokeColor: "#FF0000" });
+						
+					} else {
+						console.log(city.get('city'), 'circle clicked, *NOT DISPLAYED*');
+						
+						// set city attr
+						city.set({display: true}, options);
+						
+						circle_overlay.setOptions({ strokeColor: "#CCFF33" });
+					}
 
-			  });
-				
-				// Click handler for "rightclick" on circle overlay
-				google.maps.event.addListener(city_circle, 'rightclick', function(last_city) {
-					
-					console.log('circle rightclick:');
-					
-					city.set({display: false}, _.isBoolean(last_city) ? {fetch_data: last_city} : {});
-					
-					console.log('City data:');
-					console.log(city.toJSON());
-					
-			    city_circle.setOptions({
-						strokeColor: "#FF0000"
-					});
+
 			  });
 					
 			});

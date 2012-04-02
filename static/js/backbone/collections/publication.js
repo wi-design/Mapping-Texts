@@ -6,7 +6,11 @@
 		
 		initialize: function(models, opts) {
 			console.log('publication collection initialized...');
-		}
+		},
+		
+		comparator: function(publication) {
+			return publication.get('pub');
+		},
 		
 	});
 	

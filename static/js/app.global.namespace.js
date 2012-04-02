@@ -481,7 +481,7 @@ STANFORD.MAPPING_TEXTS = {
 			    					.attr("transform", function(d, i) { return "translate(0," + y(i) + ")"; });
 
 			bars.append("svg:rect")
-					.attr("fill", "#FF0000")
+					.attr("fill", "#F4765E")
 			    .attr("width", x)
 			    .attr("height", y.rangeBand());
 		
