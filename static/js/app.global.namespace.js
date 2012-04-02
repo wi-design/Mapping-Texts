@@ -495,7 +495,7 @@ STANFORD.MAPPING_TEXTS = {
 			    .text(function(d, i) { return numberWithCommas(data[i]); });
 
 			bars.append("svg:text")
-			    .attr("x", 0)
+			    .attr("x", -3)
 			    .attr("y", y.rangeBand() / 2)
 			    .attr("dx", -6)
 			    .attr("dy", ".35em")
