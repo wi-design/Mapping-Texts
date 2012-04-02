@@ -518,10 +518,11 @@ STANFORD.MAPPING_TEXTS = {
 						return Math.round((w / denominator) * 100);
 					},
 					class_mapping = function(percentage, index) {
-						if (font_percentages[index] <= 25) return 'tag-1';
-						else if (font_percentages[index] <= 50) return 'tag-2';
-						else if (font_percentages[index] <= 75) return 'tag-3';
-						else return 'tag-4';
+						if (font_percentages[index] <= 14) return 'tag-1';
+						else if (font_percentages[index] <= 25) return 'tag-2';
+						else if (font_percentages[index] <= 50) return 'tag-3';
+						else if (font_percentages[index] <= 75) return 'tag-4';
+						else return 'tag-5';
 					},
 					font_percentages = _.map(weights, percentage_mapping),
 					tag_classes = _.map(font_percentages, class_mapping),
