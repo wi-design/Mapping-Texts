@@ -1000,7 +1000,7 @@ Here is our map of Texas
 				</li>
 			{{/topics}}
 		</ol>
-		{{^topics}}<i>No topic models available...</i>{{/topics}}
+		{{^topics}}<i>No topic models available for this request.  Topic models are available for all locations by era, and by individual cities by era.</i>{{/topics}}
 		
 	</div>
 	
