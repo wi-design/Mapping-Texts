@@ -12,7 +12,22 @@
 			console.log('publication model initialized');
 			
 			this.on("change:checked", this.info);
-			this.on("change:checked", this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] });
+			this.on("change:checked", function(model, display, options) {
+				
+				var context = { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] };
+				
+				if (options.mode === 'BULK_SELECT_OPT') {
+					if (options.fetch) this.fetch_data.call( context );
+				}
+				
+				if (options.mode === 'USER_CLICKED_OPT') { // options.fetch should always be true
+					if (options.fetch) this.fetch_data.call( context );
+				}
+				
+				console.log('FETCH publication', model.get('pub'), 'Mode:', options.mode, 'Fetch:', options.fetch);
+				
+			});
+			//this.on("change:checked", this.fetch_data, { fetch_funs: ['fetch_wcc', 'fetch_ner', 'fetch_topics'] });
 		},
 		
 		info: function(model, checked) {

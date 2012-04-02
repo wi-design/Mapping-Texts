@@ -9,14 +9,22 @@
 			),
 			all_checked = true,
 			cb_all = this;
-		
+
+		/*
 		cb_all.click(function(e) {
 			if ($(this).is(':checked')) {
-				settings.closestWrapper.find(':checkbox').not(cb_all).attr('checked', 'checked');
+				settings.closestWrapper.find(':checkbox').not(cb_all).each(function(){
+					$(this).attr('checked', 'checked');
+					//$(this).change();
+				});
 			} else {
-				settings.closestWrapper.find(':checkbox').not(cb_all).removeAttr('checked');
+				settings.closestWrapper.find(':checkbox').not(cb_all).each(function(){
+					$(this).removeAttr('checked');;
+					//$(this).change();
+				});	
 			}
 		});
+		*/
 		
 		settings.closestWrapper.click(function(e){
 			$(this).find(':checkbox').not(cb_all)

@@ -18,7 +18,7 @@
 			return city.get('city');
 		},
 		
-		set_pubseq: function(pubseq, checked) {
+		set_pubseq: function(pubseq, checked, options) {
 			
 			this.forEach(
 				function(city) {
@@ -28,7 +28,7 @@
 					);
 					
 					if (publication) {
-						publication.set({checked: checked});
+						publication.set({checked: checked}, options);
 					} else {
 						console.log('Not found for city ' + city.get('city'));
 					}
