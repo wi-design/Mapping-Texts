@@ -10,7 +10,7 @@
 		
 		comparator: function(publication) {
 			return publication.get('pub');
-		},
+		}
 		
 	});
 	

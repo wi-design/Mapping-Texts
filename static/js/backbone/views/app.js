@@ -328,7 +328,7 @@ $(function(){
 			        strokeOpacity: 0.6,
 			        strokeWeight: 4,
 			        fillColor: "#000000",
-			        fillOpacity: 0,
+			        fillOpacity: 0
 			    }).setMap(map);
 			}
 

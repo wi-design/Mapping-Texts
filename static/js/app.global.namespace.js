@@ -530,7 +530,7 @@ STANFORD.MAPPING_TEXTS = {
 						return {
 							tag: tag,
 							percentage: font_percentages[index],
-							class: tag_classes[index]
+							klass: tag_classes[index]
 						};
 					},
 					tag_array = _.map(tags, make_tag_obj);
