@@ -18,12 +18,18 @@
 		font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
 	}
 	
+	.tag-1 { // need to set this to override inline styles set up from make_tag_cloud script in app.global.namespace.js
+		font-size: 11px !important;
+	}
 	
+	
+	// create tag cloud classes with values
 	$tags: 
 		1 $cloud-1 bold, 
 		2 $cloud-2 bold, 
-		3 $cloud-3 normal, 
-		4 $cloud-4 normal;
+		3 $cloud-3 bold, 
+		4 $cloud-4 normal,
+		5 $cloud-5 normal;
 
 	@each $i in $tags {
 	  .tag-#{nth($i, 1)} {

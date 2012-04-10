@@ -1481,15 +1481,20 @@ header {
     display: inline;
     font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; }
   .tag-cloud .tag-1 {
+    font-size: 11px !important; }
+  .tag-cloud .tag-1 {
     color: black;
     font-weight: bold; }
   .tag-cloud .tag-2 {
-    color: #f4765e;
+    color: black;
     font-weight: bold; }
   .tag-cloud .tag-3 {
+    color: #f4765e;
+    font-weight: bold; }
+  .tag-cloud .tag-4 {
     color: silver;
     font-weight: normal; }
-  .tag-cloud .tag-4 {
+  .tag-cloud .tag-5 {
     color: #a2c609;
     font-weight: normal; }
 
