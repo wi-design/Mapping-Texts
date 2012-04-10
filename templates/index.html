@@ -8,8 +8,9 @@
 	
 	<meta name="viewport" content="width=device-width">
 
+	<!-- css compile start -->
 	<link rel="stylesheet" href="static/css/style.css">
-	
+	<!-- css compile stop -->
 	
 	<!-- Google map api
 	 using my API key -->
@@ -17,20 +18,11 @@
 	
 	<!--<script src="static/js/libs/modernizr-2.5.3.min.js"></script>-->
 	
+	<!-- js concat start -->
 	<script src="static/js/libs/jquery-1.7.1.min.js"></script>
 	<script src="static/js/libs/jquery-ui-1.7.1.custom.min.js"></script>
 
 	<script src="static/js/libs/d3.v2.min.js"></script>
-	
-	<!-- plugins/custom scripts -->
-	<script src="static/js/plugins/jquery.zclip.min.js"></script>
-	<script src="static/js/plugins/selectToUISlider.jQuery.js"></script>
-	<script src="static/js/plugins/tabs.js"></script>
-	<script src="static/js/plugins/tooltip.js"></script>
-	<script src="static/js/equal_heights.js"></script>
-	<script src="static/js/plugins/jquery.checkbox.all.js"></script>
-	<script src="static/js/plugins/modal.js"></script>
-	<script src="static/js/plugins/mask.js"></script>
 	
 	<script src="static/js/libs/json2.js"></script>
 	<script src="static/js/libs/underscore-1.3.1.min.js"></script>
@@ -38,17 +30,30 @@
 	
 	<script src="static/js/libs/backbone-0.9.1.min.js"></script>
 	
-	<!-- app namesapce -->
+	<script src="static/js/plugins/jquery.zclip.min.js"></script>
+	<script src="static/js/plugins/modal.js"></script>
+	<script src="static/js/plugins/mask.js"></script>
+	<script src="static/js/plugins/tooltip.js"></script>
+	<script src="static/js/equal_heights.js"></script>
+	<script src="static/js/plugins/jquery.checkbox.all.js"></script>
+	<script src="static/js/plugins/tabs.js"></script>
+	
+	<script src="static/js/plugins/selectToUISlider.jQuery.js"></script>
+	<!-- js concat stop -->
+	
+	
+	<!-- js ignore start -->
+	<!-- js ignore stop -->
+		
+	<!-- js compile start -->
 	<script src="static/js/app.global.namespace.js"></script>
 
-	<!-- Bacbone models -->
 	<script src="static/js/backbone/models/wcc.js"></script>
 	<script src="static/js/backbone/models/ner.js"></script>
 	<script src="static/js/backbone/models/city.js"></script>
 	<script src="static/js/backbone/models/publication.js"></script>
 	<script src="static/js/backbone/models/epoch.js"></script>
 	
-	<!-- Bacbone collections -->
 	<script src="static/js/backbone/collections/wcc.js"></script>
 	<script src="static/js/backbone/collections/ner.js"></script>
 	<script src="static/js/backbone/collections/pub.js"></script>
@@ -56,7 +61,6 @@
 	<script src="static/js/backbone/collections/epoch.js"></script>
 	<script src="static/js/backbone/collections/topics.js"></script>
 	
-	<!-- Bacbone views -->
 	<script src="static/js/backbone/views/app.js"></script>
 	<script src="static/js/backbone/views/wcc_view.js"></script>
 	<script src="static/js/backbone/views/ner_view.js"></script>
@@ -65,7 +69,8 @@
 	<script src="static/js/backbone/views/pub_view.js"></script>
 	<script src="static/js/backbone/views/time_select_view.js"></script>
 	<script src="static/js/backbone/views/city_view.js"></script>
-
+	<!-- js compile stop -->
+	
 	<script>
 		$(function(){
 			var start_app = function(config) {

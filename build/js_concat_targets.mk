@@ -1,0 +1,1 @@
+JS_CONCAT_TARGETS = $(shell ./build/get_concat_js_targets.sh <$(TEMPLATES)/index.html)

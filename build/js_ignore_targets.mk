@@ -1,0 +1,1 @@
+JS_IGNORE_TARGETS = $(shell ./build/get_ignore_js_targets.sh <$(TEMPLATES)/index.html)

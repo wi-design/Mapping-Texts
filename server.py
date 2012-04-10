@@ -36,8 +36,10 @@ class Application(tornado.web.Application):
 		]
 		
 		settings = dict(
-			template_path=os.path.join(os.path.dirname(__file__), "templates"),
-			static_path=os.path.join(os.path.dirname(__file__), "static"),
+			#template_path=os.path.join(os.path.dirname(__file__), "templates"),
+			template_path=os.path.join(os.path.dirname(__file__), "publish/templates"),
+			#static_path=os.path.join(os.path.dirname(__file__), "static"),
+			static_path=os.path.join(os.path.dirname(__file__), "publish/static"),
 		)
 		
 		tornado.web.Application.__init__(self, handlers, **settings)
