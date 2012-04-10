@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 #
-# (c) 2012 Wi-Design, Inc.
+# Mapping Texts v1.0
+#
+# Project Name: Mapping Texts
+# URL: mappingtexts.org
+#
+# Copyright 2012 Wi-Design, Inc.
+# Website: wi-design.com
+# Contact: info@wi-design.com
 
 import os.path
 import logging

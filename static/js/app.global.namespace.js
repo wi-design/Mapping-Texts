@@ -5,7 +5,7 @@
  * URL: mappingtexts.org
  *
  * 
- * Author: Wi-Design, Inc. 
+ * Copyright 2012 Wi-Design, Inc. 
  * Website: wi-design.com
  * Email: info@wi-design.com
  *
