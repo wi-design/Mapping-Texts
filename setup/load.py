@@ -749,6 +749,14 @@ if __name__ == "__main__":
 		runNer()
 		runWcc()
 	
+	
+	elif sys.argv[1] == "--input-redis=1000-trunc-scheme":
+		for key in keys('wcc:*'):
+			REDIS.zremrangebyrank(key, 0, -1001)
+		
+		for key in keys('ner:*'):
+			REDIS.zremrangebyrank(key, 0, -1001)
+		
 	elif sys.argv[1] == "--input-redis=topics":
 		for key in REDIS.keys('topics:*'):
 			REDIS.delete(key)

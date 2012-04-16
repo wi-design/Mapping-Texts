@@ -1,0 +1,7 @@
+Only truncated Word Corrected Counts and Named Entity Relation Counts.
+
+Word Corrected Counts dataset (Some files had 500K+ to 1MM+)
+For a given publication, city, and year, only the top 1000 results are kept. 
+
+Named Entity Relation Counts dataset (This datasets is a little smaller than Word Corrected Counts)
+For a given publication, city, and year, only the top 1000 results are kept.
