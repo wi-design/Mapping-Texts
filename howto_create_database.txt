@@ -1,0 +1,49 @@
+In the setup folder (at this level) there is a python script named load.py, that connects to the redis server and pushes all the data in the text files to server.
+
+For this to work the script assumes the path to the text files is as follows:
+
+
+
+
+--For Word Corrected Counts-- 
+...there needs to be a folder path of "Texas_Newspaper_Data/Word_Counts_Corrected/wcc_title_location_year" where "Texas_Newspaper_Data" folder is located in the same folder as the load.py script, and each publication and year is a file inside this folder
+
+
+
+
+--For the Named Entity Relation Counts--
+...the file path for the load.py needs to be "Texas_Newspaper_Data/Named_Entity_Counts_Corrected/ner_by-title_by-location_by-year.tsv"
+
+
+
+
+--For topic models--
+
+...by title, city, epoch
+"Texas_Newspaper_Data/Topics/Title_By_Location_By_Epoch" is where the list of files containing these topics models are. 
+E.g. "10.topic-keys.Brazos_Courier,_Brazoria,_Texas,_1836-04-22_1845-12-29.tsv"
+
+...city, epoch
+"Texas_Newspaper_Data/Topics/Location_by_Epoch" is where the list of files containing these topics models are. 
+E.g. "10.topic-keys.Abilene,_Texas,_1900-01-01_1929-10-29.tsv"
+
+...epoch
+"Texas_Newspaper_Data/Topics/Epoch" is where the list of files containing these topics models are. 
+E.g. "10.topic-keys.1829-01-01_1836-04-21.tsv"
+
+
+
+--Use python script to create database-- 
+Run the below command. It will take a while and output how far along the process is.
+python load.py --input-redis=all
+
+Now you have a database setup. Run these migrations in sequence:
+python load.py --input-redis=1000-trunc-scheme
+python load.py --input-redis=topics
+python load.py --input-redis=epochs
+python load.py --input-redis=templates
+python load.py --migrate-redis=locs-into-pubs
+python load.py --migrate-redis=pubseq-into-pubs
+python load.py --migrate-redis=x_tho
+python load.py --make-redis=wcc-ner-all
+

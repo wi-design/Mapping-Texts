@@ -1,0 +1,141 @@
+Locations
+---------
+Key   : loc:[0-9]+
+Value : Hash table
+The number after "loc:" in the key is the location sequence id
+
+e.g.
+Key   : loc:1
+Value : { "val" => "palo pinto", 
+					"state" => "texas" }
+
+--
+
+Key   : loc:[_a-z]+
+Value : String (sequence id for the location key above)
+The string after "loc:" in the the normalized city name
+
+e.g.
+Key   : loc:palo_pinto
+Value : "1"
+
+--
+
+Key   : loc:[0-9]+:pubs
+Value : Set (list of publication id sequences associated with that location sequence id)
+The number after "loc:" in the key is the location sequence id
+
+e.g.
+Key   : loc:1:pubs
+Value : {"1", "2", "3"}
+
+
+
+Publications
+------------
+Key   : pub:[0-9]+
+Value : Hash table
+The number after "pub:" in the key is the publication sequence id
+
+e.g.
+Key   : pub:1
+Value : { "val" => "brazos courier", 
+					"loc" => "brazoria",
+					"seq" => "1" }
+
+--
+
+Key   : pub:[_a-z]+:[_a-z+]
+Value : String (sequence id for the publication key above)
+The string between the first and second colon (:) is the city. The string after the second colon is the name of the publication for that city.
+
+e.g.
+Key   : pub:brazoria:brazos_courier
+Value : "1"
+
+--
+
+Key   : pub:y:????
+Value : Set (list of publication id sequences for that year)
+The placeholder ???? is a year (in the data set this is between 1829 and 2008, inclusive)
+
+e.g.
+Key   : pub:y:1999
+Value : {"1", "2", "3"}
+
+
+
+Epochs
+------
+Key   : epochs
+Value : { "1829-1836" => "Mexican Era",
+					"1836-1845" => "Republic of Texas",
+					"1845-1861" => "Antebellum Era",
+					"1861-1865" => "Civil War",
+					"1865-1877" => "Reconstruction",
+					"1878-1899" => "Gilded Age",
+					"1900-1929" => "Progressive Era",
+					"1929-1941" => "Depression",
+					"1941-1945" => "World War II",
+					"1945-2008" => "Modern Texas" }
+Mapping of year ranges to epoch name.
+
+
+
+Words Corrected Counts (WCC)
+----------------------------
+Key   : wcc:[0-9]+:????
+Value : Sorted Set (Word and counts stored in sorted order by count)
+The string between the first and second colon (:) is the publication sequence id. The string after the second colon is the year of interest for that publication. This is analgous to looking at the file "wcc_Brazos_Courier,_Brazoria,_Texas,_1839.tsv". The word corrected counts for "Brazos Courier" in 1839.
+
+e.g.
+Key   : wcc:1:1839
+Value : { "sale", "92", "brazoria", "81", "court", "72", ... , "tie", "1"  }
+
+
+
+Name Entity Relation Counts (NER)
+---------------------------------
+Key   : ner:[0-9]+:????
+Value : Sorted Set (Name entity and counts stored in sorted order by count)
+The string between the first and second colon (:) is the publication sequence id. The string after the second colon is the year of interest for that publication. This is analgous to looking at the file
+"ner_by-title_by-location_by-year.tsv" and finding all the entries for publication "Brazos Courier" during year "1839" for e.g.
+
+e.g.
+Key   : ner:1:1839
+Value : { "Texas", "100", "Brazoria", "92", ... , "Mr", "1" }
+
+
+
+Topic Models (topics)
+---------------------
+Key   : topics:????:????
+Value : String (Topic model text)
+The string between the first and second colon (:) is the first year of the epoch range. The string after the second colon is second year in the epoch range. See epochs key (above) for available epoch ranges. Holds the topic model for year 1 and year 2. See example below.
+
+e.g.
+Key   : topics:1829:1836
+Value : "john sale columbia public undersigned years mills..."
+The topic model for 1829 to 1836
+
+--
+
+Key   : topics:????:????:[_a-z]+
+Value : String (Topic model text)
+Like above, the string between the first and second colon (:) is the first year of the epoch range. The string after the second colon is second year in the epoch range. Additionally, the string after the third colon is the name of the city of interest for a topic model. See example below.
+
+e.g.
+Key   : topics:1829:1836:san_felipe
+Value : "texas government people state rights country mexican constitution..."
+The topic model for San Felipe, TX for 1829 to 1836
+
+--
+
+Key   : topics:1829:1836:san_felipe:telegraph_and_texas_register
+Value : String (Topic model text)
+Like above, the string between the first and second colon (:) is the first year of the epoch range. The string after the second colon is second year in the epoch range. The string after the third colon is the name of the city. Additionally, the string after the fourth colon is the name of the publication of interest for a topic model. See example below.
+
+e.g.
+Key   : topics:1829:1836:san_felipe:telegraph_and_texas_register
+Value : "men enemy place number time hundred man war good..."
+The topic model for "The Telegraph and Texas Regiser" in San Felipe, TX during the epoch 1829 to 1836
