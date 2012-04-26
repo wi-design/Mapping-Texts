@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>mapping texts/texas</title>
+	
+	<meta name="viewport" content="width=device-width">
+
+	<!-- css compile start -->
+	<link rel="stylesheet" href="static/css/style.css">
+	<!-- css compile stop -->
+	
+	<!-- Google map api
+	 using my API key -->
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBpY7LNXm_rYk7I7wU6HxhKFir40Env3T8&sensor=false"></script>
+	
+	<!--<script src="static/js/libs/modernizr-2.5.3.min.js"></script>-->
+	
+<script src="static/js/lib.js?v=1"></script>
+	
+	
+	<!-- js ignore start -->
+	<!-- js ignore stop -->
+		
+<script src="static/js/app.min.js?v=1"></script>
+	
+	<script>
+		$(function(){
+			var start_app = function(config) {
+				var c = STANFORD.MAPPING_TEXTS.cached;
+				
+				STANFORD.MAPPING_TEXTS.config = config;
+				
+				c.epochs = new STANFORD.MAPPING_TEXTS.collections.epochs( config.epochs );
+		
+				
+				c.app = new STANFORD.MAPPING_TEXTS.views.app;
+				c.app.render();
+			};
+			
+			
+			// ----
+			$.getJSON('/config', function(config) { start_app(config); });			
+		});
+
+	</script>
+		
+</head>
+
+<body>
+<header>
+	<div class="inner">
+		
+		<h1>
+			<a href="http://mappingtexts.org/" target="_blank" class="branding">
+				<span class="screen-reader-text">MappingTexts - Stanford University and University of North Texas</span>
+			</a>
+		</h1>
+	
+	</div>
+</header>
+
+	<div class="body">
+		
+		<div class="inner">
+			
+			<div class="row">	
+				<section id="app-ds-view" class="span-full" data-toggle="height">
+					<h2>Assessing Language Patterns: <small>A Look at Texas Newspapers, 1829-2008</small></h2>
+			
+					<p>This visualization plots the language patterns embedded in 232,567 pages of historical Texas newspapers, as they evolved over time and space. For any date range and location, you can browse the most common words (word counts), named entities (people, places, etc), and highly correlated words (topic models). [ <a data-modal-box="#about">About Mapping Texts</a> ]</p>
+					
+					<!-- About Modal -->
+					<div class="modal description" id="about">
+						<div class="modal-hd">
+							<h2>About this Project</h2>
+						</div><!-- /modal-hd -->
+						
+						<div class="modal-bd">
+							<p>“<strong>Mapping Texts</strong>” is a collaborative project between the University of North Texas and Stanford University whose goal has been to develop a series of experimental new models for combining the possibilities of text-mining and geospatial analysis in order to enable researchers to develop better methods for finding and analyzing meaningful language patterns embedded within massive collections of historical newspapers.</p>
+
+							<p>This visualization plots the language patterns embedded in 232,567 pages of historical Texas newspapers, as they evolved over time and space. Using the date range slider to select any time period and the map of Texas to select any combination of locations, you can browse through three major categories of the newspapers’ language patterns: most common words (word counts), named entities (people, places, etc), and highly correlated words (topic models).</p>
+
+							<p>For more information see the project’s main site: <a href="http://www.mappingtexts.org" target="_blank">mapping texts</a>. For more information about the language analysis categories, explore the “<strong>view</strong>” link on each category below.</p>
+						</div><!-- /modal-bd -->
+					</div>
+					<!-- /about modal -->
+					
+				</section>
+	
+				<section id="time-select-view" class="span-full"></section>
+				
+			</div><!-- /row -->
+				
+			<div class="row">
+				<section id="map-view" class="span-66pct"></section>
+				<section id="pub-view" class="span-33pct"></section>
+			</div><!-- /row -->
+			
+			<div class="row">
+				<section id="wcc-view" class="span-33pct"></section>
+				<section id="ner-view" class="span-33pct"></section>
+				<section id="topic-view" class="span-33pct"></section>
+			</div><!-- /row -->
+		
+		</div> <!-- /inner -->
+		
+	</div> <!-- /body -->
+	
+	<footer class="footer">
+		<div class="inner clearfix">
+			<p><small>&copy;2011 Stanford University and The University of North Texas</small></p>
+			<p>Project Partners: <a href="http://west.stanford.edu/" target="_blank">Bill Lane Center for the American West</a> and <a href="http://texashistory.unt.edu/" target="_blank">Texas Digital Newspaper Collection</a></p>
+			<p>Interface designed and built by <a href="http://wi-design.com" target="_blank">Wi-Design, Inc.</a></p>
+		</div>
+	</footer>
+
+<!--==================================================== modal dialogs ====================================================-->
+	
+	<div id="word-counts-info" class="modal description">
+		<div class="modal-hd">
+			<h2>About for Word Counts</h2> 
+		</div>
+		<div class="modal-bd">	
+			Word counts are one of the most widely used metrics for assessing language use in texts. For any given date range and set of locations that you select, 
+			you will see a ranked tally of the most frequently appearing words in the newspapers. You can choose between viewing these counts as either a ranked list or a word cloud. 
+			Nonsensical words are the result of common mistakes introduced by the digitization process (e.g. "tho" for "the").
+		</div>
+	</div>
+	<!-- /word-counts-info -->
+	
+	<div id="named-entity-info" class="modal description">
+		<div class="modal-hd">
+			<h2>About the Named Entity Counts</h2>
+		</div>
+		<div class="modal-bd">
+			<p>Named entity counts are counts of all the particular “entities” (things that are usually considered nouns, like people or places), which are counted and tallied just like basic word counts. For any given date range and set of locations that you select, you will see an ranked tally of the most frequently appearing named entities in the newspapers. You can choose between viewing these counts as either a ranked list or a word cloud. Nonsensical words are the result of common mistakes introduced by the digitization process.</p>
+		</div>
+	</div>
+	<!-- /named-entity-info -->
+	
+	<div id="topic-modeling-info" class="modal description">
+		<div class="modal-hd">
+			<h2>About the Topic Modeling</h2>
+		</div>
+		<div class="modal-bd">
+			<p>Topic modeling [link that to: http://mith.umd.edu/topic-modeling-in-the-humanities-an-overview/] is a method of text-analysis has grown in popularity among humanities scholars in recent years. The basic concept is to use statistical methods to uncover connections between collections of words (which are called “topics”) that appear in a given text. So, for example, running a topic modeling program over a body of text will produce a series of “topics,” which are strings of words (such as “texas, street, address, good, wanted, Houston, office”) that may not necessarily appear next to one another within the text but nonetheless appear to have some sort of statistical relationship to one another. Topic modeling, in other words, uses statistics to produce lists of words that appear to be highly correlated to one another in the hope of exposing larger, wider patterns in language use than a close-reading would be able to provide.</p>
+
+			<p>Because topic models are customize for particular collections of text, we divided up our topic models by commonly recognized eras from Texas history: 1829-1835 (Mexican Era), 1836-1845 (Republic of Texas), 1846-1860 (Antebellum Era), 1861-1865 (Civil War), 1866-1877 (Reconstruction), 1878-1899 (Gilded Age), 1900-1929 (Progressive Era), 1930-1941 (Depression), 1942-1945 (World War II), 1946-2008 (Modern Texas). We used the popular University of Massachusetts’s MALLET package (http://mallet.cs.umass.edu/).</p>
+
+			<p>Whenever you pick a date range, the ending date (so for 1820-1865, the end date would be 1860) will determine which topic modeling era is displayed. So, in this example, you would see the topic modeling results for the Civil War Era (1861-1865). For your convenience, we have provided buttons that will allow you to quickly preset the time slider for the topic modeling eras.</p>
+		</div>
+	</div>
+	<!-- /topic-modeling-info -->
+	
+<!--==================================================== /modal dialogs ====================================================-->
+	
+</body>
+
+</html>
