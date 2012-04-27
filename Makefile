@@ -1,7 +1,7 @@
 TEMPLATES = templates
 STATIC = static
 
-VERSION = ?v=1
+VERSION = ?v=2
 PUBLISH = $(TEMPLATES) $(STATIC)
 JS_BUILD_LIB = lib.js
 JS_BUILD_FILE = app.min.js
