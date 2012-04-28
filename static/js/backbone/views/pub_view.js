@@ -4,7 +4,7 @@ $(function(){
 		
 		tagName: "div",
 		
-		className: "widget basic tool",
+		className: "inner",
 		
 		events : {
 			'click label[data-checkbox="check-all"]' : 'city_label_clicked',

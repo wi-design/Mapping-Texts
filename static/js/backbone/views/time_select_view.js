@@ -2,11 +2,9 @@ $(function(){
 	
 	STANFORD.MAPPING_TEXTS.views.time_select_view = Backbone.View.extend({
 		
-		tagName: "section",
+		tagName: "div",
 		
-		id: "time-select-view",
-		
-		className: "span-full",
+		className: "time-select-navs",
 		
 		events : {
 			'slidestop'				: 'slider_updated',

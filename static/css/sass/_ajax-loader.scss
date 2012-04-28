@@ -70,3 +70,23 @@
 	}
 }
 
+
+// @extra loaders
+// ---------------
+.map-rendering.ajax-container:after,
+.pub-rendering.ajax-container:after {
+	margin-left: 0;
+}
+
+.map-rendering.ajax-container:after {
+	content: 'Map view is rendering';
+}
+
+.pub-rendering.ajax-container:after {
+	content: 'Pub view is rendering';
+}
+
+
+
+
+

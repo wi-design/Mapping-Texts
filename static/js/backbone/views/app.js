@@ -82,11 +82,11 @@ $(function(){
 					time_select_view = new STANFORD.MAPPING_TEXTS.views.time_select_view({
 						collection: c.epochs
 					}),
-					time_select_view_elem = $(this.el).find('#time-select-view');
+					time_select_view_elem = $(this.el).find('#time-select-view ').find('div');
 					
 			
 			time_select_view_elem.replaceWith( time_select_view.render().el );
-			time_select_view_elem = $(this.el).find('#time-select-view');
+			time_select_view_elem = $(this.el).find('#time-select-view').find('div');
 			
 			c.jqui = time_select_view_elem
 						// slider
@@ -179,15 +179,17 @@ $(function(){
 						navigationControlOptions: {
 						    style: google.maps.NavigationControlStyle.SMALL
 						},
+						backgroundColor: '#E2E2E2',
         		center: center,
         		zoom: 6,
         		mapTypeId: google.maps.MapTypeId.TERRAIN
       		},
-					map;
+					map,
+					mapWidget = $('#map-view').find('.widget');
 
-			$(this.el).find('#map-view').replaceWith( map_view.render().el );
+			$(this.el).find(mapWidget).html( map_view.render().el );
 			
-			map = new google.maps.Map( $(this.el).find('#map-view').get(0), map_options );
+			map = new google.maps.Map( $(this.el).find(mapWidget).get(0), map_options );
 			map.mapTypes.set(myMapTypeId, new google.maps.StyledMapType(myMapTypeStyle, {name: myMapTypeId}));
 			
 			
@@ -407,7 +409,7 @@ $(function(){
 					pub_view = new views.pub_view();
 			
 			$(this.el)
-			.find('#pub-view')
+			.find('#pub-view .widget')
 			.html( pub_view.render().el )
 		},
 		
