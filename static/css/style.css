@@ -724,6 +724,10 @@ header {
 .pub-view {
   height: 400px; }
 
+.wcc {
+  min-height: 200px;
+  background-color: #e2e2e2; }
+
 .basic {
   border: 1px solid rgba(0, 0, 0, 0.09);
   -webkit-border-radius: 3px;
@@ -1551,6 +1555,16 @@ header {
     -moz-animation: infinite-circle 2s linear infinite;
     -ms-animation: infinite-circle 2s linear infinite;
     animation: infinite-circle 2s linear infinite; }
+
+.map-rendering.ajax-container:after,
+.pub-rendering.ajax-container:after {
+  margin-left: 0; }
+
+.map-rendering.ajax-container:after {
+  content: 'Map view is rendering'; }
+
+.pub-rendering.ajax-container:after {
+  content: 'Pub view is rendering'; }
 
 @-webkit-keyframes infinite-circle {
   from {

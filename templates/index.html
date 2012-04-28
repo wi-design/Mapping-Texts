@@ -162,22 +162,59 @@
 			<div class="row">
 				<section id="map-view" class="span-66pct">
 					<div class="map-view widget basic tool">
-						<div class="ajax-container"><div class="ajax-loading"></div></div>
+						<div class="map-rendering ajax-container"></div>
 						<!-- google map will injected by javascript -->
 					</div>
 				</section>
 				<section id="pub-view" class="span-33pct">
 					<div class="pub-view widget basic tool">
-						<div class="ajax-container"><div class="ajax-loading"></div></div>
+						<div class="pub-rendering ajax-container"></div>
 						<!-- rest of pub-view is being injected through the javascript -->
 					</div>
 				</section>
 			</div><!-- /row -->
 			
 			<div class="row">
-				<section id="wcc-view" class="span-33pct"></section>
-				<section id="ner-view" class="span-33pct"></section>
-				<section id="topic-view" class="span-33pct"></section>
+				<section id="wcc-view" class="span-33pct">
+					<!-- widget div will be removed and replaced once views have completed fetching the data -->
+					<div class="widget basic module">
+						<div class="hd">
+							<h4>total word counts</h4>
+						</div>
+						<div class="bd">
+							<div class="inner box mtm"></div>
+						</div><!-- /bd -->
+						
+					</div><!-- /widget -->
+				</section>
+				
+				<section id="ner-view" class="span-33pct">
+					<!-- widget div will be removed and replaced once views have completed fetching the data -->
+					<div class="widget basic module">
+						<div class="hd">
+							<h4>named entity counts</h4>
+						</div>
+						
+						<div class="bd">
+							<div class="inner box mtm"></div>
+						</div><!-- /bd -->
+						
+					</div><!-- /widget -->
+				</section>
+				
+				<section id="topic-view" class="span-33pct">
+					<!-- widget div will be removed and replaced once views have completed fetching the data -->
+					<div class="widget basic module">
+						<div class="hd">
+							<h4>topic models</h4>
+						</div>
+
+						<div class="bd">
+							<div class="inner box mtm"></div>
+						</div><!-- /bd -->
+						
+					</div><!-- /widget -->
+				</section>
 			</div><!-- /row -->
 		
 		</div> <!-- /inner -->

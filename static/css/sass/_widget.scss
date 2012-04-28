@@ -7,7 +7,7 @@
 //	-Details widget
 //	-Base widget styles
 //		-Action bar
-//		-Map widget
+//		-Map/pub widget
 //	-Widget Skins 
 //		-Box skin
 //		-Tool skin
@@ -138,11 +138,18 @@
 }
 
 
-// @Map widget
+// @Map/pub widget
 // special class for id:map-view container to provide a parent height 
 .map-view,
 .pub-view {
 	height: 400px;
+}
+
+
+// @wcc
+.wcc {
+	min-height: 200px;
+	background-color: $grayLightest;
 }
 
 
