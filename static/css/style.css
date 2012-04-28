@@ -1402,7 +1402,6 @@ header {
   display: none;
   overflow: visible;
   width: 60%;
-  max-height: 500px;
   padding-right: 1.54em;
   padding-left: 1.54em; }
   .modal .modal-hd,
@@ -1410,6 +1409,10 @@ header {
   .modal .modal-ft {
     padding-top: 0.77em;
     padding-bottom: 0.77em; }
+  .modal .modal-bd {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 500px; }
 
 .description {
   border: 1px solid #999;
