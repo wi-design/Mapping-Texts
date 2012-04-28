@@ -21,11 +21,15 @@
 	
 	<!--<script src="static/js/libs/modernizr-2.5.3.min.js"></script>-->
 	
-<script src="static/js/lib.js?v=1"></script>
-	
-	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="static/js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+  
 	<!-- js ignore start -->
+	<script src="static/js/libs/d3.v2.min.js"></script>
+	<script src="static/js/libs/jquery-ui-1.7.1.custom.min.js"></script>
 	<!-- js ignore stop -->
+	
+<script src="static/js/lib.3.js"></script>
 		
 	<!-- js compile start -->
 	<script src="static/js/app.global.namespace.js"></script>
@@ -123,7 +127,7 @@
 
 							<p>This visualization plots the language patterns embedded in 232,567 pages of historical Texas newspapers, as they evolved over time and space. Using the date range slider to select any time period and the map of Texas to select any combination of locations, you can browse through three major categories of the newspapers’ language patterns: most common words (word counts), named entities (people, places, etc), and highly correlated words (topic models).</p>
 
-							<p>For more information see the project’s main site: <a href="http://www.mappingtexts.org" target="_blank">mapping texts</a>. For more information about the language analysis categories, explore the “<strong>view</strong>” link on each category below.</p>
+							<p>For more information see the project’s main site: <a href="http://www.mappingtexts.org" target="_blank">mapping texts</a>. For more information about the language analysis categories, explore the “<strong>about</strong>” link on each category below.</p>
 						</div><!-- /modal-bd -->
 					</div>
 					<!-- /about modal -->
@@ -164,9 +168,13 @@
 			<h2>About for Word Counts</h2> 
 		</div>
 		<div class="modal-bd">	
-			Word counts are one of the most widely used metrics for assessing language use in texts. For any given date range and set of locations that you select, 
-			you will see a ranked tally of the most frequently appearing words in the newspapers. You can choose between viewing these counts as either a ranked list or a word cloud. 
-			Nonsensical words are the result of common mistakes introduced by the digitization process (e.g. "tho" for "the").
+			<p>Word counts are one of the most widely used metrics for assessing language use in texts. For any given date range and set of locations that you select, you will see a ranked tally of the most frequently appearing words in the newspapers. You can choose between viewing these counts as either a ranked list or a word cloud.</p>
+
+			<p>You can see these word counts for any time period, and for any combination of individual cities or newspapers available during the years you select.</p>
+
+			<p>In generating our word counts, we have removed "stop words," which are commonly appearing terms--such as "a" "the" "and" and "but"--that by themselves have little meaning, but nonetheless appear quite frequently. This is a common technique in natural language processing, and is intended to help expose the most frequently appearing words that do have some useful meaning.</p>
+
+			<p>Because our collection of digitized newspapers contains some "noise" from the digitization process (that is, scanned words were mistakenly jumbled by the computer during the transition from an image to electronic text), sometimes nonsensical words appear in the word count lists (such as "nnd" for "and"). For more on the digitization quality of the newspapers see "<a href="http://mappingtexts.org/quality" target="_blank">Assessing Newspaper Quality</a>" and our <a href="http://mappingtexts.org/whitepaper" target="_blank">White Paper</a>.</p>
 		</div>
 	</div>
 	<!-- /word-counts-info -->
@@ -176,7 +184,15 @@
 			<h2>About the Named Entity Counts</h2>
 		</div>
 		<div class="modal-bd">
-			<p>Named entity counts are counts of all the particular “entities” (things that are usually considered nouns, like people or places), which are counted and tallied just like basic word counts. For any given date range and set of locations that you select, you will see an ranked tally of the most frequently appearing named entities in the newspapers. You can choose between viewing these counts as either a ranked list or a word cloud. Nonsensical words are the result of common mistakes introduced by the digitization process.</p>
+			<p>Named entity counts are counts of all the particular “entities” (things that are usually considered nouns, like people or places), which are counted and tallied just like basic word counts.</p>
+
+			<p>For any given date range and set of locations that you select, you will see an ranked tally of the most frequently appearing named entities in the newspapers. You can choose between viewing these counts as either a ranked list or a word cloud.</p>
+
+			<p>You can see these word counts for any time period, and for any combination of individual cities or newspapers available during the years you select.</p>
+
+			<p>In order to identify the named entities in each set of newspapers, we used the the Stanford Named Entity Recognizer (<a href="http://www-nlp.stanford.edu/software/CRF-NER.shtml" target="_blank">http://www-nlp.stanford.edu/software/CRF-NER.shtml</a>) because during our testing of various potential parsers the Stanford NER outperformed all others in terms of accuracy, while also maintaining a processing speed comparable with other taggers considered.</p>
+
+			<p>Because our collection of digitized newspapers contains some "noise" from the digitization process (that is, scanned words were mistakenly jumbled by the computer during the transition from an image to electronic text), sometimes nonsensical words appear in the word count lists (such as "nnd" for "and"). For more on the digitization quality of the newspapers see "<a href="http://mappingtexts.org/quality" target="_blank">Assessing Newspaper Quality</a>" and our <a href="http://mappingtexts.org/whitepaper" target="_blank">White Paper</a>.</p>
 		</div>
 	</div>
 	<!-- /named-entity-info -->
@@ -186,11 +202,21 @@
 			<h2>About the Topic Modeling</h2>
 		</div>
 		<div class="modal-bd">
-			<p>Topic modeling [link that to: http://mith.umd.edu/topic-modeling-in-the-humanities-an-overview/] is a method of text-analysis has grown in popularity among humanities scholars in recent years. The basic concept is to use statistical methods to uncover connections between collections of words (which are called “topics”) that appear in a given text. So, for example, running a topic modeling program over a body of text will produce a series of “topics,” which are strings of words (such as “texas, street, address, good, wanted, Houston, office”) that may not necessarily appear next to one another within the text but nonetheless appear to have some sort of statistical relationship to one another. Topic modeling, in other words, uses statistics to produce lists of words that appear to be highly correlated to one another in the hope of exposing larger, wider patterns in language use than a close-reading would be able to provide.</p>
+			<p>Topic modeling is a method of text-analysis has grown in popularity among humanities scholars in recent years. The basic concept is to use statistical methods to uncover connections between collections of words (which are called “topics”) that appear in a given text.</p>
 
-			<p>Because topic models are customize for particular collections of text, we divided up our topic models by commonly recognized eras from Texas history: 1829-1835 (Mexican Era), 1836-1845 (Republic of Texas), 1846-1860 (Antebellum Era), 1861-1865 (Civil War), 1866-1877 (Reconstruction), 1878-1899 (Gilded Age), 1900-1929 (Progressive Era), 1930-1941 (Depression), 1942-1945 (World War II), 1946-2008 (Modern Texas). We used the popular University of Massachusetts’s MALLET package (http://mallet.cs.umass.edu/).</p>
+			<p>So, for example, running a topic modeling program over a body of text will produce a series of “topics,” which are strings of words (such as “texas, street, address, good, wanted, Houston, office”) that may not necessarily appear next to one another within the text but nonetheless appear to have a statistical relationship to one another. Topic modeling, in other words, uses statistics to produce lists of words that appear to be highly correlated to one another in the hope of exposing larger, wider patterns in language use than a close-reading would be able to provide.</p>
 
-			<p>Whenever you pick a date range, the ending date (so for 1820-1865, the end date would be 1860) will determine which topic modeling era is displayed. So, in this example, you would see the topic modeling results for the Civil War Era (1861-1865). For your convenience, we have provided buttons that will allow you to quickly preset the time slider for the topic modeling eras.</p>
+			<p>For good overviews of what topic modeling is and how it has been used in the humanities, we recommend reading "<a href="http://mith.umd.edu/topic-modeling-in-the-humanities-an-overview/" target="_blank">Topic Modeling in the Humanities: An Overview</a>," "<a href="http://tedunderwood.wordpress.com/2012/04/07/topic-modeling-made-just-simple-enough/" target="_blank">Topic Modeling Made Just Simple Enough</a>," and "<a href="http://www.stanford.edu/~mjockers/cgi-bin/drupal/node/61" target="_blank">The LDA Buffet is Now Open; or, Latent Dirichlet Allocation for English Majors</a>."</p>
+
+			<p>For our topic modeling work, we used the popular University of Massachusetts’s MALLET package (<a href="http://mallet.cs.umass.edu/" target="_blank">http://mallet.cs.umass.edu/</a>). Because topic models are customized for particular collections of text, we divided up our topic models by commonly recognized eras from Texas history: 1829-1835 (Mexican Era), 1836-1845 (Republic of Texas), 1846-1860 (Antebellum Era), 1861-1865 (Civil War), 1866-1877 (Reconstruction), 1878-1899 (Gilded Age), 1900-1929 (Progressive Era), 1930-1941 (Depression), 1942-1945 (World War II), 1946-2008 (Modern Texas).</p>
+
+			<p>For every one one of those eras, we used MALLET to generate the top ten topics, with 100 words per topic for all Texas newspapers from that era. We also generated topics for each Texas city during those eras, so you can explore topic models either region-wide or drill down to individual cities.</p>
+
+			<p>These topics represent "statistical themes" that the MALLET program detects in the newspaper collections. The words in each topic appear in ranked order--that is, the first word in a collection of 100 is the most relevant, the second word the second-most relevant, and so on. (One way to think about this would be to consider the words in a topic to be magentic to one another, with the first word being the most magnetic, the second word the second-most magentic, and so forth.)</p>
+
+			<p>Sometimes the topic is a collection of nonsensical words (like “anu, ior, ethe, ahd, uui, auu, tfie” and so on), when the algorithm found a common thread among the “noise” (that is, words that were jumbled by the digitization process) and recognized a commonality between these non-words, which it then grouped into a “topic.”</p>
+
+			<p>More often, however, the topic models group together words that have a clear relationship to one another. If, for example, you were to select all the newspapers from the Republic of Texas era, one of the topic models offered includes “Texas, government, country, states, united, people, mexico, great, war . . . “ which seems to suggest that a highly relevant theme in the newspapers during this era were the international disputes between the United States and Mexico over the future of the Texas region (and the threat of war that came with that). What is even more revealing, however, is that most of the other topic models suggest that this was only one-—and perhaps even a lesser-—concern than other issues within the newspapers of 1830s and 1840s Texas, such as matters of the local economy (“sale, cotton, Houston, received, boxes, Galveston”), local government (“county, court, land, notice, persons, estate”), and social concerns (“man, time, men, great, life”).</p>
 		</div>
 	</div>
 	<!-- /topic-modeling-info -->
