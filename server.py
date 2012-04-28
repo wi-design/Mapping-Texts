@@ -12,6 +12,8 @@
 import os.path
 import logging
 
+import random
+
 import tornado.httpserver
 import tornado.ioloop
 import tornado.options
@@ -26,7 +28,7 @@ from tornado.options import define, options
 define("port", 				default=8888, 				help="run on the given port",				type=int)
 define("redis_host",	default='localhost',	help='host for redis server')
 define("redis_db",		default=0,						help='db to use from redis server',	type=int)
-define("redis_port",	default=6379,					help='port for redis server',				type=int)
+#define("redis_port",	default=6379,					help='port for redis server',				type=int)
 
 
 class Application(tornado.web.Application):
@@ -52,14 +54,18 @@ class Application(tornado.web.Application):
 		tornado.web.Application.__init__(self, handlers, **settings)
 		
 		# have one global connection to redis db accross all handlers
-		self.r = redis.StrictRedis(host=options.redis_host, port=options.redis_port, db=options.redis_db)			
+		self.redis_connections = [( p, redis.StrictRedis(host=options.redis_host, port=p, db=options.redis_db) ) for p in [6379,6378]]
+		#self.r = redis.StrictRedis(host=options.redis_host, port=options.redis_port, db=options.redis_db)			
 
 
 
 class BaseHandler(tornado.web.RequestHandler):
 	@property
 	def r(self):
-		return self.application.r
+		choice = random.choice(self.application.redis_connections)
+		port, conn = choice
+		logging.info("Using conn %s" % port)
+		return conn
 	
 	
 	#
@@ -110,14 +116,15 @@ class BaseHandler(tornado.web.RequestHandler):
 		if years == (1829, 2008) and num_of_pubs == 114:
 			logging.info('Using cached results for %s' % prefix)
 			everything_key = "%s:all" % prefix
-			return self.application.r.zrevrange(everything_key, 0, 49, withscores=True)
+			return self.r.zrevrange(everything_key, 0, 49, withscores=True)
 	
 		key_list = self.make_keylist(prefix, years, user_city_pub_list)
+		logging.info("%%%%% pipeline above if bottleneck")
 	
 		if not key_list:
 			return []
 			
-		pipe = self.application.r.pipeline()
+		pipe = self.r.pipeline()
 		temp_res = 'out'
 		
 		pipe.zunionstore(temp_res, key_list)
@@ -133,7 +140,7 @@ class BaseHandler(tornado.web.RequestHandler):
 		key_list = []
 		for year in self.make_range(years):
 
-			pubseq_set_for_year = self.application.r.smembers( self.make_pub_set_by_year_key(year) )
+			pubseq_set_for_year = self.r.smembers( self.make_pub_set_by_year_key(year) )
 
 			user_pubseq_set_for_year = pubseq_set_for_year.intersection(total_user_pubseq_set)
 
@@ -145,7 +152,7 @@ class BaseHandler(tornado.web.RequestHandler):
 		return key_list
 			
 	def make_total_user_pubseq_set(self, user_city_pub_list):
-		pipe = self.application.r.pipeline()
+		pipe = self.r.pipeline()
 		
 		for elem in user_city_pub_list:
 			city, pub = elem.split(':')
@@ -283,6 +290,8 @@ class PubsHandler(BaseHandler):
 	
 class ConfigHandler(BaseHandler):
 	def get(self):
+		logging.info("** Config **")
+		
 		pipe = self.r.pipeline()
 		
 		pipe.hgetall('templates')

@@ -1,8 +1,8 @@
 TEMPLATES = templates
 STATIC = static
 
-VERSION = ?v=2
-PUBLISH = $(TEMPLATES) $(STATIC)
+VERSION = ?v=3
+PUBLISH = $(TEMPLATES) $(STATIC) robots.txt 404.html
 JS_BUILD_LIB = lib.js
 JS_BUILD_FILE = app.min.js
 CSS_BUILD_FILE = app.min.css
