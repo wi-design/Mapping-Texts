@@ -162,13 +162,13 @@
 			<div class="row">
 				<section id="map-view" class="span-66pct">
 					<div class="map-view widget basic tool">
-						<div class="map-rendering ajax-container"></div>
+						<div class="map-rendering ajax-container"><!-- this gets removed after render completes --></div>
 						<!-- google map will injected by javascript -->
 					</div>
 				</section>
 				<section id="pub-view" class="span-33pct">
 					<div class="pub-view widget basic tool">
-						<div class="pub-rendering ajax-container"></div>
+						<div class="pub-rendering ajax-container"><!-- this gets removed after render completes --></div>
 						<!-- rest of pub-view is being injected through the javascript -->
 					</div>
 				</section>
@@ -176,7 +176,7 @@
 			
 			<div class="row">
 				<section id="wcc-view" class="span-33pct">
-					<!-- widget div will be removed and replaced once views have completed fetching the data -->
+					<!-- widget div will be removed and re-rendered once views have completed fetching the data -->
 					<div class="widget basic module">
 						<div class="hd">
 							<h4>total word counts</h4>
@@ -189,7 +189,7 @@
 				</section>
 				
 				<section id="ner-view" class="span-33pct">
-					<!-- widget div will be removed and replaced once views have completed fetching the data -->
+					<!-- widget div will be removed and re-rendered once views have completed fetching the data -->
 					<div class="widget basic module">
 						<div class="hd">
 							<h4>named entity counts</h4>
@@ -203,7 +203,7 @@
 				</section>
 				
 				<section id="topic-view" class="span-33pct">
-					<!-- widget div will be removed and replaced once views have completed fetching the data -->
+					<!-- widget div will be removed and re-rendered once views have completed fetching the data -->
 					<div class="widget basic module">
 						<div class="hd">
 							<h4>topic models</h4>
