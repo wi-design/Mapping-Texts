@@ -15,44 +15,7 @@
 	<link rel="stylesheet" href="static/css/style.css">
 	<!-- css compile stop -->
 	
-	<!-- Google map api
-	 using my API key -->
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBpY7LNXm_rYk7I7wU6HxhKFir40Env3T8&sensor=false"></script>
 	
-	<!--<script src="static/js/libs/modernizr-2.5.3.min.js"></script>-->
-	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="static/js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-  
-	<!-- js ignore start -->
-	<script src="static/js/libs/d3.v2.min.js"></script>
-	<script src="static/js/libs/jquery-ui-1.7.1.custom.min.js"></script>
-	<!-- js ignore stop -->
-	
-<script src="static/js/lib.js?v=3"></script>
-		
-<script src="static/js/app.min.js?v=3"></script>
-	
-	<script>
-		$(function(){
-			var start_app = function(config) {
-				var c = STANFORD.MAPPING_TEXTS.cached;
-				
-				STANFORD.MAPPING_TEXTS.config = config;
-				
-				c.epochs = new STANFORD.MAPPING_TEXTS.collections.epochs( config.epochs );
-		
-				
-				c.app = new STANFORD.MAPPING_TEXTS.views.app;
-				c.app.render();
-			};
-			
-			
-			// ----
-			$.getJSON('/config', function(config) { start_app(config); });			
-		});
-
-	</script>
 	<script>
 
 	  var _gaq = _gaq || [];
@@ -109,20 +72,71 @@
 					<!-- /about modal -->
 					
 				</section>
-	
-				<section id="time-select-view" class="span-full"></section>
-				
-			</div><!-- /row -->
-				
-			<div class="row">
-				<section id="map-view" class="span-66pct"></section>
-				<section id="pub-view" class="span-33pct"></section>
 			</div><!-- /row -->
 			
 			<div class="row">
-				<section id="wcc-view" class="span-33pct"></section>
-				<section id="ner-view" class="span-33pct"></section>
-				<section id="topic-view" class="span-33pct"></section>
+				<section id="time-select-view" class="span-full">
+					<h3>Time Period</h3>
+					<div>Era Nav's are loading - thank you</div>
+				</section>
+			</div>
+				
+			<div class="row">
+				<section id="map-view" class="span-66pct">
+					<div class="map-view widget basic tool">
+						<div class="map-rendering ajax-container"><!-- this gets removed after render completes --></div>
+						<!-- google map will injected by javascript -->
+					</div>
+				</section>
+				<section id="pub-view" class="span-33pct">
+					<div class="pub-view widget basic tool">
+						<div class="pub-rendering ajax-container"><!-- this gets removed after render completes --></div>
+						<!-- rest of pub-view is being injected through the javascript -->
+					</div>
+				</section>
+			</div><!-- /row -->
+			
+			<div class="row">
+				<section id="wcc-view" class="span-33pct">
+					<!-- widget div will be removed and re-rendered once views have completed fetching the data -->
+					<div class="widget basic module">
+						<div class="hd">
+							<h4>total word counts</h4>
+						</div>
+						<div class="bd">
+							<div class="inner box mtm"></div>
+						</div><!-- /bd -->
+						
+					</div><!-- /widget -->
+				</section>
+				
+				<section id="ner-view" class="span-33pct">
+					<!-- widget div will be removed and re-rendered once views have completed fetching the data -->
+					<div class="widget basic module">
+						<div class="hd">
+							<h4>named entity counts</h4>
+						</div>
+						
+						<div class="bd">
+							<div class="inner box mtm"></div>
+						</div><!-- /bd -->
+						
+					</div><!-- /widget -->
+				</section>
+				
+				<section id="topic-view" class="span-33pct">
+					<!-- widget div will be removed and re-rendered once views have completed fetching the data -->
+					<div class="widget basic module">
+						<div class="hd">
+							<h4>topic models</h4>
+						</div>
+
+						<div class="bd">
+							<div class="inner box mtm"></div>
+						</div><!-- /bd -->
+						
+					</div><!-- /widget -->
+				</section>
 			</div><!-- /row -->
 		
 		</div> <!-- /inner -->
@@ -198,7 +212,43 @@
 	<!-- /topic-modeling-info -->
 	
 <!--==================================================== /modal dialogs ====================================================-->
+
+<!-- Google map api
+ using my API key -->
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBpY7LNXm_rYk7I7wU6HxhKFir40Env3T8&sensor=false"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="static/js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+
+<!-- js ignore start -->
+<script src="static/js/libs/d3.v2.min.js"></script>
+<script src="static/js/libs/jquery-ui-1.7.1.custom.min.js"></script>
+<!-- js ignore stop -->
+
+<script src="static/js/lib.js?v=3"></script>
 	
+<script src="static/js/app.min.js?v=3"></script>
+
+<script>
+	$(function(){
+		var start_app = function(config) {
+			var c = STANFORD.MAPPING_TEXTS.cached;
+			
+			STANFORD.MAPPING_TEXTS.config = config;
+			
+			c.epochs = new STANFORD.MAPPING_TEXTS.collections.epochs( config.epochs );
+	
+			
+			c.app = new STANFORD.MAPPING_TEXTS.views.app;
+			c.app.render();
+		};
+		
+		
+		// ----
+		$.getJSON('/config', function(config) { start_app(config); });			
+	});
+
+</script>
 </body>
 
 </html>
