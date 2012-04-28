@@ -720,7 +720,8 @@ header {
   overflow: hidden;
   padding: 0.385em 0.77em; }
 
-.map-view {
+.map-view,
+.pub-view {
   height: 400px; }
 
 .basic {

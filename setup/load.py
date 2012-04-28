@@ -863,8 +863,6 @@ Here is our map of Texas
 """.strip()
 
 		pub_view = """
-<div class="inner">
-
 	<div class="hd">
 		<h3>date range <small>{{y1}} - {{y2}}</small></h3>
 		<h4>publication by city:</h4>
@@ -876,7 +874,6 @@ Here is our map of Texas
 		</div>
 	</div>
 
-</div>
 """.strip()
 		
 		city_view = """

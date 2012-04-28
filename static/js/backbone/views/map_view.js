@@ -2,11 +2,9 @@ $(function(){
 	
 	STANFORD.MAPPING_TEXTS.views.map_view = Backbone.View.extend({
 		
-		tagName: "section",
+		tagName: "div",
 		
-		id: "map-view",
-		
-		className: "span-66pct widget basic map-view",
+		//class: 'map-view widget basic',
 		
 		events : {},
 		

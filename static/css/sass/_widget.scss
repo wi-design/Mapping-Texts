@@ -140,7 +140,8 @@
 
 // @Map widget
 // special class for id:map-view container to provide a parent height 
-.map-view {
+.map-view,
+.pub-view {
 	height: 400px;
 }
 
