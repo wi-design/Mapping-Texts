@@ -805,7 +805,6 @@ if __name__ == "__main__":
 		ajax_loader = """<div class="ajax-container"><div class="ajax-loading"></div></div>"""
 		
 		time_select_view = """
-	<h3>Time Period</h3>
 	<ol class="era-nav">
 		{{#epochs}}
 			<li class="epoch">

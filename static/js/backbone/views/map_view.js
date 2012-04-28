@@ -4,8 +4,6 @@ $(function(){
 		
 		tagName: "div",
 		
-		//class: 'map-view widget basic',
-		
 		events : {},
 		
 		initialize: function(attr) {

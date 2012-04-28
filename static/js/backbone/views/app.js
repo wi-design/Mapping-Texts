@@ -82,11 +82,11 @@ $(function(){
 					time_select_view = new STANFORD.MAPPING_TEXTS.views.time_select_view({
 						collection: c.epochs
 					}),
-					time_select_view_elem = $(this.el).find('#time-select-view');
+					time_select_view_elem = $(this.el).find('#time-select-view ').find('div');
 					
 			
 			time_select_view_elem.replaceWith( time_select_view.render().el );
-			time_select_view_elem = $(this.el).find('#time-select-view');
+			time_select_view_elem = $(this.el).find('#time-select-view').find('div');
 			
 			c.jqui = time_select_view_elem
 						// slider
