@@ -95,4 +95,4 @@ If the above command prints out help information for the pip command-line progra
 * [sudo] pip install simplejson
 
 ### install redis - python library for talking to Redis server
-* run [sudo] pip install redis
+* [sudo] pip install redis
