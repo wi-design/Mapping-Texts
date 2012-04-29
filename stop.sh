@@ -1,10 +1,6 @@
 #!/bin/bash
 
-echo "Shutting down slave01 redis..."
-redis-cli -p 6378 shutdown
-echo "done"
-
-echo "Shutting down master redis..."
+echo "Shutting down redis..."
 redis-cli -p 6379 shutdown
 echo "done"
 

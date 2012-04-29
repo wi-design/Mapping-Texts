@@ -49,7 +49,7 @@ class Application(tornado.web.Application):
 			template_path=os.path.join(os.path.dirname(__file__), "publish/templates"),
 			#static_path=os.path.join(os.path.dirname(__file__), "static"),
 			static_path=os.path.join(os.path.dirname(__file__), "publish/static"),
-			debug = True,
+			#debug = True,
 		)
 		
 		tornado.web.Application.__init__(self, handlers, **settings)
