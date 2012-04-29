@@ -6,8 +6,8 @@ echo "nginx started"
 redis-server setup/redis/redis.truncated-1000.conf &
 echo "Redis master started"
 
-#redis-server setup/redis/redis.slave01.truncated-1000.conf &
-#echo "Redis slave01 started"
+redis-server setup/redis/redis.slave01.truncated-1000.conf &
+echo "Redis slave01 started"
 
 PID_FILE="server.pid"
 python server.py --port=9000 &>server.log &
