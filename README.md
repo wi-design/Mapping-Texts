@@ -13,7 +13,7 @@ Application state or the application data is stored in a in-memory data-structur
 A copy of the database image is stored on hard disk and could also be backed-up on another server. Redis uses this image to load the data into memory when it restarts or when writes occur. Fortunately, this application is read-only and no writes occur. This eliminates much compexlity involved with durability/persistance of written data to Redis.
 
 ### Web Server
-Apache sits in front of the application server and forwards request to it. It is essentialy a front-end proxy. Additionally, it assists in logging and caching. Please see the .httaccess file for more Apache configuration options.
+Nginx (http://wiki.nginx.org/Main) sits in front of the application server and forwards request to it. It is a front-end proxy. Additionally, it assists in logging and caching. Please see the nginx.conf file for more information on configuration.
 
 ### Application Server
 The application server is built using Tornado (http://www.tornadoweb.org): a very performant Python (http://www.python.org) web framework. This server coordinates with Apache. When a request gets to the application server it processes it and performs computation based on the request.

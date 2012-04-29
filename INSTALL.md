@@ -1,7 +1,21 @@
 # Software requirements 
 
 
-(Assumes Apache is installed already.)
+## Install nginx
+* Download source
+	* curl -O http://nginx.org/download/nginx-1.2.0.tar.gz
+
+* Extract content from tgz file
+	* tar xzf nginx-1.2.0.tar.gz
+	* cd nginx-1.2.0
+
+* Configure, build, and install
+	* ./configure
+	* make
+	* sudo make install
+	* Note: Ubuntu 11.10 I did not have the Perl Regular Expressions Library needed by the rewriting of urls. To install this on Ubuntu I did:
+		* sudo apt-get install libpcre3 libpcre3-dev
+		* Then tried configure, make, and make install again.
 
 
 ## Install Python
