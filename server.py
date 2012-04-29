@@ -28,7 +28,7 @@ from tornado.options import define, options
 define("port", 				default=8888, 				help="run on the given port",				type=int)
 define("redis_host",	default='localhost',	help='host for redis server')
 define("redis_db",		default=0,						help='db to use from redis server',	type=int)
-#define("redis_port",	default=6379,					help='port for redis server',				type=int)
+define("redis_port",	default=6379,					help='port for redis server',				type=int)
 
 
 class Application(tornado.web.Application):
@@ -54,8 +54,9 @@ class Application(tornado.web.Application):
 		
 		tornado.web.Application.__init__(self, handlers, **settings)
 		
-		# have one global connection to redis db accross all handlers
-		self.redis_connections = [( p, redis.StrictRedis(host=options.redis_host, port=p, db=options.redis_db) ) for p in [6379,6378]]
+		# have one global connection list to redises accross all handlers
+		redis_db_servers = ['localhost', '50.57.75.50', '50.57.52.58', '50.57.52.157',]
+		self.redis_connections = [ (server, redis.StrictRedis(host=server, port=options.redis_port, db=options.redis_db)) for server in redis_db_servers]
 		#self.r = redis.StrictRedis(host=options.redis_host, port=options.redis_port, db=options.redis_db)			
 
 
@@ -64,8 +65,8 @@ class BaseHandler(tornado.web.RequestHandler):
 	@property
 	def r(self):
 		choice = random.choice(self.application.redis_connections)
-		port, conn = choice
-		logging.info("Using conn %s" % port)
+		server, conn = choice
+		logging.info("Using server %s" % server)
 		return conn
 	
 	
