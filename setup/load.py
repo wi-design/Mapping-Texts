@@ -800,7 +800,7 @@ if __name__ == "__main__":
 		REDIS.hset('years', 'start', '1829')
 		REDIS.hset('years', 'end', '2008')
 		
-	elif sys.argv[1] == "--input-redis=templates":
+	elif sys.argv[1] == "--update-templates":
 		
 		ajax_loader = """<div class="ajax-container"><div class="ajax-loading"></div></div>"""
 		
@@ -1004,7 +1004,7 @@ Here is our map of Texas
 				</li>
 			{{/topics}}
 		</ol>
-		{{^topics}}<i>No topic models available for this request.  Topic models are available for all locations by era, and by individual cities by era.</i>{{/topics}}
+		{{^topics}}<i>No topic models available for this request. Topic models are available for all locations by era, by individual cities by era, and by individual newspapers by era. To select an individual city or newspaper within an era, use the map to unselect all cities and then click on an individual city. Then to select an individual newspaper title unselect the other newspapers listed in that city.</i>{{/topics}}
 		
 	</div>
 	
